@@ -1,0 +1,75 @@
+{
+  "page": {
+    "title": "المدفوعات",
+    "subtitle": "تتبع فواتيرك وسجل المدفوعات"
+  },
+  "summary": {
+    "totalValue": "إجمالي القيمة",
+    "paid": "المدفوع",
+    "remaining": "المتبقي",
+    "paidPercent": "{pct}% مدفوع"
+  },
+  "nextDue": {
+    "label": "الدفعة مستحقة خلال {days} يوم",
+    "labelOverdue": "تأخر السداد بـ {days} يوم",
+    "viewInvoice": "عرض الفاتورة"
+  },
+  "filters": {
+    "all": "الكل",
+    "pending": "قيد الانتظار",
+    "paid": "مدفوع",
+    "overdue": "متأخر",
+    "cancelled": "ملغى"
+  },
+  "invoiceCard": {
+    "issuedOn": "صدرت {date}",
+    "dueOn": "مستحقة {date}",
+    "paidOn": "مدفوعة {date}",
+    "viewDetails": "عرض الفاتورة"
+  },
+  "emptyState": {
+    "title": "لا توجد فواتير بعد",
+    "description": "ستظهر فواتيرك هنا بمجرد إرسالها من الفريق."
+  },
+  "detail": {
+    "backToPayments": "العودة للمدفوعات",
+    "downloadPdf": "تحميل PDF",
+    "invoice": "فاتورة",
+    "issueDate": "تاريخ الإصدار",
+    "dueDate": "تاريخ الاستحقاق",
+    "billTo": "فاتورة إلى",
+    "lineItems": {
+      "description": "الوصف",
+      "qty": "الكمية",
+      "unitPrice": "سعر الوحدة",
+      "total": "الإجمالي",
+      "subtotal": "المجموع الفرعي",
+      "vat": "ضريبة القيمة المضافة ({rate}%)",
+      "grandTotal": "الإجمالي الكلي"
+    },
+    "paymentInstructions": {
+      "title": "تعليمات الدفع",
+      "body": "يرجى تحويل المبلغ الإجمالي إلى الحساب المصرفي أدناه ورفع إيصال الدفع."
+    },
+    "proofUpload": {
+      "title": "رفع إثبات الدفع",
+      "description": "ارفع إيصال التحويل البنكي أو تأكيد الدفع.",
+      "accepted": "PDF، JPG، PNG (حد أقصى 5 ميجابايت)",
+      "button": "رفع الإثبات",
+      "uploading": "جاري الرفع...",
+      "successMessage": "تم رفع الإثبات. سنؤكد خلال 24 ساعة.",
+      "alreadySubmitted": "تم رفع الإثبات — في انتظار التأكيد"
+    },
+    "status": {
+      "proofSubmitted": "إثبات مرفوع"
+    }
+  },
+  "status": {
+    "draft": "مسودة",
+    "sent": "مُرسلة",
+    "viewed": "تمت المشاهدة",
+    "paid": "مدفوعة",
+    "overdue": "متأخرة",
+    "cancelled": "ملغاة"
+  }
+}

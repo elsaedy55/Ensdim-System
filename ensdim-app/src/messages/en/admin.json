@@ -1,0 +1,386 @@
+{
+  "overview": {
+    "title": "Overview",
+    "subtitle": "Agency operating system — everything in one view",
+    "actions": {
+      "addClient": "Add Client",
+      "newProject": "New Project"
+    },
+    "kpis": {
+      "activeProjects": "Active Projects",
+      "activeClients": "Active Clients",
+      "monthlyRevenue": "Monthly Revenue",
+      "delayedProjects": "Delayed Projects",
+      "openRevisions": "Open Revisions"
+    },
+    "sections": {
+      "activeProjects": "Active Projects",
+      "viewAll": "View all →"
+    },
+    "table": {
+      "headers": {
+        "project": "Project",
+        "client": "Client",
+        "stage": "Stage",
+        "progress": "Progress",
+        "health": "Health",
+        "due": "Due"
+      }
+    },
+    "health": {
+      "onTrack": "On Track",
+      "atRisk": "At Risk",
+      "delayed": "Delayed"
+    }
+  },
+
+  "projects": {
+    "list": {
+      "title": "Projects",
+      "subtitle": "Manage all agency projects",
+      "searchPlaceholder": "Search projects...",
+      "newProject": "New Project",
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "delayed": "Delayed",
+        "completed": "Completed"
+      },
+      "emptyState": {
+        "title": "No projects yet",
+        "description": "Create your first project to get started.",
+        "action": "Create Project"
+      }
+    },
+    "create": {
+      "title": "Create New Project",
+      "steps": {
+        "info": "Basic Info",
+        "timeline": "Timeline",
+        "team": "Team"
+      },
+      "fields": {
+        "name": "Project Name",
+        "namePlaceholder": "E-Commerce Platform",
+        "client": "Client",
+        "clientPlaceholder": "Select a client",
+        "description": "Description",
+        "descriptionPlaceholder": "Brief project description (optional)",
+        "startDate": "Start Date",
+        "targetDelivery": "Target Delivery",
+        "projectManager": "Project Manager",
+        "projectManagerPlaceholder": "Assign a PM",
+        "teamMembers": "Team Members",
+        "teamMembersPlaceholder": "Add team members"
+      },
+      "actions": {
+        "next": "Next",
+        "back": "Back",
+        "create": "Create Project",
+        "cancel": "Cancel"
+      },
+      "success": "Project created successfully"
+    },
+    "detail": {
+      "tabs": {
+        "overview": "Overview",
+        "milestones": "Milestones",
+        "team": "Team",
+        "files": "Files",
+        "revisions": "Revisions",
+        "invoices": "Invoices",
+        "activity": "Activity"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete Project",
+        "archive": "Archive"
+      }
+    }
+  },
+
+  "milestones": {
+    "addMilestone": "Add Milestone",
+    "editMilestone": "Edit Milestone",
+    "deleteMilestone": "Delete Milestone",
+    "markAsReady": "Mark as Ready for Review",
+    "uploadFiles": "Upload Files",
+    "fields": {
+      "name": "Phase Name",
+      "namePlaceholder": "Phase 1: Discovery",
+      "description": "Description",
+      "dueDate": "Due Date",
+      "startDate": "Start Date",
+      "order": "Order"
+    },
+    "statusLabels": {
+      "pending": "Pending",
+      "in_progress": "In Progress",
+      "review": "Ready for Review",
+      "approved": "Approved",
+      "completed": "Completed"
+    },
+    "confirmDelete": "This will permanently delete this milestone and all its files. Continue?",
+    "markedReady": "Milestone marked as ready for client review",
+    "saved": "Milestone saved"
+  },
+
+  "clients": {
+    "list": {
+      "title": "Clients",
+      "subtitle": "Manage clients and leads",
+      "searchPlaceholder": "Search clients...",
+      "addClient": "Add Client",
+      "views": {
+        "pipeline": "Pipeline",
+        "table": "Table"
+      },
+      "emptyState": {
+        "title": "No clients yet",
+        "description": "Add your first client to start creating projects.",
+        "action": "Add Client"
+      }
+    },
+    "add": {
+      "title": "Add Client",
+      "fields": {
+        "name": "Contact Name",
+        "namePlaceholder": "Mohamed Hassan",
+        "email": "Email Address",
+        "emailPlaceholder": "client@company.com",
+        "company": "Company Name",
+        "companyPlaceholder": "Tech Startup Co."
+      },
+      "submit": "Add Client",
+      "success": "Client added successfully",
+      "inviteNote": "An invitation email will be sent to the client."
+    },
+    "detail": {
+      "tabs": {
+        "overview": "Overview",
+        "projects": "Projects",
+        "invoices": "Invoices",
+        "activity": "Activity"
+      },
+      "projectCount": "{count} project(s)",
+      "totalPaid": "Total Paid",
+      "totalOutstanding": "Outstanding"
+    }
+  },
+
+  "team": {
+    "list": {
+      "title": "Team",
+      "subtitle": "Manage your agency team",
+      "inviteMember": "Invite Member"
+    },
+    "invite": {
+      "title": "Invite Team Member",
+      "fields": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "role": "Role",
+        "rolePlaceholder": "Select role"
+      },
+      "submit": "Send Invitation",
+      "success": "Invitation sent successfully"
+    }
+  },
+
+  "tasks": {
+    "page": { "title": "Tasks", "subtitle": "Manage all team tasks" },
+    "columns": {
+      "todo": "To Do", "in_progress": "In Progress",
+      "review": "Review", "done": "Done", "blocked": "Blocked"
+    },
+    "types": {
+      "bug": "Bug", "feature": "Feature", "design": "Design",
+      "review": "Review", "other": "Other"
+    },
+    "create": {
+      "title": "Create Task",
+      "fields": {
+        "title": "Title", "titlePlaceholder": "Brief task description",
+        "description": "Description", "type": "Type", "project": "Project",
+        "milestone": "Milestone", "assignee": "Assignee",
+        "priority": "Priority", "dueDate": "Due Date"
+      },
+      "submit": "Create Task", "success": "Task created"
+    },
+    "detail": {
+      "linkedProject": "Project", "linkedMilestone": "Milestone",
+      "assignee": "Assignee", "priority": "Priority", "dueDate": "Due Date",
+      "description": "Description", "archive": "Archive Task",
+      "comments": "Comments", "addComment": "Add a comment..."
+    },
+    "emptyState": { "title": "No tasks here", "description": "Create a task or drag one in." },
+    "filters": { "all": "All", "mine": "My Tasks" }
+  },
+
+  "team": {
+    "page": { "title": "Team", "subtitle": "Manage your agency team members" },
+    "inviteMember": "Invite Member",
+    "memberCard": {
+      "activeProjects": "{count} active project(s)",
+      "pendingInvite": "Invite pending",
+      "actions": { "edit": "Edit Profile", "changeRole": "Change Role", "remove": "Remove" }
+    },
+    "invite": {
+      "title": "Invite Team Member",
+      "fields": {
+        "name": "Full Name", "namePlaceholder": "Ahmed Hassan",
+        "email": "Email Address", "emailPlaceholder": "ahmed@agency.com",
+        "role": "Role", "rolePlaceholder": "Select role",
+        "message": "Message (optional)", "messagePlaceholder": "Personalized invite message..."
+      },
+      "submit": "Send Invitation", "success": "Invitation sent",
+      "note": "An invitation email will be sent. Link expires in 48 hours."
+    },
+    "emptyState": { "title": "No team members yet", "description": "Invite your first team member." }
+  },
+
+  "financial": {
+    "page": { "title": "Financial", "subtitle": "Revenue, invoices, and payment tracking" },
+    "cards": {
+      "totalRevenue": "Total Revenue", "collected": "Collected",
+      "outstanding": "Outstanding", "overdue": "Overdue"
+    },
+    "overdueAlert": "{count} invoice(s) overdue — Total {amount}",
+    "quickLinks": { "createInvoice": "Create Invoice", "viewAll": "View All Invoices" },
+    "recentInvoices": "Recent Invoices",
+    "invoiceList": {
+      "title": "Invoices", "searchPlaceholder": "Search invoices...",
+      "newInvoice": "New Invoice",
+      "filters": { "all": "All", "draft": "Draft", "sent": "Sent", "paid": "Paid", "overdue": "Overdue" },
+      "headers": { "number": "Invoice #", "client": "Client", "project": "Project", "amount": "Amount", "due": "Due Date", "status": "Status" },
+      "emptyState": { "title": "No invoices yet", "description": "Create your first invoice." }
+    },
+    "createInvoice": {
+      "title": "Create Invoice",
+      "sections": { "details": "Invoice Details", "lineItems": "Line Items", "summary": "Summary", "notes": "Notes" },
+      "fields": {
+        "client": "Client", "clientPlaceholder": "Select client",
+        "project": "Project", "projectPlaceholder": "Select project",
+        "invoiceNumber": "Invoice Number",
+        "issueDate": "Issue Date", "dueDate": "Due Date",
+        "notes": "Notes", "notesPlaceholder": "Payment terms or additional info..."
+      },
+      "lineItems": {
+        "description": "Description", "qty": "Qty", "unitPrice": "Unit Price", "total": "Total",
+        "addItem": "+ Add Item", "remove": "Remove"
+      },
+      "totals": { "subtotal": "Subtotal", "discount": "Discount", "vat": "VAT ({rate}%)", "grandTotal": "Total" },
+      "actions": { "saveDraft": "Save as Draft", "preview": "Preview PDF", "send": "Send to Client" },
+      "success": "Invoice created", "sentSuccess": "Invoice sent to client"
+    },
+    "invoiceDetail": {
+      "title": "Invoice", "edit": "Edit", "download": "Download PDF",
+      "paymentProof": {
+        "title": "Payment Proof Submitted",
+        "view": "View Document",
+        "markPaid": "Mark as Paid", "reject": "Request Retry"
+      },
+      "markPaidConfirm": { "title": "Mark as Paid?", "body": "This will notify the client that payment is confirmed.", "confirm": "Yes, Mark Paid" }
+    }
+  },
+
+  "roles": {
+    "page": { "title": "Roles & Permissions", "subtitle": "Define what each role can do" },
+    "newRole": "New Role",
+    "systemBadge": "System",
+    "usersCount": "{count} user(s)",
+    "actions": { "edit": "Edit", "delete": "Delete", "duplicate": "Duplicate" },
+    "createRole": {
+      "title": "Create Role",
+      "fields": { "name": "Role Name", "namePlaceholder": "e.g. Senior Developer", "description": "Description", "descriptionPlaceholder": "What this role can do..." },
+      "permissionMatrix": "Permission Matrix",
+      "actions": { "cancel": "Cancel", "save": "Save Role" },
+      "success": "Role created"
+    },
+    "deleteRole": {
+      "title": "Delete Role",
+      "body": "This role is assigned to {count} member(s). Please reassign them before deleting.",
+      "reassignTo": "Reassign to",
+      "confirm": "Delete & Reassign"
+    },
+    "matrix": {
+      "modules": {
+        "dashboard": "Dashboard", "projects": "Projects", "milestones": "Milestones",
+        "revisions": "Revisions", "files": "Files", "invoices": "Invoices",
+        "financial": "Financial", "team": "Team", "clients": "Clients",
+        "roles": "Roles", "settings": "Settings"
+      },
+      "actions": {
+        "view": "View", "create": "Create", "edit": "Edit",
+        "delete": "Delete", "approve": "Approve", "export": "Export", "manage": "Manage"
+      },
+      "selectAll": "All", "locked": "Locked (system)"
+    },
+    "emptyState": { "title": "No custom roles yet", "description": "Create roles to define team member access." }
+  },
+
+  "adminSettings": {
+    "page": { "title": "Settings", "subtitle": "Workspace configuration and preferences" },
+    "tabs": { "workspace": "Workspace", "security": "Security", "profile": "My Profile" },
+    "workspace": {
+      "sectionTitle": "Agency Information",
+      "fields": {
+        "name": "Agency Name", "namePlaceholder": "Ensdim Agency",
+        "website": "Website", "websitePlaceholder": "https://agency.com",
+        "industry": "Industry", "timezone": "Timezone",
+        "currency": "Currency", "language": "Default Language",
+        "dateFormat": "Date Format"
+      },
+      "logo": { "label": "Agency Logo", "change": "Change logo", "hint": "PNG or JPG, max 2 MB" },
+      "saveButton": "Save Changes", "savedSuccess": "Workspace settings saved."
+    },
+    "security": {
+      "sectionTitle": "Security Settings",
+      "sessionTimeout": "Session Timeout",
+      "auditLog": "Audit Log",
+      "exportCsv": "Export CSV",
+      "logHeaders": { "action": "Action", "user": "User", "ip": "IP", "date": "Date" },
+      "saveButton": "Save", "savedSuccess": "Security settings saved."
+    }
+  },
+
+  "invoices": {
+    "create": {
+      "title": "Create Invoice",
+      "fields": {
+        "invoiceNumber": "Invoice Number",
+        "issueDate": "Issue Date",
+        "dueDate": "Due Date",
+        "notes": "Notes",
+        "notesPlaceholder": "Payment terms, bank details, etc."
+      },
+      "lineItems": {
+        "title": "Line Items",
+        "addLine": "Add Line",
+        "description": "Description",
+        "qty": "Qty",
+        "unitPrice": "Unit Price",
+        "total": "Total",
+        "remove": "Remove"
+      },
+      "totals": {
+        "subtotal": "Subtotal",
+        "vat": "VAT ({rate}%)",
+        "total": "Total"
+      },
+      "actions": {
+        "saveDraft": "Save as Draft",
+        "send": "Send to Client"
+      },
+      "success": "Invoice created successfully",
+      "sentSuccess": "Invoice sent to client"
+    },
+    "actions": {
+      "send": "Send to Client",
+      "markPaid": "Mark as Paid",
+      "download": "Download PDF",
+      "delete": "Delete"
+    },
+    "paidSuccess": "Invoice marked as paid"
+  }
+}

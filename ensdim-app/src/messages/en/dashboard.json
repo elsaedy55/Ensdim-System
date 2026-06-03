@@ -1,0 +1,73 @@
+{
+  "title": "Dashboard",
+  "hero": {
+    "phaseOf": "Phase {n} of {total}",
+    "complete": "{pct}% Complete",
+    "started": "Started {date}",
+    "estimatedDelivery": "Estimated delivery: {date}",
+    "weeksRemaining": "{n} week(s) remaining",
+    "onTrack": "On Track",
+    "delayed": "Delayed",
+    "noProject": "Your project hasn't started yet",
+    "noProjectDesc": "Your project will appear here once the team sets it up.",
+    "overallProgress": "Overall Progress"
+  },
+  "pendingActions": {
+    "title": "{count} action(s) require your attention",
+    "reviewNow": "Review Now",
+    "viewInvoice": "View Invoice",
+    "overdue": "Overdue",
+    "empty": "No pending actions"
+  },
+  "financial": {
+    "title": "Financial Summary",
+    "viewAll": "View all →",
+    "totalValue": "Total Value",
+    "paid": "Paid",
+    "remaining": "Remaining",
+    "paidPercent": "{pct}% paid",
+    "nextDue": "Next due: {amount} on {date}",
+    "overdue": "Overdue: {amount} was due {date}",
+    "pay": "Pay"
+  },
+  "milestones": {
+    "title": "Milestones",
+    "viewAll": "View All →",
+    "review": "Review"
+  },
+  "activity": {
+    "title": "Recent Activity",
+    "viewAll": "View All →",
+    "empty": "No recent activity"
+  },
+  "project": {
+    "pageTitle": "Project Overview",
+    "noProject": "No active project",
+    "noProjectDesc": "Your project details will appear here.",
+    "tabs": {
+      "overview": "Overview",
+      "progress": "Progress",
+      "team": "Team"
+    },
+    "details": {
+      "startDate": "Start Date",
+      "targetDelivery": "Target Delivery",
+      "currentStage": "Current Stage",
+      "health": "Health",
+      "progress": "Progress"
+    },
+    "overview": {
+      "aboutTitle": "About this project",
+      "overallLabel": "Overall",
+      "teamTitle": "Project Team"
+    }
+  },
+  "details": {
+    "startDate": "Start Date",
+    "targetDelivery": "Target Delivery",
+    "currentStage": "Current Stage",
+    "health": "Health",
+    "progress": "Progress"
+  },
+  "welcome": "Welcome back, {name}"
+}

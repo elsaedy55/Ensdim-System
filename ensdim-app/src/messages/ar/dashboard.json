@@ -1,0 +1,73 @@
+{
+  "title": "لوحة التحكم",
+  "hero": {
+    "phaseOf": "المرحلة {n} من {total}",
+    "complete": "مكتمل {pct}%",
+    "started": "بدأ {date}",
+    "estimatedDelivery": "التسليم المتوقع: {date}",
+    "weeksRemaining": "{n} أسبوع متبقي",
+    "onTrack": "في الموعد",
+    "delayed": "متأخر",
+    "noProject": "لم يبدأ مشروعك بعد",
+    "noProjectDesc": "ستظهر تفاصيل مشروعك هنا بمجرد إعداده من قبل الفريق.",
+    "overallProgress": "التقدم الإجمالي"
+  },
+  "pendingActions": {
+    "title": "{count} إجراء يحتاج انتباهك",
+    "reviewNow": "مراجعة الآن",
+    "viewInvoice": "عرض الفاتورة",
+    "overdue": "متأخر",
+    "empty": "لا توجد إجراءات معلقة"
+  },
+  "financial": {
+    "title": "الملخص المالي",
+    "viewAll": "← عرض الكل",
+    "totalValue": "إجمالي القيمة",
+    "paid": "المدفوع",
+    "remaining": "المتبقي",
+    "paidPercent": "{pct}% مدفوع",
+    "nextDue": "الاستحقاق القادم: {amount} في {date}",
+    "overdue": "متأخر: {amount} كان مستحقاً في {date}",
+    "pay": "دفع"
+  },
+  "milestones": {
+    "title": "المراحل",
+    "viewAll": "← عرض الكل",
+    "review": "مراجعة"
+  },
+  "activity": {
+    "title": "آخر النشاطات",
+    "viewAll": "← عرض الكل",
+    "empty": "لا توجد نشاطات حديثة"
+  },
+  "project": {
+    "pageTitle": "نظرة عامة على المشروع",
+    "noProject": "لا يوجد مشروع نشط",
+    "noProjectDesc": "ستظهر تفاصيل مشروعك هنا.",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "progress": "التقدم",
+      "team": "الفريق"
+    },
+    "details": {
+      "startDate": "تاريخ البدء",
+      "targetDelivery": "التسليم المستهدف",
+      "currentStage": "المرحلة الحالية",
+      "health": "الحالة",
+      "progress": "التقدم"
+    },
+    "overview": {
+      "aboutTitle": "عن هذا المشروع",
+      "overallLabel": "الإجمالي",
+      "teamTitle": "فريق المشروع"
+    }
+  },
+  "details": {
+    "startDate": "تاريخ البدء",
+    "targetDelivery": "التسليم المستهدف",
+    "currentStage": "المرحلة الحالية",
+    "health": "الحالة",
+    "progress": "التقدم"
+  },
+  "welcome": "مرحباً بك، {name}"
+}

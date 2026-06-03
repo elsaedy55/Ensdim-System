@@ -1,0 +1,22 @@
+{
+  "page": {
+    "title": "Files & Deliverables",
+    "subtitle": "All project files, designs, and documentation"
+  },
+  "tabs": {
+    "all": "All Files",
+    "design": "Design",
+    "development": "Development",
+    "documentation": "Documentation",
+    "credentials": "Credentials",
+    "final": "Final Delivery"
+  },
+  "emptyState": {
+    "title": "No files yet",
+    "description": "Files will appear here once uploaded by the team."
+  },
+  "credentials": {
+    "warning": "These files contain sensitive credentials. Click Show to reveal content. Keep them secure and do not share.",
+    "show": "Show"
+  }
+}

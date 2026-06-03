@@ -1,0 +1,23 @@
+{
+  "pagination": {
+    "showing": "عرض {from}–{to} من {total}",
+    "perPage": "{size} / صفحة"
+  },
+  "filters": {
+    "label": "التصفية:",
+    "clearAll": "مسح الكل"
+  },
+  "bulk": {
+    "selected": "{count} محدد",
+    "clear": "مسح"
+  },
+  "emptyState": {
+    "title": "لا توجد بيانات"
+  },
+  "aria": {
+    "selectAll": "تحديد الكل",
+    "selectRow": "تحديد الصف",
+    "rowActions": "إجراءات الصف",
+    "removeFilter": "إزالة الفلتر"
+  }
+}

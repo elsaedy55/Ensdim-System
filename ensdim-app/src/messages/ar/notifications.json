@@ -1,0 +1,28 @@
+{
+  "page": {
+    "title": "الإشعارات",
+    "subtitle": "ابق على اطلاع بنشاط مشروعك"
+  },
+  "sections": {
+    "unread": "جديد",
+    "earlier": "السابقة"
+  },
+  "actions": {
+    "markAllRead": "تحديد الكل كمقروء",
+    "markRead": "تحديد كمقروء"
+  },
+  "emptyState": {
+    "title": "أنت على اطلاع بكل شيء",
+    "description": "لا توجد إشعارات جديدة الآن."
+  },
+  "types": {
+    "milestone_review": "مرحلة جاهزة للمراجعة",
+    "invoice_sent": "تم استلام فاتورة جديدة",
+    "file_uploaded": "تم رفع ملفات على مشروعك",
+    "revision_submitted": "تم إرسال طلب تعديل",
+    "revision_resolved": "تم حل طلب التعديل",
+    "approval_complete": "تم تأكيد الموافقة",
+    "payment_received": "تم استلام الدفعة",
+    "system": "إشعار النظام"
+  }
+}

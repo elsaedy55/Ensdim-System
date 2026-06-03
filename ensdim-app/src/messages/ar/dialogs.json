@@ -1,0 +1,43 @@
+{
+  "confirmDelete": {
+    "defaultTitle": "حذف هذا العنصر؟",
+    "withName": "هل أنت متأكد من حذف {name}؟ لا يمكن التراجع عن هذا الإجراء.",
+    "withoutName": "هل أنت متأكد من حذف هذا العنصر؟ لا يمكن التراجع عن هذا الإجراء.",
+    "cancel": "إلغاء",
+    "confirm": "حذف"
+  },
+  "approve": {
+    "defaultTitle": "اعتماد هذا العنصر؟",
+    "defaultDescription": "بعد الاعتماد سيتم إشعار الفريق للمتابعة. لا يمكن التراجع عن هذا الإجراء.",
+    "cancel": "إلغاء",
+    "confirm": "اعتماد"
+  },
+  "fileUpload": {
+    "defaultTitle": "رفع الملفات",
+    "cancel": "إلغاء",
+    "upload": "رفع",
+    "uploadWithCount": "رفع ({count})"
+  },
+  "fileUploadZone": {
+    "dropFilesHere": "اسحب الملفات هنا أو انقر للتصفح",
+    "release": "أفلت للرفع",
+    "anyFileType": "أي نوع ملف",
+    "maxSize": "الحد الأقصى {size}",
+    "errors": {
+      "tooManyFiles": "الحد الأقصى {max} ملفات",
+      "fileTooLarge": "{name} يتجاوز حد {size}",
+      "invalidType": "{name} ليس نوع ملف مقبول"
+    }
+  },
+  "filePreview": {
+    "uploadedBy": "رُفع بواسطة {name}",
+    "noPreview": "المعاينة غير متاحة لهذا النوع من الملفات",
+    "open": "فتح",
+    "download": "تحميل"
+  },
+  "sessionExpired": {
+    "title": "انتهت الجلسة",
+    "description": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مجدداً للمتابعة.",
+    "signIn": "تسجيل الدخول مجدداً"
+  }
+}

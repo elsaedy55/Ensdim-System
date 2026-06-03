@@ -1,0 +1,61 @@
+{
+  "page": {
+    "title": "الإعدادات",
+    "subtitle": "إدارة حسابك وتفضيلاتك"
+  },
+  "tabs": {
+    "profile": "الملف الشخصي",
+    "security": "كلمة المرور والأمان",
+    "notifications": "الإشعارات"
+  },
+  "profile": {
+    "sectionTitle": "المعلومات الشخصية",
+    "sectionDescription": "حدّث اسمك وصورة ملفك الشخصي.",
+    "avatar": {
+      "label": "صورة الملف الشخصي",
+      "changeButton": "تغيير الصورة",
+      "removeButton": "إزالة",
+      "hint": "JPG أو PNG، بحد أقصى 2 ميجابايت"
+    },
+    "fields": {
+      "name": "الاسم الكامل",
+      "namePlaceholder": "محمد حسن",
+      "email": "البريد الإلكتروني",
+      "emailHint": "تواصل مع الدعم لتغيير بريدك الإلكتروني.",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "+20 100 000 0000"
+    },
+    "saveButton": "حفظ التغييرات",
+    "savedSuccess": "تم تحديث الملف الشخصي بنجاح."
+  },
+  "security": {
+    "sectionTitle": "تغيير كلمة المرور",
+    "sectionDescription": "اختر كلمة مرور قوية لم تستخدمها من قبل.",
+    "fields": {
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة"
+    },
+    "saveButton": "تحديث كلمة المرور",
+    "savedSuccess": "تم تغيير كلمة المرور بنجاح.",
+    "validation": {
+      "currentRequired": "يرجى إدخال كلمة مرورك الحالية.",
+      "newMin": "كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل.",
+      "confirmMatch": "كلمتا المرور غير متطابقتين."
+    }
+  },
+  "notificationPrefs": {
+    "sectionTitle": "إشعارات البريد الإلكتروني",
+    "emailSection": "البريد الإلكتروني",
+    "inAppSection": "داخل التطبيق",
+    "items": {
+      "milestoneReview": "مرحلة جاهزة للمراجعة",
+      "invoiceSent": "تم إرسال فاتورة جديدة",
+      "fileUploaded": "تم رفع ملفات على المشروع",
+      "revisionUpdated": "تم تحديث طلب التعديل",
+      "projectStatus": "تم تغيير حالة المشروع"
+    },
+    "saveButton": "حفظ التفضيلات",
+    "savedSuccess": "تم حفظ تفضيلات الإشعارات."
+  }
+}

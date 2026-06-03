@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+/* ============================================
+   ENSDIM DESIGN SYSTEM — DESIGN TOKENS
+   ============================================ */
+
+@theme {
+  /* ---------- FONTS ---------- */
+  --font-sans: var(--font-geist-sans), "Inter", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "Fira Code", monospace;
+  --font-arabic: var(--font-cairo), "Cairo", system-ui, sans-serif;
+
+  /* ---------- TYPOGRAPHY SCALE ---------- */
+  --text-xs:   0.75rem;    /* 12px — caption, labels */
+  --text-sm:   0.875rem;   /* 14px — body, default */
+  --text-base: 1rem;       /* 16px — card title */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px — section title */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px — page title */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px — display */
+
+  /* ---------- BORDER RADIUS ---------- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* ---------- SPACING (8pt grid) ---------- */
+  --space-0: 0px;
+  --space-1: 4px;   /* half-step */
+  --space-2: 8px;   /* 1 unit */
+  --space-3: 12px;  /* 1.5 unit */
+  --space-4: 16px;  /* 2 units */
+  --space-6: 24px;  /* 3 units */
+  --space-8: 32px;  /* 4 units */
+  --space-10:40px;  /* 5 units */
+  --space-12:48px;  /* 6 units */
+
+  /* ---------- SHADOWS ---------- */
+  --shadow-xs:   0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-sm:   0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.07);
+  --shadow-md:   0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+  --shadow-lg:   0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+  --shadow-card: 0 0 0 1px rgb(0 0 0 / 0.06), 0 2px 4px 0 rgb(0 0 0 / 0.04);
+  --shadow-dropdown: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1), 0 0 0 1px rgb(0 0 0 / 0.05);
+  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* ---------- ANIMATIONS ---------- */
+  --duration-fast:   150ms;
+  --duration-normal: 200ms;
+  --duration-slow:   300ms;
+  --ease-default:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   COLOR SYSTEM — LIGHT MODE
+   ============================================ */
+:root {
+  /* Backgrounds */
+  --bg-base:      #fafafa;   /* zinc-50  — page background */
+  --bg-surface:   #ffffff;   /* white    — cards, panels */
+  --bg-muted:     #f4f4f5;   /* zinc-100 — subtle fills */
+  --bg-hover:     #f1f1f3;   /* hover state */
+  --bg-active:    #e4e4e7;   /* active/pressed state */
+
+  /* Borders */
+  --border:         #e4e4e7;   /* zinc-200 — default border */
+  --border-subtle:  #f1f1f3;   /* very subtle border */
+  --border-strong:  #d4d4d8;   /* zinc-300 — stronger border */
+
+  /* Text */
+  --text-primary:   #09090b;   /* zinc-950 — headings, main content */
+  --text-secondary: #52525b;   /* zinc-600 — supporting text */
+  --text-muted:     #a1a1aa;   /* zinc-400 — placeholders, disabled labels */
+  --text-disabled:  #d4d4d8;   /* zinc-300 — disabled text */
+  --text-inverse:   #ffffff;   /* white on dark backgrounds */
+
+  /* Accent — Indigo */
+  --accent:           #6366f1;   /* indigo-500 */
+  --accent-hover:     #4f46e5;   /* indigo-600 */
+  --accent-active:    #4338ca;   /* indigo-700 */
+  --accent-subtle:    #eef2ff;   /* indigo-50 */
+  --accent-muted:     #e0e7ff;   /* indigo-100 */
+  --accent-foreground:#ffffff;
+
+  /* Success — Emerald */
+  --success:          #10b981;   /* emerald-500 */
+  --success-hover:    #059669;   /* emerald-600 */
+  --success-subtle:   #ecfdf5;   /* emerald-50 */
+  --success-muted:    #d1fae5;   /* emerald-100 */
+  --success-foreground: #065f46; /* emerald-900 */
+
+  /* Warning — Amber */
+  --warning:          #f59e0b;   /* amber-500 */
+  --warning-hover:    #d97706;   /* amber-600 */
+  --warning-subtle:   #fffbeb;   /* amber-50 */
+  --warning-muted:    #fef3c7;   /* amber-100 */
+  --warning-foreground: #78350f; /* amber-900 */
+
+  /* Danger — Rose */
+  --danger:           #f43f5e;   /* rose-500 */
+  --danger-hover:     #e11d48;   /* rose-600 */
+  --danger-active:    #be123c;   /* rose-700 */
+  --danger-subtle:    #fff1f2;   /* rose-50 */
+  --danger-muted:     #ffe4e6;   /* rose-100 */
+  --danger-foreground: #881337;  /* rose-900 */
+
+  /* Sidebar */
+  --sidebar-bg:         #ffffff;
+  --sidebar-border:     #e4e4e7;
+  --sidebar-item-hover: #f4f4f5;
+  --sidebar-item-active:#eef2ff;
+  --sidebar-item-active-border: #6366f1;
+  --sidebar-text:       #52525b;
+  --sidebar-text-active:#3730a3;
+
+  /* Z-index scale */
+  --z-sidebar:  40;
+  --z-header:   50;
+  --z-overlay:  60;
+  --z-dropdown: 70;
+  --z-modal:    80;
+  --z-toast:    90;
+}
+
+/* ============================================
+   COLOR SYSTEM — DARK MODE
+   ============================================ */
+.dark {
+  /* Backgrounds */
+  --bg-base:      #09090b;   /* zinc-950 */
+  --bg-surface:   #18181b;   /* zinc-900 */
+  --bg-muted:     #27272a;   /* zinc-800 */
+  --bg-hover:     #3f3f46;   /* zinc-700 */
+  --bg-active:    #52525b;   /* zinc-600 */
+
+  /* Borders */
+  --border:         #27272a;   /* zinc-800 */
+  --border-subtle:  #1f1f22;
+  --border-strong:  #3f3f46;   /* zinc-700 */
+
+  /* Text */
+  --text-primary:   #fafafa;   /* zinc-50 */
+  --text-secondary: #a1a1aa;   /* zinc-400 */
+  --text-muted:     #52525b;   /* zinc-600 */
+  --text-disabled:  #3f3f46;   /* zinc-700 */
+  --text-inverse:   #09090b;
+
+  /* Accent — slightly brighter in dark */
+  --accent:           #818cf8;   /* indigo-400 */
+  --accent-hover:     #6366f1;   /* indigo-500 */
+  --accent-subtle:    #1e1b4b;   /* indigo-950 */
+  --accent-muted:     #312e81;   /* indigo-900 */
+
+  /* Success */
+  --success:          #34d399;   /* emerald-400 */
+  --success-subtle:   #022c22;   /* emerald-950 */
+  --success-muted:    #064e3b;   /* emerald-900 */
+  --success-foreground: #d1fae5;
+
+  /* Warning */
+  --warning:          #fbbf24;   /* amber-400 */
+  --warning-subtle:   #1c1400;
+  --warning-muted:    #451a03;   /* amber-950 */
+  --warning-foreground: #fef3c7;
+
+  /* Danger */
+  --danger:           #fb7185;   /* rose-400 */
+  --danger-hover:     #f43f5e;
+  --danger-subtle:    #1f0010;
+  --danger-muted:     #4c0519;   /* rose-950 */
+  --danger-foreground: #ffe4e6;
+
+  /* Sidebar */
+  --sidebar-bg:         #111113;
+  --sidebar-border:     #27272a;
+  --sidebar-item-hover: #1f1f22;
+  --sidebar-item-active:#1e1b4b;
+  --sidebar-item-active-border: #818cf8;
+  --sidebar-text:       #a1a1aa;
+  --sidebar-text-active:#a5b4fc;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--border-strong); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-muted);
+  color: var(--accent-hover);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Typography presets */
+.text-display  { font-size: 2.5rem;   line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+.text-page-title { font-size: 1.875rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+.text-section  { font-size: 1.25rem;  line-height: 1.3; font-weight: 600; }
+.text-card-title { font-size: 1rem;   line-height: 1.4; font-weight: 600; }
+.text-body     { font-size: 0.875rem; line-height: 1.5; font-weight: 400; }
+.text-caption  { font-size: 0.75rem;  line-height: 1.4; font-weight: 400; }
+.text-label    { font-size: 0.6875rem; line-height: 1; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Surface card */
+.surface {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.surface-muted {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+/* Transition defaults */
+.transition-default {
+  transition: all var(--duration-normal) var(--ease-default);
+}
+
+/* ============================================
+   RTL / ARABIC OVERRIDES
+   ============================================ */
+
+/* Switch font to Cairo for Arabic */
+:root:is([lang="ar"]) body,
+[lang="ar"] body {
+  font-family: var(--font-arabic);
+}
+
+/* Ensure all text inherits Cairo in Arabic mode */
+[lang="ar"] * {
+  font-family: inherit;
+}
+
+/* RTL-specific letter spacing reset (Arabic doesn't use letter-spacing) */
+[lang="ar"] .tracking-tight,
+[lang="ar"] .tracking-wide,
+[lang="ar"] .tracking-wider,
+[lang="ar"] .tracking-widest {
+  letter-spacing: 0;
+}
+
+/* Sidebar RTL: natural flex-row in dir="rtl" already places items correctly.
+   Icon (first in DOM) appears on the inline-start edge, label flows inward.
+   No flex-direction overrides needed. */

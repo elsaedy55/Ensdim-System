@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "طلبات التعديل",
+    "subtitle": "أرسل وتتبع طلبات التغيير على مشروعك"
+  },
+  "tabs": {
+    "all": "الكل",
+    "open": "مفتوح",
+    "active": "قيد التنفيذ",
+    "done": "محلول"
+  },
+  "categories": {
+    "bug": "خطأ",
+    "revision": "تعديل",
+    "feature": "ميزة",
+    "question": "سؤال"
+  },
+  "card": {
+    "linkedTo": "مرتبط بـ: {milestone}"
+  },
+  "emptyState": {
+    "title": "لا توجد طلبات بعد",
+    "description": "أرسل طلبك الأول باستخدام الزر أعلاه."
+  },
+  "detail": {
+    "backToRevisions": "العودة للطلبات",
+    "linkedTo": "مرتبط بمرحلة",
+    "assignedTo": "معين لـ",
+    "submittedBy": "أُرسل بواسطة",
+    "submittedOn": "أُرسل في {date}",
+    "attachments": "المرفقات",
+    "noAttachments": "لا توجد مرفقات",
+    "teamResponse": "رد الفريق",
+    "noResponse": "لم يرد الفريق بعد. سنُشعرك عند وجود تحديث.",
+    "statusHistory": "سجل الحالة"
+  },
+  "new": {
+    "backToRevisions": "العودة للطلبات",
+    "title": "طلب جديد",
+    "subtitle": "صف التغيير أو المشكلة التي تريد الإبلاغ عنها",
+    "category": {
+      "label": "الفئة",
+      "bug": "🐛 خطأ",
+      "bugDesc": "شيء لا يعمل بشكل صحيح",
+      "revision": "✏️ تعديل",
+      "revisionDesc": "طلب تغيير على عمل موجود",
+      "feature": "✨ طلب ميزة",
+      "featureDesc": "إضافة وظيفة جديدة",
+      "question": "❓ سؤال",
+      "questionDesc": "اسأل عن المشروع"
+    },
+    "fields": {
+      "title": "العنوان",
+      "titlePlaceholder": "وصف مختصر للمشكلة...",
+      "description": "الوصف",
+      "descriptionPlaceholder": "اصف المشكلة بالتفصيل...",
+      "descriptionHint": "أدرج خطوات الإعادة إذا كانت خطأً، أو ما تريد تغييره ولماذا.",
+      "priority": "الأولوية",
+      "priorityPlaceholder": "اختر الأولوية",
+      "milestone": "المرحلة المرتبطة",
+      "milestonePlaceholder": "اختر مرحلة"
+    },
+    "priority": {
+      "high": "🔴 عالية",
+      "medium": "🟡 متوسطة",
+      "low": "🟢 منخفضة"
+    },
+    "actions": {
+      "cancel": "إلغاء",
+      "submit": "إرسال الطلب"
+    },
+    "validation": {
+      "titleMin": "العنوان يجب أن يكون 5 أحرف على الأقل",
+      "titleMax": "العنوان طويل جداً",
+      "descriptionMin": "يرجى كتابة 20 حرفاً على الأقل لوصف المشكلة"
+    },
+    "success": {
+      "title": "تم إرسال الطلب!",
+      "description": "تم إشعار الفريق وسيرد خلال 1–2 يوم عمل.",
+      "viewAll": "عرض كل الطلبات",
+      "submitAnother": "إرسال طلب آخر"
+    }
+  },
+  "modal": {
+    "title": "طلب تعديل جديد",
+    "for": "خاص بـ:",
+    "fields": {
+      "title": "العنوان",
+      "titlePlaceholder": "وصف مختصر للمشكلة أو التغيير المطلوب",
+      "category": "الفئة",
+      "categoryPlaceholder": "اختر فئة",
+      "priority": "الأولوية",
+      "priorityPlaceholder": "اختر الأولوية",
+      "description": "الوصف",
+      "descriptionPlaceholder": "صف بالتفصيل ما يجب تغييره أو إصلاحه..."
+    },
+    "categories": {
+      "revision": "تعديل",
+      "bug": "إصلاح خطأ",
+      "feature": "طلب ميزة",
+      "question": "سؤال"
+    },
+    "priority": {
+      "high": "عالية",
+      "medium": "متوسطة",
+      "low": "منخفضة"
+    },
+    "actions": {
+      "cancel": "إلغاء",
+      "submit": "إرسال الطلب"
+    },
+    "validation": {
+      "titleMin": "العنوان يجب أن يكون 5 أحرف على الأقل",
+      "descriptionMin": "يرجى كتابة المزيد من التفاصيل (20 حرف على الأقل)"
+    }
+  }
+}

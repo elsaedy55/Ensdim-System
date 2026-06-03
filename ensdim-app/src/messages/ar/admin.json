@@ -1,0 +1,363 @@
+{
+  "overview": {
+    "title": "نظرة عامة",
+    "subtitle": "نظام تشغيل الوكالة — كل شيء في عرض واحد",
+    "actions": {
+      "addClient": "إضافة عميل",
+      "newProject": "مشروع جديد"
+    },
+    "kpis": {
+      "activeProjects": "المشاريع النشطة",
+      "activeClients": "العملاء النشطون",
+      "monthlyRevenue": "الإيرادات الشهرية",
+      "delayedProjects": "المشاريع المتأخرة",
+      "openRevisions": "طلبات التعديل المفتوحة"
+    },
+    "sections": {
+      "activeProjects": "المشاريع النشطة",
+      "viewAll": "← عرض الكل"
+    },
+    "table": {
+      "headers": {
+        "project": "المشروع",
+        "client": "العميل",
+        "stage": "المرحلة",
+        "progress": "التقدم",
+        "health": "الحالة",
+        "due": "الموعد"
+      }
+    },
+    "health": {
+      "onTrack": "في الموعد",
+      "atRisk": "في خطر",
+      "delayed": "متأخر"
+    }
+  },
+
+  "projects": {
+    "list": {
+      "title": "المشاريع",
+      "subtitle": "إدارة جميع مشاريع الوكالة",
+      "searchPlaceholder": "البحث في المشاريع...",
+      "newProject": "مشروع جديد",
+      "filters": {
+        "all": "الكل",
+        "active": "نشط",
+        "delayed": "متأخر",
+        "completed": "مكتمل"
+      },
+      "emptyState": {
+        "title": "لا توجد مشاريع بعد",
+        "description": "أنشئ مشروعك الأول للبدء.",
+        "action": "إنشاء مشروع"
+      }
+    },
+    "create": {
+      "title": "إنشاء مشروع جديد",
+      "steps": {
+        "info": "المعلومات الأساسية",
+        "timeline": "الجدول الزمني",
+        "team": "الفريق"
+      },
+      "fields": {
+        "name": "اسم المشروع",
+        "namePlaceholder": "منصة التجارة الإلكترونية",
+        "client": "العميل",
+        "clientPlaceholder": "اختر عميلاً",
+        "description": "الوصف",
+        "descriptionPlaceholder": "وصف مختصر للمشروع (اختياري)",
+        "startDate": "تاريخ البدء",
+        "targetDelivery": "تاريخ التسليم المستهدف",
+        "projectManager": "مدير المشروع",
+        "projectManagerPlaceholder": "تعيين مدير مشروع",
+        "teamMembers": "أعضاء الفريق",
+        "teamMembersPlaceholder": "إضافة أعضاء الفريق"
+      },
+      "actions": {
+        "next": "التالي",
+        "back": "رجوع",
+        "create": "إنشاء المشروع",
+        "cancel": "إلغاء"
+      },
+      "success": "تم إنشاء المشروع بنجاح"
+    },
+    "detail": {
+      "tabs": {
+        "overview": "نظرة عامة",
+        "milestones": "المراحل",
+        "team": "الفريق",
+        "files": "الملفات",
+        "revisions": "طلبات التعديل",
+        "invoices": "الفواتير",
+        "activity": "النشاط"
+      },
+      "actions": {
+        "edit": "تعديل",
+        "delete": "حذف المشروع",
+        "archive": "أرشفة"
+      }
+    }
+  },
+
+  "milestones": {
+    "addMilestone": "إضافة مرحلة",
+    "editMilestone": "تعديل المرحلة",
+    "deleteMilestone": "حذف المرحلة",
+    "markAsReady": "تحديد كجاهز للمراجعة",
+    "uploadFiles": "رفع الملفات",
+    "fields": {
+      "name": "اسم المرحلة",
+      "namePlaceholder": "المرحلة 1: الاكتشاف",
+      "description": "الوصف",
+      "dueDate": "تاريخ الاستحقاق",
+      "startDate": "تاريخ البدء",
+      "order": "الترتيب"
+    },
+    "statusLabels": {
+      "pending": "قيد الانتظار",
+      "in_progress": "قيد التنفيذ",
+      "review": "جاهز للمراجعة",
+      "approved": "معتمد",
+      "completed": "مكتمل"
+    },
+    "confirmDelete": "سيؤدي هذا إلى حذف هذه المرحلة وجميع ملفاتها نهائياً. هل تريد المتابعة؟",
+    "markedReady": "تم تحديد المرحلة كجاهزة لمراجعة العميل",
+    "saved": "تم حفظ المرحلة"
+  },
+
+  "clients": {
+    "list": {
+      "title": "العملاء",
+      "subtitle": "إدارة العملاء والعملاء المحتملين",
+      "searchPlaceholder": "البحث في العملاء...",
+      "addClient": "إضافة عميل",
+      "views": {
+        "pipeline": "خط سير",
+        "table": "جدول"
+      },
+      "emptyState": {
+        "title": "لا يوجد عملاء بعد",
+        "description": "أضف أول عميل لبدء إنشاء المشاريع.",
+        "action": "إضافة عميل"
+      }
+    },
+    "add": {
+      "title": "إضافة عميل",
+      "fields": {
+        "name": "اسم جهة الاتصال",
+        "namePlaceholder": "محمد حسن",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "client@company.com",
+        "company": "اسم الشركة",
+        "companyPlaceholder": "شركة تك ستارت"
+      },
+      "submit": "إضافة العميل",
+      "success": "تمت إضافة العميل بنجاح",
+      "inviteNote": "سيتم إرسال دعوة بالبريد الإلكتروني للعميل."
+    },
+    "detail": {
+      "tabs": {
+        "overview": "نظرة عامة",
+        "projects": "المشاريع",
+        "invoices": "الفواتير",
+        "activity": "النشاط"
+      },
+      "projectCount": "{count} مشروع",
+      "totalPaid": "إجمالي المدفوع",
+      "totalOutstanding": "المتبقي"
+    }
+  },
+
+  "team": {
+    "list": {
+      "title": "الفريق",
+      "subtitle": "إدارة فريق الوكالة",
+      "inviteMember": "دعوة عضو"
+    },
+    "invite": {
+      "title": "دعوة عضو فريق",
+      "fields": {
+        "name": "الاسم الكامل",
+        "email": "البريد الإلكتروني",
+        "role": "الدور",
+        "rolePlaceholder": "اختر دوراً"
+      },
+      "submit": "إرسال الدعوة",
+      "success": "تم إرسال الدعوة بنجاح"
+    }
+  },
+
+  "tasks": {
+    "page": { "title": "المهام", "subtitle": "إدارة جميع مهام الفريق" },
+    "columns": {
+      "todo": "للتنفيذ", "in_progress": "قيد التنفيذ",
+      "review": "للمراجعة", "done": "منجز", "blocked": "محجوب"
+    },
+    "types": { "bug": "خطأ", "feature": "ميزة", "design": "تصميم", "review": "مراجعة", "other": "أخرى" },
+    "create": {
+      "title": "إنشاء مهمة",
+      "fields": {
+        "title": "العنوان", "titlePlaceholder": "وصف مختصر للمهمة",
+        "description": "الوصف", "type": "النوع", "project": "المشروع",
+        "milestone": "المرحلة", "assignee": "المسؤول", "priority": "الأولوية", "dueDate": "تاريخ الاستحقاق"
+      },
+      "submit": "إنشاء المهمة", "success": "تم إنشاء المهمة"
+    },
+    "detail": {
+      "linkedProject": "المشروع", "linkedMilestone": "المرحلة", "assignee": "المسؤول",
+      "priority": "الأولوية", "dueDate": "تاريخ الاستحقاق", "description": "الوصف",
+      "archive": "أرشفة المهمة", "comments": "التعليقات", "addComment": "أضف تعليقاً..."
+    },
+    "emptyState": { "title": "لا توجد مهام هنا", "description": "أنشئ مهمة أو اسحب إحداها هنا." },
+    "filters": { "all": "الكل", "mine": "مهامي" }
+  },
+
+  "team": {
+    "page": { "title": "الفريق", "subtitle": "إدارة أعضاء فريق الوكالة" },
+    "inviteMember": "دعوة عضو",
+    "memberCard": {
+      "activeProjects": "{count} مشروع نشط", "pendingInvite": "دعوة معلقة",
+      "actions": { "edit": "تعديل الملف", "changeRole": "تغيير الدور", "remove": "إزالة" }
+    },
+    "invite": {
+      "title": "دعوة عضو فريق",
+      "fields": {
+        "name": "الاسم الكامل", "namePlaceholder": "أحمد حسن",
+        "email": "البريد الإلكتروني", "emailPlaceholder": "ahmed@agency.com",
+        "role": "الدور", "rolePlaceholder": "اختر دوراً",
+        "message": "رسالة (اختياري)", "messagePlaceholder": "رسالة دعوة شخصية..."
+      },
+      "submit": "إرسال الدعوة", "success": "تم إرسال الدعوة",
+      "note": "سيتم إرسال بريد دعوة. ينتهي الرابط بعد 48 ساعة."
+    },
+    "emptyState": { "title": "لا يوجد أعضاء بعد", "description": "ادعُ أول عضو في فريقك." }
+  },
+
+  "financial": {
+    "page": { "title": "المالية", "subtitle": "الإيرادات والفواتير ومتابعة المدفوعات" },
+    "cards": { "totalRevenue": "إجمالي الإيرادات", "collected": "المحصّل", "outstanding": "المستحق", "overdue": "المتأخر" },
+    "overdueAlert": "{count} فاتورة متأخرة — الإجمالي {amount}",
+    "quickLinks": { "createInvoice": "إنشاء فاتورة", "viewAll": "عرض كل الفواتير" },
+    "recentInvoices": "آخر الفواتير",
+    "invoiceList": {
+      "title": "الفواتير", "searchPlaceholder": "البحث...", "newInvoice": "فاتورة جديدة",
+      "filters": { "all": "الكل", "draft": "مسودة", "sent": "مرسلة", "paid": "مدفوعة", "overdue": "متأخرة" },
+      "headers": { "number": "رقم الفاتورة", "client": "العميل", "project": "المشروع", "amount": "المبلغ", "due": "الاستحقاق", "status": "الحالة" },
+      "emptyState": { "title": "لا توجد فواتير بعد", "description": "أنشئ فاتورتك الأولى." }
+    },
+    "createInvoice": {
+      "title": "إنشاء فاتورة",
+      "sections": { "details": "تفاصيل الفاتورة", "lineItems": "البنود", "summary": "الملخص", "notes": "ملاحظات" },
+      "fields": {
+        "client": "العميل", "clientPlaceholder": "اختر عميلاً",
+        "project": "المشروع", "projectPlaceholder": "اختر مشروعاً",
+        "invoiceNumber": "رقم الفاتورة", "issueDate": "تاريخ الإصدار", "dueDate": "تاريخ الاستحقاق",
+        "notes": "ملاحظات", "notesPlaceholder": "شروط الدفع أو معلومات إضافية..."
+      },
+      "lineItems": {
+        "description": "الوصف", "qty": "الكمية", "unitPrice": "سعر الوحدة", "total": "الإجمالي",
+        "addItem": "+ إضافة بند", "remove": "حذف"
+      },
+      "totals": { "subtotal": "المجموع الفرعي", "discount": "الخصم", "vat": "ضريبة القيمة المضافة ({rate}%)", "grandTotal": "الإجمالي الكلي" },
+      "actions": { "saveDraft": "حفظ كمسودة", "preview": "معاينة PDF", "send": "إرسال للعميل" },
+      "success": "تم إنشاء الفاتورة", "sentSuccess": "تم إرسال الفاتورة للعميل"
+    },
+    "invoiceDetail": {
+      "title": "فاتورة", "edit": "تعديل", "download": "تحميل PDF",
+      "paymentProof": { "title": "تم رفع إثبات الدفع", "view": "عرض المستند", "markPaid": "تحديد كمدفوع", "reject": "طلب إعادة الرفع" },
+      "markPaidConfirm": { "title": "تحديد كمدفوع؟", "body": "سيتم إشعار العميل بتأكيد استلام الدفع.", "confirm": "نعم، تحديد كمدفوع" }
+    }
+  },
+
+  "roles": {
+    "page": { "title": "الصلاحيات والأدوار", "subtitle": "تحديد ما يمكن لكل دور القيام به" },
+    "newRole": "دور جديد", "systemBadge": "نظامي", "usersCount": "{count} مستخدم",
+    "actions": { "edit": "تعديل", "delete": "حذف", "duplicate": "نسخ" },
+    "createRole": {
+      "title": "إنشاء دور",
+      "fields": { "name": "اسم الدور", "namePlaceholder": "مثال: مطور أول", "description": "الوصف", "descriptionPlaceholder": "ما الذي يستطيع هذا الدور القيام به..." },
+      "permissionMatrix": "مصفوفة الصلاحيات",
+      "actions": { "cancel": "إلغاء", "save": "حفظ الدور" }, "success": "تم إنشاء الدور"
+    },
+    "deleteRole": {
+      "title": "حذف الدور", "body": "هذا الدور مُعيَّن لـ {count} عضو. يرجى إعادة تعيينهم قبل الحذف.",
+      "reassignTo": "إعادة التعيين إلى", "confirm": "حذف وإعادة التعيين"
+    },
+    "matrix": {
+      "modules": {
+        "dashboard": "لوحة التحكم", "projects": "المشاريع", "milestones": "المراحل",
+        "revisions": "التعديلات", "files": "الملفات", "invoices": "الفواتير",
+        "financial": "المالية", "team": "الفريق", "clients": "العملاء",
+        "roles": "الأدوار", "settings": "الإعدادات"
+      },
+      "actions": {
+        "view": "عرض", "create": "إنشاء", "edit": "تعديل",
+        "delete": "حذف", "approve": "اعتماد", "export": "تصدير", "manage": "إدارة"
+      },
+      "selectAll": "الكل", "locked": "مقفل (نظامي)"
+    },
+    "emptyState": { "title": "لا توجد أدوار مخصصة بعد", "description": "أنشئ أدواراً لتحديد صلاحيات الفريق." }
+  },
+
+  "adminSettings": {
+    "page": { "title": "الإعدادات", "subtitle": "إعدادات مساحة العمل والتفضيلات" },
+    "tabs": { "workspace": "مساحة العمل", "security": "الأمان", "profile": "ملفي الشخصي" },
+    "workspace": {
+      "sectionTitle": "معلومات الوكالة",
+      "fields": {
+        "name": "اسم الوكالة", "namePlaceholder": "وكالة Ensdim",
+        "website": "الموقع الإلكتروني", "websitePlaceholder": "https://agency.com",
+        "industry": "القطاع", "timezone": "المنطقة الزمنية",
+        "currency": "العملة", "language": "اللغة الافتراضية", "dateFormat": "تنسيق التاريخ"
+      },
+      "logo": { "label": "شعار الوكالة", "change": "تغيير الشعار", "hint": "PNG أو JPG، بحد أقصى 2 ميجابايت" },
+      "saveButton": "حفظ التغييرات", "savedSuccess": "تم حفظ إعدادات مساحة العمل."
+    },
+    "security": {
+      "sectionTitle": "إعدادات الأمان", "sessionTimeout": "انتهاء الجلسة",
+      "auditLog": "سجل المراجعة", "exportCsv": "تصدير CSV",
+      "logHeaders": { "action": "الإجراء", "user": "المستخدم", "ip": "عنوان IP", "date": "التاريخ" },
+      "saveButton": "حفظ", "savedSuccess": "تم حفظ إعدادات الأمان."
+    }
+  },
+
+  "invoices": {
+    "create": {
+      "title": "إنشاء فاتورة",
+      "fields": {
+        "invoiceNumber": "رقم الفاتورة",
+        "issueDate": "تاريخ الإصدار",
+        "dueDate": "تاريخ الاستحقاق",
+        "notes": "ملاحظات",
+        "notesPlaceholder": "شروط الدفع، بيانات البنك، إلخ."
+      },
+      "lineItems": {
+        "title": "بنود الفاتورة",
+        "addLine": "إضافة بند",
+        "description": "الوصف",
+        "qty": "الكمية",
+        "unitPrice": "سعر الوحدة",
+        "total": "الإجمالي",
+        "remove": "حذف"
+      },
+      "totals": {
+        "subtotal": "المجموع الفرعي",
+        "vat": "ضريبة القيمة المضافة ({rate}%)",
+        "total": "الإجمالي الكلي"
+      },
+      "actions": {
+        "saveDraft": "حفظ كمسودة",
+        "send": "إرسال للعميل"
+      },
+      "success": "تم إنشاء الفاتورة بنجاح",
+      "sentSuccess": "تم إرسال الفاتورة للعميل"
+    },
+    "actions": {
+      "send": "إرسال للعميل",
+      "markPaid": "تحديد كمدفوع",
+      "download": "تحميل PDF",
+      "delete": "حذف"
+    },
+    "paidSuccess": "تم تحديد الفاتورة كمدفوعة"
+  }
+}

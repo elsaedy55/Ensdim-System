@@ -1,0 +1,75 @@
+{
+  "page": {
+    "title": "Payments",
+    "subtitle": "Track your invoices and payment history"
+  },
+  "summary": {
+    "totalValue": "Total Value",
+    "paid": "Paid",
+    "remaining": "Remaining",
+    "paidPercent": "{pct}% paid"
+  },
+  "nextDue": {
+    "label": "Payment due in {days} day(s)",
+    "labelOverdue": "Payment overdue by {days} day(s)",
+    "viewInvoice": "View Invoice"
+  },
+  "filters": {
+    "all": "All",
+    "pending": "Pending",
+    "paid": "Paid",
+    "overdue": "Overdue",
+    "cancelled": "Cancelled"
+  },
+  "invoiceCard": {
+    "issuedOn": "Issued {date}",
+    "dueOn": "Due {date}",
+    "paidOn": "Paid {date}",
+    "viewDetails": "View Invoice"
+  },
+  "emptyState": {
+    "title": "No invoices yet",
+    "description": "Your invoices will appear here once the team sends them."
+  },
+  "detail": {
+    "backToPayments": "Back to Payments",
+    "downloadPdf": "Download PDF",
+    "invoice": "Invoice",
+    "issueDate": "Issued",
+    "dueDate": "Due",
+    "billTo": "Bill To",
+    "lineItems": {
+      "description": "Description",
+      "qty": "Qty",
+      "unitPrice": "Unit Price",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "vat": "VAT ({rate}%)",
+      "grandTotal": "Total"
+    },
+    "paymentInstructions": {
+      "title": "Payment Instructions",
+      "body": "Please transfer the total amount to the bank account below and upload your proof of payment."
+    },
+    "proofUpload": {
+      "title": "Upload Payment Proof",
+      "description": "Upload your bank receipt or payment confirmation.",
+      "accepted": "PDF, JPG, PNG (max 5 MB)",
+      "button": "Upload Proof",
+      "uploading": "Uploading...",
+      "successMessage": "Proof uploaded. We'll confirm within 24 hours.",
+      "alreadySubmitted": "Proof submitted — awaiting confirmation"
+    },
+    "status": {
+      "proofSubmitted": "Proof Submitted"
+    }
+  },
+  "status": {
+    "draft": "Draft",
+    "sent": "Sent",
+    "viewed": "Viewed",
+    "paid": "Paid",
+    "overdue": "Overdue",
+    "cancelled": "Cancelled"
+  }
+}

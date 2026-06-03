@@ -1,0 +1,43 @@
+{
+  "confirmDelete": {
+    "defaultTitle": "Delete this item?",
+    "withName": "Are you sure you want to delete {name}? This action cannot be undone.",
+    "withoutName": "Are you sure you want to delete this item? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "approve": {
+    "defaultTitle": "Approve this item?",
+    "defaultDescription": "Once approved, the team will be notified to proceed. This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Approve"
+  },
+  "fileUpload": {
+    "defaultTitle": "Upload Files",
+    "cancel": "Cancel",
+    "upload": "Upload",
+    "uploadWithCount": "Upload ({count})"
+  },
+  "fileUploadZone": {
+    "dropFilesHere": "Drop files here or click to browse",
+    "release": "Release to upload",
+    "anyFileType": "Any file type",
+    "maxSize": "Max {size}",
+    "errors": {
+      "tooManyFiles": "Max {max} files allowed",
+      "fileTooLarge": "{name} exceeds {size} limit",
+      "invalidType": "{name} is not an accepted file type"
+    }
+  },
+  "filePreview": {
+    "uploadedBy": "Uploaded by {name}",
+    "noPreview": "Preview not available for this file type",
+    "open": "Open",
+    "download": "Download"
+  },
+  "sessionExpired": {
+    "title": "Session Expired",
+    "description": "Your session has expired. Please sign in again to continue.",
+    "signIn": "Sign in again"
+  }
+}

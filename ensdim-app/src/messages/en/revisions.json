@@ -1,0 +1,117 @@
+{
+  "page": {
+    "title": "Revision Requests",
+    "subtitle": "Submit and track change requests for your project"
+  },
+  "tabs": {
+    "all": "All",
+    "open": "Open",
+    "active": "In Progress",
+    "done": "Resolved"
+  },
+  "categories": {
+    "bug": "Bug",
+    "revision": "Revision",
+    "feature": "Feature",
+    "question": "Question"
+  },
+  "card": {
+    "linkedTo": "Linked to: {milestone}"
+  },
+  "emptyState": {
+    "title": "No requests yet",
+    "description": "Submit your first request using the button above."
+  },
+  "detail": {
+    "backToRevisions": "Back to Revisions",
+    "linkedTo": "Linked to milestone",
+    "assignedTo": "Assigned to",
+    "submittedBy": "Submitted by",
+    "submittedOn": "Submitted {date}",
+    "attachments": "Attachments",
+    "noAttachments": "No attachments",
+    "teamResponse": "Team Response",
+    "noResponse": "The team hasn't responded yet. We'll notify you when there's an update.",
+    "statusHistory": "Status History"
+  },
+  "new": {
+    "backToRevisions": "Back to Revisions",
+    "title": "New Request",
+    "subtitle": "Describe the change or issue you'd like to report",
+    "category": {
+      "label": "Category",
+      "bug": "🐛 Bug",
+      "bugDesc": "Something isn't working correctly",
+      "revision": "✏️ Revision",
+      "revisionDesc": "Request a change to existing work",
+      "feature": "✨ Feature Request",
+      "featureDesc": "Add new functionality",
+      "question": "❓ Question",
+      "questionDesc": "Ask about the project"
+    },
+    "fields": {
+      "title": "Title",
+      "titlePlaceholder": "Brief description of the issue...",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the issue in detail...",
+      "descriptionHint": "Include steps to reproduce if it's a bug, or what you'd like changed and why.",
+      "priority": "Priority",
+      "priorityPlaceholder": "Select priority",
+      "milestone": "Linked Milestone",
+      "milestonePlaceholder": "Select milestone"
+    },
+    "priority": {
+      "high": "🔴 High",
+      "medium": "🟡 Medium",
+      "low": "🟢 Low"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "submit": "Submit Request"
+    },
+    "validation": {
+      "titleMin": "Title must be at least 5 characters",
+      "titleMax": "Title is too long",
+      "descriptionMin": "Please provide at least 20 characters describing the issue"
+    },
+    "success": {
+      "title": "Request submitted!",
+      "description": "The team has been notified and will respond within 1–2 business days.",
+      "viewAll": "View all requests",
+      "submitAnother": "Submit another"
+    }
+  },
+  "modal": {
+    "title": "New Revision Request",
+    "for": "For:",
+    "fields": {
+      "title": "Title",
+      "titlePlaceholder": "Brief description of the issue or change needed",
+      "category": "Category",
+      "categoryPlaceholder": "Select category",
+      "priority": "Priority",
+      "priorityPlaceholder": "Select priority",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe in detail what needs to be changed or fixed..."
+    },
+    "categories": {
+      "revision": "Revision",
+      "bug": "Bug Fix",
+      "feature": "Feature Request",
+      "question": "Question"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "submit": "Submit Request"
+    },
+    "validation": {
+      "titleMin": "Title must be at least 5 characters",
+      "descriptionMin": "Please provide more detail (min 20 characters)"
+    }
+  }
+}

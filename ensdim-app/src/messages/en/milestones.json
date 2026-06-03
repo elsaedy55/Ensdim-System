@@ -1,0 +1,58 @@
+{
+  "page": {
+    "title": "Milestones",
+    "subtitle": "Track your project phases and approvals",
+    "overallProgress": "Overall Project Progress"
+  },
+  "tabs": {
+    "all": "All",
+    "review": "Review",
+    "active": "Active",
+    "completed": "Completed"
+  },
+  "stats": {
+    "completed": "✓ {count} completed",
+    "inProgress": "◐ {count} in progress",
+    "upcoming": "○ {count} upcoming",
+    "awaitingReview": "⚠ {count} awaiting review"
+  },
+  "card": {
+    "due": "Due: {date}",
+    "deliverables": "{count} deliverable",
+    "deliverablesPlural": "{count} deliverables",
+    "completedOn": "✓ {date}",
+    "viewDetails": "View details",
+    "review": "Review"
+  },
+  "detail": {
+    "backToMilestones": "Back to Milestones",
+    "started": "Started {date}",
+    "due": "Due {date}",
+    "completedOn": "Completed {date}",
+    "summary": "Summary",
+    "aboutTitle": "About this milestone",
+    "deliverablesTitle": "Deliverables",
+    "deliverablesCount": "{count} files",
+    "watch": "Watch",
+    "activityTitle": "Activity Log",
+    "noActivity": "No activity yet.",
+    "reviewRequired": "Your review is required",
+    "reviewDescription": "The team has completed this milestone and it's ready for your approval. Please review the deliverables above before approving.",
+    "approveMilestone": "Approve Phase",
+    "requestChanges": "Request Changes",
+    "approvedMessage": "Milestone approved — thank you!",
+    "approvedDescription": "The team has been notified and will proceed to the next phase.",
+    "confirmApproveTitle": "Approve this milestone?",
+    "confirmApproveDescription": "You're confirming that {name} meets all your requirements. The team will proceed to the next phase.",
+    "confirmApproveButton": "Yes, Approve",
+    "confirmCancel": "Cancel"
+  },
+  "emptyState": {
+    "title": "No milestones yet",
+    "description": "Add the first milestone to get started."
+  },
+  "timeline": {
+    "title": "Project Timeline",
+    "phase": "Phase {n}"
+  }
+}

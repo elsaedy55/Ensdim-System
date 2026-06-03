@@ -1,0 +1,58 @@
+{
+  "page": {
+    "title": "المراحل",
+    "subtitle": "تتبع مراحل مشروعك والموافقات",
+    "overallProgress": "التقدم الإجمالي للمشروع"
+  },
+  "tabs": {
+    "all": "الكل",
+    "review": "للمراجعة",
+    "active": "نشط",
+    "completed": "مكتمل"
+  },
+  "stats": {
+    "completed": "✓ {count} مكتمل",
+    "inProgress": "◐ {count} قيد التنفيذ",
+    "upcoming": "○ {count} قادم",
+    "awaitingReview": "⚠ {count} في انتظار المراجعة"
+  },
+  "card": {
+    "due": "الموعد: {date}",
+    "deliverables": "{count} تسليم",
+    "deliverablesPlural": "{count} تسليمات",
+    "completedOn": "✓ {date}",
+    "viewDetails": "عرض التفاصيل",
+    "review": "مراجعة"
+  },
+  "detail": {
+    "backToMilestones": "العودة للمراحل",
+    "started": "بدأ {date}",
+    "due": "الموعد {date}",
+    "completedOn": "أُنجز في {date}",
+    "summary": "الملخص",
+    "aboutTitle": "عن هذه المرحلة",
+    "deliverablesTitle": "التسليمات",
+    "deliverablesCount": "{count} ملفات",
+    "watch": "مشاهدة",
+    "activityTitle": "سجل النشاط",
+    "noActivity": "لا يوجد نشاط بعد.",
+    "reviewRequired": "مطلوب مراجعتك",
+    "reviewDescription": "أكمل الفريق هذه المرحلة وهي جاهزة لموافقتك. يرجى مراجعة التسليمات أعلاه قبل الموافقة.",
+    "approveMilestone": "اعتماد المرحلة",
+    "requestChanges": "طلب تعديلات",
+    "approvedMessage": "تمت الموافقة على المرحلة — شكراً!",
+    "approvedDescription": "تم إشعار الفريق وسيتابع إلى المرحلة التالية.",
+    "confirmApproveTitle": "اعتماد هذه المرحلة؟",
+    "confirmApproveDescription": "تؤكد أن {name} يلبي جميع متطلباتك. سيتابع الفريق إلى المرحلة التالية.",
+    "confirmApproveButton": "نعم، اعتماد",
+    "confirmCancel": "إلغاء"
+  },
+  "emptyState": {
+    "title": "لا توجد مراحل بعد",
+    "description": "أضف أول مرحلة للمشروع."
+  },
+  "timeline": {
+    "title": "الجدول الزمني للمشروع",
+    "phase": "المرحلة {n}"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "page": {
+    "title": "Notifications",
+    "subtitle": "Stay up to date with your project activity"
+  },
+  "sections": {
+    "unread": "New",
+    "earlier": "Earlier"
+  },
+  "actions": {
+    "markAllRead": "Mark all as read",
+    "markRead": "Mark as read"
+  },
+  "emptyState": {
+    "title": "You're all caught up",
+    "description": "No new notifications right now."
+  },
+  "types": {
+    "milestone_review": "Milestone ready for review",
+    "invoice_sent": "New invoice received",
+    "file_uploaded": "Files uploaded to your project",
+    "revision_submitted": "Revision request submitted",
+    "revision_resolved": "Revision request resolved",
+    "approval_complete": "Approval confirmed",
+    "payment_received": "Payment received",
+    "system": "System notification"
+  }
+}

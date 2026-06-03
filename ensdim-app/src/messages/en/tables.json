@@ -1,0 +1,23 @@
+{
+  "pagination": {
+    "showing": "Showing {from}–{to} of {total}",
+    "perPage": "{size} / page"
+  },
+  "filters": {
+    "label": "Filters:",
+    "clearAll": "Clear all"
+  },
+  "bulk": {
+    "selected": "{count} selected",
+    "clear": "Clear"
+  },
+  "emptyState": {
+    "title": "No data found"
+  },
+  "aria": {
+    "selectAll": "Select all",
+    "selectRow": "Select row",
+    "rowActions": "Row actions",
+    "removeFilter": "Remove filter"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "page": {
+    "title": "Settings",
+    "subtitle": "Manage your account and preferences"
+  },
+  "tabs": {
+    "profile": "Profile",
+    "security": "Password & Security",
+    "notifications": "Notifications"
+  },
+  "profile": {
+    "sectionTitle": "Personal Information",
+    "sectionDescription": "Update your name and profile picture.",
+    "avatar": {
+      "label": "Profile Photo",
+      "changeButton": "Change photo",
+      "removeButton": "Remove",
+      "hint": "JPG or PNG, max 2 MB"
+    },
+    "fields": {
+      "name": "Full name",
+      "namePlaceholder": "Mohamed Hassan",
+      "email": "Email address",
+      "emailHint": "Contact support to change your email.",
+      "phone": "Phone number",
+      "phonePlaceholder": "+20 100 000 0000"
+    },
+    "saveButton": "Save Changes",
+    "savedSuccess": "Profile updated successfully."
+  },
+  "security": {
+    "sectionTitle": "Change Password",
+    "sectionDescription": "Choose a strong password you haven't used before.",
+    "fields": {
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password"
+    },
+    "saveButton": "Update Password",
+    "savedSuccess": "Password changed successfully.",
+    "validation": {
+      "currentRequired": "Please enter your current password.",
+      "newMin": "New password must be at least 8 characters.",
+      "confirmMatch": "Passwords don't match."
+    }
+  },
+  "notificationPrefs": {
+    "sectionTitle": "Email Notifications",
+    "emailSection": "Email",
+    "inAppSection": "In-App",
+    "items": {
+      "milestoneReview": "Milestone ready for review",
+      "invoiceSent": "New invoice sent",
+      "fileUploaded": "Files uploaded to project",
+      "revisionUpdated": "Revision request updated",
+      "projectStatus": "Project status changed"
+    },
+    "saveButton": "Save Preferences",
+    "savedSuccess": "Notification preferences saved."
+  }
+}
