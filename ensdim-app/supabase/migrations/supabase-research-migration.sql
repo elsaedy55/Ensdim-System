@@ -48,27 +48,30 @@ CREATE POLICY "Admin manage research"
 
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('research-images', 'research-images', true)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET public = true;
 
--- Public can view research images (public bucket)
+-- Drop first to avoid conflicts on re-run
+DROP POLICY IF EXISTS "Public view research images"  ON storage.objects;
+DROP POLICY IF EXISTS "Admin upload research images" ON storage.objects;
+DROP POLICY IF EXISTS "Admin update research images" ON storage.objects;
+DROP POLICY IF EXISTS "Admin delete research images" ON storage.objects;
+
 CREATE POLICY "Public view research images"
   ON storage.objects FOR SELECT
-  TO anon
+  TO anon, authenticated
   USING (bucket_id = 'research-images');
 
--- Authenticated users can upload
 CREATE POLICY "Admin upload research images"
   ON storage.objects FOR INSERT
   TO authenticated
   WITH CHECK (bucket_id = 'research-images');
 
--- Authenticated users can update (upsert)
 CREATE POLICY "Admin update research images"
   ON storage.objects FOR UPDATE
   TO authenticated
-  USING (bucket_id = 'research-images');
+  USING  (bucket_id = 'research-images')
+  WITH CHECK (bucket_id = 'research-images');
 
--- Authenticated users can delete
 CREATE POLICY "Admin delete research images"
   ON storage.objects FOR DELETE
   TO authenticated
