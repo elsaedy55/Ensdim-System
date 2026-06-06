@@ -313,7 +313,7 @@ export async function adminCreateInvoice(input: CreateInvoiceInput): Promise<Inv
   const supabase = createClient();
 
   const lineItems  = input.line_items;
-  const subtotal   = lineItems.reduce((s, i) => s + i.quantity * i.unit_price, 0);
+  const subtotal   = lineItems.reduce((s: number, i: { quantity: number; unit_price: number }) => s + i.quantity * i.unit_price, 0);
   const vatRate    = input.vat_rate ?? 0;
   const vatAmount  = subtotal * (vatRate / 100);
   const total      = subtotal + vatAmount;
@@ -411,9 +411,9 @@ export async function adminGetKPIs(): Promise<AdminKPIs> {
   ]);
 
   const projects = projectsRes.data ?? [];
-  const activeProjects  = projects.filter((p) => p.status !== "completed" && p.status !== "on_hold").length;
-  const delayedProjects = projects.filter((p) => p.health === "delayed").length;
-  const monthlyRevenue  = (revenueRes.data ?? []).reduce((s: number, i: any) => s + (i.total ?? 0), 0);
+  const activeProjects  = projects.filter((p: { status: string; health: string }) => p.status !== "completed" && p.status !== "on_hold").length;
+  const delayedProjects = projects.filter((p: { status: string; health: string }) => p.health === "delayed").length;
+  const monthlyRevenue  = (revenueRes.data ?? []).reduce((s: number, i: { total?: number }) => s + (i.total ?? 0), 0);
 
   return {
     activeProjects,

@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { createClient } from "@/lib/supabase/client";
-import type { User } from "@supabase/supabase-js";
+import type { User, AuthChangeEvent, Session } from "@supabase/supabase-js";
 import type { ProfileRow, UserRole } from "@/lib/supabase/types";
 
 type Profile = ProfileRow;
@@ -48,7 +48,7 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     set({ user, profile, isAuthenticated: true, isLoading: false });
 
     // Subscribe to auth changes
-    supabase.auth.onAuthStateChange(async (event, session) => {
+    supabase.auth.onAuthStateChange(async (event: AuthChangeEvent, session: Session | null) => {
       if (event === "SIGNED_OUT" || !session) {
         set({ user: null, profile: null, isAuthenticated: false });
       } else if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {

@@ -53,8 +53,8 @@ export async function getFinancialSummary() {
   if (error) throw new Error(error.message);
 
   const invoices = data ?? [];
-  const total     = invoices.reduce((s, i) => s + i.total, 0);
-  const paid      = invoices.filter((i) => i.status === "paid").reduce((s, i) => s + i.total, 0);
+  const total     = invoices.reduce((s: number, i: { total: number; status: string }) => s + i.total, 0);
+  const paid      = invoices.filter((i: { total: number; status: string }) => i.status === "paid").reduce((s: number, i: { total: number; status: string }) => s + i.total, 0);
   const remaining = total - paid;
 
   return { total, paid, remaining };
