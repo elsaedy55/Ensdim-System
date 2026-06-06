@@ -1,10 +1,14 @@
 import { createBrowserClient } from "@supabase/ssr";
 
-// Database generic omitted intentionally — row types live in ./types.
-// After deploying: npx supabase gen types typescript --project-id ID > src/lib/supabase/types.ts
+// Singleton — one shared instance so all hooks share the same session + token refresh state.
+let _client: ReturnType<typeof createBrowserClient> | null = null;
+
 export function createClient() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  );
+  if (!_client) {
+    _client = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    );
+  }
+  return _client;
 }

@@ -1,18 +1,26 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/auth.store";
+import { createClient } from "@/lib/supabase/client";
 
-/**
- * Initializes the client-side auth store once on mount.
- * Placed in the root layout so it runs on every page.
- */
 export function AuthInitializer() {
   const initialize = useAuthStore((s) => s.initialize);
+  const router = useRouter();
 
   React.useEffect(() => {
     initialize();
-  }, [initialize]);
+
+    const supabase = createClient();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        router.replace("/login");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [initialize, router]);
 
   return null;
 }
