@@ -42,6 +42,7 @@ export {
   UserCheck,
   ShieldCheck,
   Building2,
+  BookOpen,
 } from "lucide-react";
 
 export type { LucideIcon } from "lucide-react";

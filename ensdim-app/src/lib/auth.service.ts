@@ -25,12 +25,13 @@ export async function signUp(params: {
     email: params.email,
     password: params.password,
     options: {
+      emailRedirectTo: `${window.location.origin}/auth/callback`,
       data: {
         name:                params.name,
         role:                params.role ?? "client",
         workspace_id:        params.workspaceId ?? null,
         workspace_name:      params.workspaceName ?? null,
-        onboarding_complete: false,  // will be set to true after onboarding wizard
+        onboarding_complete: false,
       },
     },
   });

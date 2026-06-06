@@ -14,7 +14,8 @@
     "tasks": "Tasks",
     "team": "Team",
     "financial": "Financial",
-    "roles": "Roles"
+    "roles": "Roles",
+    "research": "Research"
   },
   "actions": {
     "save": "Save",

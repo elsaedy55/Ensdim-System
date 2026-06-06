@@ -1,0 +1,53 @@
+{
+  "name": "ENSDIM - AI Automation Agency",
+  "short_name": "ENSDIM",
+  "description": "ENSDIM builds AI automation systems, CRM platforms, SaaS products, and digital transformation solutions for businesses in Egypt, Saudi Arabia, and UAE.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#6D5DF6",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "technology"],
+  "icons": [
+    {
+      "src": "/ensdim-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/ensdim-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "ENSDIM - AI Automation Agency"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Book Consultation",
+      "short_name": "Consult",
+      "description": "Book a free consultation with ENSDIM",
+      "url": "/book-consultation",
+      "icons": [{ "src": "/ensdim-logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "description": "View ENSDIM services",
+      "url": "/services",
+      "icons": [{ "src": "/ensdim-logo.png", "sizes": "192x192" }]
+    }
+  ]
+}

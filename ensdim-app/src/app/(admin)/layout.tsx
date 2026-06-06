@@ -1,4 +1,5 @@
-export const dynamic = "force-dynamic";
+// No `force-dynamic` — layout renders once on first load and is preserved
+// across client-side navigation. Middleware handles session refresh on every request.
 
 import { getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
@@ -8,32 +9,34 @@ import { MobileSidebarTrigger } from "@/components/common/Sidebar/sidebar-mobile
 import { AdminBottomNav } from "@/components/common/BottomNav";
 import { ROUTES } from "@/constants/routes";
 
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [t, supabase] = await Promise.all([
-    getTranslations("admin.overview.actions"),
-    createClient(),
-  ]);
-
+async function getLayoutData() {
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { user: null, profile: null, workspace: null, notificationCount: 0 };
 
-  const [profileResult, workspaceResult, notifResult] = await Promise.all([
-    user
-      ? supabase.from("profiles").select("name, role, avatar_url, workspace_id").eq("id", user.id).maybeSingle()
-      : Promise.resolve({ data: null }),
-    user
-      ? supabase.from("profiles").select("workspace_id").eq("id", user.id).maybeSingle().then(async (res) => {
-          if (!res.data?.workspace_id) return { data: null };
-          return supabase.from("workspaces").select("name").eq("id", res.data.workspace_id).maybeSingle();
-        })
-      : Promise.resolve({ data: null }),
-    user
-      ? supabase.from("notifications").select("*", { count: "exact", head: true })
-          .eq("user_id", user.id).eq("is_read", false)
-      : Promise.resolve({ count: 0 }),
+  const [profileRes, workspaceRes, notifRes] = await Promise.all([
+    supabase.from("profiles").select("name, role, avatar_url, workspace_id").eq("id", user.id).maybeSingle(),
+    supabase.from("profiles").select("workspace_id").eq("id", user.id).maybeSingle().then(async (r) => {
+      if (!r.data?.workspace_id) return null;
+      const w = await supabase.from("workspaces").select("name").eq("id", r.data.workspace_id).maybeSingle();
+      return w.data;
+    }),
+    supabase.from("notifications").select("*", { count: "exact", head: true }).eq("user_id", user.id).eq("is_read", false),
   ]);
 
-  const profile   = profileResult.data;
-  const workspace = workspaceResult.data;
+  return {
+    user,
+    profile:           profileRes.data,
+    workspace:         workspaceRes,
+    notificationCount: (notifRes as any).count ?? 0,
+  };
+}
+
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const [t, { user, profile, workspace, notificationCount }] = await Promise.all([
+    getTranslations("admin.overview.actions"),
+    getLayoutData(),
+  ]);
 
   const adminUser = user && profile
     ? { name: profile.name, email: user.email ?? "", role: profile.role, avatar: profile.avatar_url ?? undefined }
@@ -41,11 +44,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   const adminWorkspace = workspace ? { name: (workspace as any).name } : undefined;
 
-  const notificationCount = (notifResult as any).count ?? 0;
-
   return (
     <div className="flex h-screen overflow-hidden bg-(--bg-base)">
-      <AdminSidebar user={adminUser} workspace={adminWorkspace} notificationCount={notificationCount} />
+      <AdminSidebar
+        user={adminUser}
+        workspace={adminWorkspace}
+        notificationCount={notificationCount}
+      />
 
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <Header

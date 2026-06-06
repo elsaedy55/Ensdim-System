@@ -86,6 +86,24 @@ export interface ActivityLogRow {
   id: string; project_id: string | null; user_id: string; message: string;
   entity_type: string | null; entity_id: string | null; created_at: string;
 }
+export interface ResearchArticleRow {
+  id: string;
+  title_en: string;
+  title_ar: string;
+  slug: string;
+  category_en: string;
+  category_ar: string;
+  description_en: string;
+  description_ar: string;
+  content_en: string;
+  content_ar: string;
+  read_time: number;
+  image_url: string | null;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 // ─── Database type for Supabase client generic ─────────────────────
 
@@ -112,6 +130,7 @@ export interface Database {
       notifications:            TableDef<NotificationRow>;
       notification_preferences: TableDef<NotificationPrefsRow>;
       activity_logs:            TableDef<ActivityLogRow>;
+      research_articles:        TableDef<ResearchArticleRow, Omit<ResearchArticleRow, "id" | "created_at" | "updated_at">>;
     };
     Views: { [_ in never]: never };
     Functions: { [_ in never]: never };

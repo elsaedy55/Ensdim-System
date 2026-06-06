@@ -344,6 +344,77 @@
     }
   },
 
+  "research": {
+    "list": {
+      "title": "Research Articles",
+      "subtitle": "{total} articles · {published} published",
+      "newArticle": "New Article",
+      "searchPlaceholder": "Search articles...",
+      "published": "Published",
+      "draft": "Draft",
+      "minRead": "min read",
+      "publishedOn": "Published",
+      "previewOnSite": "Preview on site",
+      "unpublish": "Unpublish",
+      "publish": "Publish",
+      "emptyState": {
+        "title": "No research articles yet",
+        "description": "Create your first article to publish on the website",
+        "action": "New Article"
+      },
+      "noResults": "No articles match your search"
+    },
+    "new": {
+      "title": "New Research Article",
+      "subtitle": "Create a bilingual research article for the website"
+    },
+    "edit": {
+      "title": "Edit Article"
+    },
+    "form": {
+      "sections": {
+        "basic": "Basic Information",
+        "descriptions": "Short Description (shown on card)",
+        "content": "Full Article Content",
+        "contentHint": "Use blank lines between paragraphs. Start a line with ## for a heading.",
+        "image": "Cover Image",
+        "imageHint": "Click to upload cover image (JPG, PNG, WebP)",
+        "publish": "Published",
+        "publishOn": "Article is live on the website",
+        "publishOff": "Article is saved as draft, hidden from the website"
+      },
+      "fields": {
+        "titleEn": "Title (English)",
+        "titleAr": "Title (Arabic)",
+        "slug": "Slug",
+        "slugHint": "URL: /research/",
+        "readTime": "Read Time (minutes)",
+        "categoryEn": "Category (English)",
+        "categoryAr": "Category (Arabic)",
+        "descEn": "Description (English)",
+        "descAr": "Description (Arabic)",
+        "contentEn": "Content (English)",
+        "contentAr": "Content (Arabic)"
+      },
+      "actions": {
+        "create": "Create Article",
+        "save": "Save Changes",
+        "saving": "Saving…",
+        "back": "Back"
+      },
+      "success": {
+        "created": "Article created",
+        "updated": "Article updated",
+        "deleted": "Article deleted",
+        "published": "Article published",
+        "unpublished": "Article unpublished"
+      },
+      "error": {
+        "imageUpload": "Image upload failed"
+      }
+    }
+  },
+
   "invoices": {
     "create": {
       "title": "Create Invoice",

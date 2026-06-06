@@ -1,0 +1,42 @@
+/* RTL Support for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .gap-2,
+[dir="rtl"] .gap-3,
+[dir="rtl"] .gap-4,
+[dir="rtl"] .gap-6,
+[dir="rtl"] .gap-8,
+[dir="rtl"] .gap-12 {
+  direction: rtl;
+}
+
+/* Logo should not be mirrored */
+[dir="rtl"] .no-mirror,
+[dir="rtl"] svg.no-mirror {
+  transform: scaleX(1) !important;
+}
+
+/* Ensure icons that indicate direction are flipped */
+[dir="rtl"] svg:not(.no-mirror) {
+  transform: scaleX(-1);
+}
+
+/* Text alignment */
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .text-center {
+  text-align: center;
+}

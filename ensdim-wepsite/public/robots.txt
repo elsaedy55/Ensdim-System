@@ -1,0 +1,133 @@
+# robots.txt for ENSDIM (https://ensdim.com)
+# Last updated: June 2026
+
+# ==========================================
+# TRADITIONAL SEARCH ENGINES
+# ==========================================
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# ==========================================
+# AI SEARCH ENGINES & LLM CRAWLERS
+# (Explicitly allow all AI search engines)
+# ==========================================
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# OpenAI Search Plugin
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Gemini / Bard
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (used by many AI companies for training)
+User-agent: CCBot
+Allow: /
+
+# Amazon / Alexa
+User-agent: Amazonbot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta / Facebook
+User-agent: FacebookBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# AI2 (Allen Institute for AI)
+User-agent: AI2Bot
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Brave
+User-agent: Brave
+Allow: /
+
+# Mistral AI
+User-agent: MistralAI-User
+Allow: /
+
+# ==========================================
+# GLOBAL ALLOW (catches any unlisted crawlers)
+# ==========================================
+
+User-agent: *
+Allow: /
+Crawl-delay: 2
+
+# ==========================================
+# DISALLOW PRIVATE / NON-INDEXABLE PATHS
+# ==========================================
+
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /client-login
+Disallow: /404
+Disallow: /*.json$
+Disallow: /src/
+
+# ==========================================
+# SITEMAPS
+# ==========================================
+
+Sitemap: https://ensdim.com/sitemap.xml
+Sitemap: https://ensdim.com/sitemap-ar.xml

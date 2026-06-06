@@ -18,7 +18,6 @@ import { ThemeToggle } from "@/components/common/ThemeToggle";
 import type { Notification } from "@/types";
 import { signOut } from "@/lib/auth.service";
 import { useAuthStore } from "@/store/auth.store";
-import { useRouter } from "next/navigation";
 
 type ButtonVariant = "primary" | "secondary" | "destructive" | "ghost" | "link" | "outline";
 
@@ -60,7 +59,6 @@ export function Header({
   const tn = useTranslations("common.notifications");
   const ta = useTranslations("common.actions");
 
-  const router    = useRouter();
   const clearAuth = useAuthStore((s) => s.clearAuth);
 
   const handleLogout = React.useCallback(async () => {
@@ -68,10 +66,9 @@ export function Header({
       await signOut();
     } finally {
       clearAuth();
-      router.push(ROUTES.LOGIN);
-      router.refresh();
+      window.location.href = ROUTES.LOGIN;
     }
-  }, [clearAuth, router]);
+  }, [clearAuth]);
 
   return (
     <header

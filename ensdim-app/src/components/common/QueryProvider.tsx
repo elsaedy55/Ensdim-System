@@ -8,10 +8,10 @@ function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime:           30_000,    // default: 30s
-        gcTime:              5 * 60_000, // garbage collect after 5 min of no use
-        retry:               1,
-        refetchOnWindowFocus: true,
+        staleTime:            3 * 60_000, // 3 min — serve from cache, no refetch on navigation
+        gcTime:               10 * 60_000, // keep unused data 10 min
+        retry:                1,
+        refetchOnWindowFocus: false, // don't refetch when user switches tabs/clicks window
         refetchOnReconnect:   true,
       },
       mutations: {
@@ -31,7 +31,6 @@ function getQueryClient() {
 
 export function QueryProvider({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
-
   return (
     <QueryClientProvider client={queryClient}>
       {children}

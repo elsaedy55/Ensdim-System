@@ -12,7 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   LayoutDashboard, Folder, UserCheck, CheckSquare,
   Users, CreditCard, Bell, ShieldCheck, Settings,
-  LogOut, ChevronLeft, ChevronDown,
+  LogOut, ChevronLeft, ChevronDown, BookOpen,
 } from "@/components/ui/icons";
 import type { LucideIcon } from "@/components/ui/icons";
 import {
@@ -22,7 +22,6 @@ import {
 import { localeDir, type Locale } from "@/i18n/common";
 import { signOut } from "@/lib/auth.service";
 import { useAuthStore } from "@/store/auth.store";
-import { useRouter } from "next/navigation";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -40,6 +39,7 @@ const GROUPS: NavGroup[] = [
       { href: ROUTES.ADMIN.PROJECTS,  key: "projects",  icon: Folder },
       { href: ROUTES.ADMIN.CLIENTS,   key: "clients",   icon: UserCheck },
       { href: ROUTES.ADMIN.TASKS,     key: "tasks",     icon: CheckSquare },
+      { href: ROUTES.ADMIN.RESEARCH,  key: "research",  icon: BookOpen },
     ],
   },
   {
@@ -177,7 +177,6 @@ export function AdminSidebar({
   const [collapsed, setCollapsed] = React.useState(false);
   const isCollapsed = forceExpanded ? false : collapsed;
 
-  const router    = useRouter();
   const clearAuth = useAuthStore((s) => s.clearAuth);
 
   const handleLogout = React.useCallback(async () => {
@@ -185,10 +184,9 @@ export function AdminSidebar({
       await signOut();
     } finally {
       clearAuth();
-      router.push(ROUTES.LOGIN);
-      router.refresh();
+      window.location.href = ROUTES.LOGIN;
     }
-  }, [clearAuth, router]);
+  }, [clearAuth]);
 
   // Exact match for overview to avoid false-active on sub-routes
   const isActive = (href: string) =>

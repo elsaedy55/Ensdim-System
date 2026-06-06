@@ -21,7 +21,6 @@ import {
 import { localeDir, type Locale } from "@/i18n/common";
 import { signOut } from "@/lib/auth.service";
 import { useAuthStore } from "@/store/auth.store";
-import { useRouter } from "next/navigation";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -165,7 +164,6 @@ export function ClientSidebar({
   const isCollapsed = forceExpanded ? false : collapsed;
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
-  const router      = useRouter();
   const clearAuth   = useAuthStore((s) => s.clearAuth);
 
   const handleLogout = React.useCallback(async () => {
@@ -173,10 +171,9 @@ export function ClientSidebar({
       await signOut();
     } finally {
       clearAuth();
-      router.push(ROUTES.LOGIN);
-      router.refresh();
+      window.location.href = ROUTES.LOGIN;
     }
-  }, [clearAuth, router]);
+  }, [clearAuth]);
 
   return (
     <aside className={cn(

@@ -44,6 +44,9 @@ export const ROUTES = {
     ROLE_NEW: "/admin/roles/new",
     ROLE: (id: string) => `/admin/roles/${id}`,
     SETTINGS: "/admin/settings",
+    RESEARCH: "/admin/research",
+    RESEARCH_NEW: "/admin/research/new",
+    RESEARCH_EDIT: (id: string) => `/admin/research/${id}`,
   },
 } as const;
 
