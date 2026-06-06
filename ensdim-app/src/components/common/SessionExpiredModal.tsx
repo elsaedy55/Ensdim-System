@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import { useAuthStore } from "@/store/auth.store";
 import { createClient } from "@/lib/supabase/client";
+import type { AuthChangeEvent } from "@supabase/supabase-js";
 
 export function SessionExpiredModal() {
   const t = useTranslations("dialogs.sessionExpired");
@@ -18,7 +19,7 @@ export function SessionExpiredModal() {
   // Listen for Supabase auth state — SIGNED_OUT = session expired
   React.useEffect(() => {
     const supabase = createClient();
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event: AuthChangeEvent) => {
       if (event === "SIGNED_OUT") {
         setOpen(true);
       }
