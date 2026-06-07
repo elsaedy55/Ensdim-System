@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeOff, Mail, Lock, User, Building2, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormField } from "@/components/ui/form-field";
@@ -42,7 +42,6 @@ export default function RegisterPage() {
   const ta = useTranslations("common.actions");
 
   const schema = z.object({
-    workspaceName:   z.string().min(2, "Agency name must be at least 2 characters"),
     name:            z.string().min(2, tv("nameMin")),
     email:           z.string().email(tv("emailInvalid")),
     password:        z.string().min(8, tv("passwordMin")),
@@ -68,13 +67,12 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterForm) => {
     setServerError(null);
     try {
-      // Admin signup — the DB trigger creates the workspace automatically
+      // Public signup always creates a client account — no role choice
       await signUp({
-        email:         data.email,
-        password:      data.password,
-        name:          data.name,
-        role:          "admin",
-        workspaceName: data.workspaceName,
+        email:    data.email,
+        password: data.password,
+        name:     data.name,
+        role:     "client",
       });
       setSuccess(true);
     } catch (err: unknown) {
@@ -115,18 +113,6 @@ export default function RegisterPage() {
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
-          {/* Agency name — creates the workspace */}
-          <FormField label="Agency Name" required htmlFor="workspaceName" error={errors.workspaceName?.message}>
-            <Input
-              id="workspaceName"
-              autoComplete="organization"
-              placeholder="Ensdim Agency"
-              error={!!errors.workspaceName}
-              leftElement={<Building2 className="h-4 w-4" />}
-              {...register("workspaceName")}
-            />
-          </FormField>
-
           <FormField label={t("nameLabel")} required htmlFor="name" error={errors.name?.message}>
             <Input
               id="name"
