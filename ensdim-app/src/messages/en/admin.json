@@ -415,6 +415,62 @@
     }
   },
 
+  "inquiries": {
+    "title": "Inquiries",
+    "subtitle": "{total} total · {new} new · {contacted} contacted · {closed} closed",
+    "searchPlaceholder": "Search by name, WhatsApp, email, company...",
+    "filters": {
+      "all": "All",
+      "consultation": "Consultations",
+      "contact": "Contact",
+      "new": "New",
+      "contacted": "Contacted",
+      "closed": "Closed"
+    },
+    "type": {
+      "consultation": "Consultation",
+      "contact": "Contact"
+    },
+    "status": {
+      "new": "New",
+      "contacted": "Contacted",
+      "closed": "Closed"
+    },
+    "fields": {
+      "name": "Name",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "company": "Company",
+      "role": "Role",
+      "country": "Country",
+      "challenge": "Challenge",
+      "budget": "Budget",
+      "details": "Details",
+      "message": "Message",
+      "sourcePage": "Source Page",
+      "interestType": "Interest",
+      "clickedItem": "Clicked Item",
+      "language": "Language",
+      "submittedOn": "Submitted"
+    },
+    "actions": {
+      "markContacted": "Mark as Contacted",
+      "markClosed": "Mark as Closed",
+      "markNew": "Mark as New",
+      "openWhatsapp": "Open WhatsApp",
+      "delete": "Delete inquiry"
+    },
+    "emptyState": {
+      "title": "No inquiries yet",
+      "description": "Consultation bookings and contact messages from the website will appear here"
+    },
+    "noResults": "No inquiries match your search",
+    "success": {
+      "statusUpdated": "Status updated",
+      "deleted": "Inquiry deleted"
+    }
+  },
+
   "invoices": {
     "create": {
       "title": "Create Invoice",

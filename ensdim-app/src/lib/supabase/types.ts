@@ -86,6 +86,27 @@ export interface ActivityLogRow {
   id: string; project_id: string | null; user_id: string; message: string;
   entity_type: string | null; entity_id: string | null; created_at: string;
 }
+export interface InquiryRow {
+  id: string;
+  type: "consultation" | "contact";
+  status: "new" | "contacted" | "closed";
+  name: string;
+  whatsapp: string;
+  email: string | null;
+  company: string | null;
+  role: string | null;
+  country: string | null;
+  challenge: string | null;
+  budget: string | null;
+  details: string | null;
+  message: string | null;
+  source_page: string | null;
+  interest_type: string | null;
+  clicked_item: string | null;
+  language: string | null;
+  created_at: string;
+  updated_at: string;
+}
 export interface ResearchArticleRow {
   id: string;
   title_en: string;
@@ -131,6 +152,7 @@ export interface Database {
       notification_preferences: TableDef<NotificationPrefsRow>;
       activity_logs:            TableDef<ActivityLogRow>;
       research_articles:        TableDef<ResearchArticleRow, Omit<ResearchArticleRow, "id" | "created_at" | "updated_at">>;
+      inquiries:                TableDef<InquiryRow, Omit<InquiryRow, "id" | "created_at" | "updated_at">>;
     };
     Views: { [_ in never]: never };
     Functions: { [_ in never]: never };

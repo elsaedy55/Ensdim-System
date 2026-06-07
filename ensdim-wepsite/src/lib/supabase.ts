@@ -44,3 +44,28 @@ export async function getResearchArticleBySlug(slug: string): Promise<ResearchAr
   if (error) return null;
   return data;
 }
+
+// ─── Inquiries (consultation bookings + contact messages) ─────────
+
+export interface InquiryInput {
+  type: "consultation" | "contact";
+  name: string;
+  whatsapp: string;
+  email?: string;
+  company?: string;
+  role?: string;
+  country?: string;
+  challenge?: string;
+  budget?: string;
+  details?: string;
+  message?: string;
+  source_page?: string;
+  interest_type?: string;
+  clicked_item?: string;
+  language?: string;
+}
+
+export async function submitInquiry(input: InquiryInput): Promise<void> {
+  const { error } = await supabase.from("inquiries").insert(input);
+  if (error) throw new Error(error.message);
+}

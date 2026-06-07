@@ -47,6 +47,7 @@ export const ROUTES = {
     RESEARCH: "/admin/research",
     RESEARCH_NEW: "/admin/research/new",
     RESEARCH_EDIT: (id: string) => `/admin/research/${id}`,
+    INQUIRIES: "/admin/inquiries",
   },
 } as const;
 

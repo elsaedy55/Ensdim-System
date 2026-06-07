@@ -12,7 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   LayoutDashboard, Folder, UserCheck, CheckSquare,
   Users, CreditCard, Bell, ShieldCheck, Settings,
-  LogOut, ChevronLeft, ChevronDown, BookOpen,
+  LogOut, ChevronLeft, ChevronDown, BookOpen, MessageSquare,
 } from "@/components/ui/icons";
 import type { LucideIcon } from "@/components/ui/icons";
 import {
@@ -40,6 +40,7 @@ const GROUPS: NavGroup[] = [
       { href: ROUTES.ADMIN.CLIENTS,   key: "clients",   icon: UserCheck },
       { href: ROUTES.ADMIN.TASKS,     key: "tasks",     icon: CheckSquare },
       { href: ROUTES.ADMIN.RESEARCH,  key: "research",  icon: BookOpen },
+      { href: ROUTES.ADMIN.INQUIRIES, key: "inquiries", icon: MessageSquare },
     ],
   },
   {

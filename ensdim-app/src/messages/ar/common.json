@@ -15,7 +15,8 @@
     "team": "الفريق",
     "financial": "المالية",
     "roles": "الصلاحيات",
-    "research": "الأبحاث"
+    "research": "الأبحاث",
+    "inquiries": "الاستفسارات"
   },
   "actions": {
     "save": "حفظ",

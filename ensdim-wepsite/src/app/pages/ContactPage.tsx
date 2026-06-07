@@ -5,15 +5,38 @@ import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
 import { QuickAnswer } from '../components/QuickAnswer';
+import { submitInquiry } from '../../lib/supabase';
 
 export function ContactPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+
+    const data = new FormData(e.currentTarget);
+    try {
+      await submitInquiry({
+        type:        'contact',
+        name:        String(data.get('name') ?? ''),
+        whatsapp:    String(data.get('whatsapp') ?? ''),
+        email:       String(data.get('email') ?? '') || undefined,
+        company:     String(data.get('company') ?? '') || undefined,
+        message:     String(data.get('message') ?? '') || undefined,
+        source_page: '/contact',
+        language,
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -78,15 +101,19 @@ export function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {[
-                    { name: 'name', label: ar ? 'الاسم' : 'Name', type: 'text' },
+                    { name: 'name', label: ar ? 'الاسم' : 'Name', type: 'text', required: true },
+                    { name: 'whatsapp', label: ar ? 'واتساب' : 'WhatsApp', type: 'tel', required: true },
                     { name: 'company', label: ar ? 'الشركة' : 'Company', type: 'text' },
                     { name: 'email', label: ar ? 'البريد الإلكتروني' : 'Email', type: 'email' },
-                    { name: 'whatsapp', label: ar ? 'واتساب' : 'WhatsApp', type: 'tel' },
                   ].map((field) => (
                     <div key={field.name}>
-                      <label className="block text-xs font-semibold text-[#101418] mb-1.5">{field.label}</label>
+                      <label className="block text-xs font-semibold text-[#101418] mb-1.5">
+                        {field.label}{field.required && <span className="text-[#D63A3A]"> *</span>}
+                      </label>
                       <input
                         type={field.type}
+                        name={field.name}
+                        required={field.required}
                         className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
                         placeholder={field.label}
                       />
@@ -97,16 +124,23 @@ export function ContactPage() {
                       {ar ? 'ما الذي تحتاج مساعدة فيه؟' : 'What do you need help with?'}
                     </label>
                     <textarea
+                      name="message"
                       rows={3}
                       className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors resize-none"
                       placeholder={ar ? 'اشرح تحديك الحالي...' : 'Describe your current challenge...'}
                     />
                   </div>
+                  {error && (
+                    <p className="text-xs text-[#D63A3A]">
+                      {ar ? 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.' : 'Something went wrong while sending. Please try again.'}
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    className="w-full py-2.5 bg-[#D63A3A] text-white rounded-xl text-sm font-semibold hover:bg-[#c23030] transition-colors"
+                    disabled={submitting}
+                    className="w-full py-2.5 bg-[#D63A3A] text-white rounded-xl text-sm font-semibold hover:bg-[#c23030] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {ar ? 'إرسال الطلب' : 'Send Request'}
+                    {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : (ar ? 'إرسال الطلب' : 'Send Request')}
                   </button>
                 </form>
               )}

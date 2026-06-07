@@ -392,6 +392,62 @@
     }
   },
 
+  "inquiries": {
+    "title": "الاستفسارات",
+    "subtitle": "{total} الإجمالي · {new} جديد · {contacted} تم التواصل · {closed} مغلق",
+    "searchPlaceholder": "بحث بالاسم، واتساب، البريد، الشركة...",
+    "filters": {
+      "all": "الكل",
+      "consultation": "استشارات",
+      "contact": "تواصل",
+      "new": "جديد",
+      "contacted": "تم التواصل",
+      "closed": "مغلق"
+    },
+    "type": {
+      "consultation": "استشارة",
+      "contact": "تواصل"
+    },
+    "status": {
+      "new": "جديد",
+      "contacted": "تم التواصل",
+      "closed": "مغلق"
+    },
+    "fields": {
+      "name": "الاسم",
+      "whatsapp": "واتساب",
+      "email": "البريد الإلكتروني",
+      "company": "الشركة",
+      "role": "المسمى الوظيفي",
+      "country": "البلد",
+      "challenge": "التحدي",
+      "budget": "الميزانية",
+      "details": "التفاصيل",
+      "message": "الرسالة",
+      "sourcePage": "صفحة المصدر",
+      "interestType": "نوع الاهتمام",
+      "clickedItem": "العنصر المختار",
+      "language": "اللغة",
+      "submittedOn": "تاريخ الإرسال"
+    },
+    "actions": {
+      "markContacted": "تحديد كـ تم التواصل",
+      "markClosed": "تحديد كـ مغلق",
+      "markNew": "تحديد كـ جديد",
+      "openWhatsapp": "فتح واتساب",
+      "delete": "حذف الاستفسار"
+    },
+    "emptyState": {
+      "title": "لا توجد استفسارات بعد",
+      "description": "ستظهر هنا حجوزات الاستشارات ورسائل التواصل من الموقع"
+    },
+    "noResults": "لا توجد استفسارات تطابق بحثك",
+    "success": {
+      "statusUpdated": "تم تحديث الحالة",
+      "deleted": "تم حذف الاستفسار"
+    }
+  },
+
   "invoices": {
     "create": {
       "title": "إنشاء فاتورة",
