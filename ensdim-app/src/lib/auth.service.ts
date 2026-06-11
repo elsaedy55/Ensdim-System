@@ -17,8 +17,6 @@ export async function signUp(params: {
   password: string;
   name: string;
   role?: UserRole;
-  workspaceId?: string;
-  workspaceName?: string;
 }) {
   const supabase = createClient();
   const { data, error } = await supabase.auth.signUp({
@@ -27,11 +25,8 @@ export async function signUp(params: {
     options: {
       emailRedirectTo: `${window.location.origin}/auth/callback`,
       data: {
-        name:                params.name,
-        role:                params.role ?? "client",
-        workspace_id:        params.workspaceId ?? null,
-        workspace_name:      params.workspaceName ?? null,
-        onboarding_complete: false,
+        name: params.name,
+        role: params.role ?? "client",
       },
     },
   });

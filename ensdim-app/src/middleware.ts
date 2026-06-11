@@ -41,35 +41,22 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  const role                = (user.user_metadata?.role as string | undefined) ?? "client";
-  const onboardingComplete  = user.user_metadata?.onboarding_complete === true;
+  const role = (user.user_metadata?.role as string | undefined) ?? "client";
 
-  // 2. Authenticated but onboarding explicitly not complete → redirect to /onboarding
-  //    Only for NEW users (onboarding_complete === false, not undefined = old users)
-  if (onboardingComplete === false && pathname !== "/onboarding" && !isPublic) {
-    return NextResponse.redirect(new URL("/onboarding", request.url));
-  }
-
-  // 3. Authenticated user hitting a public route → redirect to their area
+  // 2. Authenticated user hitting a public route → redirect to their area
   if (isPublic) {
     if (pathname === "/accept-invite") return response;
     if (CLIENT_ROLES.has(role)) return NextResponse.redirect(new URL("/dashboard", request.url));
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 
-  // 4. Onboarding page — redirect away if already completed
-  if (pathname === "/onboarding" && onboardingComplete) {
-    if (CLIENT_ROLES.has(role)) return NextResponse.redirect(new URL("/dashboard", request.url));
-    return NextResponse.redirect(new URL("/admin", request.url));
-  }
-
-  // 5. Client trying to access /admin
+  // 3. Client trying to access /admin
   if (CLIENT_ROLES.has(role) && pathname.startsWith("/admin")) {
     return NextResponse.redirect(new URL("/403", request.url));
   }
 
-  // 6. Team member trying to access client routes → /admin
-  if (ADMIN_ROLES.has(role) && !pathname.startsWith("/admin") && pathname !== "/onboarding") {
+  // 4. Team member trying to access client routes → /admin
+  if (ADMIN_ROLES.has(role) && !pathname.startsWith("/admin")) {
     if (pathname === "/settings" || pathname.startsWith("/settings/")) return response;
     return NextResponse.redirect(new URL("/admin", request.url));
   }
