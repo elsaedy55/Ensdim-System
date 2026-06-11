@@ -1,0 +1,74 @@
+<!--
+  ENSDIM — Invite User Email Template
+  Paste this into: Supabase Dashboard → Authentication → Email Templates → "Invite user"
+  Variables used: {{ .ConfirmationURL }}  (redirects to https://app.ensdim.com/accept-invite)
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دعوة للانضمام إلى Ensdim</title>
+  </head>
+  <body style="margin:0; padding:0; background-color:#fafafa; font-family:'Cairo','Segoe UI',Tahoma,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#fafafa; padding:40px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px; background-color:#ffffff; border-radius:16px; overflow:hidden; border:1px solid #e4e4e7;">
+
+            <!-- Header -->
+            <tr>
+              <td style="background-color:#6366f1; padding:28px 32px; text-align:center;">
+                <span style="font-size:22px; font-weight:800; color:#ffffff; letter-spacing:0.5px;">Ensdim</span>
+              </td>
+            </tr>
+
+            <!-- Body -->
+            <tr>
+              <td style="padding:40px 32px; text-align:right;">
+                <h1 style="margin:0 0 12px; font-size:20px; font-weight:700; color:#18181b;">
+                  تمت دعوتك للانضمام إلى Ensdim
+                </h1>
+                <p style="margin:0 0 24px; font-size:14px; line-height:1.8; color:#52525b;">
+                  تم إنشاء حساب لك على لوحة تحكم Ensdim. اضغط على الزر أدناه لتفعيل حسابك وتعيين كلمة المرور الخاصة بك.
+                </p>
+
+                <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                  <tr>
+                    <td style="border-radius:10px; background-color:#6366f1;">
+                      <a href="{{ .ConfirmationURL }}"
+                         style="display:inline-block; padding:14px 36px; font-size:14px; font-weight:700; color:#ffffff; text-decoration:none; border-radius:10px;">
+                        قبول الدعوة وتعيين كلمة المرور
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="margin:28px 0 0; font-size:12px; line-height:1.8; color:#a1a1aa;">
+                  إذا لم يعمل الزر، انسخ الرابط التالي والصقه في متصفحك:
+                  <br />
+                  <a href="{{ .ConfirmationURL }}" style="color:#6366f1; word-break:break-all;">{{ .ConfirmationURL }}</a>
+                </p>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="padding:20px 32px; background-color:#fafafa; border-top:1px solid #f1f1f3; text-align:center;">
+                <p style="margin:0; font-size:12px; color:#a1a1aa;">
+                  <a href="https://ensdim.com" style="color:#6366f1; text-decoration:none; font-weight:600;">ensdim.com</a>
+                  ·
+                  <a href="https://app.ensdim.com" style="color:#6366f1; text-decoration:none; font-weight:600;">app.ensdim.com</a>
+                </p>
+                <p style="margin:8px 0 0; font-size:11px; color:#d4d4d8;">
+                  © Ensdim — جميع الحقوق محفوظة
+                </p>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
