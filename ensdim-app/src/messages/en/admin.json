@@ -141,6 +141,28 @@
         "action": "Add Client"
       }
     },
+    "actions": {
+      "viewProfile": "View Profile",
+      "ban": "Ban Client",
+      "banFor1d": "Ban for 1 day",
+      "banFor7d": "Ban for 7 days",
+      "banFor30d": "Ban for 30 days",
+      "banPermanent": "Ban permanently",
+      "unban": "Remove Ban",
+      "delete": "Delete Client"
+    },
+    "banned": "Banned",
+    "bannedUntil": "Banned until {date}",
+    "bannedPermanently": "Banned permanently",
+    "deleteDialog": {
+      "title": "Delete Client",
+      "description": "This will permanently delete \"{name}\" and all of their account data. This cannot be undone."
+    },
+    "success": {
+      "banned": "Client banned successfully",
+      "unbanned": "Ban removed successfully",
+      "deleted": "Client deleted successfully"
+    },
     "add": {
       "title": "Add Client",
       "fields": {

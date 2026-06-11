@@ -10,12 +10,14 @@ import { FormField } from "@/components/ui/form-field";
 import { SkeletonCard } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ClientPipelineView } from "@/components/admin/ClientPipelineView";
+import { ClientActionsMenu } from "@/components/admin/ClientActionsMenu";
+import { ConfirmDeleteDialog } from "@/components/common/modals/ConfirmDeleteDialog";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Plus, Users, UserPlus, Mail, Building2, Kanban, List, ArrowRight } from "lucide-react";
+import { Plus, Users, UserPlus, Mail, Building2, Kanban, List, ArrowRight, Ban } from "lucide-react";
 import { toast } from "sonner";
-import { useAdminClients } from "@/hooks/useAdmin";
+import { useAdminClients, useAdminDeleteClient } from "@/hooks/useAdmin";
 import type { ProfileRow } from "@/lib/supabase/types";
 
 // ─── Add Client Modal ─────────────────────────────────────────────
@@ -75,9 +77,11 @@ function AddClientModal({ open, onClose }: { open: boolean; onClose: () => void 
 
 // ─── Client Table Row ─────────────────────────────────────────────
 
-function ClientTableRow({ client }: { client: ProfileRow }) {
+function ClientTableRow({ client, onDelete }: { client: ProfileRow; onDelete: (id: string, name: string) => void }) {
+  const t = useTranslations("admin.clients");
   const initials = client.name.slice(0, 2).toUpperCase();
   const status   = client.client_status ?? "active";
+  const isBanned = !!client.banned_until && new Date(client.banned_until) > new Date();
 
   const statusColors: Record<string, string> = {
     lead:          "bg-(--bg-muted) text-(--text-muted)",
@@ -90,24 +94,35 @@ function ClientTableRow({ client }: { client: ProfileRow }) {
   };
 
   return (
-    <Link
-      href={ROUTES.ADMIN.CLIENT(client.id)}
-      className="surface flex items-center gap-4 p-4 hover:shadow-(--shadow-sm) transition-shadow group"
-    >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--accent-subtle) text-(--accent) text-sm font-semibold">
-        {initials}
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-(--text-primary) truncate group-hover:text-(--accent) transition-colors">
-          {client.name}
-        </p>
-        <p className="text-xs text-(--text-muted) truncate mt-0.5">Added {new Date(client.created_at).toLocaleDateString()}</p>
-      </div>
-      <span className={cn("hidden sm:inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium", statusColors[status] ?? statusColors.active)}>
-        {status.replace("_", " ")}
-      </span>
-      <ArrowRight className="h-4 w-4 text-(--text-muted) opacity-0 group-hover:opacity-100 transition-opacity rtl:scale-x-[-1]" />
-    </Link>
+    <div className="surface flex items-center gap-4 p-4 hover:shadow-(--shadow-sm) transition-shadow group">
+      <Link href={ROUTES.ADMIN.CLIENT(client.id)} className="flex flex-1 min-w-0 items-center gap-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--accent-subtle) text-(--accent) text-sm font-semibold">
+          {initials}
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-(--text-primary) truncate group-hover:text-(--accent) transition-colors">
+            {client.name}
+          </p>
+          <p className="text-xs text-(--text-muted) truncate mt-0.5">Added {new Date(client.created_at).toLocaleDateString()}</p>
+        </div>
+        <span className={cn("hidden sm:inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium", statusColors[status] ?? statusColors.active)}>
+          {status.replace("_", " ")}
+        </span>
+        {isBanned && (
+          <span className="inline-flex items-center gap-1 rounded-full bg-(--danger-subtle) text-(--danger-foreground) px-2 py-0.5 text-xs font-medium">
+            <Ban className="h-3 w-3" /> {t("banned")}
+          </span>
+        )}
+        <ArrowRight className="h-4 w-4 text-(--text-muted) opacity-0 group-hover:opacity-100 transition-opacity rtl:scale-x-[-1]" />
+      </Link>
+      <ClientActionsMenu
+        clientId={client.id}
+        clientName={client.name}
+        isBanned={isBanned}
+        onDelete={onDelete}
+        triggerClassName="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity"
+      />
+    </div>
   );
 }
 
@@ -118,15 +133,28 @@ type ViewMode = "pipeline" | "table";
 export default function AdminClientsPage() {
   const t = useTranslations("admin.clients");
   const { data: clients, isLoading } = useAdminClients();
+  const deleteClient = useAdminDeleteClient();
 
   const [search,   setSearch]   = React.useState("");
   const [view,     setView]     = React.useState<ViewMode>("pipeline");
   const [addOpen,  setAddOpen]  = React.useState(false);
+  const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; name: string } | null>(null);
 
   const allClients = clients ?? [];
   const filtered   = search
     ? allClients.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
     : allClients;
+
+  const handleDelete = () => {
+    if (!deleteTarget) return;
+    deleteClient.mutate(deleteTarget.id, {
+      onSuccess: () => {
+        toast.success(t("success.deleted"));
+        setDeleteTarget(null);
+      },
+      onError: (e) => toast.error(e.message),
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -194,11 +222,22 @@ export default function AdminClientsPage() {
         <ClientPipelineView clients={filtered} />
       ) : (
         <div className="space-y-3">
-          {filtered.map((c) => <ClientTableRow key={c.id} client={c} />)}
+          {filtered.map((c) => (
+            <ClientTableRow key={c.id} client={c} onDelete={(id, name) => setDeleteTarget({ id, name })} />
+          ))}
         </div>
       )}
 
       <AddClientModal open={addOpen} onClose={() => setAddOpen(false)} />
+
+      <ConfirmDeleteDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+        title={t("deleteDialog.title")}
+        description={deleteTarget ? t("deleteDialog.description", { name: deleteTarget.name }) : undefined}
+        onConfirm={handleDelete}
+        loading={deleteClient.isPending}
+      />
     </div>
   );
 }

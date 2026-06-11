@@ -141,6 +141,28 @@
         "action": "إضافة عميل"
       }
     },
+    "actions": {
+      "viewProfile": "عرض الملف الشخصي",
+      "ban": "حظر العميل",
+      "banFor1d": "حظر ليوم واحد",
+      "banFor7d": "حظر لمدة 7 أيام",
+      "banFor30d": "حظر لمدة 30 يومًا",
+      "banPermanent": "حظر دائم",
+      "unban": "إلغاء الحظر",
+      "delete": "حذف العميل"
+    },
+    "banned": "محظور",
+    "bannedUntil": "محظور حتى {date}",
+    "bannedPermanently": "محظور بشكل دائم",
+    "deleteDialog": {
+      "title": "حذف العميل",
+      "description": "سيتم حذف \"{name}\" وكل بياناته نهائيًا. لا يمكن التراجع عن هذا الإجراء."
+    },
+    "success": {
+      "banned": "تم حظر العميل بنجاح",
+      "unbanned": "تم إلغاء الحظر بنجاح",
+      "deleted": "تم حذف العميل بنجاح"
+    },
     "add": {
       "title": "إضافة عميل",
       "fields": {

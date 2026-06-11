@@ -14,11 +14,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { SkeletonCard } from "@/components/ui/skeleton";
 import { ROUTES } from "@/constants/routes";
 import { formatDate, cn } from "@/lib/utils";
-import { ChevronLeft, Folder, DollarSign, Calendar, Phone, User, Activity } from "lucide-react";
+import { ChevronLeft, Folder, DollarSign, Calendar, Phone, User, Activity, Ban } from "lucide-react";
 import {
-  useAdminClient, useAdminClientProjects, useAdminUpdateClientStatus,
+  useAdminClient, useAdminClientProjects, useAdminUpdateClientStatus, useAdminDeleteClient,
 } from "@/hooks/useAdmin";
 import { PIPELINE_STAGES } from "@/components/admin/ClientPipelineView";
+import { ClientActionsMenu } from "@/components/admin/ClientActionsMenu";
+import { ConfirmDeleteDialog } from "@/components/common/modals/ConfirmDeleteDialog";
+import { useRouter } from "next/navigation";
 import type { ClientStatus } from "@/lib/supabase/types";
 
 // ─── Overview Tab ─────────────────────────────────────────────────
@@ -214,9 +217,23 @@ function NotesTab() {
 export default function ClientDetailPage() {
   const { id } = useParams<{ id: string }>();
   const t      = useTranslations("admin.clients.detail");
+  const tList  = useTranslations("admin.clients");
+  const router = useRouter();
 
   const { data: client,   isLoading } = useAdminClient(id);
   const { data: projects }            = useAdminClientProjects(id);
+  const deleteClient = useAdminDeleteClient();
+  const [deleteOpen, setDeleteOpen] = React.useState(false);
+
+  const handleDelete = () => {
+    deleteClient.mutate(id, {
+      onSuccess: () => {
+        toast.success(tList("success.deleted"));
+        router.push(ROUTES.ADMIN.CLIENTS);
+      },
+      onError: (e) => toast.error(e.message),
+    });
+  };
 
   if (isLoading) {
     return (
@@ -237,6 +254,7 @@ export default function ClientDetailPage() {
   }
 
   const stage = PIPELINE_STAGES.find((s) => s.key === (client.client_status ?? "active"));
+  const isBanned = !!client.banned_until && new Date(client.banned_until) > new Date();
 
   return (
     <div className="space-y-6 max-w-4xl">
@@ -259,14 +277,28 @@ export default function ClientDetailPage() {
                   {stage.label}
                 </span>
               )}
+              {isBanned && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-(--danger-muted) bg-(--danger-subtle) text-(--danger-foreground) px-2.5 py-0.5 text-xs font-medium">
+                  <Ban className="h-3 w-3" /> {tList("banned")}
+                </span>
+              )}
             </div>
             <p className="text-xs text-(--text-muted)">
               {t("projectCount", { count: (projects ?? []).length })} · Since {formatDate(client.created_at, { month: "long", year: "numeric" })}
             </p>
           </div>
-          <Button size="sm" asChild>
-            <Link href={ROUTES.ADMIN.PROJECT_NEW}>+ New Project</Link>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button size="sm" asChild>
+              <Link href={ROUTES.ADMIN.PROJECT_NEW}>+ New Project</Link>
+            </Button>
+            <ClientActionsMenu
+              clientId={client.id}
+              clientName={client.name}
+              isBanned={isBanned}
+              onDelete={() => setDeleteOpen(true)}
+              triggerClassName="h-9 w-9 border border-(--border)"
+            />
+          </div>
         </div>
       </div>
 
@@ -286,6 +318,15 @@ export default function ClientDetailPage() {
         <TabsContent value="invoices">  <InvoicesTab  clientId={id} /> </TabsContent>
         <TabsContent value="notes">     <NotesTab /> </TabsContent>
       </Tabs>
+
+      <ConfirmDeleteDialog
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        title={tList("deleteDialog.title")}
+        description={tList("deleteDialog.description", { name: client.name })}
+        onConfirm={handleDelete}
+        loading={deleteClient.isPending}
+      />
     </div>
   );
 }

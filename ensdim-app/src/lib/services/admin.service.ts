@@ -219,6 +219,34 @@ export async function adminUpdateClientStatus(
   return data;
 }
 
+export type BanDuration = "1d" | "7d" | "30d" | "permanent";
+
+export async function adminBanClient(clientId: string, duration: BanDuration): Promise<void> {
+  const res = await fetch(`/api/admin/clients/${clientId}`, {
+    method:  "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body:    JSON.stringify({ action: "ban", duration }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error ?? "Failed to ban client");
+}
+
+export async function adminUnbanClient(clientId: string): Promise<void> {
+  const res = await fetch(`/api/admin/clients/${clientId}`, {
+    method:  "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body:    JSON.stringify({ action: "unban" }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error ?? "Failed to unban client");
+}
+
+export async function adminDeleteClient(clientId: string): Promise<void> {
+  const res = await fetch(`/api/admin/clients/${clientId}`, { method: "DELETE" });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error ?? "Failed to delete client");
+}
+
 export async function adminGetClientById(id: string): Promise<ProfileRow> {
   const supabase = createClient();
   const { data, error } = await supabase

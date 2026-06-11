@@ -37,6 +37,7 @@ export type ClientStatus =
 export interface ProfileRow {
   id: string; workspace_id: string; name: string; phone: string | null;
   avatar_url: string | null; role: UserRole; client_status: ClientStatus;
+  banned_until: string | null;
   created_at: string; updated_at: string;
 }
 export interface ProjectRow {

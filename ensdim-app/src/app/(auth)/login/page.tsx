@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -26,9 +26,24 @@ export default function LoginPage() {
   type LoginForm = z.infer<typeof schema>;
 
   const router       = useRouter();
+  const locale       = useLocale();
   const searchParams = useSearchParams();
   const isExpired    = searchParams.get("expired") === "true";
   const isVerified   = searchParams.get("verified") === "true";
+  const isBanned     = searchParams.get("banned") === "true";
+  const bannedUntil  = searchParams.get("until");
+
+  // A ban of 100+ years (set by the "permanent" option) is treated as permanent
+  const isPermanentBan = isBanned && bannedUntil
+    ? new Date(bannedUntil).getFullYear() - new Date().getFullYear() > 50
+    : false;
+
+  const bannedUntilLabel = isBanned && bannedUntil && !isPermanentBan
+    ? new Intl.DateTimeFormat(locale === "ar" ? "ar-EG" : "en-US", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }).format(new Date(bannedUntil))
+    : null;
 
   const [showPassword, setShowPassword] = React.useState(false);
   const [serverError, setServerError]   = React.useState<string | null>(null);
@@ -51,7 +66,7 @@ export default function LoginPage() {
       router.refresh();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : t("errors.invalidCredentials");
-      setServerError(msg);
+      setServerError(msg.toLowerCase().includes("banned") ? t("errors.banned") : msg);
     }
   };
 
@@ -76,6 +91,23 @@ export default function LoginPage() {
           <div className="mb-4 flex items-start gap-2.5 rounded-lg bg-(--warning-subtle) border border-(--warning-muted) px-3.5 py-3">
             <Clock className="h-4 w-4 text-(--warning) mt-0.5 shrink-0" />
             <p className="text-sm text-(--text-secondary)">{t("sessionExpiredBanner")}</p>
+          </div>
+        )}
+
+        {/* Banned account banner */}
+        {isBanned && !serverError && (
+          <div className="mb-4 flex items-start gap-2.5 rounded-lg bg-(--danger-subtle) border border-(--danger-muted) px-3.5 py-3">
+            <AlertCircle className="h-4 w-4 text-(--danger) mt-0.5 shrink-0" />
+            <div className="text-sm text-(--danger-foreground)">
+              <p className="font-medium">{t("bannedBanner.title")}</p>
+              <p className="mt-1 text-(--text-secondary)">
+                {isPermanentBan
+                  ? t("bannedBanner.permanent")
+                  : bannedUntilLabel
+                    ? t("bannedBanner.until", { date: bannedUntilLabel })
+                    : t("bannedBanner.generic")}
+              </p>
+            </div>
           </div>
         )}
 

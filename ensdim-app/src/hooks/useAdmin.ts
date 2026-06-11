@@ -6,6 +6,7 @@ import {
   adminGetAllProjects, adminCreateProject, adminUpdateProject, adminDeleteProject,
   adminCreateMilestone, adminUpdateMilestone, adminDeleteMilestone, adminSetMilestoneStatus,
   adminGetAllClients, adminGetClientById, adminGetClientProjects, adminUpdateClientStatus,
+  adminBanClient, adminUnbanClient, adminDeleteClient,
   adminGetTeamMembers,
   adminGetProjectMembers, adminAddProjectMember, adminRemoveProjectMember,
   adminGetInvoicesByProject, adminCreateInvoice, adminSendInvoice, adminMarkInvoicePaid,
@@ -149,6 +150,40 @@ export function useAdminUpdateClientStatus() {
       adminUpdateClientStatus(clientId, status),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-clients"] });
+    },
+  });
+}
+
+export function useAdminBanClient() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ clientId, duration }: { clientId: string; duration: Parameters<typeof adminBanClient>[1] }) =>
+      adminBanClient(clientId, duration),
+    onSuccess: (_, { clientId }) => {
+      qc.invalidateQueries({ queryKey: ["admin-clients"] });
+      qc.invalidateQueries({ queryKey: ["admin-client", clientId] });
+    },
+  });
+}
+
+export function useAdminUnbanClient() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (clientId: string) => adminUnbanClient(clientId),
+    onSuccess: (_, clientId) => {
+      qc.invalidateQueries({ queryKey: ["admin-clients"] });
+      qc.invalidateQueries({ queryKey: ["admin-client", clientId] });
+    },
+  });
+}
+
+export function useAdminDeleteClient() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (clientId: string) => adminDeleteClient(clientId),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["admin-clients"] });
+      qc.invalidateQueries({ queryKey: ["admin-kpis"] });
     },
   });
 }
