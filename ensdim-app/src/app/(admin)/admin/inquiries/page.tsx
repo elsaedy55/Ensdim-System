@@ -92,7 +92,7 @@ function InquiryRow({
   return (
     <div className="surface flex items-center gap-4 p-4 hover:shadow-sm transition-shadow group">
       {/* Icon */}
-      <div className="w-11 h-11 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 hidden sm:flex">
+      <div className="w-11 h-11 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 sm:flex">
         <MessageSquare className="h-5 w-5 text-(--text-muted)" />
       </div>
 

@@ -157,7 +157,7 @@ export default function AdminClientsPage() {
             className={cn(
               "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
               view === "pipeline"
-                ? "bg-(--bg-surface) text-(--text-primary) shadow-[var(--shadow-xs)]"
+                ? "bg-(--bg-surface) text-(--text-primary) shadow-(--shadow-xs)"
                 : "text-(--text-muted) hover:text-(--text-primary)",
             )}
           >
@@ -169,7 +169,7 @@ export default function AdminClientsPage() {
             className={cn(
               "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
               view === "table"
-                ? "bg-(--bg-surface) text-(--text-primary) shadow-[var(--shadow-xs)]"
+                ? "bg-(--bg-surface) text-(--text-primary) shadow-(--shadow-xs)"
                 : "text-(--text-muted) hover:text-(--text-primary)",
             )}
           >
