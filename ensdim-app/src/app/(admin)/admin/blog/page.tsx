@@ -9,41 +9,41 @@ import { SearchInput } from "@/components/ui/search-input";
 import { ConfirmDeleteDialog } from "@/components/common/modals/ConfirmDeleteDialog";
 import { ROUTES } from "@/constants/routes";
 import { formatDate, cn } from "@/lib/utils";
-import { Plus, BookOpen, MoreHorizontal, Trash2, Eye, Pencil, Globe, EyeOff, AlertTriangle } from "lucide-react";
+import { Plus, FileText, MoreHorizontal, Trash2, Eye, Pencil, Globe, EyeOff, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
   DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  useResearchArticles,
-  useDeleteResearchArticle,
-  useToggleResearchPublished,
-} from "@/hooks/useResearch";
-import type { ResearchArticle } from "@/lib/services/research.service";
+  useBlogPosts,
+  useDeleteBlogPost,
+  useToggleBlogPublished,
+} from "@/hooks/useBlog";
+import type { BlogPost } from "@/lib/services/blog.service";
 
-// ─── ArticleRow ────────────────────────────────────────────────────
+// ─── PostRow ───────────────────────────────────────────────────────
 
-function ArticleRow({
-  article,
+function PostRow({
+  post,
   onDelete,
   t,
   tc,
 }: {
-  article: ResearchArticle;
+  post: BlogPost;
   onDelete: (id: string, title: string) => void;
-  t: ReturnType<typeof useTranslations<"admin.research">>;
+  t: ReturnType<typeof useTranslations<"admin.blog">>;
   tc: ReturnType<typeof useTranslations<"common.actions">>;
 }) {
-  const toggle = useToggleResearchPublished();
+  const toggle = useToggleBlogPublished();
 
   const handleToggle = () => {
     toggle.mutate(
-      { id: article.id, isPublished: !article.is_published },
+      { id: post.id, isPublished: !post.is_published },
       {
         onSuccess: () =>
           toast.success(
-            article.is_published
+            post.is_published
               ? t("form.success.unpublished")
               : t("form.success.published")
           ),
@@ -55,15 +55,15 @@ function ArticleRow({
   return (
     <div className="surface flex items-center gap-4 p-4 hover:shadow-sm transition-shadow group">
       {/* Thumbnail */}
-      {article.image_url ? (
+      {post.image_url ? (
         <img
-          src={article.image_url}
-          alt={article.title_en}
+          src={post.image_url}
+          alt={post.title_en}
           className="w-14 h-14 rounded-lg object-cover shrink-0 hidden sm:block"
         />
       ) : (
-        <div className="w-14 h-14 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 sm:block">
-          <BookOpen className="h-5 w-5 text-(--text-muted)" />
+        <div className="w-14 h-14 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 hidden sm:block">
+          <FileText className="h-5 w-5 text-(--text-muted)" />
         </div>
       )}
 
@@ -71,27 +71,27 @@ function ArticleRow({
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5 flex-wrap">
           <span className="text-sm font-semibold text-(--text-primary) truncate">
-            {article.title_en}
+            {post.title_en}
           </span>
           <span
             className={cn(
               "text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0",
-              article.is_published
+              post.is_published
                 ? "bg-green-100 text-green-700"
                 : "bg-(--bg-muted) text-(--text-muted)"
             )}
           >
-            {article.is_published ? t("list.published") : t("list.draft")}
+            {post.is_published ? t("list.published") : t("list.draft")}
           </span>
         </div>
-        <p className="text-xs text-(--text-muted) truncate">{article.title_ar}</p>
+        <p className="text-xs text-(--text-muted) truncate">{post.title_ar}</p>
         <div className="flex items-center gap-3 mt-1 text-xs text-(--text-muted)">
-          <span className="px-2 py-0.5 bg-(--bg-muted) rounded-full">{article.category_en}</span>
-          <span>{article.read_time} {t("list.minRead")}</span>
-          {article.published_at && (
+          <span className="px-2 py-0.5 bg-(--bg-muted) rounded-full">{post.category_en}</span>
+          <span>{post.read_time} {t("list.minRead")}</span>
+          {post.published_at && (
             <span>
               {t("list.publishedOn")}{" "}
-              {formatDate(article.published_at, { month: "short", day: "numeric", year: "numeric" })}
+              {formatDate(post.published_at, { month: "short", day: "numeric", year: "numeric" })}
             </span>
           )}
         </div>
@@ -106,7 +106,7 @@ function ArticleRow({
           disabled={toggle.isPending}
           className="hidden sm:flex items-center gap-1.5 text-xs"
         >
-          {article.is_published ? (
+          {post.is_published ? (
             <><EyeOff className="h-3.5 w-3.5" /> {t("list.unpublish")}</>
           ) : (
             <><Globe className="h-3.5 w-3.5" /> {t("list.publish")}</>
@@ -126,7 +126,7 @@ function ArticleRow({
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuItem asChild>
               <Link
-                href={ROUTES.ADMIN.RESEARCH_EDIT(article.id)}
+                href={ROUTES.ADMIN.BLOG_EDIT(post.id)}
                 className="flex items-center gap-2"
               >
                 <Pencil className="h-4 w-4" /> {tc("edit")}
@@ -134,7 +134,7 @@ function ArticleRow({
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <a
-                href={`http://localhost:5173/research/${article.slug}`}
+                href={`https://www.ensdim.com/blog/${post.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
@@ -145,7 +145,7 @@ function ArticleRow({
             <DropdownMenuSeparator />
             <DropdownMenuItem
               destructive
-              onClick={() => onDelete(article.id, article.title_en)}
+              onClick={() => onDelete(post.id, post.title_en)}
               className="flex items-center gap-2"
             >
               <Trash2 className="h-4 w-4" />
@@ -159,30 +159,30 @@ function ArticleRow({
 
 // ─── Page ─────────────────────────────────────────────────────────
 
-export default function AdminResearchPage() {
-  const t  = useTranslations("admin.research");
+export default function AdminBlogPage() {
+  const t  = useTranslations("admin.blog");
   const tc = useTranslations("common.actions");
-  const { data: articles, isLoading, error } = useResearchArticles();
-  const deleteArticle = useDeleteResearchArticle();
+  const { data: posts, isLoading, error } = useBlogPosts();
+  const deletePost = useDeleteBlogPost();
 
   const [search, setSearch]     = React.useState("");
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; title: string } | null>(null);
 
-  const list     = articles ?? [];
+  const list     = posts ?? [];
   const filtered = search
     ? list.filter(
-        (a) =>
-          a.title_en.toLowerCase().includes(search.toLowerCase()) ||
-          a.title_ar.includes(search) ||
-          a.slug.toLowerCase().includes(search.toLowerCase())
+        (p) =>
+          p.title_en.toLowerCase().includes(search.toLowerCase()) ||
+          p.title_ar.includes(search) ||
+          p.slug.toLowerCase().includes(search.toLowerCase())
       )
     : list;
 
-  const publishedCount = list.filter((a) => a.is_published).length;
+  const publishedCount = list.filter((p) => p.is_published).length;
 
   const handleDelete = () => {
     if (!deleteTarget) return;
-    deleteArticle.mutate(deleteTarget.id, {
+    deletePost.mutate(deleteTarget.id, {
       onSuccess: () => {
         toast.success(t("form.success.deleted"));
         setDeleteTarget(null);
@@ -198,8 +198,8 @@ export default function AdminResearchPage() {
         subtitle={t("list.subtitle", { total: list.length, published: publishedCount })}
         actions={
           <Button asChild>
-            <Link href={ROUTES.ADMIN.RESEARCH_NEW}>
-              <Plus className="h-4 w-4" /> {t("list.newArticle")}
+            <Link href={ROUTES.ADMIN.BLOG_NEW}>
+              <Plus className="h-4 w-4" /> {t("list.newPost")}
             </Link>
           </Button>
         }
@@ -220,13 +220,13 @@ export default function AdminResearchPage() {
           <AlertTriangle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-semibold text-red-700">
-              Could not load research articles
+              Could not load blog posts
             </p>
             <p className="text-xs text-red-500 mt-1">
               {(error as Error).message}
             </p>
             <p className="text-xs text-red-400 mt-2">
-              Make sure you have run the SQL migration in Supabase (supabase-research-migration.sql)
+              Make sure you have run the SQL migration in Supabase (012_blog_posts.sql)
             </p>
           </div>
         </div>
@@ -242,7 +242,7 @@ export default function AdminResearchPage() {
 
       {!isLoading && !error && filtered.length === 0 && (
         <div className="surface flex flex-col items-center justify-center py-16 text-center">
-          <BookOpen className="h-10 w-10 text-(--text-muted) mb-3" />
+          <FileText className="h-10 w-10 text-(--text-muted) mb-3" />
           <p className="text-sm font-medium text-(--text-primary)">
             {search ? t("list.noResults") : t("list.emptyState.title")}
           </p>
@@ -250,7 +250,7 @@ export default function AdminResearchPage() {
             <>
               <p className="text-xs text-(--text-muted) mt-1">{t("list.emptyState.description")}</p>
               <Button size="sm" className="mt-4" asChild>
-                <Link href={ROUTES.ADMIN.RESEARCH_NEW}>
+                <Link href={ROUTES.ADMIN.BLOG_NEW}>
                   <Plus className="h-4 w-4" /> {t("list.emptyState.action")}
                 </Link>
               </Button>
@@ -261,10 +261,10 @@ export default function AdminResearchPage() {
 
       {!isLoading && !error && filtered.length > 0 && (
         <div className="space-y-3">
-          {filtered.map((article) => (
-            <ArticleRow
-              key={article.id}
-              article={article}
+          {filtered.map((post) => (
+            <PostRow
+              key={post.id}
+              post={post}
               t={t}
               tc={tc}
               onDelete={(id, title) => setDeleteTarget({ id, title })}
@@ -278,7 +278,7 @@ export default function AdminResearchPage() {
         onOpenChange={(open) => !open && setDeleteTarget(null)}
         itemName={deleteTarget?.title}
         onConfirm={handleDelete}
-        loading={deleteArticle.isPending}
+        loading={deletePost.isPending}
       />
     </div>
   );

@@ -451,6 +451,77 @@
     }
   },
 
+  "blog": {
+    "list": {
+      "title": "مقالات المدونة",
+      "subtitle": "{total} مقال · {published} منشور",
+      "newPost": "مقال جديد",
+      "searchPlaceholder": "البحث في المقالات...",
+      "published": "منشور",
+      "draft": "مسودة",
+      "minRead": "دقائق قراءة",
+      "publishedOn": "نُشر",
+      "previewOnSite": "معاينة على الموقع",
+      "unpublish": "إلغاء النشر",
+      "publish": "نشر",
+      "emptyState": {
+        "title": "لا توجد مقالات مدونة بعد",
+        "description": "أنشئ أول مقال لنشره على الموقع",
+        "action": "مقال جديد"
+      },
+      "noResults": "لا توجد مقالات تطابق بحثك"
+    },
+    "new": {
+      "title": "مقال مدونة جديد",
+      "subtitle": "إنشاء مقال مدونة ثنائي اللغة للموقع"
+    },
+    "edit": {
+      "title": "تعديل المقال"
+    },
+    "form": {
+      "sections": {
+        "basic": "المعلومات الأساسية",
+        "descriptions": "وصف مختصر (يظهر على البطاقة)",
+        "content": "محتوى المقال الكامل",
+        "contentHint": "افصل الفقرات بسطر فارغ. ابدأ السطر بـ ## للعنوان.",
+        "image": "صورة الغلاف",
+        "imageHint": "اضغط لرفع صورة الغلاف (JPG، PNG، WebP)",
+        "publish": "منشور",
+        "publishOn": "المقال مرئي على الموقع",
+        "publishOff": "المقال محفوظ كمسودة، مخفي عن الموقع"
+      },
+      "fields": {
+        "titleEn": "العنوان (إنجليزي)",
+        "titleAr": "العنوان (عربي)",
+        "slug": "الـ Slug",
+        "slugHint": "الرابط: /blog/",
+        "readTime": "وقت القراءة (دقائق)",
+        "categoryEn": "التصنيف (إنجليزي)",
+        "categoryAr": "التصنيف (عربي)",
+        "descEn": "الوصف (إنجليزي)",
+        "descAr": "الوصف (عربي)",
+        "contentEn": "المحتوى (إنجليزي)",
+        "contentAr": "المحتوى (عربي)"
+      },
+      "actions": {
+        "create": "إنشاء المقال",
+        "save": "حفظ التغييرات",
+        "saving": "جارٍ الحفظ…",
+        "back": "رجوع"
+      },
+      "success": {
+        "created": "تم إنشاء المقال",
+        "updated": "تم تحديث المقال",
+        "deleted": "تم حذف المقال",
+        "published": "تم نشر المقال",
+        "unpublished": "تم إلغاء نشر المقال"
+      },
+      "error": {
+        "imageUpload": "فشل رفع الصورة"
+      }
+    }
+  },
+
   "inquiries": {
     "title": "الاستفسارات",
     "subtitle": "{total} الإجمالي · {new} جديد · {contacted} تم التواصل · {closed} مغلق",

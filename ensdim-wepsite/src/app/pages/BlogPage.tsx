@@ -1,40 +1,28 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Clock, FileText } from 'lucide-react';
 import { PageHero } from '../components/PageHero';
+import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
 import { QuickAnswer } from '../components/QuickAnswer';
-
-const blogPostsEn = [
-  { slug: 'lose-leads-after-first-message', title: 'How service businesses lose leads after the first message', category: 'Follow-Up', read: '5 min' },
-  { slug: 'whatsapp-alone-not-enough', title: 'Why WhatsApp alone is not enough to manage customers', category: 'Operations', read: '4 min' },
-  { slug: 'crm-vs-manual-follow-up', title: 'CRM vs manual follow-up: what growing businesses should know', category: 'CRM', read: '6 min' },
-  { slug: 'automation-response-time', title: 'How automation improves customer response time', category: 'Automation', read: '4 min' },
-  { slug: 'dashboards-reveal-operations', title: 'What dashboards reveal about your daily operations', category: 'Visibility', read: '5 min' },
-  { slug: 'ai-management-decisions', title: 'How AI can support management decisions without replacing people', category: 'AI', read: '6 min' },
-  { slug: 'clinics-reduce-missed-appointments', title: 'How clinics can reduce missed appointments with better systems', category: 'Healthcare', read: '5 min' },
-  { slug: 'real-estate-leads-disappear', title: 'Why real estate leads disappear after ads', category: 'Real Estate', read: '4 min' },
-  { slug: 'website-vs-conversion-system', title: 'The difference between a website and a conversion system', category: 'Digital', read: '5 min' },
-  { slug: 'does-your-business-need-automation', title: 'How to know if your business needs automation', category: 'Operations', read: '4 min' },
-];
-
-const blogPostsAr = [
-  { slug: 'lose-leads-after-first-message', title: 'كيف تخسر شركات الخدمات العملاء المحتملين بعد أول رسالة', category: 'المتابعة', read: '5 دقائق' },
-  { slug: 'whatsapp-alone-not-enough', title: 'لماذا الواتساب وحده لا يكفي لإدارة العملاء', category: 'التشغيل', read: '4 دقائق' },
-  { slug: 'crm-vs-manual-follow-up', title: 'CRM مقابل المتابعة اليدوية: ما تحتاج معرفته كشركة نامية', category: 'CRM', read: '6 دقائق' },
-  { slug: 'automation-response-time', title: 'كيف تحسّن الأتمتة وقت الاستجابة للعملاء', category: 'الأتمتة', read: '4 دقائق' },
-  { slug: 'dashboards-reveal-operations', title: 'ما الذي تكشفه لوحات التحكم عن عملياتك اليومية', category: 'الرؤية', read: '5 دقائق' },
-  { slug: 'ai-management-decisions', title: 'كيف يدعم الذكاء الاصطناعي قرارات الإدارة دون أن يحل محل الناس', category: 'الذكاء الاصطناعي', read: '6 دقائق' },
-  { slug: 'clinics-reduce-missed-appointments', title: 'كيف تقلل العيادات من المواعيد الفائتة بأنظمة أفضل', category: 'الرعاية الصحية', read: '5 دقائق' },
-  { slug: 'real-estate-leads-disappear', title: 'لماذا تختفي العملاء المحتملين في العقارات بعد الإعلانات', category: 'العقارات', read: '4 دقائق' },
-  { slug: 'website-vs-conversion-system', title: 'الفرق بين موقع ويب ونظام تحويل', category: 'الرقمي', read: '5 دقائق' },
-  { slug: 'does-your-business-need-automation', title: 'كيف تعرف إذا كان عملك يحتاج إلى أتمتة', category: 'التشغيل', read: '4 دقائق' },
-];
+import { getPublishedBlogPosts, type BlogPost } from '../../lib/supabase';
 
 export function BlogPage() {
   const { language } = useLanguage();
-  const posts = language === 'ar' ? blogPostsAr : blogPostsEn;
+  const ar = language === 'ar';
+
+  const [posts, setPosts]   = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError]     = useState<string | null>(null);
+
+  useEffect(() => {
+    getPublishedBlogPosts()
+      .then(setPosts)
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
@@ -46,54 +34,105 @@ export function BlogPage() {
         ogType="website"
       />
       <PageHero
-        eyebrow={language === 'ar' ? 'المدونة' : 'Blog'}
-        title={language === 'ar' ? 'المدونة' : 'Blog'}
+        eyebrow={ar ? 'المدونة' : 'Blog'}
+        title={ar ? 'المدونة' : 'Blog'}
         subtitle={
-          language === 'ar'
+          ar
             ? 'مقالات عملية حول التشغيل، سلوك العملاء، الأتمتة، الذكاء الاصطناعي، والنمو الرقمي.'
             : 'Practical articles on operations, customer behavior, automation, AI, and digital growth.'
         }
         breadcrumbs={[{ label: 'Blog', labelAr: 'المدونة', href: '/blog' }]}
-        lang={language === 'ar' ? 'ar' : 'en'}
+        lang={ar ? 'ar' : 'en'}
       />
 
       <QuickAnswer
-        question={language === 'ar' ? 'ما موضوعات مدونة إنسديم؟' : 'What topics does the ENSDIM blog cover?'}
-        answer={language === 'ar'
+        question={ar ? 'ما موضوعات مدونة إنسديم؟' : 'What topics does the ENSDIM blog cover?'}
+        answer={ar
           ? 'مدونة إنسديم تغطي: أتمتة الأعمال، إدارة علاقات العملاء، سلوك العميل ورحلته، الذكاء الاصطناعي التطبيقي، التشغيل الرقمي، والنمو. كل مقال يقدم رؤى عملية للأعمال في مصر والسعودية والإمارات.'
           : 'The ENSDIM blog covers: business automation, CRM, customer behavior and journey, applied AI, digital operations, and growth. Every article provides practical insights for businesses in Egypt, Saudi Arabia, and UAE.'}
       />
 
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                to={`/blog/${post.slug}`}
-                className="group flex flex-col p-6 rounded-2xl border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-xl transition-all duration-300 bg-white"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] text-xs font-semibold rounded-full">
-                    {post.category}
-                  </span>
-                  <span className="text-xs text-[#69717D]">{post.read}</span>
+          {loading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="rounded-2xl border border-[#E5E5E5] p-6 animate-pulse">
+                  <div className="h-5 w-20 bg-[#EEEAFE] rounded-full mb-4" />
+                  <div className="h-5 w-3/4 bg-gray-200 rounded-lg mb-2" />
+                  <div className="h-4 w-full bg-gray-100 rounded mb-1" />
+                  <div className="h-4 w-2/3 bg-gray-100 rounded" />
                 </div>
-                <h3 className="text-base font-semibold text-[#101418] leading-snug mb-4 flex-1 group-hover:text-[#6D5DF6] transition-colors">
-                  {post.title}
-                </h3>
-                <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium mt-auto">
-                  {language === 'ar' ? 'اقرأ المقال' : 'Read article'} <ArrowRight size={14} />
-                </span>
-              </Link>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
+
+          {!loading && error && (
+            <div className="text-center py-16">
+              <FileText size={40} className="mx-auto text-[#E5E5E5] mb-3" />
+              <p className="text-sm text-[#69717D]">
+                {ar ? 'تعذر تحميل المقالات. حاول مجدداً لاحقاً.' : 'Could not load blog posts. Please try again later.'}
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && posts.length === 0 && (
+            <div className="text-center py-16">
+              <FileText size={40} className="mx-auto text-[#E5E5E5] mb-3" />
+              <p className="text-sm text-[#69717D]">
+                {ar ? 'لا توجد مقالات منشورة بعد.' : 'No blog posts published yet.'}
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && posts.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post, i) => (
+                <ScrollReveal key={post.id} delay={i * 0.07}>
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="group flex flex-col h-full rounded-2xl border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-xl transition-all duration-300 bg-white overflow-hidden"
+                  >
+                    {post.image_url && (
+                      <img
+                        src={post.image_url}
+                        alt={ar ? post.title_ar : post.title_en}
+                        className="w-full h-40 object-cover"
+                      />
+                    )}
+                    <div className="flex flex-col flex-1 p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] text-xs font-semibold rounded-full">
+                          {ar ? post.category_ar : post.category_en}
+                        </span>
+                        <span className="flex items-center gap-1 text-xs text-[#69717D]">
+                          <Clock size={11} />
+                          {post.read_time} {ar ? 'دقائق قراءة' : 'min read'}
+                        </span>
+                      </div>
+                      <h3 className="text-base font-semibold text-[#101418] leading-snug mb-2 flex-1 group-hover:text-[#6D5DF6] transition-colors">
+                        {ar ? post.title_ar : post.title_en}
+                      </h3>
+                      {(ar ? post.description_ar : post.description_en) && (
+                        <p className="text-sm text-[#69717D] leading-relaxed mb-4 line-clamp-2">
+                          {ar ? post.description_ar : post.description_en}
+                        </p>
+                      )}
+                      <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium mt-auto">
+                        {ar ? 'اقرأ المقال' : 'Read article'} <ArrowRight size={14} />
+                      </span>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       <FAQSection
-        title={language === 'ar' ? 'أسئلة شائعة حول مدونة إنسديم' : 'Frequently Asked Questions About the ENSDIM Blog'}
-        faqs={language === 'ar' ? [
+        title={ar ? 'أسئلة شائعة حول مدونة إنسديم' : 'Frequently Asked Questions About the ENSDIM Blog'}
+        faqs={ar ? [
           { question: 'هل مقالات مدونة إنسديم باللغتين العربية والإنجليزية؟', answer: 'نعم. مدونة إنسديم تتوفر باللغتين العربية والإنجليزية لخدمة الشركات في مصر والسعودية والإمارات والأسواق الناطقة بالعربية والإنجليزية.' },
           { question: 'ما الموضوعات التي تغطيها المدونة؟', answer: 'تغطي المدونة: أتمتة الأعمال، CRM وإدارة العملاء، سلوك العميل، الذكاء الاصطناعي التطبيقي، الرؤية التشغيلية، النمو الرقمي، وتجربة العميل — مع تركيز على الأسواق العربية.' },
           { question: 'هل يمكنني تطبيق نصائح المدونة على عملي مباشرة؟', answer: 'نعم. كل مقال في مدونة إنسديم يتضمن رؤى عملية قابلة للتطبيق. إذا أردت تطبيقًا مخصصًا لنشاطك، احجز استشارة مع فريق إنسديم.' },
@@ -108,10 +147,10 @@ export function BlogPage() {
       <section className="py-16 bg-[#EEEAFE]">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold text-[#101418] mb-4">
-            {language === 'ar' ? 'هل تواجه تحدياً في عملك؟' : 'Facing a challenge in your business?'}
+            {ar ? 'هل تواجه تحدياً في عملك؟' : 'Facing a challenge in your business?'}
           </h2>
           <p className="text-[#69717D] mb-6">
-            {language === 'ar'
+            {ar
               ? 'تحدث مع إنسديم واكتشف كيف يمكننا مساعدتك.'
               : 'Talk to ENSDIM and discover how we can help.'}
           </p>
@@ -119,7 +158,7 @@ export function BlogPage() {
             to="/book-consultation"
             className="inline-flex items-center gap-2 px-8 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors font-medium"
           >
-            {language === 'ar' ? 'احجز استشارة' : 'Book Consultation'}
+            {ar ? 'احجز استشارة' : 'Book Consultation'}
             <ArrowRight size={16} />
           </Link>
         </div>

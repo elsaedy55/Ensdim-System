@@ -45,6 +45,46 @@ export async function getResearchArticleBySlug(slug: string): Promise<ResearchAr
   return data;
 }
 
+export interface BlogPost {
+  id: string;
+  title_en: string;
+  title_ar: string;
+  slug: string;
+  category_en: string;
+  category_ar: string;
+  description_en: string;
+  description_ar: string;
+  content_en: string;
+  content_ar: string;
+  read_time: number;
+  image_url: string | null;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .eq("is_published", true)
+    .order("published_at", { ascending: false });
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .eq("slug", slug)
+    .eq("is_published", true)
+    .single();
+  if (error) return null;
+  return data;
+}
+
 // ─── Inquiries (consultation bookings + contact messages) ─────────
 
 export interface InquiryInput {

@@ -127,6 +127,24 @@ export interface ResearchArticleRow {
   created_at: string;
   updated_at: string;
 }
+export interface BlogPostRow {
+  id: string;
+  title_en: string;
+  title_ar: string;
+  slug: string;
+  category_en: string;
+  category_ar: string;
+  description_en: string;
+  description_ar: string;
+  content_en: string;
+  content_ar: string;
+  read_time: number;
+  image_url: string | null;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 // ─── Database type for Supabase client generic ─────────────────────
 
@@ -154,6 +172,7 @@ export interface Database {
       notification_preferences: TableDef<NotificationPrefsRow>;
       activity_logs:            TableDef<ActivityLogRow>;
       research_articles:        TableDef<ResearchArticleRow, Omit<ResearchArticleRow, "id" | "created_at" | "updated_at">>;
+      blog_posts:               TableDef<BlogPostRow, Omit<BlogPostRow, "id" | "created_at" | "updated_at">>;
       inquiries:                TableDef<InquiryRow, Omit<InquiryRow, "id" | "created_at" | "updated_at">>;
     };
     Views: { [_ in never]: never };

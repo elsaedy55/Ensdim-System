@@ -17,11 +17,11 @@ const TabsList = React.forwardRef<
     className={cn(
       "inline-flex items-center",
       variant === "default" && [
-        "h-9 rounded-lg bg-[var(--bg-muted)] p-1 gap-1",
+        "h-9 rounded-lg bg-(--bg-muted) p-1 gap-1",
       ],
       variant === "pills" && ["gap-1"],
       variant === "underline" && [
-        "border-b border-[var(--border)] gap-1 w-full",
+        "border-b border-(--border) gap-1 w-full",
       ],
       className
     )}
@@ -41,16 +41,16 @@ const TabsTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent) focus-visible:ring-offset-2",
       "disabled:pointer-events-none disabled:opacity-50",
       variant === "default" && [
-        "rounded-md px-3 py-1.5 text-[var(--text-muted)]",
-        "data-[state=active]:bg-[var(--bg-surface)] data-[state=active]:text-[var(--text-primary)]",
-        "data-[state=active]:shadow-[var(--shadow-xs)]",
+        "rounded-md px-3 py-1.5 text-(--text-muted)",
+        "data-[state=active]:bg-(--bg-surface) data-[state=active]:text-(--text-primary)",
+        "data-[state=active]:shadow-(--shadow-xs)",
       ],
       variant === "underline" && [
-        "px-3 py-2 text-[var(--text-muted)] border-b-2 border-transparent -mb-px rounded-none",
-        "data-[state=active]:text-[var(--text-primary)] data-[state=active]:border-[var(--accent)]",
+        "px-3 py-2 text-(--text-muted) border-b-2 border-transparent -mb-px rounded-none",
+        "data-[state=active]:text-(--text-primary) data-[state=active]:border-(--accent)",
       ],
       className
     )}

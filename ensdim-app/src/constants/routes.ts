@@ -44,6 +44,9 @@ export const ROUTES = {
     RESEARCH: "/admin/research",
     RESEARCH_NEW: "/admin/research/new",
     RESEARCH_EDIT: (id: string) => `/admin/research/${id}`,
+    BLOG: "/admin/blog",
+    BLOG_NEW: "/admin/blog/new",
+    BLOG_EDIT: (id: string) => `/admin/blog/${id}`,
     INQUIRIES: "/admin/inquiries",
   },
 } as const;

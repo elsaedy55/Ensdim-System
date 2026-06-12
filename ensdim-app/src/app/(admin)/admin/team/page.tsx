@@ -104,7 +104,7 @@ function MemberCard({ member }: { member: ProfileRow }) {
             {initials}
           </div>
           <span className={cn(
-            "absolute -bottom-0.5 -end-0.5 h-3.5 w-3.5 rounded-full border-2 border-(--bg-surface)",
+            "absolute -bottom-0.5 -inset-e-0.5 h-3.5 w-3.5 rounded-full border-2 border-(--bg-surface)",
             isPending ? "bg-(--warning)" : "bg-(--success)",
           )} />
         </div>

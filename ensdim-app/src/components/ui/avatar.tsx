@@ -48,7 +48,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full",
-      "bg-[var(--accent-subtle)] text-[var(--accent)] font-medium",
+      "bg-(--accent-subtle) text-(--accent) font-medium",
       className
     )}
     {...props}
@@ -91,14 +91,14 @@ const AvatarGroup = ({ users, max = 4, size = "sm", className }: AvatarGroupProp
           src={user.avatar}
           name={user.name}
           size={size}
-          className="ring-2 ring-[var(--bg-surface)]"
+          className="ring-2 ring-(--bg-surface)"
         />
       ))}
       {overflow > 0 && (
         <div
           className={cn(
-            "flex items-center justify-center rounded-full ring-2 ring-[var(--bg-surface)]",
-            "bg-[var(--bg-muted)] text-[var(--text-secondary)] font-medium",
+            "flex items-center justify-center rounded-full ring-2 ring-(--bg-surface)",
+            "bg-(--bg-muted) text-(--text-secondary) font-medium",
             {
               "h-6 w-6 text-xs": size === "xs",
               "h-8 w-8 text-xs": size === "sm",

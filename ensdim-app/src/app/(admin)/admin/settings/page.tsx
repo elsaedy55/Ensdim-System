@@ -183,7 +183,7 @@ function ProfileTab() {
       <div className="flex items-center gap-4">
         <div className="relative">
           <UserAvatar name={profile?.name ?? "A"} src={profile?.avatar_url ?? undefined} size="lg" />
-          <label htmlFor="avatar-admin" className="absolute -bottom-1 -end-1 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-2 border-(--bg-surface) bg-(--accent) text-white hover:bg-(--accent-hover)">
+          <label htmlFor="avatar-admin" className="absolute -bottom-1 -inset-e-1 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-2 border-(--bg-surface) bg-(--accent) text-white hover:bg-(--accent-hover)">
             <Camera className="h-3.5 w-3.5" />
           </label>
           <input id="avatar-admin" type="file" accept="image/*" className="hidden" onChange={(e) => {
