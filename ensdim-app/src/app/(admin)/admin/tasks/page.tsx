@@ -47,7 +47,7 @@ export default function AdminTasksPage() {
         subtitle={t("page.subtitle")}
         actions={
           <Button onClick={() => { setDefaultStatus("todo"); setCreateOpen(true); }}>
-            <Plus className="h-4 w-4" /> New Task
+            <Plus className="h-4 w-4" /> {t("actions.newTask")}
           </Button>
         }
       />
@@ -57,11 +57,10 @@ export default function AdminTasksPage() {
         <SearchInput
           value={search}
           onChange={setSearch}
-          placeholder="Search tasks..."
+          placeholder={t("searchPlaceholder")}
           className="max-w-xs"
         />
-
-        {/* View toggle */}
+         {/* View toggle */}
         <div className="flex items-center rounded-xl border border-(--border) p-0.5 bg-(--bg-muted)/50">
           {(["board", "list"] as ViewMode[]).map((v) => (
             <button
@@ -76,7 +75,7 @@ export default function AdminTasksPage() {
               )}
             >
               {v === "board" ? <LayoutGrid className="h-3.5 w-3.5" /> : <List className="h-3.5 w-3.5" />}
-              {v === "board" ? "Board" : "List"}
+              {v === "board" ? t("viewModes.board") : t("viewModes.list")}
             </button>
           ))}
         </div>
@@ -101,7 +100,7 @@ export default function AdminTasksPage() {
                       : "border-(--border) text-(--text-muted) hover:text-(--text-primary)",
                   )}
                 >
-                  {col.id.replace("_", " ")}
+                  {t(`columns.${col.id}`)}
                   {count > 0 && (
                     <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-(--accent) text-[9px] font-bold text-white px-1">
                       {count}
@@ -152,7 +151,7 @@ export default function AdminTasksPage() {
                 ))
             )}
             {!isLoading && filtered.filter((t) => t.status === mobileCol).length === 0 && (
-              <div className="py-10 text-center text-sm text-(--text-muted)">No tasks in this column.</div>
+              <div className="py-10 text-center text-sm text-(--text-muted)">{t("emptyState.mobileColumn")}</div>
             )}
           </div>
         </>
@@ -164,8 +163,15 @@ export default function AdminTasksPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-(--border) bg-(--bg-muted)/50">
-                {["Title", "Type", "Status", "Priority", "Assignee", "Due Date"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-start text-xs font-semibold uppercase tracking-wider text-(--text-muted)">{h}</th>
+                {[
+                  { key: "title", label: t("listHeaders.title") },
+                  { key: "type", label: t("listHeaders.type") },
+                  { key: "status", label: t("listHeaders.status") },
+                  { key: "priority", label: t("listHeaders.priority") },
+                  { key: "assignee", label: t("listHeaders.assignee") },
+                  { key: "dueDate", label: t("listHeaders.dueDate") },
+                ].map((column) => (
+                  <th key={column.key} className="px-4 py-3 text-start text-xs font-semibold uppercase tracking-wider text-(--text-muted)">{column.label}</th>
                 ))}
               </tr>
             </thead>

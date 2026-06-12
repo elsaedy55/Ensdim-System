@@ -95,7 +95,10 @@
         "edit": "تعديل",
         "delete": "حذف المشروع",
         "archive": "أرشفة"
-      }
+      },
+      "currentStage": "المرحلة الحالية",
+      "noStagesYet": "لا توجد مراحل بعد. أضف مراحل (Milestones) لتحديد مراحل المشروع.",
+      "stageUpdated": "تم تحديث المرحلة"
     }
   },
 
@@ -158,6 +161,7 @@
       "title": "حذف العميل",
       "description": "سيتم حذف \"{name}\" وكل بياناته نهائيًا. لا يمكن التراجع عن هذا الإجراء."
     },
+    "addedOn": "أضيف في {date}",
     "success": {
       "banned": "تم حظر العميل بنجاح",
       "unbanned": "تم إلغاء الحظر بنجاح",
@@ -173,6 +177,12 @@
         "company": "اسم الشركة",
         "companyPlaceholder": "شركة تك ستارت"
       },
+      "actions": { "cancel": "إلغاء" },
+      "errors": {
+        "nameEmailRequired": "الاسم والبريد الإلكتروني مطلوبان",
+        "invitationFailed": "فشل إرسال الدعوة",
+        "failedInvite": "فشل في إرسال الدعوة"
+      },
       "submit": "إضافة العميل",
       "success": "تمت إضافة العميل بنجاح",
       "inviteNote": "سيتم إرسال دعوة بالبريد الإلكتروني للعميل."
@@ -182,40 +192,60 @@
         "overview": "نظرة عامة",
         "projects": "المشاريع",
         "invoices": "الفواتير",
+        "notes": "الملاحظات",
         "activity": "النشاط"
       },
       "projectCount": "{count} مشروع",
       "totalPaid": "إجمالي المدفوع",
-      "totalOutstanding": "المتبقي"
-    }
-  },
-
-  "team": {
-    "list": {
-      "title": "الفريق",
-      "subtitle": "إدارة فريق الوكالة",
-      "inviteMember": "دعوة عضو"
-    },
-    "invite": {
-      "title": "دعوة عضو فريق",
-      "fields": {
-        "name": "الاسم الكامل",
-        "email": "البريد الإلكتروني",
-        "role": "الدور",
-        "rolePlaceholder": "اختر دوراً"
+      "totalOutstanding": "المتبقي",
+      "backToClients": "العودة إلى العملاء",
+      "newProject": "مشروع جديد",
+      "clientNotFound": "العميل غير موجود.",
+      "since": "منذ {date}",
+      "stats": {
+        "totalProjects": "إجمالي المشاريع",
+        "active": "نشطة",
+        "completed": "مكتملة",
+        "clientSince": "عميل منذ"
       },
-      "submit": "إرسال الدعوة",
-      "success": "تم إرسال الدعوة بنجاح"
+      "pipelineStage": "مرحلة خط السير",
+      "changeStage": "تغيير المرحلة...",
+      "stageUpdated": "تم تحديث المرحلة",
+      "accountInfo": "معلومات الحساب",
+      "fullName": "الاسم الكامل",
+      "phone": "الهاتف",
+      "notProvided": "غير متوفر",
+      "recentProjects": "أحدث المشاريع",
+      "noProjectsYet": "لا توجد مشاريع بعد.",
+      "createProject": "إنشاء مشروع",
+      "noInvoices": "لا توجد فواتير. أنشئ مشروعًا أولاً.",
+      "invoicesManagedNote": "تتم إدارة الفواتير داخل كل مشروع ← تبويب الفواتير.",
+      "internalNotes": "ملاحظات داخلية",
+      "notesPlaceholder": "أضف ملاحظات داخلية عن هذا العميل (تظهر للفريق فقط)...",
+      "saveNote": "حفظ الملاحظة",
+      "noteSaved": "تم حفظ الملاحظة"
     }
   },
 
   "tasks": {
     "page": { "title": "المهام", "subtitle": "إدارة جميع مهام الفريق" },
+    "actions": { "newTask": "مهمة جديدة" },
+    "viewModes": { "board": "لوحة", "list": "قائمة" },
+    "searchPlaceholder": "البحث في المهام...",
     "columns": {
       "todo": "للتنفيذ", "in_progress": "قيد التنفيذ",
       "review": "للمراجعة", "done": "منجز", "blocked": "محجوب"
     },
     "types": { "bug": "خطأ", "feature": "ميزة", "design": "تصميم", "review": "مراجعة", "other": "أخرى" },
+    "listHeaders": {
+      "title": "العنوان",
+      "type": "النوع",
+      "status": "الحالة",
+      "priority": "الأولوية",
+      "assignee": "المسؤول",
+      "dueDate": "تاريخ الاستحقاق"
+    },
+    "emptyState": { "title": "لا توجد مهام هنا", "description": "أنشئ مهمة أو اسحب إحداها هنا.", "mobileColumn": "لا توجد مهام في هذا العمود حالياً." },
     "create": {
       "title": "إنشاء مهمة",
       "fields": {
@@ -230,7 +260,6 @@
       "priority": "الأولوية", "dueDate": "تاريخ الاستحقاق", "description": "الوصف",
       "archive": "أرشفة المهمة", "comments": "التعليقات", "addComment": "أضف تعليقاً..."
     },
-    "emptyState": { "title": "لا توجد مهام هنا", "description": "أنشئ مهمة أو اسحب إحداها هنا." },
     "filters": { "all": "الكل", "mine": "مهامي" }
   },
 
@@ -248,6 +277,14 @@
         "email": "البريد الإلكتروني", "emailPlaceholder": "ahmed@agency.com",
         "role": "الدور", "rolePlaceholder": "اختر دوراً",
         "message": "رسالة (اختياري)", "messagePlaceholder": "رسالة دعوة شخصية..."
+      },
+      "actions": { "cancel": "إلغاء" },
+      "roles": {
+        "admin": "مسؤول",
+        "projectManager": "مدير مشروع",
+        "developer": "مطوّر",
+        "designer": "مصمّم",
+        "accountant": "محاسب"
       },
       "submit": "إرسال الدعوة", "success": "تم إرسال الدعوة",
       "note": "سيتم إرسال بريد دعوة. ينتهي الرابط بعد 48 ساعة."

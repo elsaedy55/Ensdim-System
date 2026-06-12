@@ -1,4 +1,5 @@
-export const dynamic = "force-dynamic";
+// No `force-dynamic` — layout renders once on first load and is preserved
+// across client-side navigation. Middleware handles session refresh on every request.
 
 import { createClient } from "@/lib/supabase/server";
 import { ClientSidebar } from "@/components/common/Sidebar/client-sidebar";

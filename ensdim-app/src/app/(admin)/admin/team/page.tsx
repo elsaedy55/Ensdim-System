@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
+import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/Header/header";
 import { Button } from "@/components/ui/button";
@@ -23,11 +24,12 @@ import type { ProfileRow } from "@/lib/supabase/types";
 
 function InviteMemberModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const t = useTranslations("admin.team.invite");
+  const qc = useQueryClient();
   const [form, setForm]       = React.useState({ name: "", email: "", role: "", message: "" });
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async () => {
-    if (!form.email || !form.role) { toast.error("Email and role are required"); return; }
+    if (!form.email || !form.role) { toast.error(t("errors.emailRoleRequired")); return; }
     setLoading(true);
     try {
       const res = await fetch("/api/invite", {
@@ -36,23 +38,24 @@ function InviteMemberModal({ open, onClose }: { open: boolean; onClose: () => vo
         body:    JSON.stringify({ name: form.name, email: form.email, role: form.role }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Invitation failed");
+      if (!res.ok) throw new Error(data.error ?? t("errors.invitationFailed"));
+      await qc.invalidateQueries({ queryKey: ["admin-team"] });
       toast.success(t("success"));
       onClose();
       setForm({ name: "", email: "", role: "", message: "" });
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to invite");
+      toast.error(err instanceof Error ? err.message : t("errors.failedInvite"));
     } finally {
       setLoading(false);
     }
   };
 
   const ROLES = [
-    { value: "admin",           label: "Admin" },
-    { value: "project_manager", label: "Project Manager" },
-    { value: "developer",       label: "Developer" },
-    { value: "designer",        label: "Designer" },
-    { value: "accountant",      label: "Accountant" },
+    { value: "admin",           label: t("roles.admin") },
+    { value: "project_manager", label: t("roles.projectManager") },
+    { value: "developer",       label: t("roles.developer") },
+    { value: "designer",        label: t("roles.designer") },
+    { value: "accountant",      label: t("roles.accountant") },
   ];
 
   return (
@@ -76,7 +79,7 @@ function InviteMemberModal({ open, onClose }: { open: boolean; onClose: () => vo
           </FormField>
           <p className="text-xs text-(--text-muted)">{t("note")}</p>
           <div className="flex gap-2 justify-end">
-            <Button variant="secondary" onClick={onClose}>Cancel</Button>
+            <Button variant="secondary" onClick={onClose}>{t("actions.cancel")}</Button>
             <Button onClick={handleSubmit} loading={loading}>{t("submit")}</Button>
           </div>
         </div>

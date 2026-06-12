@@ -27,7 +27,8 @@
     "linkedTo": "Linked to milestone",
     "assignedTo": "Assigned to",
     "submittedBy": "Submitted by",
-    "submittedOn": "Submitted {date}",
+    "submittedOn": "Submitted on",
+    "submittedOnDate": "Submitted {date}",
     "attachments": "Attachments",
     "noAttachments": "No attachments",
     "teamResponse": "Team Response",
@@ -73,6 +74,10 @@
       "titleMin": "Title must be at least 5 characters",
       "titleMax": "Title is too long",
       "descriptionMin": "Please provide at least 20 characters describing the issue"
+    },
+    "errors": {
+      "noProject": "No project found for your account.",
+      "failedSubmit": "Failed to submit request. Please try again."
     },
     "success": {
       "title": "Request submitted!",

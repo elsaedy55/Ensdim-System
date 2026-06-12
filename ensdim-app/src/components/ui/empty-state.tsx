@@ -102,7 +102,7 @@ type EmptyStatePreset = Pick<EmptyStateProps, "action" | "secondaryAction" | "cl
 export const NoProjects = (props: EmptyStatePreset) => (
   <EmptyState
     icon={Folder}
-    title="No projects yet"
+    title="لا توجد مشاريع حتى الآن"
     description="Your projects will appear here once the team adds them."
     {...props}
   />

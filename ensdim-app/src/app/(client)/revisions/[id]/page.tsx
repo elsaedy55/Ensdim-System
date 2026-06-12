@@ -58,7 +58,7 @@ export default function RevisionDetailPage() {
   }
 
   const statusHistory = [
-    { status: "open", note: tc("submittedOn", { date: formatDate(revision.created_at, { month: "short", day: "numeric" }) }), date: revision.created_at },
+    { status: "open", note: tc("submittedOnDate", { date: formatDate(revision.created_at, { month: "short", day: "numeric" }) }), date: revision.created_at },
     ...(revision.updated_at !== revision.created_at
       ? [{ status: revision.status, note: `Status → ${revision.status.replace("_", " ")}`, date: revision.updated_at }]
       : []

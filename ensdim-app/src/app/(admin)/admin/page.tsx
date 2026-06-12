@@ -99,11 +99,11 @@ export default function AdminOverviewPage() {
           ) : (projects ?? []).length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center px-4">
               <Folder className="h-10 w-10 text-(--text-muted) mb-3" />
-              <p className="text-sm font-medium text-(--text-primary)">No projects yet</p>
-              <p className="text-xs text-(--text-muted) mt-1">Create your first project to get started</p>
+              <p className="text-sm font-medium text-(--text-primary)">لا توجد مشاريع حتى الآن</p>
+              <p className="text-xs text-(--text-muted) mt-1">أنشئ مشروعك الأول للبدء</p>
               <Button size="sm" className="mt-4" asChild>
                 <Link href={ROUTES.ADMIN.PROJECT_NEW}>
-                  <Plus className="h-4 w-4" /> New Project
+                  <Plus className="h-4 w-4" /> مشروع جديد
                 </Link>
               </Button>
             </div>
@@ -163,11 +163,11 @@ export default function AdminOverviewPage() {
           )}
         </div>
 
-        {/* Recent Activity */}
+        {/* النشاط الأخير */}
         <div className="xl:col-span-1 surface p-5">
-          <h2 className="text-sm font-semibold text-(--text-primary) mb-4">Recent Activity</h2>
+          <h2 className="text-sm font-semibold text-(--text-primary) mb-4">النشاط الأخير</h2>
           {recentActivity.length === 0 ? (
-            <p className="text-sm text-(--text-muted) text-center py-8">No recent activity</p>
+            <p className="text-sm text-(--text-muted) text-center py-8">لا يوجد اي نشاط</p>
           ) : (
             <div className="relative ps-6 space-y-4">
               <div className="absolute inset-s-2 top-1 bottom-1 w-px bg-(--border)" aria-hidden />

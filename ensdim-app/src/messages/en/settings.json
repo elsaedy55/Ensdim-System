@@ -26,7 +26,8 @@
       "phonePlaceholder": "+20 100 000 0000"
     },
     "saveButton": "Save Changes",
-    "savedSuccess": "Profile updated successfully."
+    "savedSuccess": "Profile updated successfully.",
+    "avatarUpdated": "Avatar updated"
   },
   "security": {
     "sectionTitle": "Change Password",

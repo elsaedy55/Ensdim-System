@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
+import { useQueryClient } from "@tanstack/react-query";
 import { PageHeader } from "@/components/common/Header/header";
 import { Button } from "@/components/ui/button";
 import { SearchInput } from "@/components/ui/search-input";
@@ -24,11 +25,12 @@ import type { ProfileRow } from "@/lib/supabase/types";
 
 function AddClientModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const t = useTranslations("admin.clients.add");
+  const qc = useQueryClient();
   const [form, setForm]       = React.useState({ name: "", email: "", company: "" });
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email) { toast.error("Name and email are required"); return; }
+    if (!form.name || !form.email) { toast.error(t("errors.nameEmailRequired")); return; }
     setLoading(true);
     try {
       const res = await fetch("/api/invite", {
@@ -37,12 +39,13 @@ function AddClientModal({ open, onClose }: { open: boolean; onClose: () => void 
         body:    JSON.stringify({ name: form.name, email: form.email, role: "client" }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Invitation failed");
+      if (!res.ok) throw new Error(data.error ?? t("errors.invitationFailed"));
+      await qc.invalidateQueries({ queryKey: ["admin-clients"] });
       toast.success(t("success"));
       onClose();
       setForm({ name: "", email: "", company: "" });
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed to invite client");
+      toast.error(err instanceof Error ? err.message : t("errors.failedInvite"));
     } finally {
       setLoading(false);
     }
@@ -66,7 +69,7 @@ function AddClientModal({ open, onClose }: { open: boolean; onClose: () => void 
           </FormField>
           <p className="text-xs text-(--text-muted)">{t("inviteNote")}</p>
           <div className="flex gap-2 justify-end">
-            <Button variant="secondary" onClick={onClose}>Cancel</Button>
+            <Button variant="secondary" onClick={onClose}>{t("actions.cancel")}</Button>
             <Button onClick={handleSubmit} loading={loading}>{t("submit")}</Button>
           </div>
         </div>
@@ -103,7 +106,7 @@ function ClientTableRow({ client, onDelete }: { client: ProfileRow; onDelete: (i
           <p className="text-sm font-semibold text-(--text-primary) truncate group-hover:text-(--accent) transition-colors">
             {client.name}
           </p>
-          <p className="text-xs text-(--text-muted) truncate mt-0.5">Added {new Date(client.created_at).toLocaleDateString()}</p>
+          <p className="text-xs text-(--text-muted) truncate mt-0.5">{t("addedOn", { date: new Date(client.created_at).toLocaleDateString() })}</p>
         </div>
         <span className={cn("hidden sm:inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium", statusColors[status] ?? statusColors.active)}>
           {status.replace("_", " ")}

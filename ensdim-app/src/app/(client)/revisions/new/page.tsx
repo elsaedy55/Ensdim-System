@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { toast } from "sonner";
 import { PageHeader } from "@/components/common/Header/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,12 +15,9 @@ import { FormField } from "@/components/ui/form-field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ROUTES } from "@/constants/routes";
 import { ChevronLeft, CheckCircle2 } from "lucide-react";
-
-const MILESTONES = [
-  { value: "1", label: "Phase 1: Discovery" },
-  { value: "2", label: "Phase 2: UI/UX Design" },
-  { value: "3", label: "Phase 3: Development" },
-];
+import { useMyProject } from "@/hooks/useProject";
+import { useMilestones } from "@/hooks/useMilestones";
+import { useCreateRevision } from "@/hooks/useRevisions";
 
 export default function NewRevisionPage() {
   const t  = useTranslations("revisions.new");
@@ -43,6 +41,10 @@ export default function NewRevisionPage() {
 
   const [submitted, setSubmitted] = React.useState(false);
 
+  const { data: project } = useMyProject();
+  const { data: milestones } = useMilestones(project?.id);
+  const createRevision = useCreateRevision();
+
   const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: { priority: "medium" },
@@ -51,9 +53,23 @@ export default function NewRevisionPage() {
   const selectedCategory = watch("category");
 
   const onSubmit = async (data: FormData) => {
-    await new Promise((r) => setTimeout(r, 800));
-    console.log("Revision submitted:", data);
-    setSubmitted(true);
+    if (!project) {
+      toast.error(t("errors.noProject"));
+      return;
+    }
+    try {
+      await createRevision.mutateAsync({
+        project_id:   project.id,
+        milestone_id: data.milestone || null,
+        title:        data.title,
+        description:  data.description,
+        category:     data.category,
+        priority:     data.priority,
+      });
+      setSubmitted(true);
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : t("errors.failedSubmit"));
+    }
   };
 
   if (submitted) {
@@ -151,8 +167,8 @@ export default function NewRevisionPage() {
             <Select onValueChange={(v) => setValue("milestone", v)}>
               <SelectTrigger><SelectValue placeholder={t("fields.milestonePlaceholder")} /></SelectTrigger>
               <SelectContent>
-                {MILESTONES.map((m) => (
-                  <SelectItem key={m.value} value={m.value}>{m.label}</SelectItem>
+                {(milestones ?? []).map((m) => (
+                  <SelectItem key={m.id} value={m.id}>{m.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -164,7 +180,7 @@ export default function NewRevisionPage() {
           <Button variant="secondary" type="button" asChild>
             <Link href={ROUTES.CLIENT.REVISIONS}>{t("actions.cancel")}</Link>
           </Button>
-          <Button type="submit" loading={isSubmitting}>{t("actions.submit")}</Button>
+          <Button type="submit" loading={isSubmitting || createRevision.isPending}>{t("actions.submit")}</Button>
         </div>
       </form>
     </div>

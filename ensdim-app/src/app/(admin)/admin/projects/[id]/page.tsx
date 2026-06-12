@@ -616,8 +616,10 @@ export default function ProjectDetailPage() {
   const { data: projects, isLoading } = useAdminProjects();
   const updateProject = useAdminUpdateProject();
   const deleteProject = useAdminDeleteProject();
+  const { data: milestones } = useMilestones(id);
 
   const project = (projects ?? []).find((p) => p.id === id);
+  const sortedMilestones = [...(milestones ?? [])].sort((a, b) => a.order - b.order);
 
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
@@ -713,24 +715,28 @@ export default function ProjectDetailPage() {
                 <p className="text-sm text-(--text-secondary)">{project.description}</p>
               </div>
             )}
-            {/* Quick status update */}
+            {/* Quick stage update — driven by this project's milestones */}
             <div>
-              <p className="text-xs text-(--text-muted) mb-2">Update Status</p>
-              <div className="flex items-center gap-2 flex-wrap">
-                {["planning","ui_ux","development","testing","delivery","completed"].map((s) => (
-                  <Button
-                    key={s}
-                    size="sm"
-                    variant={project.status === s ? "primary" : "secondary"}
-                    onClick={() => updateProject.mutate({ id, updates: { status: s } }, {
-                      onSuccess: () => toast.success("Status updated"),
-                      onError:   (e) => toast.error(e.message),
-                    })}
-                  >
-                    {s.replace("_", "/")}
-                  </Button>
-                ))}
-              </div>
+              <p className="text-xs text-(--text-muted) mb-2">{t("currentStage")}</p>
+              {sortedMilestones.length === 0 ? (
+                <p className="text-sm text-(--text-muted)">{t("noStagesYet")}</p>
+              ) : (
+                <div className="flex items-center gap-2 flex-wrap">
+                  {sortedMilestones.map((m) => (
+                    <Button
+                      key={m.id}
+                      size="sm"
+                      variant={project.current_milestone_id === m.id ? "primary" : "secondary"}
+                      onClick={() => updateProject.mutate({ id, updates: { current_milestone_id: m.id } }, {
+                        onSuccess: () => toast.success(t("stageUpdated")),
+                        onError:   (e) => toast.error(e.message),
+                      })}
+                    >
+                      {m.name}
+                    </Button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </TabsContent>

@@ -27,7 +27,8 @@
     "linkedTo": "مرتبط بمرحلة",
     "assignedTo": "معين لـ",
     "submittedBy": "أُرسل بواسطة",
-    "submittedOn": "أُرسل في {date}",
+    "submittedOn": "تاريخ الإرسال",
+    "submittedOnDate": "أُرسل في {date}",
     "attachments": "المرفقات",
     "noAttachments": "لا توجد مرفقات",
     "teamResponse": "رد الفريق",
@@ -73,6 +74,10 @@
       "titleMin": "العنوان يجب أن يكون 5 أحرف على الأقل",
       "titleMax": "العنوان طويل جداً",
       "descriptionMin": "يرجى كتابة 20 حرفاً على الأقل لوصف المشكلة"
+    },
+    "errors": {
+      "noProject": "لا يوجد مشروع مرتبط بحسابك.",
+      "failedSubmit": "فشل إرسال الطلب. حاول مرة أخرى."
     },
     "success": {
       "title": "تم إرسال الطلب!",

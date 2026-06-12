@@ -42,6 +42,8 @@ function WorkspaceTab() {
     load();
   }, []);
 
+  const te = useTranslations("common.errors");
+
   const handleSave = async () => {
     setSaving(true);
     try {
@@ -51,9 +53,9 @@ function WorkspaceTab() {
       const { data: profile } = await supabase.from("profiles").select("workspace_id").eq("id", user.id).single();
       if (!profile) return;
       await supabase.from("workspaces").update({ name: workspaceName, currency }).eq("id", profile.workspace_id);
-      toast.success(t("savedSuccess"));
+      toast.success(t("workspace.savedSuccess"));
     } catch (e: unknown) {
-      toast.error(e instanceof Error ? e.message : "Failed");
+      toast.error(e instanceof Error ? e.message : te("failed"));
     } finally {
       setSaving(false);
     }
@@ -118,13 +120,15 @@ function SecurityTab() {
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<Form>({ resolver: zodResolver(schema) });
 
+  const tc = useTranslations("common.errors");
+
   const onSubmit = async (data: Form) => {
     try {
       await changePassword(data.currentPassword, data.newPassword);
       reset();
-      toast.success(t("savedSuccess"));
+      toast.success(t("security.savedSuccess"));
     } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Failed");
+      toast.error(err instanceof Error ? err.message : tc("failed"));
     }
   };
 
@@ -138,13 +142,13 @@ function SecurityTab() {
     <div className="space-y-6 max-w-lg mt-4">
       <p className="text-sm font-medium text-(--text-primary)">{t("sectionTitle")}</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <FormField label="Current password" required htmlFor="cur" error={errors.currentPassword?.message}>
+        <FormField label={t("fields.currentPassword")} required htmlFor="cur" error={errors.currentPassword?.message}>
           <Input id="cur" type={showCurrent ? "text" : "password"} leftElement={<Lock className="h-4 w-4" />} rightElement={<ToggleBtn show={showCurrent} onToggle={() => setShowCurrent((p) => !p)} />} error={!!errors.currentPassword} {...register("currentPassword")} />
         </FormField>
-        <FormField label="New password" required htmlFor="newpwd" error={errors.newPassword?.message}>
+        <FormField label={t("fields.newPassword")} required htmlFor="newpwd" error={errors.newPassword?.message}>
           <Input id="newpwd" type={showNew ? "text" : "password"} leftElement={<Lock className="h-4 w-4" />} rightElement={<ToggleBtn show={showNew} onToggle={() => setShowNew((p) => !p)} />} error={!!errors.newPassword} {...register("newPassword")} />
         </FormField>
-        <FormField label="Confirm new password" required htmlFor="confirmpwd" error={errors.confirmPassword?.message}>
+        <FormField label={t("fields.confirmPassword")} required htmlFor="confirmpwd" error={errors.confirmPassword?.message}>
           <Input id="confirmpwd" type="password" leftElement={<Lock className="h-4 w-4" />} error={!!errors.confirmPassword} {...register("confirmPassword")} />
         </FormField>
         <Button type="submit" loading={isSubmitting}>{t("saveButton")}</Button>
@@ -184,7 +188,7 @@ function ProfileTab() {
           </label>
           <input id="avatar-admin" type="file" accept="image/*" className="hidden" onChange={(e) => {
             const file = e.target.files?.[0];
-            if (file) uploadAvatar.mutate(file, { onSuccess: () => toast.success("Avatar updated"), onError: (err) => toast.error(err.message) });
+            if (file) uploadAvatar.mutate(file, { onSuccess: () => toast.success(t("avatarUpdated")), onError: (err) => toast.error(err.message) });
           }} />
         </div>
         <div><p className="text-sm font-medium text-(--text-primary)">{profile?.name}</p><p className="text-xs text-(--text-muted) capitalize">{profile?.role?.replace("_", " ")}</p></div>

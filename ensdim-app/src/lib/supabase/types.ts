@@ -44,6 +44,7 @@ export interface ProjectRow {
   id: string; workspace_id: string; client_id: string; name: string;
   description: string | null; status: string; health: string; progress: number;
   start_date: string | null; target_delivery: string | null; created_at: string; updated_at: string;
+  current_milestone_id: string | null;
 }
 export interface MilestoneRow {
   id: string; project_id: string; name: string; description: string | null;

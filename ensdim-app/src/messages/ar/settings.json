@@ -26,7 +26,8 @@
       "phonePlaceholder": "+20 100 000 0000"
     },
     "saveButton": "حفظ التغييرات",
-    "savedSuccess": "تم تحديث الملف الشخصي بنجاح."
+    "savedSuccess": "تم تحديث الملف الشخصي بنجاح.",
+    "avatarUpdated": "تم تحديث الصورة الشخصية"
   },
   "security": {
     "sectionTitle": "تغيير كلمة المرور",
