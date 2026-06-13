@@ -219,6 +219,21 @@ export async function adminUpdateClientStatus(
   return data;
 }
 
+export async function adminUpdateClient(
+  clientId: string,
+  updates: Pick<Partial<ProfileRow>, "name" | "phone" | "company">,
+): Promise<ProfileRow> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("profiles")
+    .update({ ...updates, updated_at: new Date().toISOString() })
+    .eq("id", clientId)
+    .select()
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 export type BanDuration = "1d" | "7d" | "30d" | "permanent";
 
 export async function adminBanClient(clientId: string, duration: BanDuration): Promise<void> {

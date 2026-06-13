@@ -36,7 +36,7 @@ function AddClientModal({ open, onClose }: { open: boolean; onClose: () => void 
       const res = await fetch("/api/invite", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ name: form.name, email: form.email, role: "client" }),
+        body:    JSON.stringify({ name: form.name, email: form.email, company: form.company || null, role: "client" }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? t("errors.invitationFailed"));
@@ -106,7 +106,9 @@ function ClientTableRow({ client, onDelete }: { client: ProfileRow; onDelete: (i
           <p className="text-sm font-semibold text-(--text-primary) truncate group-hover:text-(--accent) transition-colors">
             {client.name}
           </p>
-          <p className="text-xs text-(--text-muted) truncate mt-0.5">{t("addedOn", { date: new Date(client.created_at).toLocaleDateString() })}</p>
+          <p className="text-xs text-(--text-muted) truncate mt-0.5">
+            {[client.email, client.company].filter(Boolean).join(" · ") || t("addedOn", { date: new Date(client.created_at).toLocaleDateString() })}
+          </p>
         </div>
         <span className={cn("hidden sm:inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium", statusColors[status] ?? statusColors.active)}>
           {status.replace("_", " ")}

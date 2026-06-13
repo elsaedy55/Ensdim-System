@@ -4,7 +4,7 @@ import { createClient as createServerClient } from "@/lib/supabase/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, role = "client", workspaceName } = await request.json();
+    const { name, email, role = "client", workspaceName, company } = await request.json();
 
     if (!name || !email) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
         role,
         workspace_id:   callerProfile.workspace_id,
         workspace_name: workspaceName ?? null,
+        company:        company ?? null,
       },
     });
 

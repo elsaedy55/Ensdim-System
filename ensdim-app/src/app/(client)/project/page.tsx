@@ -30,6 +30,8 @@ function OverviewTab({
   const approvedCount = milestones.filter(
     (m) => m.status === "approved" || m.status === "completed",
   ).length;
+  const tStatus = useTranslations("common.status");
+  const currentStageLabel = milestones.find((m) => m.id === project.current_milestone_id)?.name ?? tStatus(project.status as string);
 
   return (
     <div className="space-y-5">
@@ -40,9 +42,9 @@ function OverviewTab({
         </div>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="surface p-4">
-          <div className="flex items-center gap-2 text-(--text-muted) mb-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 rtl:text-right">
+          <div className="surface p-4 rtl:text-right">
+          <div className="flex items-center gap-2 text-(--text-muted) mb-2 rtl:flex-row-reverse rtl:text-right">
             <CalendarDays className="h-3.5 w-3.5" />
             <span className="text-xs">{t("details.startDate")}</span>
           </div>
@@ -52,8 +54,8 @@ function OverviewTab({
               : "—"}
           </p>
         </div>
-        <div className="surface p-4">
-          <div className="flex items-center gap-2 text-(--text-muted) mb-2">
+        <div className="surface p-4 rtl:text-right">
+          <div className="flex items-center gap-2 text-(--text-muted) mb-2 rtl:flex-row-reverse rtl:text-right">
             <Target className="h-3.5 w-3.5" />
             <span className="text-xs">{t("details.targetDelivery")}</span>
           </div>
@@ -61,17 +63,17 @@ function OverviewTab({
             ? <DueDateLabel date={project.target_delivery} className="text-sm font-semibold" />
             : <p className="text-sm text-(--text-primary)">—</p>}
         </div>
-        <div className="surface p-4">
-          <div className="flex items-center gap-2 text-(--text-muted) mb-2">
+        <div className="surface p-4 rtl:text-right">
+          <div className="flex items-center gap-2 text-(--text-muted) mb-2 rtl:flex-row-reverse rtl:text-right">
             <Layers className="h-3.5 w-3.5" />
             <span className="text-xs">{t("details.currentStage")}</span>
           </div>
-          <p className="text-sm font-semibold text-(--text-primary) capitalize">
-            {project.status.replace("_", "/")}
+          <p className="text-sm font-semibold text-(--text-primary) capitalize text-left rtl:text-left">
+            {currentStageLabel}
           </p>
         </div>
-        <div className="surface p-4">
-          <div className="flex items-center gap-2 text-(--text-muted) mb-2">
+        <div className="surface p-4 rtl:text-right">
+          <div className="flex items-center gap-2 text-(--text-muted) mb-2 rtl:flex-row-reverse rtl:text-right">
             <span className="text-xs">{t("details.health")}</span>
           </div>
           <StatusBadge status={project.health === "on_track" ? "approved" : "delayed"} />
@@ -118,7 +120,7 @@ function ProgressTab({
             <p className="text-xs text-(--text-muted)">{t("project.overview.overallLabel")}</p>
           </div>
           {active.map((m) => (
-            <div key={m.id} className="flex flex-col items-center gap-2">
+            <div key={m.id} className="flex flex-col items-center gap-2 rtl:text-right">
               <CircularProgress value={m.progress} size={56} strokeWidth={5} />
               <p className="text-xs text-(--text-muted) max-w-16 text-center line-clamp-2">
                 {m.name.split(":")[1]?.trim() ?? m.name}
@@ -133,9 +135,9 @@ function ProgressTab({
           <h3 className="text-sm font-semibold text-(--text-primary) mb-1">{t("milestones.title")}</h3>
           {milestones.map((m) => (
             <div key={m.id} className="space-y-1.5">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between rtl:flex-row-reverse">
                 <span className="text-sm text-(--text-primary) truncate max-w-[60%]">{m.name}</span>
-                <div className="flex items-center gap-2 shrink-0">
+                <div className="flex items-center gap-2 shrink-0 rtl:flex-row-reverse rtl:text-right">
                   <span className="text-xs font-medium text-(--text-muted)">{m.progress}%</span>
                   <StatusBadge status={m.status} showDot={false} size="sm" />
                 </div>
@@ -176,7 +178,7 @@ function TeamTab({
         <TeamMemberAvatarStack members={teamForStack} max={4} />
       </div>
       {members.map((member) => (
-        <div key={member.id} className="flex items-center gap-3 rounded-lg px-3 py-3 hover:bg-(--bg-muted) transition-colors">
+        <div key={member.id} className="flex items-center gap-3 rounded-lg px-3 py-3 hover:bg-(--bg-muted) transition-colors rtl:flex-row-reverse rtl:text-right">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--accent-subtle) text-(--accent) text-sm font-semibold">
             {member.name.split(" ").map((n: string) => n[0]).join("").toUpperCase().slice(0, 2)}
           </div>
@@ -232,13 +234,13 @@ export default function ProjectOverviewPage() {
 
   return (
     <div className="space-y-6 max-w-3xl mx-auto">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="flex items-start justify-between gap-4 flex-wrap rtl:flex-row-reverse rtl:text-right">
         <PageHeader title={project.name} subtitle={tProject("pageTitle")} className="mb-0" />
         <StatusBadge status={project.status} size="md" />
       </div>
 
       <Tabs defaultValue="overview">
-        <TabsList variant="underline" className="w-full">
+        <TabsList variant="underline" className="w-full rtl:flex-row-reverse">
           <TabsTrigger value="overview" variant="underline">{tProject("tabs.overview")}</TabsTrigger>
           <TabsTrigger value="progress" variant="underline">{tProject("tabs.progress")}</TabsTrigger>
           <TabsTrigger value="team"     variant="underline" count={memberList.length}>{tProject("tabs.team")}</TabsTrigger>

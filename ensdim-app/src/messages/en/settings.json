@@ -23,7 +23,9 @@
       "email": "Email address",
       "emailHint": "Contact support to change your email.",
       "phone": "Phone number",
-      "phonePlaceholder": "+20 100 000 0000"
+      "phonePlaceholder": "+20 100 000 0000",
+      "company": "Company",
+      "companyPlaceholder": "Tech Startup Co."
     },
     "saveButton": "Save Changes",
     "savedSuccess": "Profile updated successfully.",

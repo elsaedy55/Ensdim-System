@@ -212,7 +212,15 @@
       "changeStage": "Change stage...",
       "stageUpdated": "Stage updated",
       "accountInfo": "Account Info",
+      "editButton": "Edit",
+      "editDialog": {
+        "title": "Edit Client Info",
+        "emailHint": "Email cannot be changed here."
+      },
+      "clientUpdated": "Client info updated",
       "fullName": "Full Name",
+      "email": "Email",
+      "company": "Company",
       "phone": "Phone",
       "notProvided": "Not provided",
       "recentProjects": "Recent Projects",

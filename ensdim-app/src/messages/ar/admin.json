@@ -212,7 +212,15 @@
       "changeStage": "تغيير المرحلة...",
       "stageUpdated": "تم تحديث المرحلة",
       "accountInfo": "معلومات الحساب",
+      "editButton": "تعديل",
+      "editDialog": {
+        "title": "تعديل بيانات العميل",
+        "emailHint": "لا يمكن تغيير البريد الإلكتروني من هنا."
+      },
+      "clientUpdated": "تم تحديث بيانات العميل",
       "fullName": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "company": "الشركة",
       "phone": "الهاتف",
       "notProvided": "غير متوفر",
       "recentProjects": "أحدث المشاريع",

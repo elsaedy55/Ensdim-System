@@ -23,7 +23,9 @@
       "email": "البريد الإلكتروني",
       "emailHint": "تواصل مع الدعم لتغيير بريدك الإلكتروني.",
       "phone": "رقم الهاتف",
-      "phonePlaceholder": "+20 100 000 0000"
+      "phonePlaceholder": "+20 100 000 0000",
+      "company": "الشركة",
+      "companyPlaceholder": "شركة تك ستارت"
     },
     "saveButton": "حفظ التغييرات",
     "savedSuccess": "تم تحديث الملف الشخصي بنجاح.",

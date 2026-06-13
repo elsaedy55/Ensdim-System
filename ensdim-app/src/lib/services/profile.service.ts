@@ -19,7 +19,7 @@ export async function getMyProfile(): Promise<Profile> {
   return data;
 }
 
-export async function updateMyProfile(updates: Pick<ProfileUpdate, "name" | "phone">): Promise<Profile> {
+export async function updateMyProfile(updates: Pick<ProfileUpdate, "name" | "phone" | "company">): Promise<Profile> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Not authenticated");

@@ -11,11 +11,14 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SkeletonCard } from "@/components/ui/skeleton";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { FormField } from "@/components/ui/form-field";
 import { ROUTES } from "@/constants/routes";
 import { formatDate, cn } from "@/lib/utils";
-import { ChevronLeft, Folder, DollarSign, Calendar, Phone, User, Activity, Ban, CheckCircle2, Plus } from "lucide-react";
+import { ChevronLeft, Folder, DollarSign, Calendar, Phone, User, Activity, Ban, CheckCircle2, Plus, Mail, Building2, Pencil } from "lucide-react";
 import {
-  useAdminClient, useAdminClientProjects, useAdminUpdateClientStatus, useAdminDeleteClient,
+  useAdminClient, useAdminClientProjects, useAdminUpdateClientStatus, useAdminUpdateClient, useAdminDeleteClient,
 } from "@/hooks/useAdmin";
 import { PIPELINE_STAGES } from "@/components/admin/ClientPipelineView";
 import { ClientActionsMenu } from "@/components/admin/ClientActionsMenu";
@@ -44,6 +47,60 @@ function StatCard({
   );
 }
 
+// ─── Edit Client Modal ────────────────────────────────────────────
+
+function EditClientModal({
+  open, onClose, client,
+}: { open: boolean; onClose: () => void; client: { id: string; name: string; email: string | null; phone: string | null; company: string | null } }) {
+  const t  = useTranslations("admin.clients.detail");
+  const ta = useTranslations("common.actions");
+  const updateClient = useAdminUpdateClient();
+
+  const [form, setForm] = React.useState({ name: client.name, phone: client.phone ?? "", company: client.company ?? "" });
+
+  React.useEffect(() => {
+    setForm({ name: client.name, phone: client.phone ?? "", company: client.company ?? "" });
+  }, [client]);
+
+  const handleSubmit = () => {
+    updateClient.mutate({ clientId: client.id, updates: { name: form.name, phone: form.phone || null, company: form.company || null } }, {
+      onSuccess: () => {
+        toast.success(t("clientUpdated"));
+        onClose();
+      },
+      onError: (e) => toast.error(e.message),
+    });
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+      <DialogContent className="max-w-sm">
+        <DialogHeader>
+          <DialogTitle>{t("editDialog.title")}</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <FormField label={t("fullName")} required htmlFor="ename">
+            <Input id="ename" leftElement={<User className="h-4 w-4" />} value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} />
+          </FormField>
+          <FormField label={t("email")} htmlFor="eemail" hint={t("editDialog.emailHint")}>
+            <Input id="eemail" type="email" value={client.email ?? ""} disabled className="opacity-60 cursor-not-allowed" />
+          </FormField>
+          <FormField label={t("phone")} htmlFor="ephone">
+            <Input id="ephone" type="tel" leftElement={<Phone className="h-4 w-4" />} value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} />
+          </FormField>
+          <FormField label={t("company")} htmlFor="ecompany">
+            <Input id="ecompany" leftElement={<Building2 className="h-4 w-4" />} value={form.company} onChange={(e) => setForm((p) => ({ ...p, company: e.target.value }))} />
+          </FormField>
+          <div className="flex gap-2 justify-end">
+            <Button variant="secondary" onClick={onClose}>{ta("cancel")}</Button>
+            <Button onClick={handleSubmit} loading={updateClient.isPending}>{ta("save")}</Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 // ─── Overview Tab ─────────────────────────────────────────────────
 
 function OverviewTab({ clientId }: { clientId: string }) {
@@ -52,6 +109,7 @@ function OverviewTab({ clientId }: { clientId: string }) {
   const { data: client }   = useAdminClient(clientId);
   const { data: projects } = useAdminClientProjects(clientId);
   const updateStatus       = useAdminUpdateClientStatus();
+  const [editOpen, setEditOpen] = React.useState(false);
 
   if (!client) return null;
 
@@ -96,10 +154,17 @@ function OverviewTab({ clientId }: { clientId: string }) {
 
       {/* Account Info */}
       <div className="surface p-5 space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-widest text-(--text-muted)">{t("accountInfo")}</p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-semibold uppercase tracking-widest text-(--text-muted)">{t("accountInfo")}</p>
+          <Button variant="ghost" size="sm" onClick={() => setEditOpen(true)}>
+            <Pencil className="h-3.5 w-3.5" /> {t("editButton")}
+          </Button>
+        </div>
         <div className="space-y-3">
           {[
             { icon: User,     label: t("fullName"),          value: client.name },
+            { icon: Mail,     label: t("email"),             value: client.email ?? t("notProvided") },
+            { icon: Building2, label: t("company"),          value: client.company ?? t("notProvided") },
             { icon: Phone,    label: t("phone"),             value: client.phone ?? t("notProvided") },
             { icon: Calendar, label: t("stats.clientSince"), value: formatDate(client.created_at, { month: "long", day: "numeric", year: "numeric" }) },
           ].map(({ icon: Icon, label, value }) => (
@@ -142,6 +207,8 @@ function OverviewTab({ clientId }: { clientId: string }) {
           </div>
         )}
       </div>
+
+      <EditClientModal open={editOpen} onClose={() => setEditOpen(false)} client={client} />
     </div>
   );
 }

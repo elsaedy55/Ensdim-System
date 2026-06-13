@@ -14,7 +14,7 @@ import { FormField } from "@/components/ui/form-field";
 import { Switch } from "@/components/ui/switch";
 import { UserAvatar } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Eye, EyeOff, Lock, User, Phone, Camera } from "lucide-react";
+import { Eye, EyeOff, Lock, User, Phone, Camera, Building2 } from "lucide-react";
 import { changePassword } from "@/lib/auth.service";
 import {
   useMyProfile, useUpdateProfile, useUploadAvatar,
@@ -35,18 +35,19 @@ function ProfileTab() {
   const uploadAvatar  = useUploadAvatar();
 
   const schema = z.object({
-    name:  z.string().min(2, tv("nameMin")),
-    phone: z.string().optional(),
+    name:    z.string().min(2, tv("nameMin")),
+    phone:   z.string().optional(),
+    company: z.string().optional(),
   });
   type Form = z.infer<typeof schema>;
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<Form>({
     resolver: zodResolver(schema),
-    defaultValues: { name: profile?.name ?? "", phone: profile?.phone ?? "" },
+    defaultValues: { name: profile?.name ?? "", phone: profile?.phone ?? "", company: profile?.company ?? "" },
   });
 
   React.useEffect(() => {
-    if (profile) reset({ name: profile.name, phone: profile.phone ?? "" });
+    if (profile) reset({ name: profile.name, phone: profile.phone ?? "", company: profile.company ?? "" });
   }, [profile, reset]);
 
   const onSubmit = async (data: Form) => {
@@ -103,10 +104,13 @@ function ProfileTab() {
           <Input id="name" autoComplete="name" placeholder={t("fields.namePlaceholder")} error={!!errors.name} leftElement={<User className="h-4 w-4" />} {...register("name")} />
         </FormField>
         <FormField label={t("fields.email")} htmlFor="email" hint={t("fields.emailHint")}>
-          <Input id="email" type="email" value={profile?.id ?? ""} disabled className="opacity-60 cursor-not-allowed" />
+          <Input id="email" type="email" value={profile?.email ?? ""} disabled className="opacity-60 cursor-not-allowed" />
         </FormField>
         <FormField label={t("fields.phone")} htmlFor="phone">
           <Input id="phone" type="tel" autoComplete="tel" placeholder={t("fields.phonePlaceholder")} leftElement={<Phone className="h-4 w-4" />} {...register("phone")} />
+        </FormField>
+        <FormField label={t("fields.company")} htmlFor="company">
+          <Input id="company" autoComplete="organization" placeholder={t("fields.companyPlaceholder")} leftElement={<Building2 className="h-4 w-4" />} {...register("company")} />
         </FormField>
         <Button type="submit" loading={isSubmitting || updateProfile.isPending}>{t("saveButton")}</Button>
       </form>

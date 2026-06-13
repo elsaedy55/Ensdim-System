@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import {
   adminGetAllProjects, adminCreateProject, adminUpdateProject, adminDeleteProject,
   adminCreateMilestone, adminUpdateMilestone, adminDeleteMilestone, adminSetMilestoneStatus,
-  adminGetAllClients, adminGetClientById, adminGetClientProjects, adminUpdateClientStatus,
+  adminGetAllClients, adminGetClientById, adminGetClientProjects, adminUpdateClientStatus, adminUpdateClient,
   adminBanClient, adminUnbanClient, adminDeleteClient,
   adminGetTeamMembers,
   adminGetProjectMembers, adminAddProjectMember, adminRemoveProjectMember,
@@ -150,6 +150,18 @@ export function useAdminUpdateClientStatus() {
       adminUpdateClientStatus(clientId, status),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-clients"] });
+    },
+  });
+}
+
+export function useAdminUpdateClient() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ clientId, updates }: { clientId: string; updates: Parameters<typeof adminUpdateClient>[1] }) =>
+      adminUpdateClient(clientId, updates),
+    onSuccess: (_, { clientId }) => {
+      qc.invalidateQueries({ queryKey: ["admin-clients"] });
+      qc.invalidateQueries({ queryKey: ["admin-client", clientId] });
     },
   });
 }
