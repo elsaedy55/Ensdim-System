@@ -6,6 +6,7 @@ import { localeDir } from "@/i18n/common";
 import { QueryProvider } from "@/components/common/QueryProvider";
 import { AppToaster } from "@/components/ui/toast";
 import { OfflineBanner } from "@/components/common/OfflineBanner";
+import { UploadStatusWidget } from "@/components/common/UploadStatusWidget";
 import { AuthInitializer } from "@/components/common/AuthInitializer";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <AuthInitializer />
               <OfflineBanner />
               {children}
+              <UploadStatusWidget />
               <AppToaster />
             </NextIntlClientProvider>
           </QueryProvider>

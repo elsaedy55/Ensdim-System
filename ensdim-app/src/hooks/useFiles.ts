@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   getFilesByProject,
   uploadProjectFile,
+  createCredentialEntry,
   getSignedDownloadUrl,
   deleteFile,
 } from "@/lib/services/files.service";
@@ -39,10 +40,20 @@ export function useUploadFile() {
 export function useDeleteFile() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ fileId, storagePath, projectId }: { fileId: string; storagePath: string; projectId: string }) =>
+    mutationFn: ({ fileId, storagePath, projectId }: { fileId: string; storagePath: string | null; projectId: string }) =>
       deleteFile(fileId, storagePath),
     onSuccess: (_, { projectId }) => {
       qc.invalidateQueries({ queryKey: ["files", projectId] });
+    },
+  });
+}
+
+export function useCreateCredential() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: createCredentialEntry,
+    onSuccess: (_, vars) => {
+      qc.invalidateQueries({ queryKey: ["files", vars.projectId] });
     },
   });
 }

@@ -10,7 +10,7 @@ import { SimpleTooltip } from "@/components/ui/tooltip";
 import { UserAvatar } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  LayoutDashboard, Folder, Flag, MessageSquare, FileText,
+  LayoutDashboard, Folder,
   CreditCard, Bell, Settings, LogOut, ChevronLeft, ChevronDown,
 } from "@/components/ui/icons";
 import type { LucideIcon } from "@/components/ui/icons";
@@ -35,14 +35,6 @@ const GROUPS: NavGroup[] = [
     items: [
       { href: ROUTES.CLIENT.DASHBOARD, key: "dashboard", icon: LayoutDashboard },
       { href: ROUTES.CLIENT.PROJECT,   key: "project",   icon: Folder },
-    ],
-  },
-  {
-    labelKey: "work",
-    items: [
-      { href: ROUTES.CLIENT.MILESTONES, key: "milestones", icon: Flag },
-      { href: ROUTES.CLIENT.REVISIONS,  key: "revisions",  icon: MessageSquare },
-      { href: ROUTES.CLIENT.FILES,      key: "files",      icon: FileText },
     ],
   },
   {

@@ -14,7 +14,22 @@ import { formatDate } from "@/lib/utils";
 import { CalendarDays, Target, Layers, Users } from "lucide-react";
 import { useMyProject, useProjectMembers } from "@/hooks/useProject";
 import { useMilestones } from "@/hooks/useMilestones";
+import { MilestonesPanel } from "@/components/client/MilestonesPanel";
+import { RevisionsPanel } from "@/components/client/RevisionsPanel";
+import { FilesPanel } from "@/components/client/FilesPanel";
 import type { MilestoneRow, ProfileRow } from "@/lib/supabase/types";
+
+// ─── Helpers ──────────────────────────────────────────────────────
+
+// The "status" column is set once when the project is created and rarely
+// updated afterwards, so it tends to drift (e.g. stuck on "planning").
+// Derive the badge shown to the client from live progress instead.
+function getDisplayStatus(project: { status: string; progress: number }): string {
+  if (project.status === "on_hold") return "on_hold";
+  if (project.progress >= 100) return "completed";
+  if (project.progress > 0) return "in_progress";
+  return "planning";
+}
 
 // ─── Overview Tab ─────────────────────────────────────────────────
 
@@ -197,6 +212,7 @@ function TeamTab({
 export default function ProjectOverviewPage() {
   const tProject   = useTranslations("dashboard.project");
   const tDashboard = useTranslations("dashboard");
+  const tNav       = useTranslations("common.nav");
 
   const { data: project,    isLoading: projectLoading }    = useMyProject();
   const { data: milestones, isLoading: milestonesLoading } = useMilestones(project?.id);
@@ -234,17 +250,22 @@ export default function ProjectOverviewPage() {
 
   return (
     <div className="space-y-6 max-w-3xl mx-auto">
-      <div className="flex items-start justify-between gap-4 flex-wrap rtl:flex-row-reverse rtl:text-right">
+      <div className="flex items-start justify-between gap-4 flex-wrap">
         <PageHeader title={project.name} subtitle={tProject("pageTitle")} className="mb-0" />
-        <StatusBadge status={project.status} size="md" />
+        <StatusBadge status={getDisplayStatus(project)} size="md" />
       </div>
 
       <Tabs defaultValue="overview">
-        <TabsList variant="underline" className="w-full rtl:flex-row-reverse">
-          <TabsTrigger value="overview" variant="underline">{tProject("tabs.overview")}</TabsTrigger>
-          <TabsTrigger value="progress" variant="underline">{tProject("tabs.progress")}</TabsTrigger>
-          <TabsTrigger value="team"     variant="underline" count={memberList.length}>{tProject("tabs.team")}</TabsTrigger>
-        </TabsList>
+        <div className="overflow-x-auto">
+          <TabsList variant="underline" className="w-max min-w-full rtl:flex-row-reverse">
+            <TabsTrigger value="overview"   variant="underline">{tProject("tabs.overview")}</TabsTrigger>
+            <TabsTrigger value="progress"   variant="underline">{tProject("tabs.progress")}</TabsTrigger>
+            <TabsTrigger value="team"       variant="underline" count={memberList.length}>{tProject("tabs.team")}</TabsTrigger>
+            <TabsTrigger value="milestones" variant="underline">{tNav("milestones")}</TabsTrigger>
+            <TabsTrigger value="revisions"  variant="underline">{tNav("revisions")}</TabsTrigger>
+            <TabsTrigger value="files"      variant="underline">{tNav("files")}</TabsTrigger>
+          </TabsList>
+        </div>
 
         <TabsContent value="overview">
           <OverviewTab project={project} milestones={milestoneList} t={tDashboard} />
@@ -254,6 +275,15 @@ export default function ProjectOverviewPage() {
         </TabsContent>
         <TabsContent value="team">
           <TeamTab members={memberList} t={tDashboard} />
+        </TabsContent>
+        <TabsContent value="milestones">
+          <MilestonesPanel projectId={project.id} />
+        </TabsContent>
+        <TabsContent value="revisions">
+          <RevisionsPanel projectId={project.id} />
+        </TabsContent>
+        <TabsContent value="files">
+          <FilesPanel projectId={project.id} />
         </TabsContent>
       </Tabs>
     </div>

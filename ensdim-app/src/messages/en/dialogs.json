@@ -16,7 +16,19 @@
     "defaultTitle": "Upload Files",
     "cancel": "Cancel",
     "upload": "Upload",
-    "uploadWithCount": "Upload ({count})"
+    "uploadWithCount": "Upload ({count})",
+    "uploadCompleteWithErrors": "Uploaded {done} file(s), {failed} failed",
+    "save": "Save",
+    "category": "Category",
+    "credentialForm": {
+      "name": "Title",
+      "namePlaceholder": "e.g. WordPress Admin",
+      "url": "Link",
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "notes": "Notes"
+    }
   },
   "fileUploadZone": {
     "dropFilesHere": "Drop files here or click to browse",

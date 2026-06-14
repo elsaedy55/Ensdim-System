@@ -77,7 +77,7 @@ function ProfileTab() {
           <UserAvatar name={profile?.name ?? "U"} src={profile?.avatar_url ?? undefined} size="lg" />
           <label
             htmlFor="avatar-input"
-            className="absolute -bottom-1 -end-1 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-2 border-(--bg-surface) bg-(--accent) text-white hover:bg-(--accent-hover)"
+            className="absolute -bottom-1 -inset-e-1 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-2 border-(--bg-surface) bg-(--accent) text-white hover:bg-(--accent-hover)"
             aria-label={t("avatar.changeButton")}
           >
             <Camera className="h-3.5 w-3.5" />

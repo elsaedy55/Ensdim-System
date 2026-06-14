@@ -51,9 +51,13 @@ export interface MilestoneRow {
   status: string; progress: number; due_date: string; start_date: string | null;
   completed_at: string | null; order: number; created_at: string; updated_at: string;
 }
+export interface CredentialData {
+  url?: string; email?: string; username?: string; password?: string; notes?: string;
+}
 export interface FileRow {
   id: string; project_id: string | null; milestone_id: string | null; name: string;
-  storage_path: string; size: number; mime_type: string; category: string;
+  storage_path: string | null; size: number | null; mime_type: string | null; category: string;
+  credential_data: CredentialData | null;
   uploaded_by: string; created_at: string;
 }
 export interface RevisionRow {

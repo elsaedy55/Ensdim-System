@@ -160,5 +160,12 @@
   },
   "offline": {
     "banner": "You're offline. Check your connection and try again."
+  },
+  "uploads": {
+    "title": "Uploading files",
+    "queued": "{count} more queued",
+    "cancel": "Cancel upload",
+    "success": "{name} uploaded successfully",
+    "error": "Failed to upload {name}"
   }
 }

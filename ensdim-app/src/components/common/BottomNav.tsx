@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants/routes";
 import {
-  LayoutDashboard, Folder, Flag, MessageSquare,
+  LayoutDashboard, Folder,
   CreditCard, Bell, LayoutGrid, UserCheck, CheckSquare,
 } from "lucide-react";
 
@@ -14,8 +14,7 @@ import {
 
 const CLIENT_NAV = [
   { href: ROUTES.CLIENT.DASHBOARD,     key: "dashboard",     icon: LayoutDashboard },
-  { href: ROUTES.CLIENT.MILESTONES,    key: "milestones",    icon: Flag },
-  { href: ROUTES.CLIENT.REVISIONS,     key: "revisions",     icon: MessageSquare },
+  { href: ROUTES.CLIENT.PROJECT,       key: "project",       icon: Folder },
   { href: ROUTES.CLIENT.PAYMENTS,      key: "payments",      icon: CreditCard },
   { href: ROUTES.CLIENT.NOTIFICATIONS, key: "notifications", icon: Bell },
 ] as const;

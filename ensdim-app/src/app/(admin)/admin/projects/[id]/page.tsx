@@ -23,7 +23,7 @@ import {
   ChevronLeft, Plus, Pencil, Trash2, Check, X,
   Flag, Upload, CheckCircle2, AlertTriangle, Clock,
   FileText, MessageSquare, DollarSign, Users, Activity,
-  Settings, Send, CreditCard,
+  Settings, Send, CreditCard, KeyRound, Download,
 } from "lucide-react";
 import {
   useAdminProjects, useAdminUpdateProject, useAdminDeleteProject,
@@ -32,7 +32,10 @@ import {
   useAdminProjectInvoices, useAdminCreateInvoice, useAdminSendInvoice, useAdminMarkInvoicePaid,
 } from "@/hooks/useAdmin";
 import { useMilestones } from "@/hooks/useMilestones";
-import { useFiles, useUploadFile } from "@/hooks/useFiles";
+import { useFiles, useUploadFile, useCreateCredential, useDeleteFile } from "@/hooks/useFiles";
+import { getSignedDownloadUrl } from "@/lib/services/files.service";
+import { useUploadQueue } from "@/hooks/useUploadQueue";
+import { enqueueUploads } from "@/lib/upload/manager";
 import { useRevisions, useUpdateRevisionStatus } from "@/hooks/useRevisions";
 import type { MilestoneRow, InvoiceRow } from "@/lib/supabase/types";
 
@@ -110,13 +113,9 @@ function MilestonesTab({ projectId }: { projectId: string }) {
     });
   };
 
-  const handleUpload = async (files: File[]) => {
+  const handleUpload = async (file: File) => {
     if (!uploadMilestoneId) return;
-    for (const file of files) {
-      await uploadFile.mutateAsync({ projectId, milestoneId: uploadMilestoneId, file, category: "general" });
-    }
-    toast.success("Files uploaded");
-    setUploadMilestoneId(null);
+    await uploadFile.mutateAsync({ projectId, milestoneId: uploadMilestoneId, file, category: "general" });
   };
 
   return (
@@ -224,7 +223,7 @@ function MilestonesTab({ projectId }: { projectId: string }) {
         open={!!uploadMilestoneId}
         onOpenChange={(open) => !open && setUploadMilestoneId(null)}
         onUpload={handleUpload}
-        maxSize={50 * 1024 * 1024}
+        maxSize={200 * 1024 * 1024}
         maxFiles={10}
       />
 
@@ -325,16 +324,48 @@ function TeamTab({ projectId }: { projectId: string }) {
 // ─── Files Tab ────────────────────────────────────────────────────
 
 function FilesTab({ projectId }: { projectId: string }) {
+  const tFiles = useTranslations("files");
   const { data: files, isLoading } = useFiles(projectId);
-  const uploadFile = useUploadFile();
+  const createCredential = useCreateCredential();
+  const deleteFile = useDeleteFile();
   const [uploadOpen, setUploadOpen] = React.useState(false);
+  const [downloadingId, setDownloadingId] = React.useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; name: string; storagePath: string | null } | null>(null);
+  // Subscribed only to trigger a refetch of the file list once an upload for
+  // this project finishes (see useUploadQueue) — the visible progress is
+  // shown by the global UploadStatusWidget.
+  useUploadQueue(projectId);
 
-  const handleUpload = async (fileList: File[]) => {
-    for (const file of fileList) {
-      await uploadFile.mutateAsync({ projectId, file, category: "general" });
-    }
-    toast.success("Files uploaded");
+  const categories = [
+    { value: "general",       label: tFiles("tabs.general") },
+    { value: "design",        label: tFiles("tabs.design") },
+    { value: "development",   label: tFiles("tabs.development") },
+    { value: "documentation", label: tFiles("tabs.documentation") },
+    { value: "credentials",   label: tFiles("tabs.credentials") },
+    { value: "final_delivery", label: tFiles("tabs.final") },
+  ];
+
+  const handleCreateCredential = async (data: { name: string; url?: string; email?: string; username?: string; password?: string; notes?: string }) => {
+    await createCredential.mutateAsync({
+      projectId,
+      name: data.name,
+      credentialData: { url: data.url, email: data.email, username: data.username, password: data.password, notes: data.notes },
+    });
+    toast.success("Credential saved");
     setUploadOpen(false);
+  };
+
+  const handleDownload = async (f: { id: string; storage_path: string | null }) => {
+    if (!f.storage_path) return;
+    setDownloadingId(f.id);
+    try {
+      const url = await getSignedDownloadUrl(f.storage_path);
+      window.open(url, "_blank", "noopener,noreferrer");
+    } catch {
+      toast.error(tFiles("downloadError"));
+    } finally {
+      setDownloadingId(null);
+    }
   };
 
   return (
@@ -356,11 +387,36 @@ function FilesTab({ projectId }: { projectId: string }) {
         <div className="space-y-2">
           {(files ?? []).map((f) => (
             <div key={f.id} className="surface flex items-center gap-3 p-3">
-              <FileText className="h-5 w-5 text-(--accent) shrink-0" />
+              {f.credential_data ? (
+                <KeyRound className="h-5 w-5 text-(--accent) shrink-0" />
+              ) : (
+                <FileText className="h-5 w-5 text-(--accent) shrink-0" />
+              )}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-(--text-primary) truncate">{f.name}</p>
-                <p className="text-xs text-(--text-muted)">{(f.size / 1024).toFixed(1)} KB · {formatDate(f.created_at, { month: "short", day: "numeric" })}</p>
+                <p className="text-xs text-(--text-muted)">
+                  {f.credential_data ? tFiles("tabs.credentials") : `${((f.size ?? 0) / 1024).toFixed(1)} KB`} · {formatDate(f.created_at, { month: "short", day: "numeric" })}
+                </p>
               </div>
+              {f.storage_path && (
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  onClick={() => handleDownload(f)}
+                  loading={downloadingId === f.id}
+                  title={tFiles("download")}
+                >
+                  <Download className="h-4 w-4" />
+                </Button>
+              )}
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                onClick={() => setDeleteTarget({ id: f.id, name: f.name, storagePath: f.storage_path })}
+                title={tFiles("delete")}
+              >
+                <Trash2 className="h-4 w-4 text-(--danger)" />
+              </Button>
             </div>
           ))}
         </div>
@@ -369,9 +425,28 @@ function FilesTab({ projectId }: { projectId: string }) {
       <FileUploadModal
         open={uploadOpen}
         onOpenChange={setUploadOpen}
-        onUpload={handleUpload}
-        maxSize={50 * 1024 * 1024}
+        onEnqueue={(files, category) => enqueueUploads(projectId, category, files)}
+        onCreateCredential={handleCreateCredential}
+        categories={categories}
+        maxSize={200 * 1024 * 1024}
         maxFiles={10}
+      />
+
+      <ConfirmDeleteDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => !open && setDeleteTarget(null)}
+        itemName={deleteTarget?.name}
+        loading={deleteFile.isPending}
+        onConfirm={() => {
+          if (!deleteTarget) return;
+          deleteFile.mutate(
+            { fileId: deleteTarget.id, storagePath: deleteTarget.storagePath, projectId },
+            {
+              onSuccess: () => { toast.success(tFiles("deleted")); setDeleteTarget(null); },
+              onError:   (e) => toast.error(e.message),
+            }
+          );
+        }}
       />
     </div>
   );

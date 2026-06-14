@@ -35,19 +35,19 @@ export function FormField({
       )}
       {children}
       {error && (
-        <p className="flex items-center gap-1.5 text-xs text-[var(--danger)]">
+        <p className="flex items-center gap-1.5 text-xs text-(--danger)">
           <AlertCircle className="h-3.5 w-3.5 shrink-0" />
           {error}
         </p>
       )}
       {success && !error && (
-        <p className="flex items-center gap-1.5 text-xs text-[var(--success)]">
+        <p className="flex items-center gap-1.5 text-xs text-(--success)">
           <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
           {success}
         </p>
       )}
       {hint && !error && !success && (
-        <p className="text-xs text-[var(--text-muted)]">{hint}</p>
+        <p className="text-xs text-(--text-muted)">{hint}</p>
       )}
     </div>
   );
@@ -65,8 +65,8 @@ export function FormSection({ title, description, children, className }: FormSec
     <div className={cn("space-y-4", className)}>
       {(title || description) && (
         <div className="pb-1">
-          {title && <h3 className="text-sm font-semibold text-[var(--text-primary)]">{title}</h3>}
-          {description && <p className="text-sm text-[var(--text-muted)] mt-0.5">{description}</p>}
+          {title && <h3 className="text-sm font-semibold text-(--text-primary)">{title}</h3>}
+          {description && <p className="text-sm text-(--text-muted) mt-0.5">{description}</p>}
         </div>
       )}
       {children}

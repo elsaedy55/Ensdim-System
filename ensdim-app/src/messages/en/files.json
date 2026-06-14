@@ -5,6 +5,7 @@
   },
   "tabs": {
     "all": "All Files",
+    "general": "General",
     "design": "Design",
     "development": "Development",
     "documentation": "Documentation",
@@ -15,8 +16,19 @@
     "title": "No files yet",
     "description": "Files will appear here once uploaded by the team."
   },
+  "download": "Download",
+  "downloadError": "Failed to get download link",
+  "delete": "Delete",
+  "deleted": "File deleted",
   "credentials": {
-    "warning": "These files contain sensitive credentials. Click Show to reveal content. Keep them secure and do not share.",
-    "show": "Show"
+    "warning": "These items contain sensitive credentials. Click Show to reveal content. Keep them secure and do not share.",
+    "show": "Show",
+    "copied": "Copied to clipboard",
+    "fields": {
+      "url": "Link",
+      "email": "Email",
+      "username": "Username",
+      "password": "Password"
+    }
   }
 }

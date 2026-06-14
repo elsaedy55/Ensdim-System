@@ -16,7 +16,19 @@
     "defaultTitle": "رفع الملفات",
     "cancel": "إلغاء",
     "upload": "رفع",
-    "uploadWithCount": "رفع ({count})"
+    "uploadWithCount": "رفع ({count})",
+    "uploadCompleteWithErrors": "تم رفع {done} ملف، وفشل {failed}",
+    "save": "حفظ",
+    "category": "النوع",
+    "credentialForm": {
+      "name": "العنوان",
+      "namePlaceholder": "مثال: لوحة تحكم ووردبريس",
+      "url": "الرابط",
+      "email": "البريد الإلكتروني",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "notes": "ملاحظات"
+    }
   },
   "fileUploadZone": {
     "dropFilesHere": "اسحب الملفات هنا أو انقر للتصفح",
