@@ -530,6 +530,103 @@
     }
   },
 
+  "caseStudies": {
+    "list": {
+      "title": "دراسات الحالة",
+      "subtitle": "{total} دراسة · {published} منشورة",
+      "newCaseStudy": "دراسة حالة جديدة",
+      "searchPlaceholder": "البحث في دراسات الحالة...",
+      "published": "منشورة",
+      "draft": "مسودة",
+      "publishedOn": "نُشرت",
+      "previewOnSite": "معاينة على الموقع",
+      "unpublish": "إلغاء النشر",
+      "publish": "نشر",
+      "emptyState": {
+        "title": "لا توجد دراسات حالة بعد",
+        "description": "أنشئ أول دراسة حالة لنشرها على الموقع",
+        "action": "دراسة حالة جديدة"
+      },
+      "noResults": "لا توجد دراسات حالة تطابق بحثك"
+    },
+    "new": {
+      "title": "دراسة حالة جديدة",
+      "subtitle": "إنشاء دراسة حالة ثنائية اللغة للموقع"
+    },
+    "edit": {
+      "title": "تعديل دراسة الحالة"
+    },
+    "form": {
+      "sections": {
+        "basic": "المعلومات الأساسية",
+        "card": "ملخص البطاقة (صفحة القائمة)",
+        "cardHint": "هذه النصوص تظهر في بطاقة دراسة الحالة على صفحة /case-studies",
+        "detail": "صفحة التفاصيل",
+        "built": "ما تم بناؤه",
+        "outcomes": "النتائج",
+        "related": "صفحات مرتبطة (اختياري)",
+        "relatedHint": "روابط لصفحة الحل وصفحة المشكلة المرتبطة بدراسة الحالة",
+        "image": "صورة الغلاف",
+        "imageHint": "اضغط لرفع صورة الغلاف (JPG، PNG، WebP)",
+        "gallery": "معرض الصور",
+        "galleryHint": "صور إضافية تظهر في صفحة تفاصيل دراسة الحالة (اختياري)",
+        "galleryAdd": "إضافة صور للمعرض",
+        "publish": "منشورة",
+        "publishOn": "دراسة الحالة مرئية على الموقع",
+        "publishOff": "دراسة الحالة محفوظة كمسودة، مخفية عن الموقع"
+      },
+      "fields": {
+        "titleEn": "العنوان (إنجليزي)",
+        "titleAr": "العنوان (عربي)",
+        "slug": "الـ Slug",
+        "slugHint": "الرابط: /case-studies/",
+        "sortOrder": "ترتيب العرض",
+        "sectorEn": "القطاع (إنجليزي)",
+        "sectorAr": "القطاع (عربي)",
+        "cardProblemEn": "المشكلة - البطاقة (إنجليزي)",
+        "cardProblemAr": "المشكلة - البطاقة (عربي)",
+        "cardSolutionEn": "الحل - البطاقة (إنجليزي)",
+        "cardSolutionAr": "الحل - البطاقة (عربي)",
+        "cardImpactEn": "الأثر - البطاقة (إنجليزي)",
+        "cardImpactAr": "الأثر - البطاقة (عربي)",
+        "outcomeEn": "النتيجة الرئيسية (إنجليزي)",
+        "outcomeAr": "النتيجة الرئيسية (عربي)",
+        "situationEn": "الوضع (إنجليزي)",
+        "situationAr": "الوضع (عربي)",
+        "problemEn": "المشكلة (إنجليزي)",
+        "problemAr": "المشكلة (عربي)",
+        "builtEn": "ما تم بناؤه (إنجليزي)",
+        "builtAr": "ما تم بناؤه (عربي)",
+        "outcomesEn": "النتائج (إنجليزي)",
+        "outcomesAr": "النتائج (عربي)",
+        "solutionTitleEn": "عنوان صفحة الحل (إنجليزي)",
+        "solutionTitleAr": "عنوان صفحة الحل (عربي)",
+        "solutionSlug": "Slug صفحة الحل",
+        "problemPageTitleEn": "عنوان صفحة المشكلة (إنجليزي)",
+        "problemPageTitleAr": "عنوان صفحة المشكلة (عربي)",
+        "problemPageSlug": "Slug صفحة المشكلة",
+        "demoUrl": "رابط الديمو (اختياري)"
+      },
+      "actions": {
+        "create": "إنشاء دراسة الحالة",
+        "save": "حفظ التغييرات",
+        "saving": "جارٍ الحفظ…",
+        "back": "رجوع",
+        "addItem": "إضافة عنصر"
+      },
+      "success": {
+        "created": "تم إنشاء دراسة الحالة",
+        "updated": "تم تحديث دراسة الحالة",
+        "deleted": "تم حذف دراسة الحالة",
+        "published": "تم نشر دراسة الحالة",
+        "unpublished": "تم إلغاء نشر دراسة الحالة"
+      },
+      "error": {
+        "imageUpload": "فشل رفع الصورة"
+      }
+    }
+  },
+
   "inquiries": {
     "title": "الاستفسارات",
     "subtitle": "{total} الإجمالي · {new} جديد · {contacted} تم التواصل · {closed} مغلق",

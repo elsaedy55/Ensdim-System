@@ -1,43 +1,28 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Briefcase } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
 import { QuickAnswer } from '../components/QuickAnswer';
-
-const cases = [
-  {
-    slug: 'scattered-follow-up',
-    en: { title: 'From scattered follow-up to a clearer operating system', problem: 'Manual follow-up', solution: 'CRM + dashboard', impact: 'Clearer visibility', sector: 'Service Business' },
-    ar: { title: 'من متابعة مشتتة إلى نظام تشغيلي أوضح', problem: 'متابعة يدوية', solution: 'CRM + لوحة تحكم', impact: 'وضوح أكبر', sector: 'أعمال خدمية' },
-  },
-  {
-    slug: 'faster-response',
-    en: { title: 'Faster response for a service business', problem: 'Slow replies', solution: 'Automation + follow-up flow', impact: 'Faster response', sector: 'Healthcare' },
-    ar: { title: 'استجابة أسرع لعمل خدمي', problem: 'بطء في الرد', solution: 'أتمتة + مسار متابعة', impact: 'استجابة أسرع', sector: 'رعاية صحية' },
-  },
-  {
-    slug: 'clearer-visibility',
-    en: { title: 'Clearer dashboards for growing operations', problem: 'No visibility', solution: 'Dashboards + reporting', impact: 'Better management', sector: 'Real Estate' },
-    ar: { title: 'لوحات تحكم أوضح للعمليات النامية', problem: 'لا رؤية', solution: 'لوحات تحكم + تقارير', impact: 'إدارة أفضل', sector: 'عقارات' },
-  },
-  {
-    slug: 'reduced-manual-work',
-    en: { title: 'Reducing repeated work with structured workflows', problem: 'Repeated manual tasks', solution: 'Workflow automation', impact: 'Less wasted time', sector: 'Professional Services' },
-    ar: { title: 'تقليل العمل المتكرر بسير عمل منظمة', problem: 'مهام يدوية متكررة', solution: 'أتمتة سير العمل', impact: 'وقت مهدر أقل', sector: 'خدمات مهنية' },
-  },
-  {
-    slug: 'scaling-with-control',
-    en: { title: 'Scaling operations with better control', problem: 'Growth pressure', solution: 'Operating system + insights', impact: 'Better control', sector: 'Operations' },
-    ar: { title: 'توسع العمليات بتحكم أفضل', problem: 'ضغط النمو', solution: 'نظام تشغيل + تحليلات', impact: 'تحكم أفضل', sector: 'تشغيل' },
-  },
-];
+import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
 
 export function CaseStudiesPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
+
+  const [cases, setCases]     = useState<CaseStudy[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError]     = useState<string | null>(null);
+
+  useEffect(() => {
+    getPublishedCaseStudies()
+      .then(setCases)
+      .catch((e) => setError(e.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
@@ -65,30 +50,70 @@ export function CaseStudiesPage() {
 
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-5">
-          {cases.map((c, i) => (
-            <ScrollReveal key={c.slug} delay={i * 0.07}>
-              <div className="border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200">
-                <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold mb-3 inline-block">
-                  {ar ? c.ar.sector : c.en.sector}
-                </span>
-                <h3 className="text-lg font-bold text-[#101418] mb-4 leading-snug">
-                  {ar ? c.ar.title : c.en.title}
-                </h3>
-                <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-[#F0F0F0]">
-                  {[
-                    { label: ar ? 'المشكلة' : 'Problem', value: ar ? c.ar.problem : c.en.problem },
-                    { label: ar ? 'الحل' : 'Solution', value: ar ? c.ar.solution : c.en.solution },
-                    { label: ar ? 'الأثر' : 'Impact', value: ar ? c.ar.impact : c.en.impact },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <p className="text-[10px] text-[#69717D] uppercase tracking-wide mb-1">{item.label}</p>
-                      <p className="text-xs font-semibold text-[#101418]">{item.value}</p>
-                    </div>
-                  ))}
+          {loading && (
+            <div className="space-y-5">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 animate-pulse">
+                  <div className="h-5 w-24 bg-[#EEEAFE] rounded-full mb-4" />
+                  <div className="h-5 w-3/4 bg-gray-200 rounded-lg mb-4" />
+                  <div className="h-12 w-full bg-gray-100 rounded mb-4" />
+                  <div className="h-4 w-32 bg-gray-100 rounded" />
                 </div>
-                <Link to={`/case-studies/${c.slug}`} className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold hover:gap-2.5 transition-all">
-                  {ar ? 'عرض دراسة الحالة' : 'View Case Study'} <ArrowRight size={13} />
-                </Link>
+              ))}
+            </div>
+          )}
+
+          {!loading && error && (
+            <div className="text-center py-16">
+              <Briefcase size={40} className="mx-auto text-[#E5E5E5] mb-3" />
+              <p className="text-sm text-[#69717D]">
+                {ar ? 'تعذر تحميل دراسات الحالة. حاول مجدداً لاحقاً.' : 'Could not load case studies. Please try again later.'}
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && cases.length === 0 && (
+            <div className="text-center py-16">
+              <Briefcase size={40} className="mx-auto text-[#E5E5E5] mb-3" />
+              <p className="text-sm text-[#69717D]">
+                {ar ? 'لا توجد دراسات حالة منشورة بعد.' : 'No case studies published yet.'}
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && cases.map((c, i) => (
+            <ScrollReveal key={c.slug} delay={i * 0.07}>
+              <div className="border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200">
+                {c.image_url && (
+                  <img
+                    src={c.image_url}
+                    alt={ar ? c.title_ar : c.title_en}
+                    className="w-full h-44 object-cover"
+                  />
+                )}
+                <div className="p-6 sm:p-8">
+                  <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold mb-3 inline-block">
+                    {ar ? c.sector_ar : c.sector_en}
+                  </span>
+                  <h3 className="text-lg font-bold text-[#101418] mb-4 leading-snug">
+                    {ar ? c.title_ar : c.title_en}
+                  </h3>
+                  <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-[#F0F0F0]">
+                    {[
+                      { label: ar ? 'المشكلة' : 'Problem', value: ar ? c.card_problem_ar : c.card_problem_en },
+                      { label: ar ? 'الحل' : 'Solution', value: ar ? c.card_solution_ar : c.card_solution_en },
+                      { label: ar ? 'الأثر' : 'Impact', value: ar ? c.card_impact_ar : c.card_impact_en },
+                    ].map((item) => (
+                      <div key={item.label}>
+                        <p className="text-[10px] text-[#69717D] uppercase tracking-wide mb-1">{item.label}</p>
+                        <p className="text-xs font-semibold text-[#101418]">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <Link to={`/case-studies/${c.slug}`} className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold hover:gap-2.5 transition-all">
+                    {ar ? 'عرض دراسة الحالة' : 'View Case Study'} <ArrowRight size={13} />
+                  </Link>
+                </div>
               </div>
             </ScrollReveal>
           ))}

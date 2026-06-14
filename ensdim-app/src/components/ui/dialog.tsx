@@ -17,7 +17,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-[var(--z-modal)] bg-black/40 backdrop-blur-sm",
+      "fixed inset-0 z-(--z-modal) bg-black/40 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
@@ -39,9 +39,9 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-1/2 top-1/2 z-[var(--z-modal)] -translate-x-1/2 -translate-y-1/2",
-        "bg-[var(--bg-surface)] shadow-[var(--shadow-modal)]",
-        "rounded-xl border border-[var(--border)]",
+        "fixed left-1/2 top-1/2 z-(--z-modal) -translate-x-1/2 -translate-y-1/2",
+        "bg-(--bg-surface) shadow-(--shadow-modal)",
+        "rounded-xl border border-(--border)",
         "duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -60,8 +60,8 @@ const DialogContent = React.forwardRef<
     >
       {children}
       {!hideClose && (
-        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 disabled:pointer-events-none">
-          <X className="h-4 w-4 text-[var(--text-muted)]" />
+        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-(--accent) focus:ring-offset-2 disabled:pointer-events-none">
+          <X className="h-4 w-4 text-(--text-muted)" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
       )}
@@ -87,7 +87,7 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn("text-base font-semibold text-[var(--text-primary)]", className)}
+    className={cn("text-base font-semibold text-(--text-primary)", className)}
     {...props}
   />
 ));
@@ -99,7 +99,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-[var(--text-secondary)]", className)}
+    className={cn("text-sm text-(--text-secondary)", className)}
     {...props}
   />
 ));

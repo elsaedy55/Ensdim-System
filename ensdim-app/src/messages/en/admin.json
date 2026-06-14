@@ -563,6 +563,103 @@
     }
   },
 
+  "caseStudies": {
+    "list": {
+      "title": "Case Studies",
+      "subtitle": "{total} case studies · {published} published",
+      "newCaseStudy": "New Case Study",
+      "searchPlaceholder": "Search case studies...",
+      "published": "Published",
+      "draft": "Draft",
+      "publishedOn": "Published",
+      "previewOnSite": "Preview on site",
+      "unpublish": "Unpublish",
+      "publish": "Publish",
+      "emptyState": {
+        "title": "No case studies yet",
+        "description": "Create your first case study to publish on the website",
+        "action": "New Case Study"
+      },
+      "noResults": "No case studies match your search"
+    },
+    "new": {
+      "title": "New Case Study",
+      "subtitle": "Create a bilingual case study for the website"
+    },
+    "edit": {
+      "title": "Edit Case Study"
+    },
+    "form": {
+      "sections": {
+        "basic": "Basic Information",
+        "card": "Card Summary (listing page)",
+        "cardHint": "These texts appear on the case study card on the /case-studies page",
+        "detail": "Detail Page",
+        "built": "What We Built",
+        "outcomes": "Outcomes",
+        "related": "Related Pages (optional)",
+        "relatedHint": "Links to the related solution page and problem page",
+        "image": "Cover Image",
+        "imageHint": "Click to upload cover image (JPG, PNG, WebP)",
+        "gallery": "Image Gallery",
+        "galleryHint": "Additional images shown on the case study detail page (optional)",
+        "galleryAdd": "Add gallery images",
+        "publish": "Published",
+        "publishOn": "Case study is live on the website",
+        "publishOff": "Case study is saved as draft, hidden from the website"
+      },
+      "fields": {
+        "titleEn": "Title (English)",
+        "titleAr": "Title (Arabic)",
+        "slug": "Slug",
+        "slugHint": "URL: /case-studies/",
+        "sortOrder": "Sort Order",
+        "sectorEn": "Sector (English)",
+        "sectorAr": "Sector (Arabic)",
+        "cardProblemEn": "Problem - Card (English)",
+        "cardProblemAr": "Problem - Card (Arabic)",
+        "cardSolutionEn": "Solution - Card (English)",
+        "cardSolutionAr": "Solution - Card (Arabic)",
+        "cardImpactEn": "Impact - Card (English)",
+        "cardImpactAr": "Impact - Card (Arabic)",
+        "outcomeEn": "Headline Outcome (English)",
+        "outcomeAr": "Headline Outcome (Arabic)",
+        "situationEn": "Situation (English)",
+        "situationAr": "Situation (Arabic)",
+        "problemEn": "Problem (English)",
+        "problemAr": "Problem (Arabic)",
+        "builtEn": "What We Built (English)",
+        "builtAr": "What We Built (Arabic)",
+        "outcomesEn": "Outcomes (English)",
+        "outcomesAr": "Outcomes (Arabic)",
+        "solutionTitleEn": "Solution Page Title (English)",
+        "solutionTitleAr": "Solution Page Title (Arabic)",
+        "solutionSlug": "Solution Page Slug",
+        "problemPageTitleEn": "Problem Page Title (English)",
+        "problemPageTitleAr": "Problem Page Title (Arabic)",
+        "problemPageSlug": "Problem Page Slug",
+        "demoUrl": "Demo Link (optional)"
+      },
+      "actions": {
+        "create": "Create Case Study",
+        "save": "Save Changes",
+        "saving": "Saving…",
+        "back": "Back",
+        "addItem": "Add item"
+      },
+      "success": {
+        "created": "Case study created",
+        "updated": "Case study updated",
+        "deleted": "Case study deleted",
+        "published": "Case study published",
+        "unpublished": "Case study unpublished"
+      },
+      "error": {
+        "imageUpload": "Image upload failed"
+      }
+    }
+  },
+
   "inquiries": {
     "title": "Inquiries",
     "subtitle": "{total} total · {new} new · {contacted} contacted · {closed} closed",

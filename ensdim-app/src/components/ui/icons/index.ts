@@ -43,6 +43,7 @@ export {
   ShieldCheck,
   Building2,
   BookOpen,
+  Briefcase,
 } from "lucide-react";
 
 export type { LucideIcon } from "lucide-react";

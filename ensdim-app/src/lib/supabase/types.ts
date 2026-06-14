@@ -149,6 +149,44 @@ export interface BlogPostRow {
   created_at: string;
   updated_at: string;
 }
+export interface CaseStudyRow {
+  id: string;
+  slug: string;
+  title_en: string;
+  title_ar: string;
+  sector_en: string;
+  sector_ar: string;
+  card_problem_en: string;
+  card_problem_ar: string;
+  card_solution_en: string;
+  card_solution_ar: string;
+  card_impact_en: string;
+  card_impact_ar: string;
+  outcome_en: string;
+  outcome_ar: string;
+  situation_en: string;
+  situation_ar: string;
+  problem_en: string;
+  problem_ar: string;
+  built_en: string[];
+  built_ar: string[];
+  outcomes_en: string[];
+  outcomes_ar: string[];
+  solution_title_en: string;
+  solution_title_ar: string;
+  solution_slug: string;
+  problem_page_title_en: string;
+  problem_page_title_ar: string;
+  problem_page_slug: string;
+  image_url: string | null;
+  gallery_images: string[];
+  demo_url: string | null;
+  sort_order: number;
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
 
 // ─── Database type for Supabase client generic ─────────────────────
 
@@ -177,6 +215,7 @@ export interface Database {
       activity_logs:            TableDef<ActivityLogRow>;
       research_articles:        TableDef<ResearchArticleRow, Omit<ResearchArticleRow, "id" | "created_at" | "updated_at">>;
       blog_posts:               TableDef<BlogPostRow, Omit<BlogPostRow, "id" | "created_at" | "updated_at">>;
+      case_studies:             TableDef<CaseStudyRow, Omit<CaseStudyRow, "id" | "created_at" | "updated_at">>;
       inquiries:                TableDef<InquiryRow, Omit<InquiryRow, "id" | "created_at" | "updated_at">>;
     };
     Views: { [_ in never]: never };

@@ -9,41 +9,41 @@ import { SearchInput } from "@/components/ui/search-input";
 import { ConfirmDeleteDialog } from "@/components/common/modals/ConfirmDeleteDialog";
 import { ROUTES } from "@/constants/routes";
 import { formatDate, cn } from "@/lib/utils";
-import { Plus, FileText, MoreHorizontal, Trash2, Eye, Pencil, Globe, EyeOff, AlertTriangle } from "lucide-react";
+import { Plus, Briefcase, MoreHorizontal, Trash2, Eye, Pencil, Globe, EyeOff, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem,
   DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  useBlogPosts,
-  useDeleteBlogPost,
-  useToggleBlogPublished,
-} from "@/hooks/useBlog";
-import type { BlogPost } from "@/lib/services/blog.service";
+  useCaseStudies,
+  useDeleteCaseStudy,
+  useToggleCaseStudyPublished,
+} from "@/hooks/useCaseStudies";
+import type { CaseStudy } from "@/lib/services/case-studies.service";
 
-// ─── PostRow ───────────────────────────────────────────────────────
+// ─── CaseStudyRow ──────────────────────────────────────────────────
 
-function PostRow({
-  post,
+function CaseStudyRow({
+  study,
   onDelete,
   t,
   tc,
 }: {
-  post: BlogPost;
+  study: CaseStudy;
   onDelete: (id: string, title: string) => void;
-  t: ReturnType<typeof useTranslations<"admin.blog">>;
+  t: ReturnType<typeof useTranslations<"admin.caseStudies">>;
   tc: ReturnType<typeof useTranslations<"common.actions">>;
 }) {
-  const toggle = useToggleBlogPublished();
+  const toggle = useToggleCaseStudyPublished();
 
   const handleToggle = () => {
     toggle.mutate(
-      { id: post.id, isPublished: !post.is_published },
+      { id: study.id, isPublished: !study.is_published },
       {
         onSuccess: () =>
           toast.success(
-            post.is_published
+            study.is_published
               ? t("form.success.unpublished")
               : t("form.success.published")
           ),
@@ -55,15 +55,15 @@ function PostRow({
   return (
     <div className="surface flex items-center gap-4 p-4 hover:shadow-sm transition-shadow group">
       {/* Thumbnail */}
-      {post.image_url ? (
+      {study.image_url ? (
         <img
-          src={post.image_url}
-          alt={post.title_en}
+          src={study.image_url}
+          alt={study.title_en}
           className="w-14 h-14 rounded-lg object-cover shrink-0 hidden sm:block"
         />
       ) : (
-        <div className="w-14 h-14 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 sm:block">
-          <FileText className="h-5 w-5 text-(--text-muted)" />
+        <div className="w-14 h-14 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 hidden sm:block">
+          <Briefcase className="h-5 w-5 text-(--text-muted)" />
         </div>
       )}
 
@@ -71,27 +71,26 @@ function PostRow({
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5 flex-wrap">
           <span className="text-sm font-semibold text-(--text-primary) truncate">
-            {post.title_en}
+            {study.title_en}
           </span>
           <span
             className={cn(
               "text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0",
-              post.is_published
+              study.is_published
                 ? "bg-green-100 text-green-700"
                 : "bg-(--bg-muted) text-(--text-muted)"
             )}
           >
-            {post.is_published ? t("list.published") : t("list.draft")}
+            {study.is_published ? t("list.published") : t("list.draft")}
           </span>
         </div>
-        <p className="text-xs text-(--text-muted) truncate">{post.title_ar}</p>
+        <p className="text-xs text-(--text-muted) truncate">{study.title_ar}</p>
         <div className="flex items-center gap-3 mt-1 text-xs text-(--text-muted)">
-          <span className="px-2 py-0.5 bg-(--bg-muted) rounded-full">{post.category_en}</span>
-          <span>{post.read_time} {t("list.minRead")}</span>
-          {post.published_at && (
+          <span className="px-2 py-0.5 bg-(--bg-muted) rounded-full">{study.sector_en}</span>
+          {study.published_at && (
             <span>
               {t("list.publishedOn")}{" "}
-              {formatDate(post.published_at, { month: "short", day: "numeric", year: "numeric" })}
+              {formatDate(study.published_at, { month: "short", day: "numeric", year: "numeric" })}
             </span>
           )}
         </div>
@@ -106,7 +105,7 @@ function PostRow({
           disabled={toggle.isPending}
           className="hidden sm:flex items-center gap-1.5 text-xs"
         >
-          {post.is_published ? (
+          {study.is_published ? (
             <><EyeOff className="h-3.5 w-3.5" /> {t("list.unpublish")}</>
           ) : (
             <><Globe className="h-3.5 w-3.5" /> {t("list.publish")}</>
@@ -126,7 +125,7 @@ function PostRow({
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuItem asChild>
               <Link
-                href={ROUTES.ADMIN.BLOG_EDIT(post.id)}
+                href={ROUTES.ADMIN.CASE_STUDIES_EDIT(study.id)}
                 className="flex items-center gap-2"
               >
                 <Pencil className="h-4 w-4" /> {tc("edit")}
@@ -134,7 +133,7 @@ function PostRow({
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <a
-                href={`https://www.ensdim.com/blog/${post.slug}`}
+                href={`https://www.ensdim.com/case-studies/${study.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
@@ -145,7 +144,7 @@ function PostRow({
             <DropdownMenuSeparator />
             <DropdownMenuItem
               destructive
-              onClick={() => onDelete(post.id, post.title_en)}
+              onClick={() => onDelete(study.id, study.title_en)}
               className="flex items-center gap-2"
             >
               <Trash2 className="h-4 w-4" />
@@ -159,30 +158,30 @@ function PostRow({
 
 // ─── Page ─────────────────────────────────────────────────────────
 
-export default function AdminBlogPage() {
-  const t  = useTranslations("admin.blog");
+export default function AdminCaseStudiesPage() {
+  const t  = useTranslations("admin.caseStudies");
   const tc = useTranslations("common.actions");
-  const { data: posts, isLoading, error } = useBlogPosts();
-  const deletePost = useDeleteBlogPost();
+  const { data: studies, isLoading, error } = useCaseStudies();
+  const deleteStudy = useDeleteCaseStudy();
 
   const [search, setSearch]     = React.useState("");
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; title: string } | null>(null);
 
-  const list     = posts ?? [];
+  const list     = studies ?? [];
   const filtered = search
     ? list.filter(
-        (p) =>
-          p.title_en.toLowerCase().includes(search.toLowerCase()) ||
-          p.title_ar.includes(search) ||
-          p.slug.toLowerCase().includes(search.toLowerCase())
+        (s) =>
+          s.title_en.toLowerCase().includes(search.toLowerCase()) ||
+          s.title_ar.includes(search) ||
+          s.slug.toLowerCase().includes(search.toLowerCase())
       )
     : list;
 
-  const publishedCount = list.filter((p) => p.is_published).length;
+  const publishedCount = list.filter((s) => s.is_published).length;
 
   const handleDelete = () => {
     if (!deleteTarget) return;
-    deletePost.mutate(deleteTarget.id, {
+    deleteStudy.mutate(deleteTarget.id, {
       onSuccess: () => {
         toast.success(t("form.success.deleted"));
         setDeleteTarget(null);
@@ -198,8 +197,8 @@ export default function AdminBlogPage() {
         subtitle={t("list.subtitle", { total: list.length, published: publishedCount })}
         actions={
           <Button asChild>
-            <Link href={ROUTES.ADMIN.BLOG_NEW}>
-              <Plus className="h-4 w-4" /> {t("list.newPost")}
+            <Link href={ROUTES.ADMIN.CASE_STUDIES_NEW}>
+              <Plus className="h-4 w-4" /> {t("list.newCaseStudy")}
             </Link>
           </Button>
         }
@@ -220,13 +219,13 @@ export default function AdminBlogPage() {
           <AlertTriangle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-semibold text-red-700">
-              Could not load blog posts
+              Could not load case studies
             </p>
             <p className="text-xs text-red-500 mt-1">
               {(error as Error).message}
             </p>
             <p className="text-xs text-red-400 mt-2">
-              Make sure you have run the SQL migration in Supabase (012_blog_posts.sql)
+              Make sure you have run the SQL migration in Supabase (019_case_studies.sql)
             </p>
           </div>
         </div>
@@ -242,7 +241,7 @@ export default function AdminBlogPage() {
 
       {!isLoading && !error && filtered.length === 0 && (
         <div className="surface flex flex-col items-center justify-center py-16 text-center">
-          <FileText className="h-10 w-10 text-(--text-muted) mb-3" />
+          <Briefcase className="h-10 w-10 text-(--text-muted) mb-3" />
           <p className="text-sm font-medium text-(--text-primary)">
             {search ? t("list.noResults") : t("list.emptyState.title")}
           </p>
@@ -250,7 +249,7 @@ export default function AdminBlogPage() {
             <>
               <p className="text-xs text-(--text-muted) mt-1">{t("list.emptyState.description")}</p>
               <Button size="sm" className="mt-4" asChild>
-                <Link href={ROUTES.ADMIN.BLOG_NEW}>
+                <Link href={ROUTES.ADMIN.CASE_STUDIES_NEW}>
                   <Plus className="h-4 w-4" /> {t("list.emptyState.action")}
                 </Link>
               </Button>
@@ -261,10 +260,10 @@ export default function AdminBlogPage() {
 
       {!isLoading && !error && filtered.length > 0 && (
         <div className="space-y-3">
-          {filtered.map((post) => (
-            <PostRow
-              key={post.id}
-              post={post}
+          {filtered.map((study) => (
+            <CaseStudyRow
+              key={study.id}
+              study={study}
               t={t}
               tc={tc}
               onDelete={(id, title) => setDeleteTarget({ id, title })}
@@ -278,7 +277,7 @@ export default function AdminBlogPage() {
         onOpenChange={(open) => !open && setDeleteTarget(null)}
         itemName={deleteTarget?.title}
         onConfirm={handleDelete}
-        loading={deletePost.isPending}
+        loading={deleteStudy.isPending}
       />
     </div>
   );
