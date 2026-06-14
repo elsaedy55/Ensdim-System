@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/client";
 import type { RevisionRow } from "@/lib/supabase/types";
+import { notifyRevisionResolved } from "@/lib/services/notify.service";
 
 type Revision = RevisionRow;
 type RevisionInsert = Partial<RevisionRow>;
@@ -76,6 +77,12 @@ export async function updateRevisionStatus(
     .single();
 
   if (error) throw new Error(error.message);
+
+  if (status === "done" || status === "rejected") {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) await notifyRevisionResolved(supabase, data, user.id);
+  }
+
   return data;
 }
 

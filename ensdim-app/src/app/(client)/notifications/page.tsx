@@ -13,7 +13,6 @@ import {
   useNotifications,
   useMarkNotificationRead,
   useMarkAllRead,
-  useRealtimeNotifications,
 } from "@/hooks/useNotifications";
 import type { NotificationRow } from "@/lib/supabase/types";
 
@@ -94,8 +93,6 @@ export default function NotificationsPage() {
   const { data: items, isLoading } = useNotifications();
   const markRead   = useMarkNotificationRead();
   const markAllRead = useMarkAllRead();
-
-  useRealtimeNotifications(); // Subscribe to live updates
 
   const notifications = items ?? [];
   const unread = notifications.filter((n) => !n.is_read);

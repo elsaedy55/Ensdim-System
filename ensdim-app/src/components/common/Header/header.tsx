@@ -12,12 +12,17 @@ import {
   DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
-import type { Notification } from "@/types";
 import { signOut } from "@/lib/auth.service";
 import { useAuthStore } from "@/store/auth.store";
+import {
+  useNotifications, useUnreadCount, useMarkNotificationRead,
+  useMarkAllRead, useRealtimeNotifications,
+} from "@/hooks/useNotifications";
+import type { NotificationRow } from "@/lib/supabase/types";
 
 type ButtonVariant = "primary" | "secondary" | "destructive" | "ghost" | "link" | "outline";
 
@@ -34,10 +39,7 @@ interface HeaderProps {
   actions?: React.ReactNode;
   actionsData?: ActionDescriptor[];
   user?: { name: string; email: string; avatar?: string };
-  notifications?: Notification[];
   unreadCount?: number;
-  onNotificationClick?: (id: string) => void;
-  onMarkAllRead?: () => void;
   onLogout?: () => void;
   settingsRoute?: string;
   className?: string;
@@ -48,16 +50,14 @@ export function Header({
   actions,
   actionsData,
   user,
-  notifications = [],
   unreadCount = 0,
-  onNotificationClick,
-  onMarkAllRead,
   onLogout,
   settingsRoute,
   className,
 }: HeaderProps) {
   const tn = useTranslations("common.notifications");
   const ta = useTranslations("common.actions");
+  const router = useRouter();
 
   const clearAuth = useAuthStore((s) => s.clearAuth);
 
@@ -69,6 +69,20 @@ export function Header({
       window.location.href = ROUTES.LOGIN;
     }
   }, [clearAuth]);
+
+  // Keep the bell badge + dropdown in sync with new notifications in real time.
+  useRealtimeNotifications();
+  const { data: liveUnreadCount } = useUnreadCount(unreadCount);
+  const { data: notifications = [] } = useNotifications();
+  const markRead    = useMarkNotificationRead();
+  const markAllRead = useMarkAllRead();
+
+  const unread = liveUnreadCount ?? unreadCount;
+
+  const handleNotificationClick = (n: NotificationRow) => {
+    if (!n.is_read) markRead.mutate(n.id);
+    if (n.link) router.push(n.link);
+  };
 
   return (
     <header
@@ -124,12 +138,12 @@ export function Header({
             variant="ghost"
             size="icon"
             className="relative"
-            aria-label={`${tn("title")}, ${unreadCount} unread`}
+            aria-label={`${tn("title")}, ${unread} unread`}
           >
             <UiIcon as={Icons.Bell} size="md" />
-            {unreadCount > 0 && (
+            {unread > 0 && (
               <span className="absolute -top-0.5 -inset-e-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-(--accent) px-0.5 text-[10px] font-bold text-white">
-                {unreadCount > 9 ? "9+" : unreadCount}
+                {unread > 9 ? "9+" : unread}
               </span>
             )}
           </Button>
@@ -138,9 +152,9 @@ export function Header({
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-(--border)">
             <span className="text-sm font-semibold text-(--text-primary)">{tn("title")}</span>
-            {unreadCount > 0 && (
+            {unread > 0 && (
               <button
-                onClick={onMarkAllRead}
+                onClick={() => markAllRead.mutate(undefined)}
                 className="text-xs text-(--accent) hover:text-(--accent-hover) transition-colors"
               >
                 {ta("markAllRead")}
@@ -160,16 +174,16 @@ export function Header({
               notifications.slice(0, 8).map((n) => (
                 <button
                   key={n.id}
-                  onClick={() => onNotificationClick?.(n.id)}
+                  onClick={() => handleNotificationClick(n)}
                   className={cn(
                     "w-full text-start px-4 py-3 flex gap-3 hover:bg-(--bg-muted) transition-colors border-b border-(--border) last:border-0",
-                    !n.isRead && "bg-(--accent-subtle)/30"
+                    !n.is_read && "bg-(--accent-subtle)/30"
                   )}
                 >
-                  {!n.isRead && (
+                  {!n.is_read && (
                     <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-(--accent)" />
                   )}
-                  <div className={cn("flex-1 min-w-0", n.isRead && "ps-5")}>
+                  <div className={cn("flex-1 min-w-0", n.is_read && "ps-5")}>
                     <p className="text-sm font-medium text-(--text-primary) leading-snug">{n.title}</p>
                     <p className="text-xs text-(--text-muted) mt-0.5 line-clamp-2">{n.body}</p>
                   </div>

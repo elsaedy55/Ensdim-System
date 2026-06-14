@@ -7,6 +7,7 @@ import { PendingActionsPanel } from "@/components/client/PendingActionsPanel";
 import { MilestonesMiniList } from "@/components/client/MilestonesMiniList";
 import { ActivityFeed } from "@/components/client/ActivityFeed";
 import { FinancialSummaryStrip } from "@/components/client/FinancialSummaryStrip";
+import { StartProjectCTA } from "@/components/client/StartProjectCTA";
 import { SkeletonDashboard } from "@/components/ui/skeleton";
 import { useProfile } from "@/store/auth.store";
 import { useMyProject } from "@/hooks/useProject";
@@ -100,6 +101,8 @@ export default function ClientDashboardPage() {
       />
 
       <ProjectStatusHeroCard project={heroProject} />
+
+      {!heroProject && <StartProjectCTA />}
 
       {pendingActions.length > 0 && (
         <PendingActionsPanel actions={pendingActions} />

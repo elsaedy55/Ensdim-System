@@ -11,7 +11,7 @@ import { formatRelativeTime, cn } from "@/lib/utils";
 import { Bell, Flag, Receipt, FileText, MessageSquare, CheckCircle2, AlertCircle } from "lucide-react";
 import {
   useNotifications, useMarkNotificationRead,
-  useMarkAllRead, useRealtimeNotifications,
+  useMarkAllRead,
 } from "@/hooks/useNotifications";
 import type { NotificationRow } from "@/lib/supabase/types";
 
@@ -78,8 +78,6 @@ export default function AdminNotificationsPage() {
   const { data: items, isLoading } = useNotifications();
   const markRead    = useMarkNotificationRead();
   const markAllRead = useMarkAllRead();
-
-  useRealtimeNotifications();
 
   const notifications = items ?? [];
   const unread = notifications.filter((n) => !n.is_read);

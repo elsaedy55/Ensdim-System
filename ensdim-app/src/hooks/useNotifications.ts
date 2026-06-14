@@ -19,12 +19,13 @@ export function useNotifications() {
   });
 }
 
-export function useUnreadCount() {
+export function useUnreadCount(initialCount?: number) {
   return useQuery({
     queryKey:  ["notifications-count"],
     queryFn:   getUnreadCount,
     staleTime: 30 * 1000,
     refetchInterval: 60 * 1000, // Poll every minute as fallback
+    ...(initialCount !== undefined ? { initialData: initialCount } : {}),
   });
 }
 

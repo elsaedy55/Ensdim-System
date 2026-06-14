@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/client";
 import type { FileRow, CredentialData } from "@/lib/supabase/types";
+import { notifyFileUploaded } from "@/lib/services/notify.service";
 
 export async function getFilesByProject(
   projectId: string,
@@ -99,6 +100,8 @@ export async function createFileRecord(params: {
     await supabase.storage.from("project-files").remove([params.storagePath]);
     throw new Error(error.message);
   }
+
+  await notifyFileUploaded(supabase, data, user.id);
 
   return data;
 }

@@ -69,5 +69,17 @@
     "health": "Health",
     "progress": "Progress"
   },
+  "startProjectCta": {
+    "title": "Have a new project in mind?",
+    "description": "Get in touch and we'll take it from here to kick off your project.",
+    "button": "Contact Us",
+    "dialogTitle": "Start a New Project",
+    "dialogDescription": "Tell us a bit about your project and we'll get back to you shortly.",
+    "placeholder": "Write your message here... (optional)",
+    "submit": "Send",
+    "cancel": "Cancel",
+    "success": "Your request was sent successfully, we'll be in touch soon",
+    "error": "Something went wrong while sending your request, please try again"
+  },
   "welcome": "Welcome back, {name}"
 }

@@ -9,6 +9,7 @@ import type {
   ProjectRow, MilestoneRow, FileRow, RevisionRow,
   InvoiceRow, InvoiceLineItemRow, ProfileRow, NotificationRow, ClientStatus,
 } from "@/lib/supabase/types";
+import { notifyProjectStatusChanged, notifyMilestoneReview, notifyInvoiceSent } from "@/lib/services/notify.service";
 
 // ─── Types ────────────────────────────────────────────────────────
 
@@ -110,6 +111,11 @@ export async function adminUpdateProject(
     .single();
 
   if (error) throw new Error(error.message);
+
+  if (updates.status !== undefined) {
+    await notifyProjectStatusChanged(supabase, data);
+  }
+
   return data;
 }
 
@@ -185,6 +191,11 @@ export async function adminSetMilestoneStatus(
     .select()
     .single();
   if (error) throw new Error(error.message);
+
+  if (status === "review") {
+    await notifyMilestoneReview(supabase, data);
+  }
+
   return data;
 }
 
@@ -408,6 +419,9 @@ export async function adminSendInvoice(id: string): Promise<InvoiceRow> {
     .select()
     .single();
   if (error) throw new Error(error.message);
+
+  await notifyInvoiceSent(supabase, data);
+
   return data;
 }
 

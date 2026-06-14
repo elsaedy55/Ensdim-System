@@ -21,6 +21,7 @@ import {
   useUpdateInquiryStatus,
   useDeleteInquiry,
 } from "@/hooks/useInquiries";
+import { InquiryDetailsDialog } from "@/components/admin/InquiryDetailsDialog";
 import type { Inquiry, InquiryStatus } from "@/lib/services/inquiries.service";
 
 // ─── Helpers ───────────────────────────────────────────────────────
@@ -68,10 +69,12 @@ function FilterChip({ active, onClick, children }: FilterChipProps) {
 function InquiryRow({
   inquiry,
   onDelete,
+  onOpen,
   t,
 }: {
   inquiry: Inquiry;
   onDelete: (id: string, name: string) => void;
+  onOpen: (inquiry: Inquiry) => void;
   t: ReturnType<typeof useTranslations<"admin.inquiries">>;
 }) {
   const updateStatus = useUpdateInquiryStatus();
@@ -88,9 +91,16 @@ function InquiryRow({
 
   const statusStyle = STATUS_STYLE[inquiry.status];
   const meta = [inquiry.interest_type, inquiry.clicked_item, inquiry.source_page].filter(Boolean);
+  const preview = inquiry.message ?? inquiry.details ?? (meta.length > 0 ? meta.join(" · ") : null);
 
   return (
-    <div className="surface flex items-center gap-4 p-4 hover:shadow-sm transition-shadow group">
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={() => onOpen(inquiry)}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onOpen(inquiry); }}
+      className="surface flex items-center gap-4 p-4 hover:shadow-sm transition-shadow group cursor-pointer"
+    >
       {/* Icon */}
       <div className="w-11 h-11 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 sm:flex">
         <MessageSquare className="h-5 w-5 text-(--text-muted)" />
@@ -124,9 +134,9 @@ function InquiryRow({
         >
           <Phone className="h-3 w-3" /> {inquiry.whatsapp}
         </a>
-        {(meta.length > 0 || inquiry.message || inquiry.details) && (
+        {preview && (
           <p className="text-xs text-(--text-muted) truncate mt-1">
-            {meta.length > 0 ? meta.join(" · ") : (inquiry.message ?? inquiry.details)}
+            {preview}
           </p>
         )}
         <p className="text-[11px] text-(--text-muted) mt-1">
@@ -135,7 +145,7 @@ function InquiryRow({
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex items-center gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
         <Button variant="ghost" size="sm" asChild className="hidden sm:flex items-center gap-1.5 text-xs">
           <a href={waLink(inquiry.whatsapp)} target="_blank" rel="noopener noreferrer">
             <Phone className="h-3.5 w-3.5" /> {t("actions.openWhatsapp")}
@@ -197,6 +207,7 @@ export default function AdminInquiriesPage() {
   const [typeFilter, setTypeFilter]     = React.useState<TypeFilter>("all");
   const [statusFilter, setStatusFilter] = React.useState<StatusFilter>("all");
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; name: string } | null>(null);
+  const [detailsTarget, setDetailsTarget] = React.useState<Inquiry | null>(null);
 
   const list = inquiries ?? [];
 
@@ -302,6 +313,7 @@ export default function AdminInquiriesPage() {
               inquiry={inquiry}
               t={t}
               onDelete={(id, name) => setDeleteTarget({ id, name })}
+              onOpen={(inq) => setDetailsTarget(inq)}
             />
           ))}
         </div>
@@ -313,6 +325,11 @@ export default function AdminInquiriesPage() {
         itemName={deleteTarget?.name}
         onConfirm={handleDelete}
         loading={deleteInquiry.isPending}
+      />
+
+      <InquiryDetailsDialog
+        inquiry={detailsTarget}
+        onOpenChange={(open) => !open && setDetailsTarget(null)}
       />
     </div>
   );

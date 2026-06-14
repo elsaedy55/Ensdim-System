@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/client";
 import type { InquiryRow } from "@/lib/supabase/types";
+import { notifyNewInquiry } from "@/lib/services/notify.service";
 
 export type Inquiry = InquiryRow;
 export type InquiryStatus = InquiryRow["status"];
@@ -36,4 +37,34 @@ export async function deleteInquiry(id: string): Promise<void> {
   const supabase = createClient();
   const { error } = await supabase.from("inquiries").delete().eq("id", id);
   if (error) throw new Error(error.message);
+}
+
+// ─── Create (client dashboard "contact us" / new project request) ─
+
+export async function createClientInquiry(message: string): Promise<void> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not authenticated");
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("name, phone, email, company, workspace_id")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const { error } = await supabase.from("inquiries").insert({
+    type:          "contact",
+    name:          profile?.name ?? "",
+    whatsapp:      profile?.phone ?? "",
+    email:         profile?.email ?? user.email ?? null,
+    company:       profile?.company ?? null,
+    message,
+    source_page:   "client_dashboard",
+    interest_type: "new_project",
+  });
+  if (error) throw new Error(error.message);
+
+  if (profile?.workspace_id) {
+    await notifyNewInquiry(supabase, profile.workspace_id, profile.name ?? "عميل");
+  }
 }

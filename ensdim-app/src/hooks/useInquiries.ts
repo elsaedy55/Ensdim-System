@@ -5,6 +5,7 @@ import {
   getAllInquiries,
   updateInquiryStatus,
   deleteInquiry,
+  createClientInquiry,
   type InquiryStatus,
 } from "@/lib/services/inquiries.service";
 
@@ -36,5 +37,11 @@ export function useDeleteInquiry() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
+  });
+}
+
+export function useCreateClientInquiry() {
+  return useMutation({
+    mutationFn: (message: string) => createClientInquiry(message),
   });
 }
