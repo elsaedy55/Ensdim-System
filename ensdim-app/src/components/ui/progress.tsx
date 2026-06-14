@@ -29,14 +29,14 @@ const Progress = React.forwardRef<
     <div className="w-full">
       {showLabel && (
         <div className="flex justify-between items-center mb-1.5">
-          <span className="text-xs text-[var(--text-muted)]">Progress</span>
-          <span className="text-xs font-medium text-[var(--text-secondary)]">{Math.round(value ?? 0)}%</span>
+          <span className="text-xs text-(--text-muted)">Progress</span>
+          <span className="text-xs font-medium text-(--text-secondary)">{Math.round(value ?? 0)}%</span>
         </div>
       )}
       <ProgressPrimitive.Root
         ref={ref}
         className={cn(
-          "relative w-full overflow-hidden rounded-full bg-[var(--bg-muted)]",
+          "relative w-full overflow-hidden rounded-full bg-(--bg-muted)",
           {
             "h-1":   size === "xs",
             "h-1.5": size === "sm",

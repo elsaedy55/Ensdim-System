@@ -15,7 +15,7 @@ const AlertDialogOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-[var(--z-modal)] bg-black/40 backdrop-blur-sm",
+      "fixed inset-0 z-(--z-modal) bg-black/40 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
@@ -35,8 +35,8 @@ const AlertDialogContent = React.forwardRef<
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-1/2 top-1/2 z-[var(--z-modal)] grid w-full max-w-md -translate-x-1/2 -translate-y-1/2 gap-4",
-        "bg-[var(--bg-surface)] border border-[var(--border)] p-6 shadow-[var(--shadow-modal)] rounded-xl",
+        "fixed left-1/2 top-1/2 z-(--z-modal) grid w-full max-w-md -translate-x-1/2 -translate-y-1/2 gap-4",
+        "bg-(--bg-surface) border border-(--border)shadow-[var(--shadow-modal)] rounded-xl",
         "duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -62,7 +62,7 @@ const AlertDialogTitle = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>
 >(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Title ref={ref} className={cn("text-base font-semibold text-[var(--text-primary)]", className)} {...props} />
+  <AlertDialogPrimitive.Title ref={ref} className={cn("text-base font-semibold text-(--text-primary)", className)} {...props} />
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
 
@@ -70,7 +70,7 @@ const AlertDialogDescription = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Description ref={ref} className={cn("text-sm text-[var(--text-secondary)]", className)} {...props} />
+  <AlertDialogPrimitive.Description ref={ref} className={cn("text-sm text-(--text-secondary)", className)} {...props} />
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
 

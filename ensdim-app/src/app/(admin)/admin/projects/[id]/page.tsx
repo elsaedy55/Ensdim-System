@@ -355,12 +355,23 @@ function FilesTab({ projectId }: { projectId: string }) {
     setUploadOpen(false);
   };
 
-  const handleDownload = async (f: { id: string; storage_path: string | null }) => {
+  const handleDownload = async (f: { id: string; name: string; storage_path: string | null }) => {
     if (!f.storage_path) return;
     setDownloadingId(f.id);
     try {
       const url = await getSignedDownloadUrl(f.storage_path);
-      window.open(url, "_blank", "noopener,noreferrer");
+      // Fetch as a blob and download via an object URL so the browser always
+      // saves the file instead of previewing it (e.g. images, PDFs).
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = f.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(blobUrl);
     } catch {
       toast.error(tFiles("downloadError"));
     } finally {
