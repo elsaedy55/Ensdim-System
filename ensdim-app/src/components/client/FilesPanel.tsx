@@ -50,14 +50,26 @@ function FileRowItem({ file, blurred }: { file: FileRow; blurred: boolean }) {
     setLoadingAction(action);
     try {
       const url = await getSignedDownloadUrl(file.storage_path);
+      // Fetch as a blob so we get a same-origin object URL with the correct
+      // content type, regardless of the storage server's response headers
+      // (the signed URL's Content-Disposition can force a download instead
+      // of an inline preview, e.g. for PDFs).
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
       if (action === "preview") {
-        window.open(url, "_blank", "noopener,noreferrer");
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
       } else {
-        const a = document.createElement("a");
-        a.href = url;
         a.download = file.name;
-        a.click();
       }
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      // Give the new tab/download time to read the blob before revoking.
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 60_000);
     } catch {
       toast.error("Failed to access file. Please try again.");
     } finally {
