@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 
 const chips = [
   { en: 'Higher Conversion', ar: 'تحويل أعلى' },
@@ -13,7 +14,7 @@ export function WhoIsSection() {
   const { t, language } = useLanguage();
 
   return (
-    <section className="py-16 sm:py-20 bg-[#0f0d19] text-white relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#0f0d19] text-white relative overflow-hidden">
       {/* Very subtle violet glow behind content */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -27,11 +28,11 @@ export function WhoIsSection() {
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20 gap-10">
 
           {/* Left: label + title + description */}
-          <div className="lg:max-w-xl flex-shrink-0">
+          <ScrollReveal className="lg:max-w-xl flex-shrink-0">
             <span className="inline-block px-3 py-1 bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/65 text-xs font-semibold rounded-full mb-5 uppercase tracking-wider">
               {t('who.label')}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 leading-snug">
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4 leading-snug">
               {t('who.title')}
             </h2>
             <p className="text-sm sm:text-base text-[#EEEAFE]/55 leading-relaxed mb-6">
@@ -44,10 +45,10 @@ export function WhoIsSection() {
               {t('who.cta')}
               <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </Link>
-          </div>
+          </ScrollReveal>
 
           {/* Right: behavior signal flow diagram */}
-          <div className="flex-1">
+          <ScrollReveal className="flex-1" delay={0.15}>
             <div className="relative flex flex-col items-center gap-3 max-w-sm mx-auto lg:mx-0">
 
               {/* Row 1 — Behavior signals */}
@@ -119,7 +120,7 @@ export function WhoIsSection() {
               </div>
 
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 
 function IconScatteredLeads() {
   return (
@@ -84,23 +85,23 @@ export function ProblemsSection() {
   ];
 
   return (
-    <section className="pt-16 pb-24 sm:pt-20 sm:pb-28 bg-white" id="problems">
+    <section className="py-20 sm:py-24 bg-white" id="problems">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-14">
+        <ScrollReveal className="text-center mb-14">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4 max-w-3xl mx-auto leading-tight">
             {t('problems.title')}
           </h2>
           <p className="text-base sm:text-lg text-[#69717D] max-w-2xl mx-auto leading-relaxed">
             {t('problems.subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {problems.map(({ Icon, title, description }, index) => (
+            <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
             <Link
-              key={index}
               to={`/problems/${problemSlugs[index]}`}
-              className="group flex flex-col p-6 sm:p-7 rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] transition-all duration-300 bg-white"
+              className="group flex flex-col p-6 sm:p-7 rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] transition-all duration-300 bg-white h-full"
             >
               <div className="w-12 h-12 bg-[#F4F2FF] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#6D5DF6] transition-colors duration-300 flex-shrink-0">
                 <div className="text-[#6D5DF6] group-hover:text-white transition-colors duration-300">
@@ -118,17 +119,18 @@ export function ProblemsSection() {
                 <ArrowRight size={11} />
               </div>
             </Link>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="text-center mt-10">
+        <ScrollReveal className="text-center mt-10">
           <Link
             to="/solutions/problems"
             className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#E5E5E5] text-[#69717D] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-all duration-200 text-sm font-medium"
           >
             {t('problems.cta')}
           </Link>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

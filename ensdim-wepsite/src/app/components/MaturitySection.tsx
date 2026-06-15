@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 
 /* ─── Custom ENSDIM icons for each maturity stage ─────────────────────────
    Build  → Layered foundation blocks with first signal rising
@@ -166,19 +167,19 @@ export function MaturitySection() {
   return (
     <section className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-14">
+        <ScrollReveal className="text-center mb-14">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-3">
             {t('maturity.title')}
           </h2>
           <p className="text-base sm:text-lg text-[#69717D] max-w-2xl mx-auto">
             {t('maturity.subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {stages.map((item, index) => (
+            <ScrollReveal key={index} delay={Math.min(index * 0.08, 0.16)}>
             <Link
-              key={index}
               to={item.href}
               className="group relative flex flex-col bg-white rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_20px_60px_rgba(109,93,246,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer"
             >
@@ -223,6 +224,7 @@ export function MaturitySection() {
                 </div>
               </div>
             </Link>
+            </ScrollReveal>
           ))}
         </div>
       </div>

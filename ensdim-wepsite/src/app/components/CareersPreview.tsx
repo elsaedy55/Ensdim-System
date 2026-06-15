@@ -22,12 +22,12 @@ export function CareersPreview() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white border-t border-[#E5E5E5]">
+    <section className="py-20 sm:py-24 bg-white border-t border-[#E5E5E5]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <ScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">
+              <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
                 {ar ? 'الوظائف' : 'Careers'}
               </h2>
               <p className="text-sm text-[#69717D] max-w-2xl">

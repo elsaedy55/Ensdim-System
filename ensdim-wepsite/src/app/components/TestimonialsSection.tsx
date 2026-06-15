@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowRight } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 const testimonialsEn = [
   {
@@ -98,16 +99,16 @@ export function TestimonialsSection() {
   const quadrupled = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="py-16 sm:py-20 bg-[#F4F2FF] overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#F4F2FF] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-10 sm:mb-12">
-        <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">
+        <ScrollReveal className="text-center">
+          <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {language === 'ar' ? 'ماذا يقول عملاؤنا' : 'What clients say'}
           </h2>
           <p className="text-sm sm:text-base text-[#69717D] max-w-xl mx-auto">
             {t('testimonials.subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
       </div>
 
       <div
@@ -131,7 +132,7 @@ export function TestimonialsSection() {
           {quadrupled.map((testimonial, index) => (
             <div
               key={index}
-              className="w-[320px] flex-shrink-0 bg-white rounded-2xl p-6 border border-[#E8E8E8] hover:border-[#6D5DF6]/40 hover:shadow-[0_8px_28px_rgba(109,93,246,0.09)] transition-all duration-300 flex flex-col"
+              className="w-[320px] flex-shrink-0 bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6]/40 hover:shadow-[0_8px_28px_rgba(109,93,246,0.09)] transition-all duration-300 flex flex-col"
             >
               <div className="flex-1 mb-4">
                 <p className="text-[#2a2d34] text-sm leading-[1.7]">

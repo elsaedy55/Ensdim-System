@@ -1,6 +1,7 @@
 import { Stethoscope, Building2, Briefcase, GraduationCap, HardHat, Sparkles } from 'lucide-react';
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 
 export function SectorsSection() {
   const { t, language } = useLanguage();
@@ -81,7 +82,7 @@ export function SectorsSection() {
   ];
 
   return (
-    <section className="py-12 sm:py-24 bg-[#101418] text-white">
+    <section className="py-16 sm:py-24 bg-[#101418] text-white">
       <style>{`
         @keyframes sector-icon-float {
           0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -105,8 +106,8 @@ export function SectorsSection() {
         }
       `}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-16">
-          <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-white">
+        <ScrollReveal className="text-center mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 text-white">
             {/* Mobile title */}
             <span className="sm:hidden">
               {ar ? 'أين تناسب أنظمتنا أكثر؟' : 'Where our systems fit best'}
@@ -126,15 +127,15 @@ export function SectorsSection() {
               {t('sectors.subtitle')}
             </span>
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Mobile: 6 sectors in 2 columns */}
         <div className="grid grid-cols-2 gap-3 sm:hidden">
           {mobileSectors.map((sector, index) => (
+            <ScrollReveal key={index} delay={Math.min(index * 0.05, 0.2)}>
             <Link
-              key={index}
               to={sector.caseStudy}
-              className="sector-card group relative p-4 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden"
+              className="sector-card group relative p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden block"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#6D5DF6]/0 via-[#6D5DF6]/0 to-[#6D5DF6]/0 group-hover:from-[#6D5DF6]/10 group-hover:via-[#6D5DF6]/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
 
@@ -150,16 +151,17 @@ export function SectorsSection() {
                 </p>
               </div>
             </Link>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Desktop: 5 sectors in 5 columns */}
         <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {desktopSectors.map((sector, index) => (
+            <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
             <Link
-              key={index}
               to={sector.caseStudy}
-              className="sector-card group relative p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden"
+              className="sector-card group relative p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden block"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#6D5DF6]/0 via-[#6D5DF6]/0 to-[#6D5DF6]/0 group-hover:from-[#6D5DF6]/10 group-hover:via-[#6D5DF6]/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
 
@@ -175,6 +177,7 @@ export function SectorsSection() {
                 </p>
               </div>
             </Link>
+            </ScrollReveal>
           ))}
         </div>
 

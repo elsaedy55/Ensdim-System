@@ -1,4 +1,5 @@
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 import {
   IconDiagnose,
   IconMap,
@@ -21,16 +22,16 @@ export function MethodologySection() {
   ];
 
   return (
-    <section className="py-24 bg-[#EEEAFE]">
+    <section className="py-20 sm:py-24 bg-[#EEEAFE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4">
             {t('methodology.title')}
           </h2>
           <p className="text-base sm:text-xl text-[#69717D] max-w-3xl mx-auto">
             {t('methodology.subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Desktop timeline */}
         <div className="hidden lg:block">
@@ -38,8 +39,8 @@ export function MethodologySection() {
             <div className="absolute top-[44px] left-[8.33%] right-[8.33%] h-px bg-gradient-to-r from-transparent via-[#6D5DF6]/30 to-transparent" />
             <div className="grid grid-cols-6 gap-3">
               {steps.map((step, index) => (
-                <div key={index} className="flex flex-col items-center text-center group">
-                  <div className="relative z-10 w-[88px] h-[88px] bg-white rounded-full border border-[#E8E8E8] group-hover:border-[#6D5DF6]/60 group-hover:shadow-[0_4px_20px_rgba(109,93,246,0.12)] flex items-center justify-center mb-4 transition-all duration-300">
+                <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.3)} className="flex flex-col items-center text-center group">
+                  <div className="relative z-10 w-[88px] h-[88px] bg-white rounded-full border border-[#E5E5E5] group-hover:border-[#6D5DF6]/60 group-hover:shadow-[0_4px_20px_rgba(109,93,246,0.12)] flex items-center justify-center mb-4 transition-all duration-300">
                     <step.Icon
                       size={30}
                       className="text-[#6D5DF6] group-hover:text-[#3B2A78] transition-colors duration-300"
@@ -50,7 +51,7 @@ export function MethodologySection() {
                   </div>
                   <h3 className="text-xs font-bold text-[#101418] mb-1 leading-snug">{step.title}</h3>
                   <p className="text-[11px] text-[#69717D] leading-relaxed">{step.description}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -59,7 +60,7 @@ export function MethodologySection() {
         {/* Mobile list */}
         <div className="lg:hidden space-y-0">
           {steps.map((step, index) => (
-            <div key={index} className="flex gap-4">
+            <ScrollReveal key={index} delay={Math.min(index * 0.05, 0.2)} className="flex gap-4">
               <div className="flex flex-col items-center flex-shrink-0">
                 <div className="w-12 h-12 bg-white rounded-full border border-[#6D5DF6]/25 flex items-center justify-center shadow-sm relative">
                   <step.Icon size={20} className="text-[#6D5DF6]" />
@@ -75,7 +76,7 @@ export function MethodologySection() {
                 <h3 className="text-sm font-bold text-[#101418] mb-1">{step.title}</h3>
                 <p className="text-sm text-[#69717D] leading-relaxed">{step.description}</p>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

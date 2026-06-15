@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowRight } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 function IconJourney() {
   return (
@@ -79,25 +80,25 @@ export function SolutionsSection() {
   ];
 
   return (
-    <section className="py-24 bg-[#EEEAFE]" id="solutions">
+    <section className="py-20 sm:py-24 bg-[#EEEAFE]" id="solutions">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4 max-w-3xl mx-auto leading-tight">
             {t('solutions.title')}
           </h2>
           <p className="text-base sm:text-lg text-[#69717D] max-w-2xl mx-auto">
             {t('solutions.subtitle')}
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {solutions.map((solution, index) => {
             const Icon = solutionIcons[index];
             return (
+              <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
               <Link
-                key={index}
                 to={`/solutions/${solutionSlugs[index]}`}
-                className="group bg-white rounded-2xl p-7 border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] transition-all duration-300 flex flex-col"
+                className="group bg-white rounded-2xl p-7 border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] transition-all duration-300 flex flex-col h-full"
               >
                 <div className="w-13 h-13 min-w-[52px] min-h-[52px] bg-[#F4F2FF] rounded-xl flex items-center justify-center mb-5 flex-shrink-0 group-hover:bg-[#6D5DF6]/15 transition-colors duration-300">
                   <div className="text-[#6D5DF6]"><Icon /></div>
@@ -118,6 +119,7 @@ export function SolutionsSection() {
                   {t(`solutions.solution${index + 1}CTA`) || 'Explore solution'} <ArrowRight size={13} />
                 </span>
               </Link>
+              </ScrollReveal>
             );
           })}
         </div>

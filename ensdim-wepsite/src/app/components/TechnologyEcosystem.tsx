@@ -1,4 +1,5 @@
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 
 interface TechPartner {
   name: string;
@@ -25,15 +26,15 @@ export function TechnologyEcosystem() {
   const quadrupled = [...techPartners, ...techPartners, ...techPartners, ...techPartners];
 
   return (
-    <section className="py-20 bg-white border-y border-[#EBEBEB] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 text-center">
-        <h2 className="text-2xl font-bold text-[#101418] mb-2">
+    <section className="py-20 sm:py-24 bg-white border-y border-[#EBEBEB] overflow-hidden">
+      <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">
           {t('technology.title')}
         </h2>
         <p className="text-sm text-[#69717D] max-w-xl mx-auto">
           {t('technology.description')}
         </p>
-      </div>
+      </ScrollReveal>
 
       <div className="relative">
         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />

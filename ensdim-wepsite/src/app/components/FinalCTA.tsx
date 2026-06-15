@@ -1,12 +1,13 @@
 import { Link } from 'react-router';
 import { ArrowRight, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 
 export function FinalCTA() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 bg-[#0c0a14] text-white relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#0c0a14] text-white relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#3B2A78] rounded-full blur-[100px] opacity-25" />
@@ -15,13 +16,13 @@ export function FinalCTA() {
       {/* Subtle top border accent */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#6D5DF6]/40 to-transparent" />
 
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <ScrollReveal className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#6D5DF6]/10 border border-[#6D5DF6]/25 rounded-full text-[#EEEAFE]/65 text-xs mb-7">
           <div className="w-1.5 h-1.5 bg-[#6D5DF6] rounded-full animate-pulse" />
           <span>{t('finalCTA.badge')}</span>
         </div>
 
-        <h2 className="text-2xl sm:text-[2rem] font-bold mb-4 leading-snug text-white">
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-snug text-white">
           {t('finalCTA.title')}
         </h2>
 
@@ -39,7 +40,7 @@ export function FinalCTA() {
             <MessageSquare size={14} />
           </Link>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

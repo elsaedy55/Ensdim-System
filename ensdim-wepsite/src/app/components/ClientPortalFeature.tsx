@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { Button } from './Button';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { ScrollReveal } from './ScrollReveal';
 import ensdimLogo from '../../imports/Asset_6__1_.png';
 import {
   IconProjectProgress,
@@ -22,10 +23,10 @@ export function ClientPortalFeature() {
   ];
 
   return (
-    <section id="client-portal" className="py-24 bg-white">
+    <section id="client-portal" className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">
+        <ScrollReveal className="mb-12">
+          <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {t('clientPortal.sectionLabel')}
           </h2>
           <p className="text-sm text-[#69717D] mb-3 max-w-2xl">
@@ -34,14 +35,15 @@ export function ClientPortalFeature() {
           <p className="text-sm text-[#69717D]/70 max-w-2xl">
             {t('clientPortal.description')}
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Features list */}
           <div className="space-y-3">
             {features.map((feature, index) => (
-              <div
+              <ScrollReveal
                 key={index}
+                delay={Math.min(index * 0.06, 0.24)}
                 className="flex gap-4 p-4 rounded-xl"
               >
                 <div className="flex-shrink-0 w-11 h-11 bg-[#EEEAFE] rounded-xl flex items-center justify-center">
@@ -58,12 +60,12 @@ export function ClientPortalFeature() {
                     {feature.description}
                   </p>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
           {/* Dashboard mockup */}
-          <div className="relative bg-gradient-to-br from-[#F4F2FF] via-[#EEEAFE]/60 to-white rounded-2xl border border-[#DDD8FB] p-5 sm:p-7 shadow-[0_8px_40px_rgba(109,93,246,0.08)]">
+          <ScrollReveal delay={0.15} className="relative bg-gradient-to-br from-[#F4F2FF] via-[#EEEAFE]/60 to-white rounded-2xl border border-[#DDD8FB] p-5 sm:p-7 shadow-[0_8px_40px_rgba(109,93,246,0.08)]">
             {/* Soft glow behind card */}
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#6D5DF6] rounded-full blur-[48px] opacity-10 pointer-events-none" />
 
@@ -168,7 +170,7 @@ export function ClientPortalFeature() {
                 </Link>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         <div className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
