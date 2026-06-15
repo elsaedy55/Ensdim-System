@@ -113,6 +113,7 @@ export function TestimonialsSection() {
 
       <div
         className="relative"
+        dir="ltr"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
@@ -127,11 +128,13 @@ export function TestimonialsSection() {
             animation: `testimonial-scroll 72s linear infinite`,
             animationPlayState: isPaused ? 'paused' : 'running',
             width: 'max-content',
+            direction: 'ltr',
           }}
         >
           {quadrupled.map((testimonial, index) => (
             <div
               key={index}
+              dir={language === 'ar' ? 'rtl' : 'ltr'}
               className="w-[320px] flex-shrink-0 bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6]/40 hover:shadow-[0_8px_28px_rgba(109,93,246,0.09)] transition-all duration-300 flex flex-col"
             >
               <div className="flex-1 mb-4">

@@ -10,6 +10,8 @@ interface DropdownItem {
   label: string;
   labelAr: string;
   href: string;
+  groupLabel?: string;
+  groupLabelAr?: string;
 }
 
 interface NavItem {
@@ -26,6 +28,9 @@ const navItems: NavItem[] = [
       { label: 'Build', labelAr: 'البناء', href: '/solutions/build' },
       { label: 'Start', labelAr: 'الانطلاق', href: '/solutions/start' },
       { label: 'Growth', labelAr: 'النمو', href: '/solutions/growth' },
+      { label: 'Clinics Workspace', labelAr: 'مساحة العمل للعيادات', href: '/products/clinics-workspace', groupLabel: 'Products', groupLabelAr: 'المنتجات' },
+      { label: 'Real Estate Flow', labelAr: 'نظام العقارات', href: '/products/real-estate-flow' },
+      { label: 'Operations Workspace', labelAr: 'مساحة التشغيل', href: '/products/operations-workspace' },
     ],
   },
   {
@@ -41,19 +46,10 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: 'Products', labelAr: 'المنتجات', href: '/products',
-    dropdown: [
-      { label: 'Clinics Workspace', labelAr: 'مساحة العمل للعيادات', href: '/products/clinics-workspace' },
-      { label: 'Real Estate Flow', labelAr: 'نظام العقارات', href: '/products/real-estate-flow' },
-      { label: 'Operations Workspace', labelAr: 'مساحة التشغيل', href: '/products/operations-workspace' },
-    ],
-  },
-  {
     label: 'Resources', labelAr: 'الموارد', href: '/resources',
     dropdown: [
       { label: 'Research', labelAr: 'الأبحاث', href: '/research' },
       { label: 'Case Studies', labelAr: 'دراسات الحالة', href: '/case-studies' },
-      { label: 'Careers', labelAr: 'الوظائف', href: '/careers' },
       { label: 'Blog', labelAr: 'المدونة', href: '/blog' },
     ],
   },
@@ -62,6 +58,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: 'About', labelAr: 'عن إنسديم', href: '/about' },
       { label: 'Team', labelAr: 'الفريق', href: '/team' },
+      { label: 'Careers', labelAr: 'الوظائف', href: '/careers' },
       { label: 'Contact', labelAr: 'تواصل معنا', href: '/contact' },
     ],
   },
@@ -181,14 +178,20 @@ export function Header() {
                     onMouseLeave={scheduleCloseDropdown}
                   >
                     {item.dropdown.map((sub) => (
-                      <Link
-                        key={sub.href}
-                        to={sub.href}
-                        onClick={closeAll}
-                        className="block px-4 py-2 text-sm text-[#101418] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/60 transition-colors"
-                      >
-                        {ar ? sub.labelAr : sub.label}
-                      </Link>
+                      <div key={sub.href}>
+                        {sub.groupLabel && (
+                          <div className="mt-1.5 pt-1.5 mx-4 border-t border-[#F0F0F0] pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#69717D]">
+                            {ar ? sub.groupLabelAr : sub.groupLabel}
+                          </div>
+                        )}
+                        <Link
+                          to={sub.href}
+                          onClick={closeAll}
+                          className="block px-4 py-2 text-sm text-[#101418] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/60 transition-colors"
+                        >
+                          {ar ? sub.labelAr : sub.label}
+                        </Link>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -300,14 +303,20 @@ export function Header() {
                   {item.dropdown && activeMobileAccordion === item.label && (
                     <div className="bg-[#FAFAFA] border-b border-[#F0F0F0]">
                       {item.dropdown.map((sub) => (
-                        <Link
-                          key={sub.href}
-                          to={sub.href}
-                          onClick={closeAll}
-                          className="block px-4 py-2.5 text-sm text-[#69717D] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/40 transition-colors"
-                        >
-                          {ar ? sub.labelAr : sub.label}
-                        </Link>
+                        <div key={sub.href}>
+                          {sub.groupLabel && (
+                            <div className="px-4 pt-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#69717D]/80 border-t border-[#F0F0F0] mt-1">
+                              {ar ? sub.groupLabelAr : sub.groupLabel}
+                            </div>
+                          )}
+                          <Link
+                            to={sub.href}
+                            onClick={closeAll}
+                            className="block px-4 py-2.5 text-sm text-[#69717D] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/40 transition-colors"
+                          >
+                            {ar ? sub.labelAr : sub.label}
+                          </Link>
+                        </div>
                       ))}
                     </div>
                   )}

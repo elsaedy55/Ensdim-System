@@ -12,13 +12,13 @@
   "categories": ["business", "productivity", "technology"],
   "icons": [
     {
-      "src": "/ensdim-logo.png",
+      "src": "/ensdim_icon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/ensdim-logo.png",
+      "src": "/ensdim_icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"

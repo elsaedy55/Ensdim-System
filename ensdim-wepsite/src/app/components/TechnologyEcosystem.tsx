@@ -36,7 +36,7 @@ export function TechnologyEcosystem() {
         </p>
       </ScrollReveal>
 
-      <div className="relative">
+      <div className="relative" dir="ltr">
         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
@@ -45,6 +45,7 @@ export function TechnologyEcosystem() {
           style={{
             animation: 'tech-scroll 60s linear infinite',
             width: 'max-content',
+            direction: 'ltr',
           }}
         >
           {quadrupled.map((partner, index) => (
