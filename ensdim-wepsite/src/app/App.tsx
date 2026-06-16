@@ -40,10 +40,15 @@ import { SaaSEgyptPage } from './pages/local/SaaSEgyptPage';
 import { SaaSSaudiPage } from './pages/local/SaaSSaudiPage';
 import { SaaSUAEPage } from './pages/local/SaaSUAEPage';
 
+const basename =
+  window.location.pathname === '/ar' || window.location.pathname.startsWith('/ar/')
+    ? '/ar'
+    : '/';
+
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <ScrollToTop />
         <Routes>
           <Route element={<Layout />}>

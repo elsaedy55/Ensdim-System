@@ -81,7 +81,7 @@ export function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
               <ScrollReveal key={i} delay={i * 0.06}>
-                <Link to={`/services/${s.slug}`} className="block border border-[#E5E5E5] rounded-2xl p-6 hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                <Link to={`/services/${s.slug}`} className="block border border-[#E5E5E5] rounded-2xl p-6 hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200 h-full flex-col">
                   <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold self-start mb-4">
                     {ar ? s.ar.outcome : s.en.outcome}
                   </span>

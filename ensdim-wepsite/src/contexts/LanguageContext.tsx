@@ -508,9 +508,21 @@ const translations: Record<Language, any> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+function isArabicPath(pathname: string): boolean {
+  return pathname === '/ar' || pathname.startsWith('/ar/');
+}
+
+function detectInitialLanguage(): Language {
+  return isArabicPath(window.location.pathname) ? 'ar' : 'en';
+}
+
+function detectInitialCountry(): string {
+  return localStorage.getItem('ensdim_country') || 'AE';
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
-  const [country, setCountryState] = useState<string>('AE');
+  const [language, setLanguageState] = useState<Language>(detectInitialLanguage);
+  const [country, setCountryState] = useState<string>(detectInitialCountry);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -518,11 +530,26 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [language]);
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
+    if (lang === language) return;
+
+    const path = window.location.pathname;
+    const isAr = isArabicPath(path);
+    let newPath: string;
+
+    if (lang === 'ar' && !isAr) {
+      newPath = path === '/' ? '/ar' : `/ar${path}`;
+    } else if (lang === 'en' && isAr) {
+      newPath = path === '/ar' ? '/' : path.slice('/ar'.length);
+    } else {
+      return;
+    }
+
+    window.location.href = `${newPath}${window.location.search}${window.location.hash}`;
   };
 
   const setCountry = (countryCode: string) => {
     setCountryState(countryCode);
+    localStorage.setItem('ensdim_country', countryCode);
   };
 
   const t = (key: string): string => {

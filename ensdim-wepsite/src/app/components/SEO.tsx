@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface SEOProps {
   title: string;
@@ -20,6 +21,11 @@ const SITE_NAME = 'ENSDIM';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 const TWITTER_HANDLE = '@ensdim';
 
+function buildUrl(prefix: string, path: string): string {
+  if (!path || path === '/') return `${SITE_URL}${prefix}/`;
+  return `${SITE_URL}${prefix}${path}`;
+}
+
 export function SEO({
   title,
   description,
@@ -30,12 +36,18 @@ export function SEO({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
   twitterCard = 'summary_large_image',
-  lang = 'en',
+  lang,
   noIndex = false,
   jsonLd,
 }: SEOProps) {
+  const { language } = useLanguage();
+  const resolvedLang = lang ?? language;
+  const path = canonical || '/';
+
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const resolvedCanonical = canonical ? `${SITE_URL}${canonical}` : undefined;
+  const resolvedCanonical = buildUrl(resolvedLang === 'ar' ? '/ar' : '', path);
+  const enUrl = buildUrl('', path);
+  const arUrl = buildUrl('/ar', path);
   const resolvedOgTitle = ogTitle || title;
   const resolvedOgDescription = ogDescription || description;
 
@@ -47,7 +59,7 @@ export function SEO({
 
   return (
     <Helmet>
-      <html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'} />
+      <html lang={resolvedLang} dir={resolvedLang === 'ar' ? 'rtl' : 'ltr'} />
 
       {/* Primary */}
       <title>{fullTitle}</title>
@@ -61,12 +73,12 @@ export function SEO({
             : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
         }
       />
-      {resolvedCanonical && <link rel="canonical" href={resolvedCanonical} />}
+      <link rel="canonical" href={resolvedCanonical} />
 
       {/* hreflang */}
-      <link rel="alternate" hreflang="en" href={resolvedCanonical || `${SITE_URL}/`} />
-      <link rel="alternate" hreflang="ar" href={resolvedCanonical || `${SITE_URL}/`} />
-      <link rel="alternate" hreflang="x-default" href={resolvedCanonical || `${SITE_URL}/`} />
+      <link rel="alternate" hreflang="en" href={enUrl} />
+      <link rel="alternate" hreflang="ar" href={arUrl} />
+      <link rel="alternate" hreflang="x-default" href={enUrl} />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
@@ -77,8 +89,8 @@ export function SEO({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={resolvedOgTitle} />
-      {resolvedCanonical && <meta property="og:url" content={resolvedCanonical} />}
-      <meta property="og:locale" content={lang === 'ar' ? 'ar_SA' : 'en_US'} />
+      <meta property="og:url" content={resolvedCanonical} />
+      <meta property="og:locale" content={resolvedLang === 'ar' ? 'ar_SA' : 'en_US'} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content={twitterCard} />

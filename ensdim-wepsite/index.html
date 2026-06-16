@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Early lang/dir detection for /ar/* routes (avoids RTL flash) -->
+    <script>
+      (function () {
+        if (location.pathname === '/ar' || location.pathname.indexOf('/ar/') === 0) {
+          document.documentElement.lang = 'ar';
+          document.documentElement.dir = 'rtl';
+        }
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>ENSDIM | AI Automation Agency - Egypt, Saudi Arabia, UAE</title>
     <meta name="title" content="ENSDIM | AI Automation Agency - Egypt, Saudi Arabia, UAE" />
