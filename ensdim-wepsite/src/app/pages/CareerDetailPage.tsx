@@ -388,7 +388,7 @@ export function CareerDetailPage() {
                   <h2 className="text-lg font-bold text-[#101418] mb-4">{section.title}</h2>
                   <ul className="space-y-2">
                     {section.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm text-[#69717D]">
+                      <li key={j} className="flex items-start gap-3 text-sm text-[#4F555E]">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#6D5DF6] mt-1.5 flex-shrink-0" />
                         {item}
                       </li>
@@ -400,7 +400,7 @@ export function CareerDetailPage() {
               <ScrollReveal delay={0.25}>
                 <div className="border border-[#E5E5E5] rounded-2xl p-6 bg-[#FAFAFA]">
                   <h2 className="text-base font-bold text-[#101418] mb-2">{ar ? 'كيف نعمل' : 'How we work'}</h2>
-                  <p className="text-sm text-[#69717D] leading-relaxed">
+                  <p className="text-sm text-[#4F555E] leading-relaxed">
                     {ar
                       ? 'نعمل عن بُعد بالكامل مع تواصل واضح ونتائج قابلة للقياس. نؤمن بالتعلم المستمر والتركيز على التأثير الحقيقي.'
                       : 'We work fully remote with clear communication and measurable outcomes. We believe in continuous learning and focusing on real impact.'}

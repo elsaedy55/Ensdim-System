@@ -28,7 +28,7 @@ export function MethodologySection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4">
             {t('methodology.title')}
           </h2>
-          <p className="text-base sm:text-xl text-[#69717D] max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-[#4F555E] max-w-3xl mx-auto">
             {t('methodology.subtitle')}
           </p>
         </ScrollReveal>
@@ -50,7 +50,7 @@ export function MethodologySection() {
                     </span>
                   </div>
                   <h3 className="text-xs font-bold text-[#101418] mb-1 leading-snug">{step.title}</h3>
-                  <p className="text-[11px] text-[#69717D] leading-relaxed">{step.description}</p>
+                  <p className="text-[11px] text-[#4F555E] leading-relaxed">{step.description}</p>
                 </ScrollReveal>
               ))}
             </div>
@@ -74,7 +74,7 @@ export function MethodologySection() {
               </div>
               <div className="pb-7 pt-1">
                 <h3 className="text-sm font-bold text-[#101418] mb-1">{step.title}</h3>
-                <p className="text-sm text-[#69717D] leading-relaxed">{step.description}</p>
+                <p className="text-sm text-[#4F555E] leading-relaxed">{step.description}</p>
               </div>
             </ScrollReveal>
           ))}

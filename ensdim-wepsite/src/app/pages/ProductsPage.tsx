@@ -91,12 +91,15 @@ export function ProductsPage() {
           <div className="space-y-6">
             {products.map((p, i) => (
               <ScrollReveal key={p.slug} delay={i * 0.08}>
-                <div className="border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200">
+                <Link
+                  to={`/products/${p.slug}`}
+                  className="group block border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-200"
+                >
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
                     <div className="flex-1">
-                      <p className="text-xs text-[#69717D] mb-1">{ar ? p.ar.for : p.en.for}</p>
+                      <p className="text-xs text-[#4F555E] mb-1">{ar ? p.ar.for : p.en.for}</p>
                       <h3 className="text-xl font-bold text-[#101418] mb-3">{ar ? p.ar.title : p.en.title}</h3>
-                      <p className="text-sm text-[#69717D] leading-relaxed mb-4">{ar ? p.ar.desc : p.en.desc}</p>
+                      <p className="text-sm text-[#4F555E] leading-relaxed mb-4">{ar ? p.ar.desc : p.en.desc}</p>
                       <div className="flex flex-wrap gap-2">
                         {(ar ? p.ar.outcomes : p.en.outcomes).map((o, j) => (
                           <span key={j} className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold">
@@ -105,21 +108,18 @@ export function ProductsPage() {
                         ))}
                       </div>
                     </div>
-                    <Link
-                      to={`/products/${p.slug}`}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl hover:bg-[#1a1d24] transition-colors text-sm font-semibold self-start whitespace-nowrap"
-                    >
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl group-hover:bg-[#1a1d24] transition-colors text-sm font-semibold self-start whitespace-nowrap">
                       {ar ? 'عرض المنتج' : 'View Product'}
                       <ArrowRight size={14} />
-                    </Link>
+                    </span>
                   </div>
-                </div>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
 
           <ScrollReveal delay={0.3} className="mt-10 p-6 bg-[#FAFAFA] border border-[#E5E5E5] rounded-2xl text-center">
-            <p className="text-sm text-[#69717D] mb-3">
+            <p className="text-sm text-[#4F555E] mb-3">
               {ar
                 ? 'هذه المنتجات قابلة للتكيف وتُبنى خصيصاً لعملك. إنها نقطة انطلاق، وليست قيداً.'
                 : 'These are adaptable systems built for your business — a starting point, not a limitation.'}

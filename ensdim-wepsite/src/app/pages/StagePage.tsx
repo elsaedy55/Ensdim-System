@@ -133,14 +133,14 @@ export function StagePage({ stage }: StagePageProps) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
           <ScrollReveal>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'لمن هذا؟' : 'Who this is for'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed">{d.whoFor}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{d.whoFor}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
             <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'مشكلات شائعة' : 'Common problems'}</h2>
             <ul className="space-y-2">
               {d.problems.map((p, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-[#69717D]">
+                <li key={i} className="flex items-start gap-3 text-sm text-[#4F555E]">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D63A3A] mt-1.5 flex-shrink-0" />
                   {p}
                 </li>
@@ -187,7 +187,7 @@ export function StagePage({ stage }: StagePageProps) {
               <h2 className="text-xl font-bold text-white mb-3">
                 {ar ? 'جاهز للبدء؟' : 'Ready to get started?'}
               </h2>
-              <p className="text-[#EEEAFE]/60 text-sm mb-5">
+              <p className="text-[#EEEAFE]/75 text-sm mb-5">
                 {ar ? 'دعنا نفهم وضعك الحالي ونقترح المسار الصحيح.' : 'Let us understand where you are and suggest the right path forward.'}
               </p>
               <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">

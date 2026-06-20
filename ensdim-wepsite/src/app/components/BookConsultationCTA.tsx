@@ -39,7 +39,7 @@ export function BookConsultationCTA({ variant = 'default', message, messageAr }:
   if (variant === 'inline') {
     return (
       <div className="flex items-center justify-center gap-3 flex-wrap">
-        <p className="text-sm text-[#69717D] font-medium">
+        <p className="text-sm text-[#4F555E] font-medium">
           {message || messageAr || defaultMessage}
         </p>
         <Link
@@ -67,7 +67,7 @@ export function BookConsultationCTA({ variant = 'default', message, messageAr }:
             : "Let's analyze your operations and suggest the right solution"
           )}
         </h3>
-        <p className="text-sm text-[#69717D] mb-6 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto leading-relaxed">
           {ar
             ? 'احجز استشارة مجانية مدتها 30 دقيقة لمناقشة التحديات التي تواجهها والحلول المتاحة.'
             : 'Book a free 30-minute consultation to discuss your challenges and available solutions.'}

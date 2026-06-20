@@ -117,7 +117,7 @@ export function SectorsSection() {
               {t('sectors.title')}
             </span>
           </h2>
-          <p className="text-sm sm:text-xl text-[#EEEAFE]/70 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-xl text-[#EEEAFE]/85 max-w-3xl mx-auto">
             {/* Mobile subtitle */}
             <span className="sm:hidden">
               {ar ? 'للأعمال التي يؤثر فيها تنظيم تجربة العميل، المتابعة، الطلبات، والتشغيل اليومي على النمو مباشرة.' : 'For businesses where customer experience, follow-up, requests, and daily operations directly affect growth.'}
@@ -146,7 +146,7 @@ export function SectorsSection() {
                 <h3 className="text-xs font-semibold mb-1.5 text-white leading-snug group-hover:text-[#6D5DF6] transition-colors duration-300">
                   {sector.title}
                 </h3>
-                <p className="text-[10px] text-[#EEEAFE]/55 group-hover:text-[#EEEAFE]/75 leading-relaxed transition-colors duration-300">
+                <p className="text-[10px] text-[#EEEAFE]/70 group-hover:text-[#EEEAFE]/90 leading-relaxed transition-colors duration-300">
                   {sector.description}
                 </p>
               </div>
@@ -172,7 +172,7 @@ export function SectorsSection() {
                 <h3 className="text-sm font-semibold mb-2 text-white leading-snug group-hover:text-[#6D5DF6] transition-colors duration-300">
                   {sector.title}
                 </h3>
-                <p className="text-xs text-[#EEEAFE]/55 group-hover:text-[#EEEAFE]/75 leading-relaxed transition-colors duration-300">
+                <p className="text-xs text-[#EEEAFE]/70 group-hover:text-[#EEEAFE]/90 leading-relaxed transition-colors duration-300">
                   {sector.description}
                 </p>
               </div>
@@ -183,13 +183,13 @@ export function SectorsSection() {
 
         {/* Mobile note */}
         <div className="sm:hidden mt-6 text-center">
-          <p className="text-[10px] text-[#EEEAFE]/40 leading-relaxed px-4">
+          <p className="text-[10px] text-[#EEEAFE]/55 leading-relaxed px-4">
             {ar ? 'مناسبة أيضًا لـ: الضيافة، مراكز صيانة السيارات، اللوجستيات، ومكاتب الاستشارات.' : 'Also suitable for: Hospitality, Automotive Service Centers, Logistics, Consulting Firms.'}
           </p>
         </div>
 
         <div className="text-center mt-8 sm:mt-12">
-          <p className="text-[#EEEAFE]/50 text-xs sm:text-sm mb-2">
+          <p className="text-[#EEEAFE]/65 text-xs sm:text-sm mb-2">
             {t('sectors.question')}
           </p>
           <Link to="/book-consultation" className="text-sm sm:text-base text-[#6D5DF6] hover:text-[#8B7BF7] transition-colors font-medium">

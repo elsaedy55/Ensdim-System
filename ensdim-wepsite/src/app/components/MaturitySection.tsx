@@ -171,7 +171,7 @@ export function MaturitySection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-3">
             {t('maturity.title')}
           </h2>
-          <p className="text-base sm:text-lg text-[#69717D] max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-[#4F555E] max-w-2xl mx-auto">
             {t('maturity.subtitle')}
           </p>
         </ScrollReveal>
@@ -201,12 +201,12 @@ export function MaturitySection() {
                 <h3 className="text-xl font-bold text-[#101418] mb-3 leading-snug group-hover:text-[#6D5DF6] transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[#69717D] mb-5 leading-relaxed">
+                <p className="text-sm text-[#4F555E] mb-5 leading-relaxed">
                   {item.description}
                 </p>
 
                 <div className="mb-6 flex-1">
-                  <p className="text-[10px] font-semibold text-[#69717D] uppercase tracking-wider mb-3">
+                  <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-3">
                     {t('maturity.bestFor')}
                   </p>
                   <div className="space-y-2.5">
@@ -219,7 +219,7 @@ export function MaturitySection() {
                   </div>
                 </div>
 
-                <div className="w-full mt-auto inline-flex items-center justify-center gap-2 px-4 py-3 border border-[#E5E5E5] text-[#69717D] rounded-xl group-hover:border-[#6D5DF6] group-hover:text-white group-hover:bg-[#6D5DF6] group-hover:shadow-lg group-hover:shadow-[#6D5DF6]/25 transition-all duration-300 text-sm font-semibold">
+                <div className="w-full mt-auto inline-flex items-center justify-center gap-2 px-4 py-3 border border-[#E5E5E5] text-[#4F555E] rounded-xl group-hover:border-[#6D5DF6] group-hover:text-white group-hover:bg-[#6D5DF6] group-hover:shadow-lg group-hover:shadow-[#6D5DF6]/25 transition-all duration-300 text-sm font-semibold">
                   {item.cta}
                 </div>
               </div>

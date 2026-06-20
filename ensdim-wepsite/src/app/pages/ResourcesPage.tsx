@@ -47,7 +47,7 @@ export function ResourcesPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#101418] mb-2">{ar ? 'الأبحاث' : 'Research'}</h3>
-                <p className="text-sm text-[#69717D] leading-relaxed flex-1 mb-6">
+                <p className="text-sm text-[#4F555E] leading-relaxed flex-1 mb-6">
                   {ar ? 'رؤى وتحليلات عملية حول كيفية تحسين التحويل وسلوك العملاء.' : 'Practical insights and analysis on improving conversion and customer behavior.'}
                 </p>
                 <Link
@@ -71,7 +71,7 @@ export function ResourcesPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#101418] mb-2">{ar ? 'دراسات الحالة' : 'Case Studies'}</h3>
-                <p className="text-sm text-[#69717D] leading-relaxed flex-1 mb-6">
+                <p className="text-sm text-[#4F555E] leading-relaxed flex-1 mb-6">
                   {ar ? 'أمثلة حقيقية لكيف تحسّن الأنظمة أداء الأعمال.' : 'Real examples of how better systems improve business performance.'}
                 </p>
                 <Link

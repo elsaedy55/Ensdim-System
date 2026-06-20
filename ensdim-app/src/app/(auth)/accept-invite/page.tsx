@@ -13,17 +13,17 @@ import { FormField } from "@/components/ui/form-field";
 import { ROUTES } from "@/constants/routes";
 import { createClient } from "@/lib/supabase/client";
 
-type PageState = "loading" | "ready" | "success" | "error";
+type PageState = "loading" | "ready" | "success" | "error" | "declined";
 
 export default function AcceptInvitePage() {
   const tv     = useTranslations("common.validation");
   const ta     = useTranslations("common.actions");
   const router = useRouter();
 
-  const [pageState, setPageState]  = React.useState<PageState>("loading");
-  const [errorMsg, setErrorMsg]    = React.useState<string | null>(null);
-  const [showPwd, setShowPwd]      = React.useState(false);
-  const [debugInfo, setDebugInfo]  = React.useState<string>("");
+  const [pageState, setPageState]   = React.useState<PageState>("loading");
+  const [errorMsg, setErrorMsg]     = React.useState<string | null>(null);
+  const [showPwd, setShowPwd]       = React.useState(false);
+  const [declining, setDeclining]   = React.useState(false);
 
   // ── Verify invitation on mount ────────────────────────────────────
   React.useEffect(() => {
@@ -38,14 +38,6 @@ export default function AcceptInvitePage() {
       const refreshToken = hash.get("refresh_token");
       const errorParam   = search.get("error") || hash.get("error");
       const errorDesc    = search.get("error_description") || hash.get("error_description");
-
-      // Debug info (visible in UI temporarily)
-      setDebugInfo(
-        `URL: ${window.location.href.slice(0, 80)}\n` +
-        `code: ${code ? "✓ found" : "✗ missing"}\n` +
-        `access_token: ${accessToken ? "✓ found" : "✗ missing"}\n` +
-        `error: ${errorParam ?? "none"}`
-      );
 
       // 0. Supabase returned an error
       if (errorParam) {
@@ -84,12 +76,7 @@ export default function AcceptInvitePage() {
       if (session?.user) { setPageState("ready"); return; }
 
       // 4. Nothing worked — bad link
-      setErrorMsg(
-        "The invitation link is invalid or has already been used.\n\n" +
-        "Make sure you:\n" +
-        "• Added http://localhost:3000/accept-invite to Supabase → Authentication → URL Configuration → Redirect URLs\n" +
-        "• Are clicking the latest invitation email (old links expire)"
-      );
+      setErrorMsg("The invitation link is invalid or has already been used.");
       setPageState("error");
     };
 
@@ -125,20 +112,35 @@ export default function AcceptInvitePage() {
     }, 1500);
   };
 
+  const onDecline = async () => {
+    setDeclining(true);
+    const supabase = createClient();
+    const { data: { session } } = await supabase.auth.getSession();
+    try {
+      const res = await fetch("/api/invite/decline", {
+        method:  "POST",
+        headers: { Authorization: `Bearer ${session?.access_token ?? ""}` },
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error);
+      await supabase.auth.signOut();
+      setPageState("declined");
+    } catch (err: unknown) {
+      setSubmitError(err instanceof Error ? err.message : "Failed to decline invitation");
+    } finally {
+      setDeclining(false);
+    }
+  };
+
   // ── Loading ───────────────────────────────────────────────────────
   if (pageState === "loading") {
     return (
-      <div className="w-full max-w-sm space-y-3">
+      <div className="w-full max-w-sm">
         <div className="surface p-10 shadow-(--shadow-md) text-center">
           <Loader2 className="h-10 w-10 text-(--accent) animate-spin mx-auto mb-4" />
           <h2 className="text-lg font-bold text-(--text-primary)">Verifying invitation…</h2>
           <p className="mt-2 text-sm text-(--text-muted)">Please wait a moment.</p>
         </div>
-        {debugInfo && (
-          <pre className="surface p-4 text-[10px] text-(--text-muted) whitespace-pre-wrap leading-relaxed">
-            {debugInfo}
-          </pre>
-        )}
       </div>
     );
   }
@@ -146,7 +148,7 @@ export default function AcceptInvitePage() {
   // ── Error ─────────────────────────────────────────────────────────
   if (pageState === "error") {
     return (
-      <div className="w-full max-w-sm space-y-3">
+      <div className="w-full max-w-sm">
         <div className="surface p-8 shadow-(--shadow-md) text-center">
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-(--danger-subtle)">
             <AlertCircle className="h-7 w-7 text-(--danger)" />
@@ -154,11 +156,21 @@ export default function AcceptInvitePage() {
           <h2 className="text-lg font-bold text-(--text-primary)">Invitation failed</h2>
           <p className="mt-2 text-sm text-(--text-muted) whitespace-pre-line">{errorMsg}</p>
         </div>
-        {debugInfo && (
-          <pre className="surface p-4 text-[10px] text-(--text-muted) whitespace-pre-wrap leading-relaxed">
-            {debugInfo}
-          </pre>
-        )}
+      </div>
+    );
+  }
+
+  // ── Declined ──────────────────────────────────────────────────────
+  if (pageState === "declined") {
+    return (
+      <div className="w-full max-w-sm">
+        <div className="surface p-8 shadow-(--shadow-md) text-center">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-(--bg-muted)">
+            <CheckCircle className="h-7 w-7 text-(--text-muted)" />
+          </div>
+          <h2 className="text-lg font-bold text-(--text-primary)">Invitation declined</h2>
+          <p className="mt-2 text-sm text-(--text-muted)">You can close this page now.</p>
+        </div>
       </div>
     );
   }
@@ -234,6 +246,15 @@ export default function AcceptInvitePage() {
 
           <Button type="submit" className="w-full mt-2" loading={isSubmitting} size="lg">
             Set Password &amp; Sign In
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            className="w-full"
+            loading={declining}
+            onClick={onDecline}
+          >
+            Decline invitation
           </Button>
         </form>
       </div>

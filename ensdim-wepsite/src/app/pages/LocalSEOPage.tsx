@@ -114,7 +114,7 @@ export function LocalSEOPage({ config }: { config: LocalPageConfig }) {
             <h2 className="text-2xl font-bold text-[#101418] mb-2">
               {config.service} Services in {config.country}
             </h2>
-            <p className="text-sm text-[#69717D] mb-8 max-w-2xl">
+            <p className="text-sm text-[#4F555E] mb-8 max-w-2xl">
               Built around how {config.country} businesses operate — bilingual, market-aware, and results-focused.
             </p>
           </ScrollReveal>
@@ -123,7 +123,7 @@ export function LocalSEOPage({ config }: { config: LocalPageConfig }) {
               <ScrollReveal key={i} delay={i * 0.06}>
                 <div className="bg-white rounded-xl border border-[#E5E5E5] p-5">
                   <h3 className="text-base font-bold text-[#101418] mb-2">{s.title}</h3>
-                  <p className="text-sm text-[#69717D] leading-relaxed">{s.desc}</p>
+                  <p className="text-sm text-[#4F555E] leading-relaxed">{s.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -144,21 +144,21 @@ export function LocalSEOPage({ config }: { config: LocalPageConfig }) {
               <MapPin size={16} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[#101418] mb-0.5">Location</p>
-                <p className="text-xs text-[#69717D]">{config.geoPlacename}, {config.country}</p>
+                <p className="text-xs text-[#4F555E]">{config.geoPlacename}, {config.country}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <Mail size={16} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[#101418] mb-0.5">Email</p>
-                <p className="text-xs text-[#69717D]">hello@ensdim.com</p>
+                <p className="text-xs text-[#4F555E]">hello@ensdim.com</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <Phone size={16} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs font-semibold text-[#101418] mb-0.5">Languages</p>
-                <p className="text-xs text-[#69717D]">English & Arabic</p>
+                <p className="text-xs text-[#4F555E]">English & Arabic</p>
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@ export function LocalSEOPage({ config }: { config: LocalPageConfig }) {
           <h2 className="text-2xl font-bold mb-3">
             Ready to start your {config.service} project in {config.country}?
           </h2>
-          <p className="text-sm text-[#EEEAFE]/60 mb-6 max-w-xl mx-auto">
+          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
             Book a free consultation. We&apos;ll understand your business first, then build the right system around it.
           </p>
           <div className="flex flex-wrap justify-center gap-3">

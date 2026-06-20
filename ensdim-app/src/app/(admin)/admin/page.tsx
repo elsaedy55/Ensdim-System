@@ -12,14 +12,14 @@ import { SkeletonKPICard } from "@/components/ui/skeleton";
 import { ROUTES } from "@/constants/routes";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { Folder, Users, DollarSign, AlertTriangle, MessageSquare, Plus, UserPlus } from "lucide-react";
-import { useAdminKPIs, useAdminProjects } from "@/hooks/useAdmin";
+import { useAdminKPIs, useAdminRecentProjects } from "@/hooks/useAdmin";
 import { useNotifications } from "@/hooks/useNotifications";
 
 export default function AdminOverviewPage() {
   const t = useTranslations("admin.overview");
 
   const { data: kpis,     isLoading: kpisLoading }     = useAdminKPIs();
-  const { data: projects, isLoading: projectsLoading } = useAdminProjects();
+  const { data: projects, isLoading: projectsLoading } = useAdminRecentProjects(8);
   const { data: notifs }                               = useNotifications();
 
   const recentActivity = (notifs ?? []).slice(0, 6).map((n) => ({

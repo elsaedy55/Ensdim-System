@@ -92,7 +92,7 @@ export function TermsPage() {
             {sections.map((section, i) => (
               <div key={i} className="pb-8 border-b border-[#E5E5E5] last:border-0">
                 <h2 className="text-lg font-bold text-[#101418] mb-3">{section.title}</h2>
-                <p className="text-[#69717D] leading-relaxed">{section.content}</p>
+                <p className="text-[#4F555E] leading-relaxed">{section.content}</p>
               </div>
             ))}
           </div>

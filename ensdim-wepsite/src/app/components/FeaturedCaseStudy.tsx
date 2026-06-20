@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
@@ -8,6 +8,7 @@ import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
 export function FeaturedCaseStudy() {
   const { t, language } = useLanguage();
   const ar = language === 'ar';
+  const navigate = useNavigate();
 
   const [study, setStudy]     = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
@@ -33,11 +34,14 @@ export function FeaturedCaseStudy() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {t('caseStudy.sectionTitle')}
           </h2>
-          <p className="text-sm text-[#69717D]">{t('caseStudy.sectionSubtitle')}</p>
+          <p className="text-sm text-[#4F555E]">{t('caseStudy.sectionSubtitle')}</p>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-        <div className="bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:border-[#6D5DF6] hover:shadow-2xl transition-all duration-300">
+        <div
+          onClick={() => study && navigate(`/case-studies/${study.slug}`)}
+          className={`group bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:border-[#6D5DF6] hover:shadow-2xl active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-300 ${study ? 'cursor-pointer' : ''}`}
+        >
           <div className="grid md:grid-cols-2">
             {/* Left: content */}
             <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
@@ -60,25 +64,25 @@ export function FeaturedCaseStudy() {
                     {ar ? study.title_ar : study.title_en}
                   </h3>
 
-                  <p className="text-[#69717D] text-sm leading-relaxed mb-6">
+                  <p className="text-[#4F555E] text-sm leading-relaxed mb-6">
                     {ar ? study.outcome_ar : study.outcome_en}
                   </p>
 
                   <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-[#E5E5E5]">
                     <div>
-                      <p className="text-[10px] text-[#69717D] mb-1 uppercase tracking-wide">
+                      <p className="text-[10px] text-[#4F555E] mb-1 uppercase tracking-wide">
                         {t('caseStudy.problemLabel')}
                       </p>
                       <p className="text-sm text-[#101418] font-semibold">{ar ? study.card_problem_ar : study.card_problem_en}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#69717D] mb-1 uppercase tracking-wide">
+                      <p className="text-[10px] text-[#4F555E] mb-1 uppercase tracking-wide">
                         {t('caseStudy.solutionLabel')}
                       </p>
                       <p className="text-sm text-[#101418] font-semibold">{ar ? study.card_solution_ar : study.card_solution_en}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-[#69717D] mb-1 uppercase tracking-wide">
+                      <p className="text-[10px] text-[#4F555E] mb-1 uppercase tracking-wide">
                         {t('caseStudy.impactLabel')}
                       </p>
                       <p className="text-sm text-[#101418] font-semibold">{ar ? study.card_impact_ar : study.card_impact_en}</p>
@@ -86,11 +90,15 @@ export function FeaturedCaseStudy() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Link to={`/case-studies/${study.slug}`} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors text-sm font-medium">
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl group-hover:border-[#6D5DF6] group-hover:text-[#6D5DF6] transition-colors text-sm font-medium">
                       {t('caseStudy.cta')}
                       <ArrowRight size={16} />
-                    </Link>
-                    <Link to="/case-studies" className="text-[#6D5DF6] text-sm hover:underline self-center">
+                    </span>
+                    <Link
+                      to="/case-studies"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#6D5DF6] text-sm hover:underline self-center"
+                    >
                       {t('caseStudy.ctaAll')}
                     </Link>
                   </div>

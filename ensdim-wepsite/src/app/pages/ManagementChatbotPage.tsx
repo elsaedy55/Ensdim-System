@@ -53,7 +53,7 @@ export function ManagementChatbotPage() {
           <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-6">
             {ar ? 'ما الذي يفعله' : 'What it does'}
           </h2>
-          <p className="text-[#69717D] text-lg leading-relaxed max-w-3xl">
+          <p className="text-[#4F555E] text-lg leading-relaxed max-w-3xl">
             {ar
               ? 'تشات بوت إدارة البيانات هو مساعد ذكي يمكنه الوصول إلى بيانات شركتك والإجابة على أسئلة إدارية بوقت فعلي. يعمل من خلال واتساب — لا تطبيقات إضافية، لا لوحات تحكم معقدة، فقط اسأل وتحصل على الإجابة.'
               : 'The Management Data Chatbot is an intelligent assistant that can access your company data and answer management questions in real time. It works through WhatsApp — no extra apps, no complex dashboards, just ask and get the answer.'}
@@ -75,7 +75,7 @@ export function ManagementChatbotPage() {
               </div>
               <div>
                 <p className="text-white text-sm font-medium">ENSDIM Management Bot</p>
-                <p className="text-[#EEEAFE]/40 text-xs">{ar ? 'متصل ببيانات الشركة' : 'Connected to company data'}</p>
+                <p className="text-[#EEEAFE]/55 text-xs">{ar ? 'متصل ببيانات الشركة' : 'Connected to company data'}</p>
               </div>
             </div>
             <div className="p-6 space-y-3">
@@ -121,7 +121,7 @@ export function ManagementChatbotPage() {
               return (
                 <div key={i} className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/10">
                   <Icon size={18} className="text-[#6D5DF6] flex-shrink-0" />
-                  <span className="text-[#EEEAFE]/80 text-sm">{benefit}</span>
+                  <span className="text-[#EEEAFE]/90 text-sm">{benefit}</span>
                 </div>
               );
             })}
@@ -140,7 +140,7 @@ export function ManagementChatbotPage() {
               <h2 className="text-xl font-bold text-[#101418] mb-3">
                 {ar ? 'الأمان والتحكم في الوصول' : 'Security and access control'}
               </h2>
-              <p className="text-[#69717D] leading-relaxed">
+              <p className="text-[#4F555E] leading-relaxed">
                 {ar
                   ? 'يمكن ربط التشات بوت بأرقام واتساب محددة فقط وتحديد ما يمكنه الوصول إليه. لا يُشارك أي بيانات خارج الأشخاص المخولين. يتم تسجيل كل سؤال وإجابة للمراجعة.'
                   : 'The chatbot can be connected to specific WhatsApp numbers only and configured to access only what is relevant. No data is shared outside of authorized users. Every question and answer is logged for review.'}
@@ -156,7 +156,7 @@ export function ManagementChatbotPage() {
           <h2 className="text-2xl font-bold text-[#101418] mb-4">
             {ar ? 'هل تريد أن تسأل بياناتك؟' : 'Want to start asking your data?'}
           </h2>
-          <p className="text-[#69717D] mb-6">
+          <p className="text-[#4F555E] mb-6">
             {ar
               ? 'تحدث مع إنسديم لنرى كيف يمكن ربط التشات بوت ببيانات شركتك.'
               : 'Talk to ENSDIM and see how we can connect the chatbot to your company data.'}

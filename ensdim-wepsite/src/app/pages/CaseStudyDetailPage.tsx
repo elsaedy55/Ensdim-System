@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
@@ -16,11 +16,13 @@ export function CaseStudyDetailPage() {
   const [study, setStudy]       = useState<CaseStudy | null>(null);
   const [loading, setLoading]   = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [mediaIndex, setMediaIndex] = useState(0);
 
   useEffect(() => {
     if (!slug) return;
     setLoading(true);
     setNotFound(false);
+    setMediaIndex(0);
     getCaseStudyBySlug(slug)
       .then((data) => {
         if (!data) {
@@ -71,6 +73,7 @@ export function CaseStudyDetailPage() {
   const outcomes      = ar ? study.outcomes_ar : study.outcomes_en;
   const solutionTitle = ar ? study.solution_title_ar : study.solution_title_en;
   const problemTitle  = ar ? study.problem_page_title_ar : study.problem_page_title_en;
+  const mediaItems    = [study.image_url, ...(study.gallery_images || [])].filter((src): src is string => Boolean(src));
 
   return (
     <>
@@ -94,13 +97,46 @@ export function CaseStudyDetailPage() {
         lang={ar ? 'ar' : 'en'}
       />
 
-      {study.image_url && (
+      {mediaItems.length > 0 && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 relative z-10">
-          <img
-            src={study.image_url}
-            alt={title}
-            className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl border border-[#E5E5E5]"
-          />
+          <div className="relative group">
+            <img
+              src={mediaItems[mediaIndex]}
+              alt={`${title} - ${mediaIndex + 1}`}
+              className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl border border-[#E5E5E5]"
+            />
+            {mediaItems.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setMediaIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length)}
+                  aria-label={ar ? 'الصورة السابقة' : 'Previous image'}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <ArrowLeft size={16} className="no-mirror" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMediaIndex((i) => (i + 1) % mediaItems.length)}
+                  aria-label={ar ? 'الصورة التالية' : 'Next image'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <ArrowRight size={16} className="no-mirror" />
+                </button>
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+                  {mediaItems.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setMediaIndex(i)}
+                      aria-label={`${ar ? 'الصورة' : 'Image'} ${i + 1}`}
+                      className={`w-1.5 h-1.5 rounded-full transition-all ${i === mediaIndex ? 'bg-white w-4' : 'bg-white/50'}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       )}
 
@@ -108,19 +144,19 @@ export function CaseStudyDetailPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
           <ScrollReveal>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'الوضع' : 'Situation'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed">{situation}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{situation}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'المشكلة' : 'Problem'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed">{problem}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{problem}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
             <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'ماذا بنت إنسديم' : 'What ENSDIM built'}</h2>
             <ul className="space-y-2">
               {built.map((b, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-[#69717D]">
+                <li key={i} className="flex items-center gap-3 text-sm text-[#4F555E]">
                   <div className="w-2 h-2 rounded-full bg-[#6D5DF6] flex-shrink-0" />
                   {b}
                 </li>
@@ -152,30 +188,12 @@ export function CaseStudyDetailPage() {
             </ScrollReveal>
           )}
 
-          {study.gallery_images && study.gallery_images.length > 0 && (
-            <ScrollReveal delay={0.19}>
-              <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'معرض الصور' : 'Gallery'}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {study.gallery_images.map((src, i) => (
-                  <div key={i} className="aspect-[4/3] rounded-2xl border border-[#E5E5E5] overflow-hidden">
-                    <img
-                      src={src}
-                      alt={`${title} - ${i + 1}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          )}
-
           {(study.solution_slug || study.problem_page_slug) && (
             <ScrollReveal delay={0.2}>
               <div className="grid sm:grid-cols-2 gap-4">
                 {study.solution_slug && (
                   <div className="p-5 border border-[#E5E5E5] rounded-2xl">
-                    <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'الحل المرتبط' : 'Related solution'}</p>
+                    <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'الحل المرتبط' : 'Related solution'}</p>
                     <p className="text-sm font-bold text-[#101418] mb-3">{solutionTitle}</p>
                     <Link to={`/solutions/${study.solution_slug}`} className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] hover:underline">
                       {ar ? 'استكشف الحل' : 'Explore solution'} <ArrowRight size={13} />
@@ -184,7 +202,7 @@ export function CaseStudyDetailPage() {
                 )}
                 {study.problem_page_slug && (
                   <div className="p-5 border border-[#E5E5E5] rounded-2xl">
-                    <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'المشكلة المرتبطة' : 'Related problem'}</p>
+                    <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'المشكلة المرتبطة' : 'Related problem'}</p>
                     <p className="text-sm font-bold text-[#101418] mb-3">{problemTitle}</p>
                     <Link to={`/problems/${study.problem_page_slug}`} className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] hover:underline">
                       {ar ? 'اعرف المشكلة' : 'Explore problem'} <ArrowRight size={13} />

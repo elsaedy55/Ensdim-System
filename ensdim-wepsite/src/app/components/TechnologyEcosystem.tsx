@@ -31,7 +31,7 @@ export function TechnologyEcosystem() {
         <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">
           {t('technology.title')}
         </h2>
-        <p className="text-sm text-[#69717D] max-w-xl mx-auto">
+        <p className="text-sm text-[#4F555E] max-w-xl mx-auto">
           {t('technology.description')}
         </p>
       </ScrollReveal>
@@ -70,7 +70,7 @@ export function TechnologyEcosystem() {
                 <span className="text-xs font-semibold text-[#101418] whitespace-nowrap leading-tight">
                   {partner.name}
                 </span>
-                <span className="text-[10px] text-[#69717D]/60 whitespace-nowrap leading-tight">
+                <span className="text-[10px] text-[#4F555E]/60 whitespace-nowrap leading-tight">
                   {partner.category}
                 </span>
               </div>
@@ -80,7 +80,7 @@ export function TechnologyEcosystem() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 text-center">
-        <p className="text-xs text-[#69717D]/40">
+        <p className="text-xs text-[#4F555E]/40">
           Platforms and technologies we work with — not an official partnership or endorsement.
         </p>
       </div>

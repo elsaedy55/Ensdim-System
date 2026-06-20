@@ -30,7 +30,7 @@ export function PartnersPage() {
 
       <section className="py-12 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-xs text-[#69717D]/50">
+          <p className="text-xs text-[#4F555E]/50">
             {ar
               ? 'التقنيات المذكورة هي منصات نعمل معها. لا يُشير هذا إلى شراكة رسمية أو تأييد من قِبل هذه الشركات.'
               : 'Technologies listed are platforms we work with. This does not imply official partnership or endorsement by these companies.'}

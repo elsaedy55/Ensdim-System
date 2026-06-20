@@ -81,17 +81,17 @@ export function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s, i) => (
               <ScrollReveal key={i} delay={i * 0.06}>
-                <Link to={`/services/${s.slug}`} className="block border border-[#E5E5E5] rounded-2xl p-6 hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200 h-full flex-col">
+                <Link to={`/services/${s.slug}`} className="group block border border-[#E5E5E5] rounded-2xl p-6 hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 h-full flex-col">
                   <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold self-start mb-4">
                     {ar ? s.ar.outcome : s.en.outcome}
                   </span>
                   <h3 className="text-base font-bold text-[#101418] mb-2 leading-snug">
                     {ar ? s.ar.title : s.en.title}
                   </h3>
-                  <p className="text-sm text-[#69717D] leading-relaxed flex-1">
+                  <p className="text-sm text-[#4F555E] leading-relaxed flex-1">
                     {ar ? s.ar.desc : s.en.desc}
                   </p>
-                  <span className="inline-flex items-center gap-1.5 mt-4 text-[#6D5DF6] text-xs font-semibold group-hover:gap-2.5 transition-all">
+                  <span className="inline-flex items-center gap-1.5 mt-4 text-[#6D5DF6] text-xs font-semibold group-hover:gap-2.5 group-active:gap-2.5 transition-all">
                     {ar ? 'استكشف هذه الخدمة' : 'Explore this service'}
                     <ArrowRight size={13} />
                   </span>
@@ -128,7 +128,7 @@ export function ServicesPage() {
           <h2 className="text-2xl font-bold mb-3">
             {ar ? 'ما الخدمة المناسبة لعملك؟' : 'Not sure which service fits?'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/60 mb-6">
+          <p className="text-sm text-[#EEEAFE]/75 mb-6">
             {ar ? 'احجز استشارة ونساعدك في تحديد ما تحتاجه فعلاً.' : 'Book a consultation and we will help you identify exactly what you need.'}
           </p>
           <Link

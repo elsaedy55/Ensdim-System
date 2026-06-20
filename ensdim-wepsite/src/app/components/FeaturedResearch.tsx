@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { ArrowRight, Clock } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
@@ -8,6 +8,7 @@ import { getPublishedResearchArticles, type ResearchArticle } from '../../lib/su
 export function FeaturedResearch() {
   const { t, language } = useLanguage();
   const ar = language === 'ar';
+  const navigate = useNavigate();
 
   const [article, setArticle] = useState<ResearchArticle | null>(null);
   const [loading, setLoading] = useState(true);
@@ -28,11 +29,14 @@ export function FeaturedResearch() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {t('research.sectionTitle')}
           </h2>
-          <p className="text-sm text-[#69717D]">{t('research.sectionSubtitle')}</p>
+          <p className="text-sm text-[#4F555E]">{t('research.sectionSubtitle')}</p>
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-        <div className="bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:border-[#6D5DF6] hover:shadow-2xl transition-all duration-300">
+        <div
+          onClick={() => article && navigate(`/research/${article.slug}`)}
+          className={`group bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:border-[#6D5DF6] hover:shadow-2xl active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-300 ${article ? 'cursor-pointer' : ''}`}
+        >
           <div className="grid md:grid-cols-2">
             {/* Left: editorial research visual */}
             {article?.image_url ? (
@@ -82,7 +86,7 @@ export function FeaturedResearch() {
 
                   {/* Research tag */}
                   <div className="flex items-center gap-2 pt-1">
-                    <span className="px-2 py-0.5 bg-[#6D5DF6]/20 text-[#EEEAFE]/70 text-[10px] rounded-full font-medium no-mirror">
+                    <span className="px-2 py-0.5 bg-[#6D5DF6]/20 text-[#EEEAFE]/85 text-[10px] rounded-full font-medium no-mirror">
                       <span style={{ color: '#D63A3A' }}>EN</span>SDIM Research
                     </span>
                     <span className="text-white/30 text-[10px]">2025</span>
@@ -102,7 +106,7 @@ export function FeaturedResearch() {
                 </div>
               ) : (
                 <>
-                  <div className="flex items-center gap-3 mb-4 text-sm text-[#69717D]">
+                  <div className="flex items-center gap-3 mb-4 text-sm text-[#4F555E]">
                     <span className="px-2 py-1 bg-[#EEEAFE] rounded text-xs font-semibold text-[#6D5DF6]">
                       {ar ? article.category_ar : article.category_en}
                     </span>
@@ -116,16 +120,20 @@ export function FeaturedResearch() {
                     {ar ? article.title_ar : article.title_en}
                   </h3>
 
-                  <p className="text-[#69717D] text-sm leading-relaxed mb-6">
+                  <p className="text-[#4F555E] text-sm leading-relaxed mb-6">
                     {ar ? article.description_ar : article.description_en}
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Link to={`/research/${article.slug}`} className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors text-sm font-medium">
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl group-hover:border-[#6D5DF6] group-hover:text-[#6D5DF6] transition-colors text-sm font-medium">
                       {t('research.cta')}
                       <ArrowRight size={16} />
-                    </Link>
-                    <Link to="/research" className="text-[#6D5DF6] text-sm hover:underline self-center">
+                    </span>
+                    <Link
+                      to="/research"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#6D5DF6] text-sm hover:underline self-center"
+                    >
                       {t('research.ctaAll')}
                     </Link>
                   </div>

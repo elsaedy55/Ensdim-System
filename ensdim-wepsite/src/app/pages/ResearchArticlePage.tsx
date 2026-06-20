@@ -34,14 +34,14 @@ function ArticleContent({ content }: { content: string }) {
               {trimmed.split('\n').map((line, j) => (
                 <li key={j} className="flex gap-3">
                   <span className="w-2 h-2 bg-[#6D5DF6] rounded-full mt-2 flex-shrink-0" />
-                  <p className="text-[#69717D] leading-relaxed">{line.replace(/^[-*•]\s/, '')}</p>
+                  <p className="text-[#4F555E] leading-relaxed">{line.replace(/^[-*•]\s/, '')}</p>
                 </li>
               ))}
             </ul>
           );
         }
         return (
-          <p key={i} className="text-[#69717D] leading-relaxed">
+          <p key={i} className="text-[#4F555E] leading-relaxed">
             {trimmed}
           </p>
         );
@@ -101,7 +101,7 @@ export function ResearchArticlePage() {
         <h1 className="text-2xl font-bold text-[#101418] mb-2">
           {ar ? 'البحث غير موجود' : 'Article not found'}
         </h1>
-        <p className="text-sm text-[#69717D] mb-6">
+        <p className="text-sm text-[#4F555E] mb-6">
           {ar ? 'هذا البحث غير متاح أو تم حذفه.' : 'This article is not available or has been removed.'}
         </p>
         <Link
@@ -135,17 +135,17 @@ export function ResearchArticlePage() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <Link
               to="/research"
-              className="inline-flex items-center gap-2 text-[#EEEAFE]/60 hover:text-[#EEEAFE] text-sm mb-8 transition-colors"
+              className="inline-flex items-center gap-2 text-[#EEEAFE]/75 hover:text-[#EEEAFE] text-sm mb-8 transition-colors"
             >
               <ArrowLeft size={14} />
               {ar ? 'العودة إلى الأبحاث' : 'Back to Research'}
             </Link>
 
             <div className="flex items-center gap-3 mb-5">
-              <span className="px-2.5 py-1 bg-[#6D5DF6]/20 text-[#EEEAFE]/80 text-xs font-semibold rounded-full">
+              <span className="px-2.5 py-1 bg-[#6D5DF6]/20 text-[#EEEAFE]/90 text-xs font-semibold rounded-full">
                 {cat}
               </span>
-              <div className="flex items-center gap-1.5 text-[#EEEAFE]/50 text-sm">
+              <div className="flex items-center gap-1.5 text-[#EEEAFE]/65 text-sm">
                 <Clock size={13} />
                 <span>{article.read_time} {ar ? 'دقائق قراءة' : 'min read'}</span>
               </div>
@@ -154,7 +154,7 @@ export function ResearchArticlePage() {
             <h1 className="text-2xl sm:text-4xl font-bold text-white leading-tight mb-4" dir={ar ? 'rtl' : 'ltr'}>
               {title}
             </h1>
-            <p className="text-[#EEEAFE]/60 text-base" dir={ar ? 'rtl' : 'ltr'}>
+            <p className="text-[#EEEAFE]/75 text-base" dir={ar ? 'rtl' : 'ltr'}>
               {desc}
             </p>
           </div>
@@ -179,7 +179,7 @@ export function ResearchArticlePage() {
           {content ? (
             <ArticleContent content={content} />
           ) : (
-            <p className="text-[#69717D]">{desc}</p>
+            <p className="text-[#4F555E]">{desc}</p>
           )}
 
           {/* CTA */}

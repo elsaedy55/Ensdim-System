@@ -114,7 +114,7 @@ export function AboutPage() {
           {beliefs.map((b, i) => (
             <ScrollReveal key={i} delay={i * 0.08}>
               <h2 className="text-xl font-bold text-[#101418] mb-3">{b.title}</h2>
-              <p className="text-sm text-[#69717D] leading-relaxed max-w-2xl">{b.body}</p>
+              <p className="text-sm text-[#4F555E] leading-relaxed max-w-2xl">{b.body}</p>
             </ScrollReveal>
           ))}
 
@@ -143,7 +143,7 @@ export function AboutPage() {
             <h2 className="text-2xl font-bold text-[#101418] mb-2">
               {ar ? 'كيف تعمل إنسديم؟' : 'How ENSDIM works'}
             </h2>
-            <p className="text-sm text-[#69717D] mb-10 max-w-2xl leading-relaxed">
+            <p className="text-sm text-[#4F555E] mb-10 max-w-2xl leading-relaxed">
               {ar
                 ? 'منهجيتنا الستة خطوات تضمن أننا نفهم قبل أن نبني.'
                 : 'Our 6-step methodology ensures we understand before we build.'}
@@ -157,7 +157,7 @@ export function AboutPage() {
                     {m.step}
                   </span>
                   <h3 className="text-base font-bold text-[#101418] mb-2">{m.title}</h3>
-                  <p className="text-sm text-[#69717D] leading-relaxed">{m.body}</p>
+                  <p className="text-sm text-[#4F555E] leading-relaxed">{m.body}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -199,7 +199,7 @@ export function AboutPage() {
           <h2 className="text-2xl font-bold mb-6">
             {ar ? 'احجز استشارة' : 'Book a Consultation'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/60 mb-6 max-w-xl mx-auto">
+          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
             {ar
               ? 'جلسة مركزة نفهم فيها عملك، رحلة عميلك، والفجوات التشغيلية — ثم نحدد ما تحتاجه فعلاً.'
               : 'A focused session where we understand your business, customer journey, and operating gaps — then identify exactly what you need.'}

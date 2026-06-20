@@ -2,7 +2,6 @@ import { Outlet } from 'react-router';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { WhatsAppFloat } from './WhatsAppFloat';
-import { BackToTop } from './BackToTop';
 import { GlobalSchemas } from './GlobalSchemas';
 
 export function Layout() {
@@ -15,7 +14,6 @@ export function Layout() {
       </main>
       <Footer />
       <WhatsAppFloat />
-      <BackToTop />
     </div>
   );
 }

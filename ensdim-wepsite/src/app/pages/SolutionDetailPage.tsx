@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -141,6 +142,7 @@ export function SolutionDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { language } = useLanguage();
   const ar = language === 'ar';
+  const [formOpen, setFormOpen] = useState(false);
   const data = solutionData[slug || ''];
   const d = data ? (ar ? data.ar : data.en) : null;
 
@@ -181,12 +183,12 @@ export function SolutionDetailPage() {
 
           <ScrollReveal>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'ما الذي تحله' : 'What it solves'}</h2>
-            <p className="text-[#69717D] text-sm leading-relaxed">{d.problem}</p>
+            <p className="text-[#4F555E] text-sm leading-relaxed">{d.problem}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'كيف تتعامل معه إنسديم' : 'How ENSDIM approaches it'}</h2>
-            <p className="text-[#69717D] text-sm leading-relaxed">{d.approach}</p>
+            <p className="text-[#4F555E] text-sm leading-relaxed">{d.approach}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
@@ -213,14 +215,14 @@ export function SolutionDetailPage() {
           <ScrollReveal delay={0.2}>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="p-5 border border-[#E5E5E5] rounded-2xl bg-[#FAFAFA]">
-                <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'مشكلة ذات صلة' : 'Related problem'}</p>
+                <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'مشكلة ذات صلة' : 'Related problem'}</p>
                 <p className="text-sm font-semibold text-[#101418] mb-3">{d.relatedProblem}</p>
                 <Link to={`/problems/${d.relatedProblemSlug}`} className="text-[#6D5DF6] text-sm hover:underline inline-flex items-center gap-1">
                   {ar ? 'اعرف المشكلة' : 'Explore problem'} <ArrowRight size={13} />
                 </Link>
               </div>
               <div className="p-5 border border-[#E5E5E5] rounded-2xl bg-[#FAFAFA]">
-                <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'دراسة حالة ذات صلة' : 'Related case study'}</p>
+                <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'دراسة حالة ذات صلة' : 'Related case study'}</p>
                 <p className="text-sm font-semibold text-[#101418] mb-3">{d.relatedCaseStudy}</p>
                 <Link to={`/case-studies/${d.relatedCaseStudySlug}`} className="text-[#6D5DF6] text-sm hover:underline inline-flex items-center gap-1">
                   {ar ? 'عرض دراسة الحالة' : 'View case study'} <ArrowRight size={13} />
@@ -235,14 +237,33 @@ export function SolutionDetailPage() {
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <ConsultationForm
-              title={ar ? 'ابنِ هذا الحل لعملك.' : 'Build this solution for your business.'}
-              hiddenFields={{
-                source_page: `/solutions/${slug}`,
-                clicked_solution: d?.title || '',
-                interest_type: 'solution',
-              }}
-            />
+            {formOpen ? (
+              <ConsultationForm
+                title={ar ? 'ابنِ هذا الحل لعملك.' : 'Build this solution for your business.'}
+                hiddenFields={{
+                  source_page: `/solutions/${slug}`,
+                  clicked_solution: d?.title || '',
+                  interest_type: 'solution',
+                }}
+              />
+            ) : (
+              <div className="text-center bg-white rounded-2xl border border-[#E5E5E5] p-8 sm:p-10">
+                <h2 className="text-xl font-bold text-[#101418] mb-2">
+                  {ar ? 'ابنِ هذا الحل لعملك.' : 'Build this solution for your business.'}
+                </h2>
+                <p className="text-sm text-[#4F555E] mb-6">
+                  {ar ? 'احجز استشارة مجانية لمناقشة احتياجاتك.' : 'Book a free consultation to discuss your needs.'}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setFormOpen(true)}
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+                >
+                  {ar ? 'ابدأ الآن' : 'Get Started'}
+                  <ArrowRight size={15} />
+                </button>
+              </div>
+            )}
           </ScrollReveal>
         </div>
       </section>

@@ -77,7 +77,7 @@ export function CareersPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10">
             <h2 className="text-2xl font-bold text-[#101418] mb-2">{ar ? 'لماذا إنسديم؟' : 'Why ENSDIM?'}</h2>
-            <p className="text-sm text-[#69717D]">
+            <p className="text-sm text-[#4F555E]">
               {ar ? 'نبني فريقًا مرنًا يجمع بين المنتج، الهندسة، البحث، التصميم، البيانات، النمو، واستراتيجية الأعمال.' : 'We are building a flexible team across product, engineering, research, design, data, growth, and business strategy.'}
             </p>
           </ScrollReveal>
@@ -86,7 +86,7 @@ export function CareersPage() {
               <ScrollReveal key={i} delay={i * 0.06}>
                 <div className="p-5 border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] transition-colors h-full">
                   <h3 className="text-sm font-bold text-[#101418] mb-2">{v.title}</h3>
-                  <p className="text-xs text-[#69717D] leading-relaxed">{v.body}</p>
+                  <p className="text-xs text-[#4F555E] leading-relaxed">{v.body}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -113,7 +113,7 @@ export function CareersPage() {
                       <p className="text-sm font-semibold text-[#101418] mb-0.5">
                         {ar ? role.ar.title : role.en.title}
                       </p>
-                      <p className="text-xs text-[#69717D]">
+                      <p className="text-xs text-[#4F555E]">
                         {ar ? role.ar.type : role.en.type}
                       </p>
                     </div>
@@ -140,7 +140,7 @@ export function CareersPage() {
                       <p className="text-sm font-semibold text-[#101418] mb-0.5">
                         {ar ? role.ar.title : role.en.title}
                       </p>
-                      <p className="text-xs text-[#69717D]">
+                      <p className="text-xs text-[#4F555E]">
                         {ar ? role.ar.type : role.en.type}
                       </p>
                     </div>
@@ -167,7 +167,7 @@ export function CareersPage() {
                       <p className="text-sm font-semibold text-[#101418] mb-0.5">
                         {ar ? role.ar.title : role.en.title}
                       </p>
-                      <p className="text-xs text-[#69717D]">
+                      <p className="text-xs text-[#4F555E]">
                         {ar ? role.ar.type : role.en.type}
                       </p>
                     </div>
@@ -194,7 +194,7 @@ export function CareersPage() {
                       <p className="text-sm font-semibold text-[#101418] mb-0.5">
                         {ar ? role.ar.title : role.en.title}
                       </p>
-                      <p className="text-xs text-[#69717D]">
+                      <p className="text-xs text-[#4F555E]">
                         {ar ? role.ar.type : role.en.type}
                       </p>
                     </div>
@@ -206,7 +206,7 @@ export function CareersPage() {
           </div>
 
           <ScrollReveal delay={0.4} className="mt-10 text-center">
-            <p className="text-sm text-[#69717D]">
+            <p className="text-sm text-[#4F555E]">
               {ar ? 'لا تجد دوراً مناسباً؟ ' : "Don't see a matching role? "}
               <Link to="/careers/general-application" className="text-[#6D5DF6] hover:underline font-medium">
                 {ar ? 'أرسل لنا ملفك التعريفي' : 'Send us your profile'}

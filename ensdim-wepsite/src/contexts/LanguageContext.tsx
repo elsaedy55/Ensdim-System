@@ -74,7 +74,6 @@ const translations: Record<Language, any> = {
       card3Desc: 'Turn scattered follow-ups and missed requests into trackable growth opportunities.',
       card4Title: 'Easier Management',
       card4Desc: 'Organize workflows, data, payments, documents, and updates in one clearer operating layer.',
-      cta: 'Learn more about ENSDIM',
     },
     problems: {
       title: 'Where customer journeys break, sales opportunities disappear.',
@@ -241,7 +240,7 @@ const translations: Record<Language, any> = {
       secondaryCTA: 'Share Your Business Challenge',
     },
     footer: {
-      tagline: 'We build the operating layer your business needs to grow.',
+      tagline: 'We listen to data. Understand business. Build solutions.',
       company: 'Company',
       solutions: 'Solutions',
       services: 'Services',
@@ -479,7 +478,7 @@ const translations: Record<Language, any> = {
       secondaryCTA: 'أخبرنا بتحدي عملك',
     },
     footer: {
-      tagline: 'نبني الأنظمة التي يحتاجها عملك لينمو بوضوح وكفاءة.',
+      tagline: 'نستمع للبيانات. نفهم الأعمال. نبني الحلول.',
       company: 'الشركة',
       solutions: 'الحلول',
       services: 'الخدمات',

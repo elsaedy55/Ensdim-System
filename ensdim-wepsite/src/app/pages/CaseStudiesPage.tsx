@@ -66,7 +66,7 @@ export function CaseStudiesPage() {
           {!loading && error && (
             <div className="text-center py-16">
               <Briefcase size={40} className="mx-auto text-[#E5E5E5] mb-3" />
-              <p className="text-sm text-[#69717D]">
+              <p className="text-sm text-[#4F555E]">
                 {ar ? 'تعذر تحميل دراسات الحالة. حاول مجدداً لاحقاً.' : 'Could not load case studies. Please try again later.'}
               </p>
             </div>
@@ -75,7 +75,7 @@ export function CaseStudiesPage() {
           {!loading && !error && cases.length === 0 && (
             <div className="text-center py-16">
               <Briefcase size={40} className="mx-auto text-[#E5E5E5] mb-3" />
-              <p className="text-sm text-[#69717D]">
+              <p className="text-sm text-[#4F555E]">
                 {ar ? 'لا توجد دراسات حالة منشورة بعد.' : 'No case studies published yet.'}
               </p>
             </div>
@@ -83,7 +83,10 @@ export function CaseStudiesPage() {
 
           {!loading && !error && cases.map((c, i) => (
             <ScrollReveal key={c.slug} delay={i * 0.07}>
-              <div className="border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200">
+              <Link
+                to={`/case-studies/${c.slug}`}
+                className="group block border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-200"
+              >
                 {c.image_url && (
                   <img
                     src={c.image_url}
@@ -105,16 +108,16 @@ export function CaseStudiesPage() {
                       { label: ar ? 'الأثر' : 'Impact', value: ar ? c.card_impact_ar : c.card_impact_en },
                     ].map((item) => (
                       <div key={item.label}>
-                        <p className="text-[10px] text-[#69717D] uppercase tracking-wide mb-1">{item.label}</p>
+                        <p className="text-[10px] text-[#4F555E] uppercase tracking-wide mb-1">{item.label}</p>
                         <p className="text-xs font-semibold text-[#101418]">{item.value}</p>
                       </div>
                     ))}
                   </div>
-                  <Link to={`/case-studies/${c.slug}`} className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold hover:gap-2.5 transition-all">
+                  <span className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold group-hover:gap-2.5 transition-all">
                     {ar ? 'عرض دراسة الحالة' : 'View Case Study'} <ArrowRight size={13} />
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>

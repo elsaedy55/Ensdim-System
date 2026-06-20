@@ -33,7 +33,7 @@ export function ResourcesSection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4">
             Thinking beyond software
           </h2>
-          <p className="text-base sm:text-xl text-[#69717D] max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-[#4F555E] max-w-3xl mx-auto">
             Learn from our research, case studies, and insights on building intelligent business systems.
           </p>
         </div>
@@ -58,7 +58,7 @@ export function ResourcesSection() {
                 {resource.title}
               </h3>
 
-              <p className="text-[#69717D] mb-6 leading-relaxed">
+              <p className="text-[#4F555E] mb-6 leading-relaxed">
                 {resource.description}
               </p>
 

@@ -67,6 +67,20 @@ export async function adminGetAllProjects(): Promise<ProjectWithClient[]> {
   return (data ?? []) as ProjectWithClient[];
 }
 
+// Lightweight variant for the dashboard's "recent projects" widget —
+// avoids loading every project + column just to display a handful.
+export async function adminGetRecentProjects(limit = 8): Promise<ProjectWithClient[]> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("projects")
+    .select("id, name, status, health, progress, target_delivery, client:profiles!client_id(id, name, avatar_url)")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) throw new Error(error.message);
+  return (data ?? []) as unknown as ProjectWithClient[];
+}
+
 export async function adminCreateProject(input: CreateProjectInput): Promise<ProjectRow> {
   const supabase = createClient();
 
@@ -301,16 +315,11 @@ export async function adminGetClientProjects(clientId: string): Promise<ProjectR
 // TEAM
 // ═══════════════════════════════════════════════════════════════════
 
-export async function adminGetTeamMembers(): Promise<ProfileRow[]> {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("*")
-    .neq("role", "client")
-    .order("name", { ascending: true });
-
-  if (error) throw new Error(error.message);
-  return data ?? [];
+export async function adminGetTeamMembers(): Promise<(ProfileRow & { pending: boolean })[]> {
+  const res = await fetch("/api/admin/team");
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error ?? "Failed to load team members");
+  return data.members ?? [];
 }
 
 // ═══════════════════════════════════════════════════════════════════

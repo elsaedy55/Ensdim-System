@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import {
-  adminGetAllProjects, adminCreateProject, adminUpdateProject, adminDeleteProject,
+  adminGetAllProjects, adminGetRecentProjects, adminCreateProject, adminUpdateProject, adminDeleteProject,
   adminCreateMilestone, adminUpdateMilestone, adminDeleteMilestone, adminSetMilestoneStatus,
   adminGetAllClients, adminGetClientById, adminGetClientProjects, adminUpdateClientStatus, adminUpdateClient,
   adminBanClient, adminUnbanClient, adminDeleteClient,
@@ -31,6 +31,14 @@ export function useAdminProjects() {
   return useQuery({
     queryKey:  ["admin-projects"],
     queryFn:   adminGetAllProjects,
+    staleTime: 60 * 1000,
+  });
+}
+
+export function useAdminRecentProjects(limit = 8) {
+  return useQuery({
+    queryKey:  ["admin-projects-recent", limit],
+    queryFn:   () => adminGetRecentProjects(limit),
     staleTime: 60 * 1000,
   });
 }

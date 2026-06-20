@@ -50,7 +50,7 @@ export function CompanyPage() {
 
           <ScrollReveal>
             <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'ما نؤمن به' : 'What we believe'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed max-w-2xl">
+            <p className="text-sm text-[#4F555E] leading-relaxed max-w-2xl">
               {ar
                 ? 'الأنظمة الأفضل تبدأ بفهم أعمق. قبل أن نبني أي شيء، نفهم كيف يفكر العملاء، أين تتعطل العمليات، وما الذي يعيق النمو فعلياً.'
                 : 'Better systems start with better understanding. Before building anything, we understand how customers think, where operations break, and what is actually blocking growth.'}
@@ -59,7 +59,7 @@ export function CompanyPage() {
 
           <ScrollReveal delay={0.08}>
             <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'ما لسنا عليه' : 'What we are not'}</h2>
-            <ul className="space-y-2 text-sm text-[#69717D]">
+            <ul className="space-y-2 text-sm text-[#4F555E]">
               {(ar ? [
                 'لسنا شركة برمجيات عامة',
                 'لسنا شركة مبالغة في الذكاء الاصطناعي',

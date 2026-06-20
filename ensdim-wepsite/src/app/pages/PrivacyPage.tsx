@@ -47,11 +47,11 @@ export function PrivacyPage() {
           {sections.map((s, i) => (
             <ScrollReveal key={i} delay={i * 0.05}>
               <h2 className="text-base font-bold text-[#101418] mb-2">{s.title}</h2>
-              <p className="text-sm text-[#69717D] leading-relaxed">{s.body}</p>
+              <p className="text-sm text-[#4F555E] leading-relaxed">{s.body}</p>
             </ScrollReveal>
           ))}
           <ScrollReveal delay={0.4}>
-            <p className="text-xs text-[#69717D]/50 pt-4 border-t border-[#E5E5E5]">
+            <p className="text-xs text-[#4F555E]/50 pt-4 border-t border-[#E5E5E5]">
               {ar ? 'آخر تحديث: يونيو 2026' : 'Last updated: June 2026'}
             </p>
           </ScrollReveal>

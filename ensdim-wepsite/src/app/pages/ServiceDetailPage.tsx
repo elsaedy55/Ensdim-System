@@ -185,12 +185,12 @@ export function ServiceDetailPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
           <ScrollReveal>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'لمن هذا؟' : 'Who it\'s for'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed">{d.forWho}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{d.forWho}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'المشكلة التي تحلها' : 'The problem it solves'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed">{d.problem}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{d.problem}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
@@ -208,14 +208,14 @@ export function ServiceDetailPage() {
           <ScrollReveal delay={0.16}>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="p-5 border border-[#E5E5E5] rounded-2xl">
-                <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'حل مرتبط' : 'Related solution'}</p>
+                <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'حل مرتبط' : 'Related solution'}</p>
                 <p className="text-sm font-bold text-[#101418] mb-3">{d.relatedSolution.title}</p>
                 <Link to={`/solutions/${d.relatedSolution.slug}`} className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] hover:underline">
                   {ar ? 'استكشف الحل' : 'Explore solution'} <ArrowRight size={13} />
                 </Link>
               </div>
               <div className="p-5 border border-[#E5E5E5] rounded-2xl">
-                <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'دراسة حالة ذات صلة' : 'Related case study'}</p>
+                <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'دراسة حالة ذات صلة' : 'Related case study'}</p>
                 <p className="text-sm font-bold text-[#101418] mb-3">{d.relatedCaseStudy.title}</p>
                 <Link to={`/case-studies/${d.relatedCaseStudy.slug}`} className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] hover:underline">
                   {ar ? 'عرض دراسة الحالة' : 'View case study'} <ArrowRight size={13} />

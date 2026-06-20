@@ -58,12 +58,12 @@ export function SolutionsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">{ar ? 'ماذا نبني' : 'What we build'}</h2>
-            <p className="text-sm text-[#69717D]">{ar ? 'ستة محاور حل مترابطة تعمل معاً.' : 'Six interconnected solution areas that work together.'}</p>
+            <p className="text-sm text-[#4F555E]">{ar ? 'ستة محاور حل مترابطة تعمل معاً.' : 'Six interconnected solution areas that work together.'}</p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {solutionCards.map((s, i) => (
               <ScrollReveal key={s.slug} delay={i * 0.06}>
-                <Link to={`/solutions/${s.slug}`} className="block border border-[#E5E5E5] rounded-2xl p-6 hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200 group h-full">
+                <Link to={`/solutions/${s.slug}`} className="block border border-[#E5E5E5] rounded-2xl p-6 hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 group h-full">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold">
                       {ar ? s.outcome.ar : s.outcome.en}
@@ -71,7 +71,7 @@ export function SolutionsPage() {
                     <ArrowRight size={13} className="text-[#6D5DF6] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <h3 className="text-base font-bold text-[#101418] mb-2 leading-snug">{ar ? s.ar.title : s.en.title}</h3>
-                  <p className="text-sm text-[#69717D] leading-relaxed">{ar ? s.ar.desc : s.en.desc}</p>
+                  <p className="text-sm text-[#4F555E] leading-relaxed">{ar ? s.ar.desc : s.en.desc}</p>
                 </Link>
               </ScrollReveal>
             ))}
@@ -84,15 +84,15 @@ export function SolutionsPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">{ar ? 'أين عملك الآن؟' : 'Where is your business now?'}</h2>
-            <p className="text-sm text-[#69717D]">{ar ? 'اختر المرحلة التي تناسب وضعك.' : 'Choose the stage that fits where you are.'}</p>
+            <p className="text-sm text-[#4F555E]">{ar ? 'اختر المرحلة التي تناسب وضعك.' : 'Choose the stage that fits where you are.'}</p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-3 gap-5">
             {stages.map((st, i) => (
               <ScrollReveal key={st.slug} delay={i * 0.08}>
-                <Link to={`/solutions/${st.slug}`} className="block bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200 group">
+                <Link to={`/solutions/${st.slug}`} className="block bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 group">
                   <h3 className="text-lg font-bold text-[#101418] mb-2">{ar ? st.ar.title : st.en.title}</h3>
-                  <p className="text-sm text-[#69717D] mb-4">{ar ? st.ar.desc : st.en.desc}</p>
-                  <span className="inline-flex items-center gap-1 text-sm text-[#6D5DF6] font-medium group-hover:gap-2 transition-all">
+                  <p className="text-sm text-[#4F555E] mb-4">{ar ? st.ar.desc : st.en.desc}</p>
+                  <span className="inline-flex items-center gap-1 text-sm text-[#6D5DF6] font-medium group-hover:gap-2 group-active:gap-2 transition-all">
                     {ar ? 'اعرف أكثر' : 'Learn more'} <ArrowRight size={13} />
                   </span>
                 </Link>
@@ -107,7 +107,7 @@ export function SolutionsPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-[#101418] mb-3">{ar ? 'مشكلات نحلها' : 'Problems we solve'}</h2>
-            <p className="text-sm text-[#69717D] mb-6">{ar ? 'تعرّف على المشكلات التشغيلية الشائعة وكيف نتعامل معها.' : 'Explore common operating problems and how we approach them.'}</p>
+            <p className="text-sm text-[#4F555E] mb-6">{ar ? 'تعرّف على المشكلات التشغيلية الشائعة وكيف نتعامل معها.' : 'Explore common operating problems and how we approach them.'}</p>
             <Link to="/solutions/problems" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
               {ar ? 'استكشف مكتبة المشكلات' : 'Explore Problems Library'} <ArrowRight size={15} />
             </Link>
@@ -135,7 +135,7 @@ export function SolutionsPage() {
       <section className="py-14 bg-[#0f0d19] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl font-bold mb-3">{ar ? 'جاهز لحل مشكلة التشغيل الحقيقية؟' : 'Ready to solve the real operating problem?'}</h2>
-          <p className="text-sm text-[#EEEAFE]/60 mb-6">{ar ? 'أخبرنا أين تتعطل رحلة العميل.' : 'Tell us where your customer journey breaks.'}</p>
+          <p className="text-sm text-[#EEEAFE]/75 mb-6">{ar ? 'أخبرنا أين تتعطل رحلة العميل.' : 'Tell us where your customer journey breaks.'}</p>
           <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] transition-colors text-sm font-semibold">
             {ar ? 'احجز استشارة' : 'Book a Consultation'} <ArrowRight size={15} />
           </Link>

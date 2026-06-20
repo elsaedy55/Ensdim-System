@@ -66,7 +66,7 @@ export function HomePage() {
   return (
     <>
       <SEO
-        title="ENSDIM | AI Automation Agency - Egypt, Saudi Arabia, UAE"
+        title="ENSDIM | Human-Centered Digital Solutions"
         description="ENSDIM builds AI automation systems, CRM platforms, SaaS products, and behavior-led digital experiences for businesses in Egypt, Saudi Arabia, and UAE. Strategy first. Technology around people."
         keywords="AI automation agency Egypt, AI agents Saudi Arabia, SaaS development UAE, CRM development Middle East, digital transformation, AI agency Cairo, automation agency Dubai, وكالة ذكاء اصطناعي مصر, أتمتة الأعمال"
         canonical="/"

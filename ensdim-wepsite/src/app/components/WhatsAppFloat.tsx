@@ -44,7 +44,7 @@ export function WhatsAppFloat() {
       href="https://wa.me/"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 md:w-14 md:h-14 bg-[#101418] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-200 group"
+      className="fixed bottom-8 right-8 sm:bottom-9 sm:right-9 z-50 w-12 h-12 md:w-14 md:h-14 bg-[#101418] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-200 group"
       style={{
         boxShadow: '0 0 0 4px rgba(109, 93, 246, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3)'
       }}

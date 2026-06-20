@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { Button } from './Button';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
@@ -29,10 +28,10 @@ export function ClientPortalFeature() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {t('clientPortal.sectionLabel')}
           </h2>
-          <p className="text-sm text-[#69717D] mb-3 max-w-2xl">
+          <p className="text-sm text-[#4F555E] mb-3 max-w-2xl">
             {t('clientPortal.title')}
           </p>
-          <p className="text-sm text-[#69717D]/70 max-w-2xl">
+          <p className="text-sm text-[#4F555E]/70 max-w-2xl">
             {t('clientPortal.description')}
           </p>
         </ScrollReveal>
@@ -56,7 +55,7 @@ export function ClientPortalFeature() {
                   <h3 className="text-base font-semibold text-[#101418] mb-1">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-[#69717D] leading-relaxed">
+                  <p className="text-sm text-[#4F555E] leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -90,19 +89,19 @@ export function ClientPortalFeature() {
                 {/* Project header row */}
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-[10px] text-[#69717D] mb-0.5">Active Project</p>
+                    <p className="text-[10px] text-[#4F555E] mb-0.5">Active Project</p>
                     <h4 className="text-sm font-bold text-[#101418]">CRM Implementation</h4>
                   </div>
                   <div className="text-right">
                     <p className="text-xl font-bold text-[#6D5DF6]">67%</p>
-                    <p className="text-[10px] text-[#69717D]">Complete</p>
+                    <p className="text-[10px] text-[#4F555E]">Complete</p>
                   </div>
                 </div>
 
                 {/* Progress bar */}
                 <div>
                   <div className="flex justify-between text-[10px] mb-1.5">
-                    <span className="text-[#69717D]">Phase 3 of 4 — Build</span>
+                    <span className="text-[#4F555E]">Phase 3 of 4 — Build</span>
                     <span className="text-[#6D5DF6] font-semibold">In Progress</span>
                   </div>
                   <div className="h-1.5 bg-[#E5E5E5] rounded-full overflow-hidden">
@@ -125,7 +124,7 @@ export function ClientPortalFeature() {
                           ? 'bg-[#6D5DF6]/10 text-[#6D5DF6]'
                           : p.active
                           ? 'bg-[#3B2A78] text-white'
-                          : 'bg-[#F0F0F0] text-[#69717D]'
+                          : 'bg-[#F0F0F0] text-[#4F555E]'
                       }`}
                     >
                       {p.done ? `${p.label} ✓` : p.active ? `${p.label} →` : p.label}
@@ -142,7 +141,7 @@ export function ClientPortalFeature() {
                     { label: 'Change Req.',   value: '1 Pending', dot: '#6D5DF6' },
                   ].map((s, i) => (
                     <div key={i} className="bg-[#FAFAFA] border border-[#E5E5E5] rounded-lg p-2.5">
-                      <p className="text-[10px] text-[#69717D] mb-1">{s.label}</p>
+                      <p className="text-[10px] text-[#4F555E] mb-1">{s.label}</p>
                       <p className="text-xs font-semibold text-[#101418] flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: s.dot }} />
                         {s.value}
@@ -156,18 +155,18 @@ export function ClientPortalFeature() {
                   <div className="w-5 h-5 rounded-full bg-[#6D5DF6]/20 flex items-center justify-center flex-shrink-0">
                     <span className="text-[8px] font-bold text-[#6D5DF6]">E</span>
                   </div>
-                  <p className="text-[10px] text-[#69717D]">
+                  <p className="text-[10px] text-[#4F555E]">
                     <span className="text-[#101418] font-semibold">ENSDIM Team: </span>
                     Phase 3 build started — tracker updated.
                   </p>
                 </div>
 
-                <Link
-                  to="/client-login"
+                <a
+                  href="https://app.ensdim.com/login"
                   className="block w-full py-2.5 bg-gradient-to-r from-[#6D5DF6] to-[#3B2A78] text-white rounded-lg text-xs font-semibold hover:shadow-[0_4px_16px_rgba(109,93,246,0.35)] transition-shadow text-center"
                 >
                   {language === 'ar' ? 'ادخل إلى مساحة العميل' : 'Access Your Workspace'}
-                </Link>
+                </a>
               </div>
             </div>
           </ScrollReveal>
@@ -179,7 +178,7 @@ export function ClientPortalFeature() {
           </button>
           <Button variant="outline">{t('clientPortal.secondaryCTA')}</Button>
         </div>
-        <p className="text-center text-sm text-[#69717D] mt-4">
+        <p className="text-center text-sm text-[#4F555E] mt-4">
           {t('clientPortal.note')}
         </p>
       </div>

@@ -55,7 +55,7 @@ export function PageHero({
           <span
             className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider ${
               isDark
-                ? 'bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/65'
+                ? 'bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80'
                 : 'bg-[#6D5DF6]/10 text-[#6D5DF6]'
             }`}
           >
@@ -72,7 +72,7 @@ export function PageHero({
         {subtitle && (
           <p
             className={`text-base sm:text-lg max-w-2xl leading-relaxed mb-8 ${
-              isDark ? 'text-[#EEEAFE]/60' : 'text-[#69717D]'
+              isDark ? 'text-[#EEEAFE]/75' : 'text-[#4F555E]'
             }`}
           >
             {subtitle}

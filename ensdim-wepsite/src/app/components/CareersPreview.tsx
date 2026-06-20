@@ -30,7 +30,7 @@ export function CareersPreview() {
               <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
                 {ar ? 'الوظائف' : 'Careers'}
               </h2>
-              <p className="text-sm text-[#69717D] max-w-2xl">
+              <p className="text-sm text-[#4F555E] max-w-2xl">
                 {ar ? 'انضم إلى إنسديم وساهم في بناء أنظمة أعمال أذكى حول الإنسان، السلوك، والتشغيل.' : 'Join ENSDIM and help build smarter business systems around people, behavior, and operations.'}
               </p>
             </div>
@@ -48,7 +48,7 @@ export function CareersPreview() {
           <div className="flex flex-col sm:flex-row gap-10 sm:gap-16 items-start">
             {/* Left: description */}
             <div className="sm:max-w-[280px] flex-shrink-0">
-              <p className="text-sm text-[#69717D] leading-relaxed mb-4">
+              <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
                 {ar ? 'نبني فريقًا مرنًا يجمع بين المنتج، الهندسة، البحث، التصميم، البيانات، النمو، واستراتيجية الأعمال.' : 'We are building a flexible team across product, engineering, research, design, data, growth, and business strategy.'}
               </p>
               <Link
@@ -62,7 +62,7 @@ export function CareersPreview() {
 
             {/* Right: roles */}
             <div className="flex-1">
-              <p className="text-[11px] text-[#69717D] mb-3 uppercase tracking-widest font-semibold">
+              <p className="text-[11px] text-[#4F555E] mb-3 uppercase tracking-widest font-semibold">
                 {ar ? 'الوظائف المتاحة' : 'AVAILABLE ROLES'}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -75,7 +75,7 @@ export function CareersPreview() {
                     <span className="text-xs font-medium text-[#101418] group-hover:text-[#3B2A78] transition-colors">
                       {role.label}
                     </span>
-                    <span className="text-[10px] text-[#69717D]/60 bg-[#E5E5E5] group-hover:bg-[#6D5DF6]/15 group-hover:text-[#6D5DF6] px-1.5 py-0.5 rounded-full transition-colors">
+                    <span className="text-[10px] text-[#4F555E]/60 bg-[#E5E5E5] group-hover:bg-[#6D5DF6]/15 group-hover:text-[#6D5DF6] px-1.5 py-0.5 rounded-full transition-colors">
                       {role.type}
                     </span>
                   </Link>

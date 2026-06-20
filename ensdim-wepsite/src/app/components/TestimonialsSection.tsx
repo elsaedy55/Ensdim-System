@@ -105,7 +105,7 @@ export function TestimonialsSection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {language === 'ar' ? 'ماذا يقول عملاؤنا' : 'What clients say'}
           </h2>
-          <p className="text-sm sm:text-base text-[#69717D] max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-[#4F555E] max-w-xl mx-auto">
             {t('testimonials.subtitle')}
           </p>
         </ScrollReveal>
@@ -152,7 +152,7 @@ export function TestimonialsSection() {
                   />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-[#101418] truncate">{testimonial.name}</p>
-                    <p className="text-xs text-[#69717D] truncate">{testimonial.company}</p>
+                    <p className="text-xs text-[#4F555E] truncate">{testimonial.company}</p>
                   </div>
                   <span className="flex-shrink-0 px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] text-[10px] font-semibold rounded-full whitespace-nowrap">
                     {testimonial.result}

@@ -29,13 +29,13 @@ export function WhoIsSection() {
 
           {/* Left: label + title + description */}
           <ScrollReveal className="lg:max-w-xl flex-shrink-0">
-            <span className="inline-block px-3 py-1 bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/65 text-xs font-semibold rounded-full mb-5 uppercase tracking-wider">
+            <span className="inline-block px-3 py-1 bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80 text-xs font-semibold rounded-full mb-5 uppercase tracking-wider">
               {t('who.label')}
             </span>
             <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4 leading-snug">
               {t('who.title')}
             </h2>
-            <p className="text-sm sm:text-base text-[#EEEAFE]/55 leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-[#EEEAFE]/70 leading-relaxed mb-6">
               {t('who.description')}
             </p>
             <Link
@@ -58,7 +58,7 @@ export function WhoIsSection() {
                   {[
                     { label: 'Missed Lead', color: '#D63A3A' },
                     { label: 'Slow Reply', color: '#F59E0B' },
-                    { label: 'No Follow-Up', color: '#69717D' },
+                    { label: 'No Follow-Up', color: '#4F555E' },
                   ].map((s, i) => (
                     <div
                       key={i}
@@ -111,7 +111,7 @@ export function WhoIsSection() {
                       className="flex items-center gap-2 bg-white/[0.05] border border-white/[0.09] rounded-xl px-3 py-2.5 hover:border-[#6D5DF6]/40 hover:bg-white/[0.08] transition-all duration-200"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#6D5DF6] flex-shrink-0" />
-                      <span className="text-[11px] text-[#EEEAFE]/70 leading-tight">
+                      <span className="text-[11px] text-[#EEEAFE]/85 leading-tight">
                         {language === 'ar' ? chip.ar : chip.en}
                       </span>
                     </div>

@@ -52,18 +52,21 @@ export function ProblemsLibraryPage() {
 
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {problems.map((p, i) => {
               const d = ar ? p.ar : p.en;
               return (
                 <ScrollReveal key={p.slug} delay={i * 0.06}>
-                  <div className="h-full flex flex-col p-6 bg-white border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] hover:shadow-lg transition-all duration-300">
+                  <Link
+                    to={`/problems/${p.slug}`}
+                    className="group h-full flex flex-col p-5 sm:p-6 bg-white border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] hover:shadow-lg active:scale-[0.98] active:border-[#6D5DF6] active:shadow-md transition-all duration-200"
+                  >
                     <h3 className="text-base font-bold text-[#101418] mb-2">{d.title}</h3>
-                    <p className="text-sm text-[#69717D] leading-relaxed flex-1 mb-4">{d.desc}</p>
-                    <Link to={`/problems/${p.slug}`} className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium hover:gap-2.5 transition-all">
+                    <p className="text-sm text-[#4F555E] leading-relaxed flex-1 mb-4">{d.desc}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium group-hover:gap-2.5 group-active:gap-2.5 transition-all">
                       {ar ? 'اعرف المشكلة والحل' : 'See problem and solution'} <ArrowRight size={13} />
-                    </Link>
-                  </div>
+                    </span>
+                  </Link>
                 </ScrollReveal>
               );
             })}

@@ -28,9 +28,7 @@ const navItems: NavItem[] = [
       { label: 'Build', labelAr: 'البناء', href: '/solutions/build' },
       { label: 'Start', labelAr: 'الانطلاق', href: '/solutions/start' },
       { label: 'Growth', labelAr: 'النمو', href: '/solutions/growth' },
-      { label: 'Clinics Workspace', labelAr: 'مساحة العمل للعيادات', href: '/products/clinics-workspace', groupLabel: 'Products', groupLabelAr: 'المنتجات' },
-      { label: 'Real Estate Flow', labelAr: 'نظام العقارات', href: '/products/real-estate-flow' },
-      { label: 'Operations Workspace', labelAr: 'مساحة التشغيل', href: '/products/operations-workspace' },
+      { label: 'Products', labelAr: 'المنتجات', href: '/products' },
     ],
   },
   {
@@ -166,7 +164,7 @@ export function Header() {
                 >
                   {ar ? item.labelAr : item.label}
                   {item.dropdown && (
-                    <ChevronDown size={13} className={`text-[#69717D] transition-transform duration-200 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
+                    <ChevronDown size={13} className={`text-[#4F555E] transition-transform duration-200 ${activeDropdown === item.label ? 'rotate-180' : ''}`} />
                   )}
                 </Link>
 
@@ -180,7 +178,7 @@ export function Header() {
                     {item.dropdown.map((sub) => (
                       <div key={sub.href}>
                         {sub.groupLabel && (
-                          <div className="mt-1.5 pt-1.5 mx-4 border-t border-[#F0F0F0] pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#69717D]">
+                          <div className="mt-1.5 pt-1.5 mx-4 border-t border-[#F0F0F0] pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#4F555E]">
                             {ar ? sub.groupLabelAr : sub.groupLabel}
                           </div>
                         )}
@@ -215,10 +213,10 @@ export function Header() {
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center gap-2 px-3 py-2 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] transition-colors"
               >
-                <Globe size={16} className="text-[#69717D]" />
+                <Globe size={16} className="text-[#4F555E]" />
                 <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt={countries[country].name} className="w-5 h-auto" />
                 <span className="text-sm text-[#101418]">{ar ? 'AR' : 'EN'}</span>
-                <ChevronDown size={14} className="text-[#69717D]" />
+                <ChevronDown size={14} className="text-[#4F555E]" />
               </button>
               {isLangDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-60 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-2 z-50 max-h-80 overflow-y-auto">
@@ -229,8 +227,8 @@ export function Header() {
                         <span className="text-sm font-semibold text-[#101418]">{ar ? countryData.nameAr : countryData.name}</span>
                       </div>
                       <div className="flex gap-2 ps-7">
-                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-3 py-1 rounded transition-colors flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#69717D] hover:bg-[#EEEAFE]'}`}>{t('countries.arabic')}</button>
-                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-3 py-1 rounded transition-colors flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#69717D] hover:bg-[#EEEAFE]'}`}>{t('countries.english')}</button>
+                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-3 py-1 rounded transition-colors flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.arabic')}</button>
+                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-3 py-1 rounded transition-colors flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.english')}</button>
                       </div>
                     </div>
                   ))}
@@ -252,7 +250,7 @@ export function Header() {
               >
                 <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt={countries[country].name} className="w-5 h-auto" />
                 <span className="text-xs font-semibold text-[#101418]">{ar ? 'AR' : 'EN'}</span>
-                <ChevronDown size={12} className="text-[#69717D]" />
+                <ChevronDown size={12} className="text-[#4F555E]" />
               </button>
               {isMobileLangOpen && (
                 <div className="absolute mt-2 w-52 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-2 z-50 max-h-72 overflow-y-auto" style={{ [ar ? 'left' : 'right']: 0 }}>
@@ -263,8 +261,8 @@ export function Header() {
                         <span className="text-xs font-semibold text-[#101418]">{ar ? countryData.nameAr : countryData.name}</span>
                       </div>
                       <div className="flex gap-1.5 ps-7">
-                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-2 py-1 rounded transition-colors flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#69717D] hover:bg-[#EEEAFE]'}`}>AR</button>
-                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-2 py-1 rounded transition-colors flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#69717D] hover:bg-[#EEEAFE]'}`}>EN</button>
+                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-2 py-1 rounded transition-colors flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>AR</button>
+                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-2 py-1 rounded transition-colors flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>EN</button>
                       </div>
                     </div>
                   ))}
@@ -296,7 +294,7 @@ export function Header() {
                     >
                       <span>{ar ? item.labelAr : item.label}</span>
                       {item.dropdown && (
-                        <ChevronDown size={14} className={`text-[#69717D] transition-transform duration-200 ${activeMobileAccordion === item.label ? 'rotate-180' : ''}`} />
+                        <ChevronDown size={14} className={`text-[#4F555E] transition-transform duration-200 ${activeMobileAccordion === item.label ? 'rotate-180' : ''}`} />
                       )}
                     </button>
                   </div>
@@ -305,14 +303,14 @@ export function Header() {
                       {item.dropdown.map((sub) => (
                         <div key={sub.href}>
                           {sub.groupLabel && (
-                            <div className="px-4 pt-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#69717D]/80 border-t border-[#F0F0F0] mt-1">
+                            <div className="px-4 pt-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[#4F555E]/80 border-t border-[#F0F0F0] mt-1">
                               {ar ? sub.groupLabelAr : sub.groupLabel}
                             </div>
                           )}
                           <Link
                             to={sub.href}
                             onClick={closeAll}
-                            className="block px-4 py-2.5 text-sm text-[#69717D] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/40 transition-colors"
+                            className="block px-4 py-2.5 text-sm text-[#4F555E] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/40 transition-colors"
                           >
                             {ar ? sub.labelAr : sub.label}
                           </Link>

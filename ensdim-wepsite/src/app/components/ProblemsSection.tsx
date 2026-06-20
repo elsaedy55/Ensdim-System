@@ -91,30 +91,32 @@ export function ProblemsSection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4 max-w-3xl mx-auto leading-tight">
             {t('problems.title')}
           </h2>
-          <p className="text-base sm:text-lg text-[#69717D] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#4F555E] max-w-2xl mx-auto leading-relaxed">
             {t('problems.subtitle')}
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {problems.map(({ Icon, title, description }, index) => (
             <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
             <Link
               to={`/problems/${problemSlugs[index]}`}
-              className="group flex flex-col p-6 sm:p-7 rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] transition-all duration-300 bg-white h-full"
+              className="group flex flex-col p-5 sm:p-6 rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 active:shadow-[0_4px_16px_rgba(109,93,246,0.12)] transition-all duration-200 bg-white h-full"
             >
-              <div className="w-12 h-12 bg-[#F4F2FF] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#6D5DF6] transition-colors duration-300 flex-shrink-0">
-                <div className="text-[#6D5DF6] group-hover:text-white transition-colors duration-300">
-                  <Icon />
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 bg-[#F4F2FF] rounded-xl flex items-center justify-center group-hover:bg-[#6D5DF6] group-active:bg-[#6D5DF6] transition-colors duration-300 flex-shrink-0">
+                  <div className="text-[#6D5DF6] group-hover:text-white group-active:text-white transition-colors duration-300 [&>svg]:w-[18px] [&>svg]:h-[18px]">
+                    <Icon />
+                  </div>
                 </div>
+                <h3 className="text-base font-semibold text-[#101418] leading-snug">
+                  {title}
+                </h3>
               </div>
-              <h3 className="text-base font-semibold text-[#101418] mb-2 leading-snug">
-                {title}
-              </h3>
-              <p className="text-[#69717D] text-sm leading-relaxed flex-1">
+              <p className="text-[#4F555E] text-sm leading-relaxed flex-1">
                 {description}
               </p>
-              <div className="mt-4 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200">
+              <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium opacity-0 group-hover:opacity-100 group-active:opacity-100 -translate-x-1 group-hover:translate-x-0 group-active:translate-x-0 transition-all duration-200">
                 <span>See solution</span>
                 <ArrowRight size={11} />
               </div>
@@ -126,7 +128,7 @@ export function ProblemsSection() {
         <ScrollReveal className="text-center mt-10">
           <Link
             to="/solutions/problems"
-            className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#E5E5E5] text-[#69717D] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-all duration-200 text-sm font-medium"
+            className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#E5E5E5] text-[#4F555E] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-all duration-200 text-sm font-medium"
           >
             {t('problems.cta')}
           </Link>

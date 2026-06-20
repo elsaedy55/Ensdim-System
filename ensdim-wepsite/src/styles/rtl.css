@@ -4,28 +4,27 @@
   text-align: right;
 }
 
-[dir="rtl"] .flex-row {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .gap-2,
-[dir="rtl"] .gap-3,
-[dir="rtl"] .gap-4,
-[dir="rtl"] .gap-6,
-[dir="rtl"] .gap-8,
-[dir="rtl"] .gap-12 {
-  direction: rtl;
-}
-
-/* Logo should not be mirrored */
-[dir="rtl"] .no-mirror,
-[dir="rtl"] svg.no-mirror {
-  transform: scaleX(1) !important;
-}
+/* NOTE: flexbox's `row` direction already follows the inline (dir) direction
+   per spec — a manual row-reverse here double-reverses and was breaking
+   card/form layouts in Arabic. Do not reintroduce it. */
 
 /* Ensure icons that indicate direction are flipped */
 [dir="rtl"] svg:not(.no-mirror) {
   transform: scaleX(-1);
+}
+
+/* Logo and semantic icons (checkmarks, badges, etc.) should never mirror —
+   a flipped check/cross/star reads as visually wrong, not "directional". */
+[dir="rtl"] .no-mirror,
+[dir="rtl"] svg.no-mirror,
+[dir="rtl"] svg[class*="lucide-check" i],
+[dir="rtl"] svg[class*="lucide-x" i],
+[dir="rtl"] svg[class*="lucide-star" i],
+[dir="rtl"] svg[class*="lucide-circle" i],
+[dir="rtl"] svg[class*="lucide-badge" i],
+[dir="rtl"] svg[class*="lucide-alert" i],
+[dir="rtl"] svg[class*="lucide-info" i] {
+  transform: scaleX(1) !important;
 }
 
 /* Text alignment */

@@ -48,7 +48,7 @@ export function TeamPage() {
               {departments.map((d, i) => (
                 <div key={i} className="px-4 py-2 bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl text-sm text-[#101418] font-medium">
                   {ar ? d.ar : d.en}
-                  <span className="ms-2 text-[#69717D] text-xs">({d.count})</span>
+                  <span className="ms-2 text-[#4F555E] text-xs">({d.count})</span>
                 </div>
               ))}
             </div>
@@ -64,7 +64,7 @@ export function TeamPage() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-[#101418]">{ar ? member.name.ar : member.name.en}</p>
-                    <p className="text-xs text-[#69717D]">{ar ? member.role.ar : member.role.en}</p>
+                    <p className="text-xs text-[#4F555E]">{ar ? member.role.ar : member.role.en}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -72,7 +72,7 @@ export function TeamPage() {
           </div>
 
           <ScrollReveal delay={0.4} className="mt-10 text-center">
-            <p className="text-sm text-[#69717D]">
+            <p className="text-sm text-[#4F555E]">
               {ar ? 'هل تريد الانضمام إلى الفريق؟' : 'Want to join the team?'}
               {' '}
               <Link to="/careers" className="text-[#6D5DF6] hover:underline font-medium">

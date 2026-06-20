@@ -163,14 +163,14 @@ export function ProblemDetailPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
           <ScrollReveal>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'ما الذي يحدث؟' : 'What is happening?'}</h2>
-            <p className="text-sm text-[#69717D] leading-relaxed">{d.situation}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{d.situation}</p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08}>
             <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'لماذا يهم' : 'Why it matters'}</h2>
             <ul className="space-y-2.5">
               {d.whyMatters.map((w, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-[#69717D]">
+                <li key={i} className="flex items-start gap-3 text-sm text-[#4F555E]">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#D63A3A] mt-1.5 flex-shrink-0" />
                   {w}
                 </li>
@@ -202,7 +202,7 @@ export function ProblemDetailPage() {
 
           <ScrollReveal delay={0.2}>
             <div className="border border-[#E5E5E5] rounded-2xl p-6">
-              <p className="text-xs text-[#69717D] uppercase tracking-wider mb-2">{ar ? 'دراسة حالة ذات صلة' : 'Related case study'}</p>
+              <p className="text-xs text-[#4F555E] uppercase tracking-wider mb-2">{ar ? 'دراسة حالة ذات صلة' : 'Related case study'}</p>
               <h3 className="text-base font-bold text-[#101418] mb-3">{d.caseStudy.title}</h3>
               <Link to={`/case-studies/${d.caseStudy.slug}`} className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium hover:gap-2.5 transition-all">
                 {ar ? 'عرض دراسة الحالة' : 'View Case Study'} <ArrowRight size={13} />

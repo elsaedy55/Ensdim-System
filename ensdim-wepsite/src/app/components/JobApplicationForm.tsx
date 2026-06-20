@@ -295,7 +295,7 @@ export function JobApplicationForm({
 
           <div>
             <label className="block text-sm font-medium text-[#101418] mb-2">
-              {ar ? 'رفع ملف أعمال / نماذج أعمال' : 'Upload Portfolio / Work Samples'} <span className="text-xs text-[#69717D]">({ar ? 'اختياري' : 'Optional'})</span>
+              {ar ? 'رفع ملف أعمال / نماذج أعمال' : 'Upload Portfolio / Work Samples'} <span className="text-xs text-[#4F555E]">({ar ? 'اختياري' : 'Optional'})</span>
             </label>
             <div className="relative">
               <input
@@ -309,8 +309,8 @@ export function JobApplicationForm({
                 htmlFor="portfolio-upload"
                 className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#F8F8FF] border-2 border-dashed border-[#E5E5E5] rounded-xl hover:border-[#6D5DF6]/30 hover:bg-[#EEEAFE] transition-all cursor-pointer"
               >
-                <Upload size={18} className="text-[#69717D]" />
-                <span className="text-sm text-[#69717D]">
+                <Upload size={18} className="text-[#4F555E]" />
+                <span className="text-sm text-[#4F555E]">
                   {portfolioFile ? portfolioFile.name : (ar ? 'اختر ملف (PDF, ZIP)' : 'Choose file (PDF, ZIP)')}
                 </span>
               </label>

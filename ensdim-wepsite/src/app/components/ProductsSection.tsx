@@ -39,7 +39,7 @@ export function ProductsSection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4">
             Products & Systems We Built
           </h2>
-          <p className="text-base sm:text-xl text-[#69717D] max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-[#4F555E] max-w-3xl mx-auto">
             Real systems solving real business problems. Not demos, not templates — production-ready solutions.
           </p>
         </div>
@@ -71,12 +71,12 @@ export function ProductsSection() {
                 <h3 className="text-xl font-bold text-[#101418] mb-2">
                   {product.name}
                 </h3>
-                <p className="text-sm text-[#69717D] mb-4">
+                <p className="text-sm text-[#4F555E] mb-4">
                   <span className="font-semibold">Problem Solved:</span> {product.problem}
                 </p>
 
                 <div className="mb-6">
-                  <p className="text-xs font-semibold text-[#69717D] mb-2">MAIN MODULES</p>
+                  <p className="text-xs font-semibold text-[#4F555E] mb-2">MAIN MODULES</p>
                   <div className="flex flex-wrap gap-2">
                     {product.modules.map((module, i) => (
                       <span

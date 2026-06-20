@@ -593,7 +593,7 @@ export function Hero() {
 
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/[0.06] border border-white/[0.11] rounded-full mb-7 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#6D5DF6] animate-pulse" />
-              <p className="text-[11px] sm:text-xs text-[#EEEAFE]/60 tracking-[0.15em] uppercase font-medium">
+              <p className="text-[11px] sm:text-xs text-[#EEEAFE]/75 tracking-[0.15em] uppercase font-medium">
                 {t('hero.tag1')}
               </p>
             </div>
@@ -605,7 +605,7 @@ export function Hero() {
               {t('hero.headline')}
             </h1>
 
-            <p className="text-base sm:text-lg text-[#EEEAFE]/65 leading-[1.78] mb-10 max-w-[480px]">
+            <p className="text-base sm:text-lg text-[#EEEAFE]/80 leading-[1.78] mb-10 max-w-[480px]">
               {t('hero.subheadline')}
             </p>
 
@@ -631,7 +631,7 @@ export function Hero() {
                 ))}
               </div>
               <div className="w-px h-3.5 bg-white/15" />
-              <p className="text-xs text-[#EEEAFE]/35 leading-relaxed">
+              <p className="text-xs text-[#EEEAFE]/50 leading-relaxed">
                 {t('hero.trustLine')}
               </p>
             </div>

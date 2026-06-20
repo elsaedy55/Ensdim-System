@@ -45,7 +45,7 @@ export function FAQSection({
           <div className="mb-10 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">{title}</h2>
             {subtitle && (
-              <p className="text-sm text-[#69717D] leading-relaxed">{subtitle}</p>
+              <p className="text-sm text-[#4F555E] leading-relaxed">{subtitle}</p>
             )}
           </div>
 
@@ -74,7 +74,7 @@ export function FAQSection({
                   </button>
                   {isOpen && (
                     <div className="px-5 pb-5">
-                      <p className="text-sm text-[#69717D] leading-relaxed">{faq.answer}</p>
+                      <p className="text-sm text-[#4F555E] leading-relaxed">{faq.answer}</p>
                     </div>
                   )}
                 </div>

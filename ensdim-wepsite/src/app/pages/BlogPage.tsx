@@ -70,7 +70,7 @@ export function BlogPage() {
           {!loading && error && (
             <div className="text-center py-16">
               <FileText size={40} className="mx-auto text-[#E5E5E5] mb-3" />
-              <p className="text-sm text-[#69717D]">
+              <p className="text-sm text-[#4F555E]">
                 {ar ? 'تعذر تحميل المقالات. حاول مجدداً لاحقاً.' : 'Could not load blog posts. Please try again later.'}
               </p>
             </div>
@@ -79,7 +79,7 @@ export function BlogPage() {
           {!loading && !error && posts.length === 0 && (
             <div className="text-center py-16">
               <FileText size={40} className="mx-auto text-[#E5E5E5] mb-3" />
-              <p className="text-sm text-[#69717D]">
+              <p className="text-sm text-[#4F555E]">
                 {ar ? 'لا توجد مقالات منشورة بعد.' : 'No blog posts published yet.'}
               </p>
             </div>
@@ -91,7 +91,7 @@ export function BlogPage() {
                 <ScrollReveal key={post.id} delay={i * 0.07}>
                   <Link
                     to={`/blog/${post.slug}`}
-                    className="group flex flex-col h-full rounded-2xl border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-xl transition-all duration-300 bg-white overflow-hidden"
+                    className="group flex flex-col h-full rounded-2xl border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-xl active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-200 bg-white overflow-hidden"
                   >
                     {post.image_url && (
                       <img
@@ -105,7 +105,7 @@ export function BlogPage() {
                         <span className="px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] text-xs font-semibold rounded-full">
                           {ar ? post.category_ar : post.category_en}
                         </span>
-                        <span className="flex items-center gap-1 text-xs text-[#69717D]">
+                        <span className="flex items-center gap-1 text-xs text-[#4F555E]">
                           <Clock size={11} />
                           {post.read_time} {ar ? 'دقائق قراءة' : 'min read'}
                         </span>
@@ -114,7 +114,7 @@ export function BlogPage() {
                         {ar ? post.title_ar : post.title_en}
                       </h3>
                       {(ar ? post.description_ar : post.description_en) && (
-                        <p className="text-sm text-[#69717D] leading-relaxed mb-4 line-clamp-2">
+                        <p className="text-sm text-[#4F555E] leading-relaxed mb-4 line-clamp-2">
                           {ar ? post.description_ar : post.description_en}
                         </p>
                       )}
@@ -149,7 +149,7 @@ export function BlogPage() {
           <h2 className="text-2xl font-bold text-[#101418] mb-4">
             {ar ? 'هل تواجه تحدياً في عملك؟' : 'Facing a challenge in your business?'}
           </h2>
-          <p className="text-[#69717D] mb-6">
+          <p className="text-[#4F555E] mb-6">
             {ar
               ? 'تحدث مع إنسديم واكتشف كيف يمكننا مساعدتك.'
               : 'Talk to ENSDIM and discover how we can help.'}

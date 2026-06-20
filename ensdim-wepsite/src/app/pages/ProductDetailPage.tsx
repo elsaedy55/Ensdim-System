@@ -105,7 +105,7 @@ export function ProductDetailPage() {
   if (!product) {
     return (
       <div className="pt-32 pb-16 text-center">
-        <p className="text-[#69717D]">{ar ? 'المنتج غير موجود' : 'Product not found'}</p>
+        <p className="text-[#4F555E]">{ar ? 'المنتج غير موجود' : 'Product not found'}</p>
         <Link to="/products" className="text-[#6D5DF6] mt-4 inline-block">{ar ? 'العودة للمنتجات' : 'Back to Products'}</Link>
       </div>
     );
@@ -142,7 +142,7 @@ export function ProductDetailPage() {
               <h2 className="text-xl font-bold text-[#101418] mb-5">{ar ? 'ما تعاني منه هذه القطاعات' : 'What this sector struggles with'}</h2>
               <ul className="space-y-3">
                 {data.problems.map((p, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-[#69717D]">
+                  <li key={i} className="flex items-start gap-3 text-sm text-[#4F555E]">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#D63A3A] mt-1.5 flex-shrink-0" />
                     {p}
                   </li>
@@ -155,7 +155,7 @@ export function ProductDetailPage() {
               <h2 className="text-xl font-bold text-[#101418] mb-5">{ar ? 'ما تنظمه إنسديم' : 'What ENSDIM organizes'}</h2>
               <ul className="space-y-2">
                 {data.modules.map((m, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[#69717D]">
+                  <li key={i} className="flex items-center gap-3 text-sm text-[#4F555E]">
                     <CheckCircle size={14} className="text-[#6D5DF6] flex-shrink-0" />
                     {m}
                   </li>

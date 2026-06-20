@@ -90,10 +90,10 @@ function InviteMemberModal({ open, onClose }: { open: boolean; onClose: () => vo
 
 // ─── Member Card ──────────────────────────────────────────────────
 
-function MemberCard({ member }: { member: ProfileRow }) {
+function MemberCard({ member }: { member: ProfileRow & { pending: boolean } }) {
   const t = useTranslations("admin.team.memberCard");
   const initials = member.name.slice(0, 2).toUpperCase();
-  const isPending = false; // TODO: check invite status
+  const isPending = member.pending;
 
   return (
     <div className="surface p-5 space-y-3 hover:shadow-(--shadow-sm) transition-shadow">

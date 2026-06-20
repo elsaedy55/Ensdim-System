@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
@@ -71,15 +72,15 @@ export function ContactPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'البريد الإلكتروني' : 'Email'}</h3>
-                  <p className="text-sm text-[#69717D]">hello@ensdim.com</p>
+                  <p className="text-sm text-[#4F555E]">hello@ensdim.com</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'واتساب' : 'WhatsApp'}</h3>
-                  <p className="text-sm text-[#69717D]">Available for qualified inquiries</p>
+                  <p className="text-sm text-[#4F555E]">Available for qualified inquiries</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'الموقع' : 'Location'}</h3>
-                  <p className="text-sm text-[#69717D]">{ar ? 'فريق بعيد، يخدم دول الخليج والمنطقة العربية' : 'Remote-first, serving Gulf & MENA'}</p>
+                  <p className="text-sm text-[#4F555E]">{ar ? 'فريق بعيد، يخدم دول الخليج والمنطقة العربية' : 'Remote-first, serving Gulf & MENA'}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -89,13 +90,18 @@ export function ContactPage() {
               {submitted ? (
                 <div className="flex items-center justify-center h-full">
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-[#EEEAFE] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg viewBox="0 0 20 20" fill="none" className="w-6 h-6 text-[#6D5DF6]">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg viewBox="0 0 20 20" fill="none" className="w-6 h-6 text-green-600 no-mirror">
                         <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
                     <p className="text-sm font-semibold text-[#101418]">{ar ? 'تم إرسال طلبك' : 'Request sent'}</p>
-                    <p className="text-xs text-[#69717D] mt-1">{ar ? 'سنتواصل معك قريباً' : 'We will be in touch soon'}</p>
+                    <p className="text-xs text-[#4F555E] mt-1">{ar ? 'سنتواصل معك قريباً' : 'We will be in touch soon'}</p>
+                    <div className="flex items-center justify-center gap-3 text-xs font-medium mt-4">
+                      <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
+                      <span className="text-[#E5E5E5]">•</span>
+                      <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
+                    </div>
                   </div>
                 </div>
               ) : (

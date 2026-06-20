@@ -61,7 +61,7 @@ export function ResearchPage() {
           {!loading && error && (
             <div className="text-center py-16">
               <BookOpen size={40} className="mx-auto text-[#E5E5E5] mb-3" />
-              <p className="text-sm text-[#69717D]">
+              <p className="text-sm text-[#4F555E]">
                 {ar ? 'تعذر تحميل الأبحاث. حاول مجدداً لاحقاً.' : 'Could not load articles. Please try again later.'}
               </p>
             </div>
@@ -70,7 +70,7 @@ export function ResearchPage() {
           {!loading && !error && articles.length === 0 && (
             <div className="text-center py-16">
               <BookOpen size={40} className="mx-auto text-[#E5E5E5] mb-3" />
-              <p className="text-sm text-[#69717D]">
+              <p className="text-sm text-[#4F555E]">
                 {ar ? 'لا توجد أبحاث منشورة بعد.' : 'No research articles published yet.'}
               </p>
             </div>
@@ -82,7 +82,7 @@ export function ResearchPage() {
                 <ScrollReveal key={article.id} delay={i * 0.07}>
                   <Link
                     to={`/research/${article.slug}`}
-                    className="block border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md transition-all duration-200"
+                    className="block border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-200"
                   >
                     {article.image_url && (
                       <img
@@ -96,7 +96,7 @@ export function ResearchPage() {
                         <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold">
                           {ar ? article.category_ar : article.category_en}
                         </span>
-                        <span className="flex items-center gap-1 text-xs text-[#69717D]">
+                        <span className="flex items-center gap-1 text-xs text-[#4F555E]">
                           <Clock size={11} />
                           {article.read_time} {ar ? 'دقائق قراءة' : 'min read'}
                         </span>
@@ -104,7 +104,7 @@ export function ResearchPage() {
                       <h3 className="text-lg font-bold text-[#101418] mb-2 leading-snug">
                         {ar ? article.title_ar : article.title_en}
                       </h3>
-                      <p className="text-sm text-[#69717D] leading-relaxed mb-4">
+                      <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
                         {ar ? article.description_ar : article.description_en}
                       </p>
                       <span className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold">
