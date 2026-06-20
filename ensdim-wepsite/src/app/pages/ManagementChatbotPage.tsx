@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowRight, MessageSquare, Database, Shield, Zap, BarChart3, Clock } from 'lucide-react';
 import { PageHero } from '../components/PageHero';
+import { SEO } from '../components/SEO';
 
 const exampleQuestionsEn = [
   'What sales did we achieve today?',
@@ -38,6 +39,14 @@ export function ManagementChatbotPage() {
 
   return (
     <>
+      <SEO
+        title={ar ? 'تشات بوت بيانات الإدارة | إنسديم' : 'Management Data Chatbot | ENSDIM'}
+        description={ar
+          ? 'تشات بوت إداري مرتبط ببيانات شركتك يساعد أصحاب القرار على معرفة المبيعات، العملاء المحتملين، التشغيل، المدفوعات، والأداء بسرعة.'
+          : 'A management chatbot connected to your company data, helping decision-makers get quick answers about sales, leads, operations, payments, and performance.'}
+        canonical="/services/management-data-chatbot"
+        lang={ar ? 'ar' : 'en'}
+      />
       <PageHero
         eyebrow={ar ? 'الخدمات' : 'Services'}
         title={ar ? 'اسأل بيانات عملك من واتساب.' : 'Ask your business data from WhatsApp.'}

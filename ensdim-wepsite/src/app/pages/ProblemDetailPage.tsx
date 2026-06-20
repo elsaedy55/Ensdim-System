@@ -4,6 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
+import { SEO } from '../components/SEO';
 
 const problemData: Record<string, {
   en: { title: string; impact: string; situation: string; whyMatters: string[]; solution: { title: string; slug: string }; modules: string[]; caseStudy: { title: string; slug: string } };
@@ -151,6 +152,12 @@ export function ProblemDetailPage() {
 
   return (
     <>
+      <SEO
+        title={`${d.title} | ENSDIM`}
+        description={d.impact}
+        canonical={`/problems/${slug}`}
+        lang={ar ? 'ar' : 'en'}
+      />
       <PageHero
         eyebrow={ar ? 'مشكلة شائعة' : 'Common Business Problem'}
         title={d.title}

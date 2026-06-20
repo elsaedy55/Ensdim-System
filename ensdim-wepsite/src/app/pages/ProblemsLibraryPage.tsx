@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
+import { SEO } from '../components/SEO';
 
 const problems = [
   {
@@ -43,6 +44,12 @@ export function ProblemsLibraryPage() {
 
   return (
     <>
+      <SEO
+        title={ar ? 'مشكلات نحلها | إنسديم' : 'Problems we solve | ENSDIM'}
+        description={ar ? 'مشكلات تشغيلية حقيقية تجعل الأعمال تخسر عملاء محتملين، وقتًا، وضوحًا، وفرص نمو.' : 'Real operating problems that make businesses lose leads, time, visibility, and growth.'}
+        canonical="/solutions/problems"
+        lang={ar ? 'ar' : 'en'}
+      />
       <PageHero
         eyebrow={ar ? 'مكتبة المشكلات' : 'Problems Library'}
         title={ar ? 'مشكلات نحلها' : 'Problems we solve'}
