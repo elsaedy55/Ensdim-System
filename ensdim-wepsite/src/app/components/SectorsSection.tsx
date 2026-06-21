@@ -135,7 +135,7 @@ export function SectorsSection() {
             <ScrollReveal key={index} delay={Math.min(index * 0.05, 0.2)}>
             <Link
               to={sector.caseStudy}
-              className="sector-card group relative p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden block"
+              className="sector-card group relative p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#6D5DF6]/0 via-[#6D5DF6]/0 to-[#6D5DF6]/0 group-hover:from-[#6D5DF6]/10 group-hover:via-[#6D5DF6]/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
 
@@ -161,7 +161,7 @@ export function SectorsSection() {
             <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
             <Link
               to={sector.caseStudy}
-              className="sector-card group relative p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden block"
+              className="sector-card group relative p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#6D5DF6]/0 via-[#6D5DF6]/0 to-[#6D5DF6]/0 group-hover:from-[#6D5DF6]/10 group-hover:via-[#6D5DF6]/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
 

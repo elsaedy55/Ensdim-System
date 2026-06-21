@@ -64,9 +64,9 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
         'Basic analytics to understand traffic, conversions, and drop-off points.',
       ],
       solutions: [
-        { label: 'Visits that turn into requests', slug: 'digital-experiences' },
+        { label: 'Visits that turn into clear requests', slug: 'digital-experiences' },
         { label: 'Follow-up that prevents lost opportunities', slug: 'follow-up-systems' },
-        { label: 'Faster decisions instead of guesswork', slug: 'ai-practical-decisions' },
+        { label: 'Faster decisions instead of guessing', slug: 'visibility-insights' },
       ],
       roi: [
         'A more professional and trusted launch.',
@@ -108,7 +108,7 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
       solutions: [
         { label: 'زيارات تتحول إلى طلبات', slug: 'digital-experiences' },
         { label: 'متابعة تمنع ضياع الفرص', slug: 'follow-up-systems' },
-        { label: 'قرار أسرع بدل التخمين', slug: 'ai-practical-decisions' },
+        { label: 'قرار أسرع بدل التخمين', slug: 'visibility-insights' },
       ],
       roi: [
         'إطلاق أكثر احترافًا وثقة أمام العملاء.',
@@ -153,7 +153,7 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
       ],
       solutions: [
         { label: 'Follow-up that prevents lost opportunities', slug: 'follow-up-systems' },
-        { label: 'Visits that turn into requests', slug: 'digital-experiences' },
+        { label: 'Visits that turn into clear requests', slug: 'digital-experiences' },
         { label: 'Lower cost and less pressure', slug: 'automation-layers' },
         { label: 'Scalable operations', slug: 'customer-journey-systems' },
       ],
@@ -251,10 +251,10 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
         'Recurring reports and alerts that help detect problems and opportunities before they become losses.',
       ],
       solutions: [
-        { label: 'Faster decisions instead of guesswork', slug: 'ai-practical-decisions' },
+        { label: 'Faster decisions instead of guessing', slug: 'visibility-insights' },
         { label: 'Lower cost and less pressure', slug: 'automation-layers' },
         { label: 'Scalable operations', slug: 'customer-journey-systems' },
-        { label: 'Smart visibility that detects opportunities early', slug: 'visibility-insights' },
+        { label: 'Smart visibility that detects opportunities early', slug: 'ai-practical-decisions' },
         { label: 'Follow-up that prevents lost opportunities', slug: 'follow-up-systems' },
       ],
       roi: [
@@ -301,10 +301,10 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
         'تقارير دورية وتنبيهات تساعد على اكتشاف المشاكل والفرص قبل أن تتحول إلى خسارة.',
       ],
       solutions: [
-        { label: 'قرار أسرع بدل التخمين', slug: 'ai-practical-decisions' },
+        { label: 'قرار أسرع بدل التخمين', slug: 'visibility-insights' },
         { label: 'تكلفة أقل وضغط أقل', slug: 'automation-layers' },
         { label: 'تشغيل قابل للتوسع', slug: 'customer-journey-systems' },
-        { label: 'رؤية ذكية تكشف الفرص مبكرًا', slug: 'visibility-insights' },
+        { label: 'رؤية ذكية تكشف الفرص مبكرًا', slug: 'ai-practical-decisions' },
         { label: 'متابعة تمنع ضياع الفرص', slug: 'follow-up-systems' },
       ],
       roi: [
