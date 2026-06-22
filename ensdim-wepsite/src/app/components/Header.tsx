@@ -34,13 +34,15 @@ const navItems: NavItem[] = [
   {
     label: 'Services', labelAr: 'الخدمات', href: '/services',
     dropdown: [
-      { label: 'Web Design & Digital Experience', labelAr: 'تصميم الويب والتجارب الرقمية', href: '/services/web-design-digital-experience' },
-      { label: 'CRM & Internal Systems', labelAr: 'CRM والأنظمة الداخلية', href: '/services/crm-internal-systems' },
-      { label: 'AI Chatbots & Automation', labelAr: 'روبوتات الذكاء الاصطناعي والأتمتة', href: '/services/ai-chatbots-automation' },
-      { label: 'Data & Dashboards', labelAr: 'البيانات ولوحات التحكم', href: '/services/data-dashboards' },
+      { label: 'UX & Conversion Development', labelAr: 'تطوير تجربة المستخدم والتحويل', href: '/services/ux-conversion-development' },
+      { label: 'Web Design & Development', labelAr: 'تصميم وتطوير المواقع', href: '/services/web-design-digital-experience' },
+      { label: 'Mobile Applications', labelAr: 'تطبيقات الموبايل', href: '/services/mobile-web-applications' },
+      { label: 'CRM & Follow-up Systems', labelAr: 'أنظمة CRM والمتابعة', href: '/services/crm-internal-systems' },
+      { label: 'Internal Systems & Operations', labelAr: 'الأنظمة الداخلية وإدارة التشغيل', href: '/services/internal-systems-operations' },
+      { label: 'Data & Dashboards', labelAr: 'البيانات ولوحات المتابعة', href: '/services/data-dashboards' },
       { label: 'Management Data Chatbot', labelAr: 'تشات بوت بيانات الإدارة', href: '/services/management-data-chatbot' },
-      { label: 'Mobile & Web Applications', labelAr: 'تطبيقات الجوال والويب', href: '/services/mobile-web-applications' },
-      { label: 'Growth & Marketing Systems', labelAr: 'أنظمة النمو والتسويق', href: '/services/growth-marketing-systems' },
+      { label: 'AI Chatbots & Automation', labelAr: 'روبوتات الدردشة والأتمتة', href: '/services/ai-chatbots-automation' },
+      { label: 'Marketing & Growth Strategy', labelAr: 'استراتيجيات التسويق والنمو', href: '/services/growth-marketing-systems' },
     ],
   },
   {

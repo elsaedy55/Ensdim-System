@@ -29,8 +29,8 @@ export function Footer() {
     {
       title: ar ? 'الخدمات' : 'Services',
       links: [
-        { label: ar ? 'تصميم الويب والتجارب الرقمية' : 'Web Design & Digital Experience', href: '/services/web-design-digital-experience' },
-        { label: ar ? 'المحادثات الذكية والأتمتة' : 'AI Chatbots & Automation', href: '/services/ai-chatbots-automation' },
+        { label: ar ? 'تصميم وتطوير المواقع' : 'Web Design & Development', href: '/services/web-design-digital-experience' },
+        { label: ar ? 'روبوتات الدردشة والأتمتة' : 'AI Chatbots & Automation', href: '/services/ai-chatbots-automation' },
         { label: ar ? 'البيانات ولوحات المتابعة' : 'Data & Dashboards', href: '/services/data-dashboards' },
       ],
     },
