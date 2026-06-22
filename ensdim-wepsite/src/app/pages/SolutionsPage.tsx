@@ -172,7 +172,7 @@ export function SolutionsPage() {
           <div className="grid sm:grid-cols-3 gap-5">
             {stages.map((st, i) => (
               <ScrollReveal key={st.slug} delay={i * 0.08}>
-                <Link to={`/solutions/${st.slug}`} className="block bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 group h-full">
+                <Link id={st.slug} to={`/solutions/${st.slug}`} className="block bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 group h-full scroll-mt-32">
                   <h3 className="text-lg font-bold text-[#101418] mb-2">{ar ? st.ar.title : st.en.title}</h3>
                   <p className="text-sm text-[#4F555E] mb-4">{ar ? st.ar.desc : st.en.desc}</p>
                   <span className="inline-flex items-center gap-1 text-sm text-[#6D5DF6] font-medium group-hover:gap-2 group-active:gap-2 transition-all">

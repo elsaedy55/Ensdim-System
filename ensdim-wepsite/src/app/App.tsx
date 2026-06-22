@@ -23,6 +23,7 @@ import { AboutPage } from './pages/AboutPage';
 import { TeamPage } from './pages/TeamPage';
 import { PartnersPage } from './pages/PartnersPage';
 import { ContactPage } from './pages/ContactPage';
+import { ClientWorkspacePage } from './pages/ClientWorkspacePage';
 import { BookConsultationPage } from './pages/BookConsultationPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
@@ -89,6 +90,7 @@ export default function App() {
             <Route path="team" element={<TeamPage />} />
             <Route path="partners" element={<PartnersPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="client-workspace" element={<ClientWorkspacePage />} />
             <Route path="privacy" element={<PrivacyPage />} />
             <Route path="terms-of-service" element={<TermsPage />} />
 

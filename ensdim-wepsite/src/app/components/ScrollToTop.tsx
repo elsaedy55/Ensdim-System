@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router';
 
 const STORAGE_KEY = 'ensdim_scroll_positions';
@@ -20,16 +20,25 @@ function savePosition(key: string, y: number) {
 export function ScrollToTop() {
   const location = useLocation();
   const navigationType = useNavigationType();
+  // True only once the SPA has actually performed an in-app navigation.
+  // React Router reports 'POP' for the very first mount too (there's no
+  // other type to assign yet), so without this flag a stale sessionStorage
+  // entry under the reused "default" key could get restored on a brand new
+  // page load that was never actually "popped" from history.
+  const hasNavigatedRef = useRef(false);
 
   useEffect(() => {
     const key = location.key;
+    const isGenuinePop = navigationType === 'POP' && hasNavigatedRef.current;
+    hasNavigatedRef.current = true;
+
     // Read the saved position for this history entry BEFORE attaching the
     // scroll listener below — the listener's first natural scroll event
     // (e.g. from the browser clamping scrollY while a shorter destination
     // page mounts) would otherwise overwrite the value we need to restore.
     const saved = getPositions()[key];
 
-    if (navigationType === 'POP' && typeof saved === 'number') {
+    if (isGenuinePop && typeof saved === 'number') {
       // Pages with async-loaded data (case studies, blog, research, etc.)
       // are shorter than their final height right after mount, so a single
       // scrollTo can silently clamp short and layout can keep shifting as
@@ -59,11 +68,28 @@ export function ScrollToTop() {
       };
     }
 
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    if (location.hash) {
+      // Give the destination page a moment to mount before locating the
+      // target element — it may not exist in the DOM on the very first tick.
+      let attempts = 0;
+      const maxAttempts = 20; // ~1s at 50ms intervals
+      const tryScrollToHash = () => {
+        const target = document.getElementById(location.hash.slice(1));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        attempts += 1;
+        if (attempts < maxAttempts) setTimeout(tryScrollToHash, 50);
+      };
+      tryScrollToHash();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    }
     const onScroll = () => savePosition(key, window.scrollY);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [location.key, navigationType]);
+  }, [location.key, navigationType, location.hash]);
 
   return null;
 }

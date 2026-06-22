@@ -21,7 +21,7 @@ function HeroVizSimple() {
   ];
 
   const hubX = 200;
-  const hubY = 204;
+  const hubY = 256;
 
   const lines = nodes.map((n, i) => ({
     x1: n.cx, y1: n.cy, x2: hubX, y2: hubY,
@@ -56,6 +56,7 @@ function HeroVizSimple() {
 
       <svg
         viewBox="0 0 380 300"
+        preserveAspectRatio="none"
         className="viz-wrap absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -660,23 +661,25 @@ export function Hero() {
         className="absolute inset-0 lg:hidden overflow-hidden"
         style={{ pointerEvents: 'none' }}
       >
-        {/* Simplified hero visualization for mobile */}
+        {/* Simplified hero visualization for mobile — weighted toward the
+            lower half so the area below the CTA/trust line reads as an
+            intentional animated graphic instead of empty space. */}
         <div
           className="absolute inset-0"
           style={{
-            transform: 'scale(1.3)',
-            transformOrigin: 'center 45%',
-            opacity: 0.7,
+            opacity: 0.85,
           }}
         >
           <HeroVizSimple />
         </div>
 
-        {/* Dark overlay for text readability - lighter */}
+        {/* Dark overlay for text readability — strong near the top where
+            copy sits, fading out toward the bottom so the visualization
+            shows through clearly there. */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to bottom, rgba(10,12,18,0.7) 0%, rgba(10,12,18,0.75) 35%, rgba(10,12,18,0.68) 100%)',
+            background: 'linear-gradient(to bottom, rgba(10,12,18,0.75) 0%, rgba(10,12,18,0.78) 30%, rgba(10,12,18,0.55) 65%, rgba(10,12,18,0.25) 100%)',
           }}
         />
 
@@ -684,8 +687,8 @@ export function Hero() {
         <div
           className="absolute inset-x-0 top-0"
           style={{
-            height: '65%',
-            background: 'radial-gradient(ellipse 85% 70% at 50% 35%, rgba(10,12,18,0.45) 0%, transparent 55%)',
+            height: '60%',
+            background: 'radial-gradient(ellipse 85% 70% at 50% 30%, rgba(10,12,18,0.45) 0%, transparent 55%)',
           }}
         />
       </div>
