@@ -1,12 +1,31 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
-import { FAQSection } from '../components/FAQSection';
-import { QuickAnswer } from '../components/QuickAnswer';
 import { submitInquiry } from '../../lib/supabase';
+
+/**
+ * "/company/about" in the approved content brief doesn't exist as a route —
+ * the about page lives at /about. Linked there instead to avoid a 404.
+ */
+
+const interestOptions = [
+  { en: 'Improve customer experience', ar: 'تحسين تجربة العميل' },
+  { en: 'Build a website or digital product', ar: 'بناء موقع أو منتج رقمي' },
+  { en: 'Organize customer follow-up', ar: 'تنظيم متابعة العملاء' },
+  { en: 'Improve internal operations', ar: 'تحسين التشغيل الداخلي' },
+  { en: 'Data and dashboards', ar: 'البيانات ولوحات المتابعة' },
+  { en: 'Automation or an intelligence layer', ar: 'الأتمتة أو طبقة ذكاء' },
+  { en: 'Not sure yet', ar: 'غير متأكد بعد' },
+];
+
+const afterSteps = [
+  { en: { title: 'We review your message', desc: 'We read the business context, the current challenge, and the area you want to improve.' }, ar: { title: 'نراجع رسالتك', desc: 'نقرأ سياق العمل، التحدي الحالي، والجانب الذي تريد تحسينه.' } },
+  { en: { title: 'We identify the closest path', desc: 'We determine whether your need is closer to a specific service, a broader solution, a consultation, or a discovery call.' }, ar: { title: 'نحدد المسار الأقرب', desc: 'نقترح هل احتياجك أقرب إلى خدمة محددة، حل متكامل، استشارة، أو جلسة اكتشاف.' } },
+  { en: { title: 'We reply with the next step', desc: 'If there is a fit, we will guide you to the most suitable conversation, scope, or meeting.' }, ar: { title: 'نرد عليك بالخطوة التالية', desc: 'إذا كان هناك توافق، سنوجهك إلى المحادثة أو النطاق أو الاجتماع الأنسب.' } },
+];
 
 export function ContactPage() {
   const { language } = useLanguage();
@@ -23,12 +42,14 @@ export function ContactPage() {
     const data = new FormData(e.currentTarget);
     try {
       await submitInquiry({
-        type:        'contact',
-        name:        String(data.get('name') ?? ''),
-        whatsapp:    String(data.get('whatsapp') ?? ''),
-        email:       String(data.get('email') ?? '') || undefined,
-        company:     String(data.get('company') ?? '') || undefined,
-        message:     String(data.get('message') ?? '') || undefined,
+        type: 'contact',
+        name: String(data.get('name') ?? ''),
+        whatsapp: String(data.get('whatsapp') ?? ''),
+        email: String(data.get('email') ?? '') || undefined,
+        company: String(data.get('company') ?? '') || undefined,
+        country: String(data.get('country') ?? '') || undefined,
+        challenge: String(data.get('challenge') ?? '') || undefined,
+        interest_type: String(data.get('interest_type') ?? '') || undefined,
         source_page: '/contact',
         language,
       });
@@ -43,28 +64,63 @@ export function ContactPage() {
   return (
     <>
       <SEO
-        title="Contact ENSDIM | AI Automation Agency - Egypt, Saudi Arabia, UAE"
-        description="Contact ENSDIM to discuss your AI automation, CRM, SaaS, or digital transformation project. We serve businesses in Egypt, Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, and Oman."
-        keywords="contact ENSDIM, AI agency contact Egypt, automation agency email, book AI consultation Middle East"
+        title={ar ? 'تواصل مع إنسديم' : 'Contact ENSDIM'}
+        description={ar
+          ? 'شاركنا فكرتك أو التحدي الذي تواجهه الآن داخل عملك، وسنساعدك على فهم أول خطوة واضحة.'
+          : 'Share the idea or challenge your business is facing now, and we’ll help you identify the first clear digital step.'}
         canonical="/contact"
-      />
-      <PageHero
-        title={ar ? 'تواصل مع إنسديم.' : 'Talk to ENSDIM.'}
-        subtitle={ar
-          ? 'أخبرنا أين يحتاج عملك إلى وضوح، تحكم، أو تحويل أفضل.'
-          : 'Tell us where your business needs more clarity, control, or conversion.'}
-        breadcrumbs={[{ label: 'Contact', labelAr: 'تواصل معنا', href: '/contact' }]}
         lang={ar ? 'ar' : 'en'}
       />
 
-      <QuickAnswer
-        question={ar ? 'كيف أتواصل مع إنسديم؟' : 'How do I contact ENSDIM?'}
-        answer={ar
-          ? 'تواصل مع إنسديم عبر البريد الإلكتروني hello@ensdim.com، أو احجز استشارة مجانية على ensdim.com/book-consultation. فريق إنسديم يرد خلال يوم عمل واحد.'
-          : 'Contact ENSDIM via email at hello@ensdim.com, or book a free consultation at ensdim.com/book-consultation. The ENSDIM team responds within one business day.'}
-      />
+      {/* Hero */}
+      <section className="pt-24 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden bg-[#0f0d19] text-white">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
+        />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="mb-6 text-xs text-white/50 flex items-center gap-1">
+            <Link to="/" className="hover:text-white/80 transition-colors">{ar ? 'الرئيسية' : 'Home'}</Link>
+            <span className="opacity-40">/</span>
+            <span className="text-white/70 font-medium">{ar ? 'تواصل معنا' : 'Contact'}</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
+            {ar ? 'تواصل مع إنسديم.' : 'Talk to ENSDIM.'}
+          </h1>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
+            {ar
+              ? 'شاركنا فكرتك أو التحدي الذي تواجهه الآن داخل عملك، وسنساعدك على فهم أول خطوة واضحة يمكن أن تحوّل هذا التحدي إلى مسار رقمي يخدم العائد.'
+              : 'Share the idea or challenge your business is facing now, and we’ll help you identify the first clear digital step that can turn it into a path with measurable business value.'}
+          </p>
+          <p className="text-sm text-[#EEEAFE]/55">
+            {ar
+              ? 'ابدأ بما يحدث الآن: عميل يضيع، متابعة تتأخر، تشغيل مرهق، بيانات غير واضحة، أو فرصة نمو تحتاج تنظيمًا.'
+              : 'Start with what is happening today: lost leads, delayed follow-up, operational pressure, unclear data, or a growth opportunity that needs structure.'}
+          </p>
+        </div>
+      </section>
 
-      <section className="py-16 sm:py-20 bg-white">
+      {/* Start the conversation */}
+      <section className="py-12 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <h2 className="text-xl sm:text-2xl font-bold text-[#101418] mb-3 leading-tight">
+              {ar ? 'لا تحتاج أن تعرف الحل قبل أن تتواصل معنا.' : 'You do not need to know the solution before you contact us.'}
+            </h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-3">
+              {ar
+                ? 'أخبرنا أين يحتاج عملك إلى وضوح أكبر: تجربة العميل، المتابعة، التشغيل، البيانات، الأتمتة، أو النمو. سنراجع رسالتك ونساعدك على تحديد ما إذا كانت الخطوة الأقرب هي خدمة محددة، حل متكامل، استشارة أولية، أو جلسة اكتشاف أعمق.'
+                : 'Tell us where your business needs more clarity: customer experience, follow-up, operations, data, automation, or growth. We’ll review your message and help you understand whether the next step is a specific service, a broader solution, an initial consultation, or a deeper discovery call.'}
+            </p>
+            <p className="text-sm text-[#4F555E]/70 italic">
+              {ar ? 'كل ما نحتاجه في البداية هو وصف صادق لما يحدث داخل العمل الآن.' : 'At the beginning, all we need is an honest description of what is happening inside the business.'}
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Contact details + form */}
+      <section className="py-12 bg-[#FAFAFA]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact info */}
@@ -72,15 +128,19 @@ export function ContactPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'البريد الإلكتروني' : 'Email'}</h3>
-                  <p className="text-sm text-[#4F555E]">hello@ensdim.com</p>
+                  <a href="mailto:info@ensdim.com" className="text-sm text-[#6D5DF6] hover:underline">info@ensdim.com</a>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'واتساب' : 'WhatsApp'}</h3>
-                  <p className="text-sm text-[#4F555E]">Available for qualified inquiries</p>
+                  <p className="text-sm text-[#4F555E]">{ar ? 'متاح للاستفسارات الجادة والمشاريع المناسبة' : 'Available for serious business inquiries and suitable projects'}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'الموقع' : 'Location'}</h3>
-                  <p className="text-sm text-[#4F555E]">{ar ? 'فريق بعيد، يخدم دول الخليج والمنطقة العربية' : 'Remote-first, serving Gulf & MENA'}</p>
+                  <p className="text-sm text-[#4F555E]">{ar ? 'نعمل من مصر ونخدم عملاء في الخليج ومنطقة الشرق الأوسط وشمال أفريقيا' : 'Based in Egypt, serving clients across the Gulf, Middle East, and North Africa'}</p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'وقت الرد' : 'Response Time'}</h3>
+                  <p className="text-sm text-[#4F555E]">{ar ? 'نرد غالبًا خلال يوم عمل واحد.' : 'We usually respond within one business day.'}</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -92,84 +152,144 @@ export function ContactPage() {
                   <div className="text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg viewBox="0 0 20 20" fill="none" className="w-6 h-6 text-green-600 no-mirror">
-                        <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <p className="text-sm font-semibold text-[#101418]">{ar ? 'تم إرسال طلبك' : 'Request sent'}</p>
-                    <p className="text-xs text-[#4F555E] mt-1">{ar ? 'سنتواصل معك قريباً' : 'We will be in touch soon'}</p>
-                    <div className="flex items-center justify-center gap-3 text-xs font-medium mt-4">
-                      <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
-                      <span className="text-[#E5E5E5]">•</span>
-                      <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
+                    <p className="text-base font-bold text-[#101418] mb-1">{ar ? 'تم استلام رسالتك بنجاح.' : 'Your message has been received successfully.'}</p>
+                    <p className="text-sm text-[#4F555E] mb-5 max-w-xs mx-auto leading-relaxed">
+                      {ar
+                        ? 'شكرًا لتواصلك مع إنسديم. سنراجع التحدي الذي أرسلته ونعود إليك بالخطوة الأنسب.'
+                        : 'Thank you for contacting ENSDIM. We will review the challenge you shared and get back to you with the most suitable next step.'}
+                    </p>
+                    <p className="text-xs font-semibold text-[#101418] mb-3">
+                      {ar ? 'يمكنك التعرف على إنسديم أكثر من خلال الروابط التالية:' : 'You can learn more about ENSDIM through the following links:'}
+                    </p>
+                    <div className="flex flex-col items-center gap-2 text-sm font-medium">
+                      <Link to="/about" className="text-[#6D5DF6] hover:underline">{ar ? 'تعرّف على إنسديم ←' : 'Learn About ENSDIM →'}</Link>
+                      <Link to="/solutions" className="text-[#6D5DF6] hover:underline">{ar ? 'استكشف الحلول ←' : 'Explore Solutions →'}</Link>
+                      <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'شاهد مشاريعنا ←' : 'View Case Studies →'}</Link>
+                      <Link to="/services" className="text-[#6D5DF6] hover:underline">{ar ? 'استكشف خدماتنا ←' : 'Explore Services →'}</Link>
                     </div>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {[
-                    { name: 'name', label: ar ? 'الاسم' : 'Name', type: 'text', required: true },
-                    { name: 'whatsapp', label: ar ? 'واتساب' : 'WhatsApp', type: 'tel', required: true },
-                    { name: 'company', label: ar ? 'الشركة' : 'Company', type: 'text' },
-                    { name: 'email', label: ar ? 'البريد الإلكتروني' : 'Email', type: 'email' },
-                  ].map((field) => (
-                    <div key={field.name}>
+                <div>
+                  <h2 className="text-lg font-bold text-[#101418] mb-1.5">{ar ? 'شارك تحدي عملك' : 'Share Your Business Challenge'}</h2>
+                  <p className="text-xs text-[#4F555E] leading-relaxed mb-5">
+                    {ar
+                      ? 'اكتب لنا باختصار ما الذي تريد تحسينه، وما الذي يحدث الآن داخل عملك. كلما كان السياق أوضح، استطعنا توجيهك إلى خطوة أدق.'
+                      : 'Briefly tell us what you want to improve and what is currently happening inside your business. The clearer the context, the more accurately we can guide you.'}
+                  </p>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {[
+                      { name: 'name', label: ar ? 'الاسم' : 'Name', placeholder: ar ? 'اكتب اسمك' : 'Your name', type: 'text', required: true },
+                      { name: 'whatsapp', label: ar ? 'واتساب' : 'WhatsApp', placeholder: ar ? 'رقم واتساب' : 'WhatsApp number', type: 'tel', required: true },
+                      { name: 'company', label: ar ? 'الشركة' : 'Company', placeholder: ar ? 'اسم الشركة' : 'Company name', type: 'text' },
+                      { name: 'email', label: ar ? 'البريد الإلكتروني' : 'Email', placeholder: ar ? 'البريد الإلكتروني للعمل' : 'Business email', type: 'email' },
+                      { name: 'country', label: ar ? 'الدولة' : 'Country', placeholder: ar ? 'الدولة' : 'Country', type: 'text' },
+                    ].map((field) => (
+                      <div key={field.name}>
+                        <label className="block text-xs font-semibold text-[#101418] mb-1.5">
+                          {field.label}{field.required && <span className="text-[#D63A3A]"> *</span>}
+                        </label>
+                        <input
+                          type={field.type}
+                          name={field.name}
+                          required={field.required}
+                          className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
+                          placeholder={field.placeholder}
+                        />
+                      </div>
+                    ))}
+
+                    <div>
                       <label className="block text-xs font-semibold text-[#101418] mb-1.5">
-                        {field.label}{field.required && <span className="text-[#D63A3A]"> *</span>}
+                        {ar ? 'بماذا تحتاج المساعدة؟' : 'What do you need help with?'}<span className="text-[#D63A3A]"> *</span>
                       </label>
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        required={field.required}
-                        className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
-                        placeholder={field.label}
+                      <textarea
+                        name="challenge"
+                        required
+                        rows={3}
+                        className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors resize-none"
+                        placeholder={ar ? 'صف لنا التحدي الحالي باختصار…' : 'Briefly describe your current challenge…'}
                       />
                     </div>
-                  ))}
-                  <div>
-                    <label className="block text-xs font-semibold text-[#101418] mb-1.5">
-                      {ar ? 'ما الذي تحتاج مساعدة فيه؟' : 'What do you need help with?'}
-                    </label>
-                    <textarea
-                      name="message"
-                      rows={3}
-                      className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors resize-none"
-                      placeholder={ar ? 'اشرح تحديك الحالي...' : 'Describe your current challenge...'}
-                    />
-                  </div>
-                  {error && (
-                    <p className="text-xs text-[#D63A3A]">
-                      {ar ? 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.' : 'Something went wrong while sending. Please try again.'}
-                    </p>
-                  )}
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full py-2.5 bg-[#D63A3A] text-white rounded-xl text-sm font-semibold hover:bg-[#c23030] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : (ar ? 'إرسال الطلب' : 'Send Request')}
-                  </button>
-                </form>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-[#101418] mb-1.5">
+                        {ar ? 'مجال الاهتمام' : 'Area of Interest'}
+                      </label>
+                      <select
+                        name="interest_type"
+                        defaultValue=""
+                        className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
+                      >
+                        <option value="" disabled>{ar ? 'اختر مجال الاهتمام' : 'Select area of interest'}</option>
+                        {interestOptions.map((opt) => (
+                          <option key={opt.en} value={opt.en}>{ar ? opt.ar : opt.en}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {error && (
+                      <p className="text-xs text-[#D63A3A]">
+                        {ar ? 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.' : 'Something went wrong while sending. Please try again.'}
+                      </p>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-[#D63A3A] text-white rounded-xl text-sm font-semibold hover:bg-[#c23030] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : (
+                        <>
+                          {ar ? 'إرسال الطلب' : 'Send Request'} <ArrowRight size={15} />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
               )}
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      <FAQSection
-        title={ar ? 'أسئلة شائعة حول التواصل مع إنسديم' : 'Frequently Asked Questions — Contacting ENSDIM'}
-        faqs={ar ? [
-          { question: 'كيف أتواصل مع إنسديم؟', answer: 'عبر البريد الإلكتروني hello@ensdim.com أو من خلال نموذج التواصل في هذه الصفحة. كذلك يمكنك حجز استشارة مجانية مباشرة من صفحة /book-consultation.' },
-          { question: 'كم يستغرق الرد على طلبي؟', answer: 'يرد فريق إنسديم خلال يوم عمل واحد على طلبات التواصل. الاستشارات المحجوزة مجدولة خلال 2-3 أيام عمل.' },
-          { question: 'هل تعمل إنسديم مع عملاء خارج مصر؟', answer: 'نعم. إنسديم تعمل عن بُعد مع عملاء في السعودية والإمارات والكويت وقطر والبحرين وعُمان، وكذلك عملاء دوليين.' },
-          { question: 'ماذا يجب أن أذكر في رسالتي؟', answer: 'اذكر نوع عملك، المشكلة أو التحدي الحالي الذي تواجهه، وما تتوقع تحقيقه. كلما كانت المعلومات أوضح، كلما استطعنا تقديم استجابة أكثر فائدة.' },
-        ] : [
-          { question: 'How do I contact ENSDIM?', answer: 'Via email at hello@ensdim.com or through the contact form on this page. You can also book a free consultation directly at ensdim.com/book-consultation.' },
-          { question: 'How quickly does ENSDIM respond?', answer: 'The ENSDIM team responds to contact requests within one business day. Booked consultations are scheduled within 2-3 business days.' },
-          { question: 'Does ENSDIM work with clients outside Egypt?', answer: 'Yes. ENSDIM operates remotely with clients in Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, Oman, and internationally.' },
-          { question: 'What should I include in my message?', answer: 'Include your business type, the current problem or challenge you are facing, and what you want to achieve. The more specific, the more useful our response will be.' },
-          { question: 'Can I contact ENSDIM via WhatsApp?', answer: 'WhatsApp contact is available for qualified project inquiries. The best starting point is the contact form or email — we will share direct contact details as the conversation progresses.' },
-        ]}
-      />
+      {/* What happens after */}
+      <section className="py-14 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <ScrollReveal className="mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#101418]">
+              {ar ? 'ماذا يحدث بعد أن ترسل رسالتك؟' : 'What happens after you send your message?'}
+            </h2>
+          </ScrollReveal>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {afterSteps.map((step, i) => (
+              <ScrollReveal key={i} delay={i * 0.06}>
+                <div className="p-5 border border-[#E5E5E5] rounded-2xl h-full">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#EEEAFE] text-[#6D5DF6] text-xs font-bold mb-3">{i + 1}</span>
+                  <h3 className="text-sm font-bold text-[#101418] mb-2">{ar ? step.ar.title : step.en.title}</h3>
+                  <p className="text-xs text-[#4F555E] leading-relaxed">{ar ? step.ar.desc : step.en.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Closing line */}
+      <section className="py-14 bg-[#0f0d19] text-white">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold mb-3">
+            {ar ? 'ابدأ من وصف التحدي، وسنساعدك على ترتيب الخطوة التالية.' : 'Start by describing the challenge, and we’ll help you shape the next step.'}
+          </h2>
+          <p className="text-sm text-[#EEEAFE]/75 leading-relaxed">
+            {ar
+              ? 'لا تحتاج إلى تحديد الخدمة أو الحل من البداية. اكتب ما يحدث داخل عملك الآن، وسنراجع الرسالة ونقترح المسار الأقرب للعائد.'
+              : 'You do not need to define the service or solution from the beginning. Tell us what is happening inside your business now, and we’ll review your message and suggest the path closest to business return.'}
+          </p>
+        </div>
+      </section>
     </>
   );
 }
