@@ -40,7 +40,6 @@ const navItems: NavItem[] = [
       { label: 'CRM & Follow-up Systems', labelAr: 'أنظمة CRM والمتابعة', href: '/services/crm-internal-systems' },
       { label: 'Internal Systems & Operations', labelAr: 'الأنظمة الداخلية وإدارة التشغيل', href: '/services/internal-systems-operations' },
       { label: 'Data & Dashboards', labelAr: 'البيانات ولوحات المتابعة', href: '/services/data-dashboards' },
-      { label: 'Management Data Chatbot', labelAr: 'تشات بوت بيانات الإدارة', href: '/services/management-data-chatbot' },
       { label: 'AI Chatbots & Automation', labelAr: 'روبوتات الدردشة والأتمتة', href: '/services/ai-chatbots-automation' },
       { label: 'Marketing & Growth Strategy', labelAr: 'استراتيجيات التسويق والنمو', href: '/services/growth-marketing-systems' },
     ],
