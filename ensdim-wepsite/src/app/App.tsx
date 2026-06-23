@@ -28,7 +28,7 @@ import { BookConsultationPage } from './pages/BookConsultationPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
 import { CareersPage } from './pages/CareersPage';
-import { CareerDetailPage } from './pages/CareerDetailPage';
+import { CareerApplyPage } from './pages/CareerApplyPage';
 import { BlogPage } from './pages/BlogPage';
 import { BlogArticlePage } from './pages/BlogArticlePage';
 import { AIAgencyEgyptPage } from './pages/local/AIAgencyEgyptPage';
@@ -96,7 +96,7 @@ export default function App() {
 
             {/* Careers */}
             <Route path="careers" element={<CareersPage />} />
-            <Route path="careers/:slug" element={<CareerDetailPage />} />
+            <Route path="careers/apply" element={<CareerApplyPage />} />
 
             {/* Actions */}
             <Route path="book-consultation" element={<BookConsultationPage />} />
