@@ -1,19 +1,86 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { getPublishedResearchArticles, type ResearchArticle } from '../../lib/supabase';
+
+const methodPoints = [
+  { en: 'Define a research question linked to return, growth, or customer behavior.', ar: 'تحديد سؤال بحث مرتبط بالعائد أو النمو أو سلوك العميل.' },
+  { en: 'Explain the business context in language non-technical readers can understand.', ar: 'توضيح السياق التجاري للموضوع بلغة يفهمها غير المتخصص.' },
+  { en: 'Analyze causes and patterns instead of only describing the issue.', ar: 'تحليل الأسباب والأنماط بدل الاكتفاء بوصف المشكلة.' },
+  { en: 'Use credible sources or available data when needed.', ar: 'الاستناد إلى مصادر موثوقة أو بيانات متاحة عند الحاجة.' },
+  { en: 'Turn findings into practical points that can connect to services and solutions.', ar: 'تحويل الاستنتاجات إلى نقاط تطبيقية يمكن ربطها بالخدمات والحلول.' },
+  { en: 'Clarify how impact can be measured after implementation.', ar: 'توضيح كيف يمكن قياس الأثر بعد تطبيق الحل.' },
+];
+
+const categoryFilters = [
+  { en: 'All', ar: 'الكل' },
+  { en: 'Profit & Growth', ar: 'الربح والنمو' },
+  { en: 'Customer Behavior', ar: 'سلوك العملاء' },
+  { en: 'User Experience', ar: 'تجربة الاستخدام' },
+  { en: 'Business Intelligence', ar: 'ذكاء الأعمال' },
+  { en: 'Follow-up Systems', ar: 'أنظمة المتابعة' },
+  { en: 'Digital Operations', ar: 'التشغيل الرقمي' },
+  { en: 'Automation & AI', ar: 'الأتمتة والذكاء الاصطناعي' },
+  { en: 'Security & Trust', ar: 'الأمان والثقة' },
+  { en: 'Market Analysis', ar: 'تحليلات السوق' },
+];
+
+const nextSteps = [
+  { en: 'Explore the related solution.', ar: 'استكشف الحل المرتبط بالموضوع.' },
+  { en: 'Read a similar case study.', ar: 'اقرأ دراسة حالة مشابهة.' },
+  { en: 'Move to a service connected to the challenge.', ar: 'انتقل إلى خدمة مرتبطة بالتحدي.' },
+  { en: 'Share the challenge if deeper analysis is needed.', ar: 'شاركنا التحدي إذا احتجت تحليلًا أعمق.' },
+];
+
+function ResearchCard({ article, ar, featured }: { article: ResearchArticle; ar: boolean; featured?: boolean }) {
+  return (
+    <Link
+      to={`/research/${article.slug}`}
+      className={`block border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-200 ${featured ? 'bg-[#FAFAFA]' : 'bg-white'}`}
+    >
+      {article.image_url && (
+        <img
+          src={article.image_url}
+          alt={ar ? article.title_ar : article.title_en}
+          className={`w-full object-cover ${featured ? 'h-56' : 'h-40'}`}
+        />
+      )}
+      <div className={featured ? 'p-6 sm:p-8' : 'p-5'}>
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold">
+            {ar ? article.category_ar : article.category_en}
+          </span>
+          <span className="flex items-center gap-1 text-xs text-[#4F555E]">
+            <Clock size={11} />
+            {article.read_time} {ar ? 'دقائق قراءة' : 'min read'}
+          </span>
+        </div>
+        <h3 className={`font-bold text-[#101418] mb-2 leading-snug ${featured ? 'text-xl' : 'text-base'}`}>
+          {ar ? article.title_ar : article.title_en}
+        </h3>
+        <p className={`text-[#4F555E] leading-relaxed mb-4 ${featured ? 'text-sm' : 'text-xs line-clamp-2'}`}>
+          {ar ? article.description_ar : article.description_en}
+        </p>
+        <span className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold">
+          {ar ? 'اقرأ البحث' : 'Read Research'}
+          <ArrowRight size={13} />
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export function ResearchPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
 
-  const [articles, setArticles]   = useState<ResearchArticle[]>([]);
-  const [loading, setLoading]     = useState(true);
-  const [error, setError]         = useState<string | null>(null);
+  const [articles, setArticles] = useState<ResearchArticle[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState('All');
 
   useEffect(() => {
     getPublishedResearchArticles()
@@ -22,37 +89,159 @@ export function ResearchPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  const featured = articles[0];
+  const rest = articles.slice(1);
+
+  const filteredRest = useMemo(() => {
+    if (activeFilter === 'All') return rest;
+    return rest.filter((a) => a.category_en === activeFilter);
+  }, [rest, activeFilter]);
+
   return (
     <>
       <SEO
-        title="Research | ENSDIM - Customer Behavior & Business Operations Insights"
-        description="ENSDIM research: data-driven insights on customer behavior, lead conversion, follow-up systems, and operational efficiency for service businesses in Egypt, Saudi Arabia, and UAE."
-        keywords="customer behavior research Egypt, lead conversion insights, business operations research Middle East, AI automation research"
+        title={ar ? 'أبحاث إنسديم | فهم الأعمال، سلوك العميل، والنمو' : 'ENSDIM Research | Understanding Business, Customer Behavior & Growth'}
+        description={ar
+          ? 'نحلل التحديات التي تؤثر على أداء الشركات: سلوك العميل، المتابعة، التحويل، البيانات، والتشغيل، لنقدم رؤى عملية تساعدك على اتخاذ قرارات أوضح.'
+          : 'We analyze the challenges that affect business performance: customer behavior, follow-up, conversion, data, and operations, to deliver practical insight for clearer decisions.'}
         canonical="/research"
-      />
-      <PageHero
-        title={ar ? 'الأبحاث' : 'Research'}
-        subtitle={ar
-          ? 'رؤى عملية حول سلوك العملاء، التشغيل، والتحويل.'
-          : 'Practical insights on customer behavior, operations, and conversion.'}
-        breadcrumbs={[{ label: 'Research', labelAr: 'الأبحاث', href: '/research' }]}
         lang={ar ? 'ar' : 'en'}
-        variant="light"
       />
 
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      {/* Hero */}
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
+        />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="mb-6 text-xs text-white/50 flex items-center gap-1">
+            <Link to="/" className="hover:text-white/80 transition-colors">{ar ? 'الرئيسية' : 'Home'}</Link>
+            <span className="opacity-40">/</span>
+            <Link to="/resources" className="hover:text-white/80 transition-colors">{ar ? 'الموارد' : 'Resources'}</Link>
+            <span className="opacity-40">/</span>
+            <span className="text-white/70 font-medium">{ar ? 'الأبحاث' : 'Research'}</span>
+          </div>
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
+            {ar ? 'أبحاث إنسديم' : 'ENSDIM Research'}
+          </span>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
+            {ar ? 'أبحاث تساعدك على فهم الأعمال، سلوك العميل، ومسارات الربح والنمو.' : 'Research that helps you understand business, customer behavior, and the paths to profit and growth.'}
+          </h1>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
+            {ar
+              ? 'نحلل التحديات التي تؤثر على أداء الشركات: كيف يفكر العميل، أين تتعطل المتابعة، لماذا لا تتحول الفرص إلى مبيعات، وكيف تؤثر تجربة المستخدم والبيانات والتشغيل على الربحية والنمو. الهدف ليس إنتاج محتوى نظري، بل تقديم رؤى عملية تساعدك على اتخاذ قرارات أوضح قبل بناء الحل الرقمي.'
+              : 'We analyze the challenges that affect business performance: how customers think, where follow-up breaks down, why opportunities fail to become sales, and how user experience, data, and operations influence profitability and growth. The goal is not theoretical content, but practical insight that helps you make clearer decisions before building a digital solution.'}
+          </p>
+          <p className="text-sm text-[#EEEAFE]/55">
+            {ar ? 'فهم أعمق للأعمال. قراءة أوضح لسلوك العميل. قرارات أقرب للعائد.' : 'Deeper business understanding. Clearer customer insight. Decisions closer to return.'}
+          </p>
+        </div>
+      </section>
+
+      {/* Why we publish research */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
+              {ar ? 'لأن الحل الصحيح يبدأ من فهم ما يعطّل النمو.' : 'Because the right solution starts with understanding what blocks growth.'}
+            </h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
+              {ar
+                ? 'كثير من الشركات تبدأ من سؤال: ما الأداة التي نحتاجها؟ موقع؟ تطبيق؟ نظام متابعة؟ أتمتة؟ لوحة بيانات؟ لكن السؤال الأهم هو: ما الذي يمنع العمل من تحقيق نتيجة أفضل؟'
+                : 'Many companies begin with the tool: a website, an app, a follow-up system, automation, or a dashboard. But the better question is: what is preventing the business from achieving a better result?'}
+            </p>
+            <p className="text-sm text-[#4F555E] leading-relaxed">
+              {ar
+                ? 'أبحاث إنسديم تساعد أصحاب الأعمال والفرق على قراءة التحدي قبل الاستثمار في الحل. نربط بين سلوك العميل، الربحية، النمو، التشغيل، البيانات، وتجربة المستخدم؛ حتى يتحول البحث إلى خطوة عملية تساعد على فهم المشكلة، لا مجرد مقال معلوماتي.'
+                : 'ENSDIM Research helps business owners and teams examine the challenge before investing in a solution. We connect customer behavior, profitability, growth, operations, data, and user experience so that research becomes a practical step toward understanding the problem, not just another article.'}
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Research method */}
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
+              {ar ? 'نبدأ من سؤال بزنس واضح، ثم نحلله من أكثر من زاوية.' : 'We start with a clear business question, then analyze it from multiple angles.'}
+            </h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-7">
+              {ar
+                ? 'البحث داخل إنسديم لا يبدأ من التقنية، بل من أثرها على العمل. نبدأ بتحديد سؤال واقعي مثل: لماذا تضيع الفرص؟ لماذا لا يتحول الزائر إلى طلب؟ لماذا يزداد الضغط مع النمو؟ ثم نقرأ السؤال من زاوية العميل، التشغيل، البيانات، وتجربة الاستخدام.'
+                : 'Research at ENSDIM does not begin with technology. It begins with the effect technology should have on the business. We define a real question, such as: why are opportunities being lost? Why do visitors not turn into inquiries? Why does growth create operational pressure? Then we study the question through customer behavior, operations, data, and user experience.'}
+            </p>
+            <ul className="space-y-2.5">
+              {methodPoints.map((p, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-[#4F555E]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6D5DF6] mt-1.5 flex-shrink-0" />
+                  {ar ? p.ar : p.en}
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Category filters */}
+      <section className="pt-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <ScrollReveal className="mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#101418]">
+              {ar ? 'استكشف الأبحاث حسب مجال التحدي.' : 'Explore research by challenge area.'}
+            </h2>
+          </ScrollReveal>
+          <div className="flex flex-wrap gap-2 mb-2">
+            {categoryFilters.map((f) => {
+              const active = activeFilter === f.en;
+              return (
+                <button
+                  key={f.en}
+                  type="button"
+                  onClick={() => setActiveFilter(f.en)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+                    active
+                      ? 'bg-[#6D5DF6] border-[#6D5DF6] text-white'
+                      : 'bg-white border-[#E5E5E5] text-[#4F555E] hover:border-[#6D5DF6] hover:text-[#6D5DF6]'
+                  }`}
+                >
+                  {ar ? f.ar : f.en}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured research */}
+      {!loading && featured && (
+        <section className="py-10 bg-white">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+            <ScrollReveal className="mb-5">
+              <h2 className="text-lg font-bold text-[#101418]">{ar ? 'بحث مختار' : 'Featured Research'}</h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.05}>
+              <ResearchCard article={featured} ar={ar} featured />
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
+      {/* Research library */}
+      <section className="py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <ScrollReveal className="mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#101418]">{ar ? 'مكتبة الأبحاث' : 'Research Library'}</h2>
+          </ScrollReveal>
+
           {loading && (
-            <div className="space-y-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 animate-pulse">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="h-5 w-20 bg-[#EEEAFE] rounded-full" />
-                    <div className="h-4 w-16 bg-gray-100 rounded-full" />
-                  </div>
-                  <div className="h-6 w-3/4 bg-gray-200 rounded-lg mb-2" />
+                <div key={i} className="border border-[#E5E5E5] rounded-2xl p-5 animate-pulse">
+                  <div className="h-5 w-20 bg-[#EEEAFE] rounded-full mb-3" />
+                  <div className="h-5 w-3/4 bg-gray-200 rounded-lg mb-2" />
                   <div className="h-4 w-full bg-gray-100 rounded mb-1" />
-                  <div className="h-4 w-2/3 bg-gray-100 rounded" />
                 </div>
               ))}
             </div>
@@ -76,47 +265,69 @@ export function ResearchPage() {
             </div>
           )}
 
-          {!loading && !error && articles.length > 0 && (
-            <div className="space-y-5">
-              {articles.map((article, i) => (
-                <ScrollReveal key={article.id} delay={i * 0.07}>
-                  <Link
-                    to={`/research/${article.slug}`}
-                    className="block border border-[#E5E5E5] rounded-2xl overflow-hidden hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.99] active:border-[#6D5DF6] transition-all duration-200"
-                  >
-                    {article.image_url && (
-                      <img
-                        src={article.image_url}
-                        alt={ar ? article.title_ar : article.title_en}
-                        className="w-full h-48 object-cover"
-                      />
-                    )}
-                    <div className="p-6 sm:p-8">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold">
-                          {ar ? article.category_ar : article.category_en}
-                        </span>
-                        <span className="flex items-center gap-1 text-xs text-[#4F555E]">
-                          <Clock size={11} />
-                          {article.read_time} {ar ? 'دقائق قراءة' : 'min read'}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-[#101418] mb-2 leading-snug">
-                        {ar ? article.title_ar : article.title_en}
-                      </h3>
-                      <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
-                        {ar ? article.description_ar : article.description_en}
-                      </p>
-                      <span className="inline-flex items-center gap-1.5 text-[#6D5DF6] text-sm font-semibold">
-                        {ar ? 'اقرأ البحث' : 'Read Research'}
-                        <ArrowRight size={13} />
-                      </span>
-                    </div>
-                  </Link>
+          {!loading && !error && articles.length > 0 && filteredRest.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-sm text-[#4F555E]">
+                {ar ? 'لا توجد أبحاث في هذا التصنيف بعد.' : 'No research in this category yet.'}
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && filteredRest.length > 0 && (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filteredRest.map((article, i) => (
+                <ScrollReveal key={article.id} delay={Math.min(i * 0.06, 0.3)}>
+                  <ResearchCard article={article} ar={ar} />
                 </ScrollReveal>
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* How to use ENSDIM research */}
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
+              {ar ? 'من القراءة إلى قرار أوضح.' : 'From reading to a clearer decision.'}
+            </h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
+              {ar
+                ? 'كل بحث في إنسديم مصمم ليساعدك على فهم تحدٍ محدد داخل العمل، ثم يوجهك إلى خطوة منطقية بعده: استكشاف حل مناسب، قراءة دراسة حالة قريبة، أو التواصل معنا إذا كان التحدي موجودًا داخل شركتك.'
+                : 'Each ENSDIM research piece is designed to help readers understand a specific business challenge, then move to a logical next step: explore a related solution, read a relevant case study, or contact us if the challenge exists inside their company.'}
+            </p>
+            <ul className="space-y-2.5">
+              {nextSteps.map((s, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-[#4F555E]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#6D5DF6] mt-1.5 flex-shrink-0" />
+                  {ar ? s.ar : s.en}
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-14 bg-[#0f0d19] text-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl font-bold mb-3">
+            {ar ? 'لديك تحدٍ يحتاج تحليلًا قبل بناء الحل؟' : 'Have a challenge that needs analysis before building the solution?'}
+          </h2>
+          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
+            {ar
+              ? 'شاركنا ما يحدث داخل عملك، وسنساعدك على فهم أين تتعطل الفرص، وما الخطوة الرقمية الأقرب لتحسين العائد والتشغيل.'
+              : 'Share what is happening inside your business, and we will help you understand where opportunities are getting blocked and which digital step is closest to improving return and operations.'}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] transition-colors text-sm font-semibold">
+              {ar ? 'شارك تحدي عملك' : 'Share Your Challenge'} <ArrowRight size={15} />
+            </Link>
+            <Link to="/solutions" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white transition-colors text-sm font-semibold">
+              {ar ? 'استكشف الحلول' : 'Explore Solutions'}
+            </Link>
+          </div>
         </div>
       </section>
     </>
