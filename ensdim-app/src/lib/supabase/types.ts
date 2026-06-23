@@ -113,6 +113,38 @@ export interface InquiryRow {
   created_at: string;
   updated_at: string;
 }
+export interface JobApplicationRow {
+  id: string;
+  status: "new" | "reviewing" | "shortlisted" | "rejected" | "hired";
+  full_name: string;
+  email: string;
+  whatsapp: string;
+  country: string;
+  city: string | null;
+  position: string;
+  career_category: string | null;
+  experience_level: string;
+  current_job_title: string | null;
+  previous_job_title: string | null;
+  years_of_experience: string;
+  previous_companies: string | null;
+  key_projects: string | null;
+  tools_skills: string;
+  portfolio_url: string | null;
+  availability: string;
+  work_type_preference: string;
+  cv_path: string;
+  portfolio_file_path: string | null;
+  why_ensdim: string;
+  strongest_experience: string;
+  preferred_project_type: string | null;
+  source_page: string | null;
+  career_role: string | null;
+  interest_type: string | null;
+  language: string | null;
+  created_at: string;
+  updated_at: string;
+}
 export interface ResearchArticleRow {
   id: string;
   title_en: string;
@@ -217,6 +249,7 @@ export interface Database {
       blog_posts:               TableDef<BlogPostRow, Omit<BlogPostRow, "id" | "created_at" | "updated_at">>;
       case_studies:             TableDef<CaseStudyRow, Omit<CaseStudyRow, "id" | "created_at" | "updated_at">>;
       inquiries:                TableDef<InquiryRow, Omit<InquiryRow, "id" | "created_at" | "updated_at">>;
+      job_applications:         TableDef<JobApplicationRow, Omit<JobApplicationRow, "id" | "created_at" | "updated_at">>;
     };
     Views: { [_ in never]: never };
     Functions: { [_ in never]: never };

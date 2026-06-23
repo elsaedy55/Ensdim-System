@@ -169,3 +169,55 @@ export async function submitInquiry(input: InquiryInput): Promise<void> {
   const { error } = await supabase.from("inquiries").insert(input);
   if (error) throw new Error(error.message);
 }
+
+// ─── Job Applications (Careers page submissions) ───────────────────
+
+export interface JobApplicationInput {
+  full_name: string;
+  email: string;
+  whatsapp: string;
+  country: string;
+  city?: string;
+  position: string;
+  career_category?: string;
+  experience_level: string;
+  current_job_title?: string;
+  previous_job_title?: string;
+  years_of_experience: string;
+  previous_companies?: string;
+  key_projects?: string;
+  tools_skills: string;
+  portfolio_url?: string;
+  availability: string;
+  work_type_preference: string;
+  cv_path: string;
+  portfolio_file_path?: string;
+  why_ensdim: string;
+  strongest_experience: string;
+  preferred_project_type?: string;
+  source_page?: string;
+  career_role?: string;
+  interest_type?: string;
+  language?: string;
+}
+
+async function uploadJobApplicationFile(file: File, label: "cv" | "portfolio"): Promise<string> {
+  const ext = file.name.split(".").pop() || "bin";
+  const path = `${crypto.randomUUID()}/${label}.${ext}`;
+  const { error } = await supabase.storage
+    .from("job-applications")
+    .upload(path, file, { contentType: file.type || undefined });
+  if (error) throw new Error(error.message);
+  return path;
+}
+
+export async function uploadJobApplicationFiles(cvFile: File, portfolioFile: File | null) {
+  const cv_path = await uploadJobApplicationFile(cvFile, "cv");
+  const portfolio_file_path = portfolioFile ? await uploadJobApplicationFile(portfolioFile, "portfolio") : undefined;
+  return { cv_path, portfolio_file_path };
+}
+
+export async function submitJobApplication(input: JobApplicationInput): Promise<void> {
+  const { error } = await supabase.from("job_applications").insert(input);
+  if (error) throw new Error(error.message);
+}

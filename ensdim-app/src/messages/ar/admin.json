@@ -683,6 +683,70 @@
     }
   },
 
+  "jobApplications": {
+    "title": "الوظائف",
+    "subtitle": "{total} الإجمالي · {new} جديد · {reviewing} قيد المراجعة · {shortlisted} مرشّح",
+    "searchPlaceholder": "بحث بالاسم، واتساب، البريد، الوظيفة...",
+    "filters": {
+      "all": "الكل",
+      "new": "جديد",
+      "reviewing": "قيد المراجعة",
+      "shortlisted": "مرشّح",
+      "hired": "تم التعيين",
+      "rejected": "مرفوض"
+    },
+    "status": {
+      "new": "جديد",
+      "reviewing": "قيد المراجعة",
+      "shortlisted": "مرشّح",
+      "rejected": "مرفوض",
+      "hired": "تم التعيين"
+    },
+    "fields": {
+      "email": "البريد الإلكتروني",
+      "whatsapp": "واتساب",
+      "country": "الدولة",
+      "city": "المدينة",
+      "careerCategory": "مجال الوظيفة",
+      "experienceLevel": "مستوى الخبرة",
+      "currentJobTitle": "المسمى الوظيفي الحالي",
+      "previousJobTitle": "المسمى الوظيفي السابق",
+      "yearsOfExperience": "سنوات الخبرة",
+      "availability": "موعد التفرغ",
+      "workTypePreference": "نوع العمل المفضل",
+      "toolsSkills": "الأدوات والمهارات",
+      "previousCompanies": "الشركات أو العملاء السابقون",
+      "keyProjects": "أهم المشاريع",
+      "portfolioUrl": "رابط الأعمال / لينكدإن",
+      "whyEnsdim": "لماذا إنسديم",
+      "strongestExperience": "أقوى خبرة ذات صلة",
+      "preferredProjectType": "نوع المشاريع المفضلة",
+      "sourcePage": "صفحة المصدر",
+      "careerRole": "الوظيفة",
+      "interestType": "نوع الاهتمام",
+      "submittedOn": "تاريخ الإرسال"
+    },
+    "actions": {
+      "markReviewing": "تحديد كـ قيد المراجعة",
+      "markShortlisted": "تحديد كـ مرشّح",
+      "markHired": "تحديد كـ تم التعيين",
+      "markRejected": "تحديد كـ مرفوض",
+      "openWhatsapp": "فتح واتساب",
+      "downloadCV": "تحميل السيرة الذاتية",
+      "downloadPortfolio": "تحميل ملف الأعمال",
+      "delete": "حذف الطلب"
+    },
+    "emptyState": {
+      "title": "لا توجد طلبات بعد",
+      "description": "ستظهر هنا طلبات التقديم المرسلة من صفحة الوظائف"
+    },
+    "noResults": "لا توجد طلبات تطابق بحثك",
+    "success": {
+      "statusUpdated": "تم تحديث الحالة",
+      "deleted": "تم حذف الطلب"
+    }
+  },
+
   "invoices": {
     "create": {
       "title": "إنشاء فاتورة",

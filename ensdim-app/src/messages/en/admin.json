@@ -716,6 +716,70 @@
     }
   },
 
+  "jobApplications": {
+    "title": "Careers",
+    "subtitle": "{total} total · {new} new · {reviewing} reviewing · {shortlisted} shortlisted",
+    "searchPlaceholder": "Search by name, WhatsApp, email, position...",
+    "filters": {
+      "all": "All",
+      "new": "New",
+      "reviewing": "Reviewing",
+      "shortlisted": "Shortlisted",
+      "hired": "Hired",
+      "rejected": "Rejected"
+    },
+    "status": {
+      "new": "New",
+      "reviewing": "Reviewing",
+      "shortlisted": "Shortlisted",
+      "rejected": "Rejected",
+      "hired": "Hired"
+    },
+    "fields": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "country": "Country",
+      "city": "City",
+      "careerCategory": "Career Category",
+      "experienceLevel": "Experience Level",
+      "currentJobTitle": "Current Job Title",
+      "previousJobTitle": "Previous Job Title",
+      "yearsOfExperience": "Years of Experience",
+      "availability": "Availability",
+      "workTypePreference": "Work Type Preference",
+      "toolsSkills": "Tools / Skills",
+      "previousCompanies": "Previous Companies / Clients",
+      "keyProjects": "Key Projects",
+      "portfolioUrl": "Portfolio / LinkedIn URL",
+      "whyEnsdim": "Why ENSDIM",
+      "strongestExperience": "Strongest Relevant Experience",
+      "preferredProjectType": "Preferred Project Type",
+      "sourcePage": "Source Page",
+      "careerRole": "Career Role",
+      "interestType": "Interest",
+      "submittedOn": "Submitted"
+    },
+    "actions": {
+      "markReviewing": "Mark as Reviewing",
+      "markShortlisted": "Mark as Shortlisted",
+      "markHired": "Mark as Hired",
+      "markRejected": "Mark as Rejected",
+      "openWhatsapp": "Open WhatsApp",
+      "downloadCV": "Download CV",
+      "downloadPortfolio": "Download Portfolio",
+      "delete": "Delete application"
+    },
+    "emptyState": {
+      "title": "No applications yet",
+      "description": "Job applications submitted from the Careers page will appear here"
+    },
+    "noResults": "No applications match your search",
+    "success": {
+      "statusUpdated": "Status updated",
+      "deleted": "Application deleted"
+    }
+  },
+
   "invoices": {
     "create": {
       "title": "Create Invoice",

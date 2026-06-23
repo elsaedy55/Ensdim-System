@@ -51,6 +51,7 @@ export const ROUTES = {
     CASE_STUDIES_NEW: "/admin/case-studies/new",
     CASE_STUDIES_EDIT: (id: string) => `/admin/case-studies/${id}`,
     INQUIRIES: "/admin/inquiries",
+    CAREERS: "/admin/careers",
   },
 } as const;
 
