@@ -64,7 +64,7 @@ export function ClientPortalFeature() {
           </div>
 
           {/* Dashboard mockup */}
-          <ScrollReveal delay={0.15} className="relative bg-gradient-to-br from-[#F4F2FF] via-[#EEEAFE]/60 to-white rounded-2xl border border-[#DDD8FB] p-5 sm:p-7 shadow-[0_8px_40px_rgba(109,93,246,0.08)]">
+          <ScrollReveal delay={0.15} className="relative overflow-hidden bg-gradient-to-br from-[#F4F2FF] via-[#EEEAFE]/60 to-white rounded-2xl border border-[#DDD8FB] p-5 sm:p-7 shadow-[0_8px_40px_rgba(109,93,246,0.08)]">
             {/* Soft glow behind card */}
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#6D5DF6] rounded-full blur-[48px] opacity-10 pointer-events-none" />
 
