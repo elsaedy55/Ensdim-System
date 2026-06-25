@@ -119,20 +119,13 @@ export function SolutionsPage() {
         lang={ar ? 'ar' : 'en'}
       />
 
-      {/* Primary/secondary hero CTAs scroll within this page */}
-      <div className="bg-[#0f0d19] -mt-1 pb-8">
+      {/* Secondary hero CTA scrolls within this page */}
+      <div className="bg-[#0f0d19] pt-2 pb-10 sm:pb-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-wrap gap-3">
           <button
             type="button"
-            onClick={() => scrollTo('where-now')}
-            className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
-          >
-            {ar ? 'اكتشف الحل المناسب لعملك' : 'Discover the right solution for your business'} <ArrowRight size={15} />
-          </button>
-          <button
-            type="button"
             onClick={() => scrollTo('problems')}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
           >
             {ar ? 'ابدأ من المشكلة' : 'Start from the problem'}
           </button>
