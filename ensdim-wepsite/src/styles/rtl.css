@@ -39,3 +39,14 @@
 [dir="rtl"] .text-center {
   text-align: center;
 }
+
+/* Arabic heading font (Alexandria) needs more breathing room between lines
+   than the tight Latin values used for English headings, otherwise wrapped
+   lines visually touch. */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] .leading-tight {
+  line-height: 1.6 !important;
+}
