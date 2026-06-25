@@ -242,20 +242,20 @@ export function SolutionsPage() {
 
       {/* How we choose the right solution */}
       <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">{ar ? 'كيف نختار الحل المناسب لك؟' : 'How do we choose the right solution for you?'}</h2>
-            <p className="text-sm text-[#4F555E]">
+            <p className="text-sm text-[#4F555E] max-w-3xl">
               {ar
                 ? 'لا نبدأ من اسم الحل. نبدأ من طريقة عملك الحالية، ثم نحدد أين يحدث الهدر، وأين تضيع الفرص، وما المسار الأقرب لتحسين العائد.'
                 : 'We do not start from the solution name. We start from how your business currently works, then identify where waste happens, where opportunities are lost, and which path is most likely to improve return.'}
             </p>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {howWeChoose.map((step, i) => (
               <ScrollReveal key={i} delay={i * 0.06}>
-                <div className="p-5 border border-[#E5E5E5] rounded-2xl h-full">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#EEEAFE] text-[#6D5DF6] text-xs font-bold mb-3">{i + 1}</span>
+                <div className="p-6 border border-[#E5E5E5] rounded-2xl h-full hover:border-[#6D5DF6]/40 hover:shadow-[0_8px_24px_rgba(109,93,246,0.08)] transition-all duration-300">
+                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#EEEAFE] text-[#6D5DF6] text-sm font-bold mb-4">{i + 1}</span>
                   <h3 className="text-sm font-bold text-[#101418] mb-2">{ar ? step.ar.title : step.en.title}</h3>
                   <p className="text-xs text-[#4F555E] leading-relaxed">{ar ? step.ar.desc : step.en.desc}</p>
                 </div>
