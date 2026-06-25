@@ -36,7 +36,7 @@ export function CareersPreview() {
             </div>
             <Link
               to="/careers"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl hover:bg-[#1e232b] transition-colors text-sm font-medium flex-shrink-0 self-start sm:self-auto"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl hover:bg-[#1e232b] active:scale-[0.97] transition-all duration-200 text-sm font-medium flex-shrink-0 self-start sm:self-auto"
             >
               {ar ? 'عرض الوظائف المتاحة' : 'View Open Roles'}
               <ArrowRight size={15} />
@@ -53,7 +53,7 @@ export function CareersPreview() {
               </p>
               <Link
                 to="/careers/general-application"
-                className="inline-flex items-center gap-2 text-sm text-[#6D5DF6] hover:text-[#5d4de6] font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-[#6D5DF6] hover:text-[#5d4de6] active:scale-95 font-medium transition-all"
               >
                 {ar ? 'أرسل ملفك التعريفي' : 'Send us your profile'}
                 <ArrowRight size={14} />
@@ -70,7 +70,7 @@ export function CareersPreview() {
                   <Link
                     key={index}
                     to={`/careers/${role.slug}`}
-                    className="group flex items-center gap-2 px-3.5 py-2 bg-[#F8F8FF] border border-[#E5E5E5] rounded-xl hover:border-[#6D5DF6]/50 hover:bg-[#EEEAFE] hover:shadow-[0_2px_12px_rgba(109,93,246,0.1)] transition-all duration-200"
+                    className="group flex items-center gap-2 px-3.5 py-2 bg-[#F8F8FF] border border-[#E5E5E5] rounded-xl hover:border-[#6D5DF6]/50 hover:bg-[#EEEAFE] hover:shadow-[0_2px_12px_rgba(109,93,246,0.1)] active:scale-[0.96] transition-all duration-200"
                   >
                     <span className="text-xs font-medium text-[#101418] group-hover:text-[#3B2A78] transition-colors">
                       {role.label}

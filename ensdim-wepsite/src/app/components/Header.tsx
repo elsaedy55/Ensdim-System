@@ -147,7 +147,7 @@ export function Header() {
         <div className="flex items-center justify-between gap-2">
 
           {/* Logo */}
-          <Link to="/" onClick={closeAll} className="cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0 no-mirror">
+          <Link to="/" onClick={closeAll} className="cursor-pointer hover:opacity-80 active:scale-95 transition-all flex-shrink-0 no-mirror">
             <img src={ensdimLogo} alt="ENSDIM" className="w-auto object-contain h-[22px] sm:h-[28px]" />
           </Link>
 
@@ -163,7 +163,7 @@ export function Header() {
                 <Link
                   to={item.href}
                   onClick={() => { setActiveDropdown(activeDropdown === item.label ? null : item.label); }}
-                  className="flex items-center gap-1 px-3 py-2 text-sm text-[#101418] hover:text-[#6D5DF6] transition-colors whitespace-nowrap rounded-md hover:bg-[#EEEAFE]/50"
+                  className="flex items-center gap-1 px-3 py-2 text-sm text-[#101418] hover:text-[#6D5DF6] active:scale-[0.96] transition-all whitespace-nowrap rounded-md hover:bg-[#EEEAFE]/50"
                 >
                   {ar ? item.labelAr : item.label}
                   {item.dropdown && (
@@ -188,7 +188,7 @@ export function Header() {
                         <Link
                           to={sub.href}
                           onClick={closeAll}
-                          className="block px-4 py-2 text-sm text-[#101418] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/60 transition-colors"
+                          className="block px-4 py-2 text-sm text-[#101418] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/60 active:scale-[0.97] transition-all"
                         >
                           {ar ? sub.labelAr : sub.label}
                         </Link>
@@ -205,7 +205,7 @@ export function Header() {
             <Link
               to="/book-consultation"
               onClick={closeAll}
-              className="px-4 py-2 text-sm bg-[#6D5DF6] text-white rounded-lg hover:bg-[#5d4de6] transition-colors font-medium whitespace-nowrap"
+              className="px-4 py-2 text-sm bg-[#6D5DF6] text-white rounded-lg hover:bg-[#5d4de6] active:scale-[0.97] transition-all font-medium whitespace-nowrap"
             >
               {t('header.bookConsultation')}
             </Link>
@@ -214,7 +214,7 @@ export function Header() {
             <div className="relative" ref={langDesktopRef}>
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center gap-2 px-3 py-2 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] transition-colors"
+                className="flex items-center gap-2 px-3 py-2 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] active:scale-[0.96] transition-all"
               >
                 <Globe size={16} className="text-[#4F555E]" />
                 <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt={countries[country].name} className="w-5 h-auto" />
@@ -230,8 +230,8 @@ export function Header() {
                         <span className="text-sm font-semibold text-[#101418]">{ar ? countryData.nameAr : countryData.name}</span>
                       </div>
                       <div className="flex gap-2 ps-7">
-                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-3 py-1 rounded transition-colors flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.arabic')}</button>
-                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-3 py-1 rounded transition-colors flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.english')}</button>
+                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-3 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.arabic')}</button>
+                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-3 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.english')}</button>
                       </div>
                     </div>
                   ))}
@@ -239,7 +239,7 @@ export function Header() {
               )}
             </div>
 
-            <a href="https://app.ensdim.com/login" className="text-sm text-[#101418] hover:text-[#6D5DF6] transition-colors px-2 py-2 whitespace-nowrap">
+            <a href="https://app.ensdim.com/login" className="text-sm text-[#101418] hover:text-[#6D5DF6] active:scale-95 transition-all px-2 py-2 whitespace-nowrap">
               {t('header.clientLogin')}
             </a>
           </div>
@@ -249,7 +249,7 @@ export function Header() {
             <div className="relative" ref={langMobileRef}>
               <button
                 onClick={() => { setIsMobileLangOpen(!isMobileLangOpen); setIsMenuOpen(false); }}
-                className="flex items-center gap-1 px-2 py-1.5 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] transition-colors"
+                className="flex items-center gap-1 px-2 py-1.5 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] active:scale-95 transition-all"
               >
                 <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt={countries[country].name} className="w-5 h-auto" />
                 <span className="text-xs font-semibold text-[#101418]">{ar ? 'AR' : 'EN'}</span>
@@ -264,8 +264,8 @@ export function Header() {
                         <span className="text-xs font-semibold text-[#101418]">{ar ? countryData.nameAr : countryData.name}</span>
                       </div>
                       <div className="flex gap-1.5 ps-7">
-                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-2 py-1 rounded transition-colors flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>AR</button>
-                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-2 py-1 rounded transition-colors flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>EN</button>
+                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-2 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>AR</button>
+                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-2 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>EN</button>
                       </div>
                     </div>
                   ))}
@@ -274,7 +274,7 @@ export function Header() {
             </div>
 
             <button
-              className="text-[#101418] p-1.5"
+              className="text-[#101418] p-1.5 active:scale-90 transition-transform"
               onClick={() => { setIsMenuOpen(!isMenuOpen); setIsMobileLangOpen(false); }}
               aria-label="Toggle menu"
             >
@@ -293,7 +293,7 @@ export function Header() {
                     {/* Mobile: clicking label opens dropdown instead of navigating */}
                     <button
                       onClick={() => setActiveMobileAccordion(activeMobileAccordion === item.label ? null : item.label)}
-                      className="flex-1 py-3 text-sm font-medium text-[#101418] hover:text-[#6D5DF6] transition-colors text-start flex items-center justify-between gap-2"
+                      className="flex-1 py-3 text-sm font-medium text-[#101418] hover:text-[#6D5DF6] active:opacity-60 transition-all text-start flex items-center justify-between gap-2"
                     >
                       <span>{ar ? item.labelAr : item.label}</span>
                       {item.dropdown && (
@@ -313,7 +313,7 @@ export function Header() {
                           <Link
                             to={sub.href}
                             onClick={closeAll}
-                            className="block px-4 py-2.5 text-sm text-[#4F555E] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/40 transition-colors"
+                            className="block px-4 py-2.5 text-sm text-[#4F555E] hover:text-[#6D5DF6] hover:bg-[#EEEAFE]/40 active:scale-[0.97] transition-all"
                           >
                             {ar ? sub.labelAr : sub.label}
                           </Link>
@@ -325,10 +325,10 @@ export function Header() {
               ))}
 
               <div className="pt-4 mt-2 space-y-3">
-                <Link to="/book-consultation" onClick={closeAll} className="block w-full px-4 py-3 bg-[#6D5DF6] text-white rounded-lg hover:bg-[#5d4de6] transition-colors font-medium text-center text-sm">
+                <Link to="/book-consultation" onClick={closeAll} className="block w-full px-4 py-3 bg-[#6D5DF6] text-white rounded-lg hover:bg-[#5d4de6] active:scale-[0.97] transition-all font-medium text-center text-sm">
                   {t('header.bookConsultation')}
                 </Link>
-                <a href="https://app.ensdim.com/login" className="block w-full px-4 py-3 border border-[#E5E5E5] text-[#101418] rounded-lg hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors font-medium text-center text-sm">
+                <a href="https://app.ensdim.com/login" className="block w-full px-4 py-3 border border-[#E5E5E5] text-[#101418] rounded-lg hover:border-[#6D5DF6] hover:text-[#6D5DF6] active:scale-[0.97] transition-all font-medium text-center text-sm">
                   {t('header.clientLogin')}
                 </a>
               </div>

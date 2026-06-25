@@ -40,7 +40,7 @@ export function WhoIsSection() {
             </p>
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 text-[#6D5DF6] hover:text-[#8B7BF7] transition-colors text-sm font-medium group"
+              className="inline-flex items-center gap-2 text-[#6D5DF6] hover:text-[#8B7BF7] active:scale-95 transition-all text-sm font-medium group"
             >
               {t('who.cta')}
               <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />

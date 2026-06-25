@@ -68,14 +68,14 @@ export function Footer() {
         <div className="mb-8 sm:mb-12">
           {/* Desktop: Logo and tagline side by side */}
           <div className="hidden sm:flex items-center gap-4 no-mirror">
-            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:opacity-80 transition-opacity flex-shrink-0">
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:opacity-80 active:scale-95 transition-all flex-shrink-0">
               <EnsdimWordmark variant="light" className="text-3xl" />
             </Link>
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               aria-label={ar ? 'العودة لأعلى الصفحة' : 'Back to top'}
-              className="flex-shrink-0 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 transition-colors"
+              className="flex-shrink-0 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 active:scale-90 transition-all"
             >
               <ArrowUp className="w-4 h-4" />
             </button>
@@ -88,19 +88,19 @@ export function Footer() {
           {/* Mobile: Logo and Client Login on same line */}
           <div className="sm:hidden flex items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2 no-mirror">
-              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:opacity-80 transition-opacity flex-shrink-0">
+              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:opacity-80 active:scale-95 transition-all flex-shrink-0">
                 <EnsdimWordmark variant="light" className="text-2xl" />
               </Link>
               <button
                 type="button"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 aria-label={ar ? 'العودة لأعلى الصفحة' : 'Back to top'}
-                className="flex-shrink-0 w-7 h-7 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 transition-colors"
+                className="flex-shrink-0 w-7 h-7 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-white/30 active:scale-90 transition-all"
               >
                 <ArrowUp className="w-3.5 h-3.5" />
               </button>
             </div>
-            <a href="https://app.ensdim.com/login" className="text-sm px-5 py-2.5 border border-white/20 text-white/80 rounded-lg hover:bg-white/5 hover:border-white/30 transition-colors font-medium whitespace-nowrap">
+            <a href="https://app.ensdim.com/login" className="text-sm px-5 py-2.5 border border-white/20 text-white/80 rounded-lg hover:bg-white/5 hover:border-white/30 active:scale-95 transition-all font-medium whitespace-nowrap">
               {ar ? 'دخول العميل' : 'Client Login'}
             </a>
           </div>
@@ -120,11 +120,11 @@ export function Footer() {
                 {section.links.map((link) => (
                   <li key={link.label + link.href}>
                     {link.external ? (
-                      <a href={link.href} className="text-[#EEEAFE]/65 text-xs hover:text-[#6D5DF6] transition-colors leading-relaxed">
+                      <a href={link.href} className="inline-block text-[#EEEAFE]/65 text-xs hover:text-[#6D5DF6] active:scale-95 transition-all leading-relaxed">
                         {link.label}
                       </a>
                     ) : (
-                      <Link to={link.href} className="text-[#EEEAFE]/65 text-xs hover:text-[#6D5DF6] transition-colors leading-relaxed">
+                      <Link to={link.href} className="inline-block text-[#EEEAFE]/65 text-xs hover:text-[#6D5DF6] active:scale-95 transition-all leading-relaxed">
                         {link.label}
                       </Link>
                     )}
@@ -143,7 +143,7 @@ export function Footer() {
               <div key={section.title} className="border-b border-white/[0.07]">
                 <button
                   onClick={() => setOpenSection(isOpen ? null : section.title)}
-                  className="w-full flex items-center justify-between py-3.5 text-left"
+                  className="w-full flex items-center justify-between py-3.5 text-left active:opacity-60 transition-opacity"
                 >
                   <span className="text-sm font-medium text-white/80">{section.title}</span>
                   <ChevronDown
@@ -158,7 +158,7 @@ export function Footer() {
                         <a
                           key={link.label + link.href}
                           href={link.href}
-                          className="block text-sm text-[#EEEAFE]/60 hover:text-[#6D5DF6] transition-colors ps-1"
+                          className="block text-sm text-[#EEEAFE]/60 hover:text-[#6D5DF6] active:scale-[0.97] transition-all ps-1"
                         >
                           {link.label}
                         </a>
@@ -166,7 +166,7 @@ export function Footer() {
                         <Link
                           key={link.label + link.href}
                           to={link.href}
-                          className="block text-sm text-[#EEEAFE]/60 hover:text-[#6D5DF6] transition-colors ps-1"
+                          className="block text-sm text-[#EEEAFE]/60 hover:text-[#6D5DF6] active:scale-[0.97] transition-all ps-1"
                         >
                           {link.label}
                         </Link>
@@ -184,10 +184,10 @@ export function Footer() {
             {t('footer.copyright')}
           </p>
           <div className="flex gap-5">
-            <Link to="/privacy" className="text-[#EEEAFE]/45 hover:text-[#6D5DF6] text-xs transition-colors">
+            <Link to="/privacy" className="inline-block text-[#EEEAFE]/45 hover:text-[#6D5DF6] active:scale-95 text-xs transition-all">
               {t('footer.privacy')}
             </Link>
-            <Link to="/terms-of-service" className="text-[#EEEAFE]/45 hover:text-[#6D5DF6] text-xs transition-colors">
+            <Link to="/terms-of-service" className="inline-block text-[#EEEAFE]/45 hover:text-[#6D5DF6] active:scale-95 text-xs transition-all">
               {t('footer.terms')}
             </Link>
           </div>

@@ -110,7 +110,7 @@ export function FinalCTA() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 bg-[#D63A3A] text-white rounded-xl text-sm font-semibold hover:bg-[#c23030] transition-colors disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+                className="w-full py-3 bg-[#D63A3A] text-white rounded-xl text-sm font-semibold hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100 inline-flex items-center justify-center gap-2"
               >
                 {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : t('finalCTA.primaryCTA')}
                 {!submitting && <ArrowRight size={15} />}
@@ -119,7 +119,7 @@ export function FinalCTA() {
           )}
         </div>
 
-        <Link to="/contact" className="inline-block mt-5 text-sm font-medium text-[#EEEAFE]/70 hover:text-[#EEEAFE]/90 transition-colors">
+        <Link to="/contact" className="inline-block mt-5 text-sm font-medium text-[#EEEAFE]/70 hover:text-[#EEEAFE]/90 active:scale-95 transition-all">
           {t('finalCTA.secondaryCTA')}
         </Link>
       </ScrollReveal>

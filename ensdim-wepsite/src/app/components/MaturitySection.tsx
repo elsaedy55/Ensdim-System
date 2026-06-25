@@ -181,7 +181,7 @@ export function MaturitySection() {
             <ScrollReveal key={index} delay={Math.min(index * 0.08, 0.16)}>
             <Link
               to={item.href}
-              className="group relative flex flex-col bg-white rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_20px_60px_rgba(109,93,246,0.15)] hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer"
+              className="group relative flex flex-col bg-white rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_20px_60px_rgba(109,93,246,0.15)] hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition-all duration-300 overflow-hidden cursor-pointer"
             >
               {/* Gradient icon panel */}
               <div className={`bg-gradient-to-br ${item.gradient} px-7 pt-8 pb-7 relative overflow-hidden group-hover:pb-8 transition-all duration-500`}>

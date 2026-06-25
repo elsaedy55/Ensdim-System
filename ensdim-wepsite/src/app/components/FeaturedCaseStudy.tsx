@@ -97,7 +97,7 @@ export function FeaturedCaseStudy() {
                     <Link
                       to="/case-studies"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-[#6D5DF6] text-sm hover:underline self-center"
+                      className="text-[#6D5DF6] text-sm hover:underline active:scale-95 transition-transform self-center"
                     >
                       {t('caseStudy.ctaAll')}
                     </Link>
