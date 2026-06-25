@@ -94,10 +94,10 @@ export function FinalCTA() {
                 className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
               />
               <select
-                name="challenge" defaultValue="" required
+                name="challenge" defaultValue=""
                 className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
               >
-                <option value="" disabled>{ar ? 'ما هو التحدي الذي تواجهه؟' : 'What challenge are you facing?'}</option>
+                <option value="">{ar ? 'ما هو التحدي الذي تواجهه؟ (اختياري)' : 'What challenge are you facing? (optional)'}</option>
                 {challenges.map((c) => (
                   <option key={c.en} value={ar ? c.ar : c.en}>{ar ? c.ar : c.en}</option>
                 ))}
