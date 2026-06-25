@@ -45,10 +45,12 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    label: 'Case Studies', labelAr: 'دراسات الحالة', href: '/case-studies',
+  },
+  {
     label: 'Resources', labelAr: 'الموارد', href: '/resources',
     dropdown: [
       { label: 'Research', labelAr: 'الأبحاث', href: '/research' },
-      { label: 'Case Studies', labelAr: 'دراسات الحالة', href: '/case-studies' },
       { label: 'Blog', labelAr: 'المدونة', href: '/blog' },
     ],
   },
