@@ -120,30 +120,44 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
               ))}
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-[#101418] mb-2">
-                {ar ? 'أكبر تحدٍّ تواجهه' : 'Your biggest challenge'}
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {challenges.map((c) => {
-                  const label = ar ? c.ar : c.en;
-                  return (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => setSelectedChallenge(label)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
-                        selectedChallenge === label
-                          ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                          : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="challenge" className="block text-xs font-semibold text-[#101418] mb-1.5">
+                  {ar ? 'أكبر تحدٍّ تواجهه' : 'Your biggest challenge'}
+                </label>
+                <select
+                  id="challenge"
+                  value={selectedChallenge}
+                  onChange={(e) => setSelectedChallenge(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
+                >
+                  <option value="">{ar ? 'اختر...' : 'Select...'}</option>
+                  {challenges.map((c) => {
+                    const label = ar ? c.ar : c.en;
+                    return <option key={label} value={label}>{label}</option>;
+                  })}
+                </select>
+                <input type="hidden" name="challenge" value={selectedChallenge} />
               </div>
-              <input type="hidden" name="challenge" value={selectedChallenge} />
+
+              <div>
+                <label htmlFor="budget" className="block text-xs font-semibold text-[#101418] mb-1.5">
+                  {ar ? 'الميزانية المتوقعة' : 'Expected budget'}
+                </label>
+                <select
+                  id="budget"
+                  value={selectedBudget}
+                  onChange={(e) => setSelectedBudget(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
+                >
+                  <option value="">{ar ? 'اختر...' : 'Select...'}</option>
+                  {budgets.map((b) => {
+                    const label = ar ? b.ar : b.en;
+                    return <option key={label} value={label}>{label}</option>;
+                  })}
+                </select>
+                <input type="hidden" name="budget" value={selectedBudget} />
+              </div>
             </div>
 
             <div>
@@ -157,32 +171,6 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
                 className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors resize-none"
                 placeholder={ar ? 'اشرح موقفك بإيجاز...' : 'Briefly describe your situation...'}
               />
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-[#101418] mb-2">
-                {ar ? 'الميزانية المتوقعة' : 'Expected budget'}
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {budgets.map((b) => {
-                  const label = ar ? b.ar : b.en;
-                  return (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => setSelectedBudget(label)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
-                        selectedBudget === label
-                          ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                          : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
-              <input type="hidden" name="budget" value={selectedBudget} />
             </div>
 
             {error && (

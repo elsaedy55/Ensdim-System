@@ -30,10 +30,6 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
 
-  const toggleNeed = (need: string) => {
-    setSelectedNeeds((prev) => (prev.includes(need) ? prev.filter((n) => n !== need) : [...prev, need]));
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
@@ -128,43 +124,52 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
               ))}
             </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-[#101418] mb-2">{needsLabel}</label>
-              <div className="flex flex-wrap gap-2">
-                {needsOptions.map((need) => (
-                  <button
-                    key={need}
-                    type="button"
-                    onClick={() => toggleNeed(need)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
-                      selectedNeeds.includes(need)
-                        ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                        : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
-                    }`}
-                  >
-                    {need}
-                  </button>
-                ))}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="needs" className="block text-xs font-semibold text-[#101418] mb-1.5">{needsLabel}</label>
+                <select
+                  id="needs"
+                  multiple
+                  value={selectedNeeds}
+                  onChange={(e) => setSelectedNeeds(Array.from(e.target.selectedOptions, (o) => o.value))}
+                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white h-[110px]"
+                >
+                  {needsOptions.map((need) => (
+                    <option key={need} value={need}>{need}</option>
+                  ))}
+                </select>
+                <p className="text-[10px] text-[#4F555E] mt-1">{ar ? 'اضغط مع Ctrl/Cmd لاختيار أكثر من خيار' : 'Hold Ctrl/Cmd to select multiple'}</p>
               </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-semibold text-[#101418] mb-2">{stageLabel}</label>
-              <div className="flex flex-wrap gap-2">
-                {stageOptions.map((stage) => (
-                  <button
-                    key={stage}
-                    type="button"
-                    onClick={() => setSelectedStage(stage)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
-                      selectedStage === stage
-                        ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                        : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
-                    }`}
-                  >
-                    {stage}
-                  </button>
-                ))}
+              <div>
+                <label htmlFor="stage" className="block text-xs font-semibold text-[#101418] mb-1.5">{stageLabel}</label>
+                <select
+                  id="stage"
+                  value={selectedStage}
+                  onChange={(e) => setSelectedStage(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
+                >
+                  <option value="">{ar ? 'اختر...' : 'Select...'}</option>
+                  {stageOptions.map((stage) => (
+                    <option key={stage} value={stage}>{stage}</option>
+                  ))}
+                </select>
+
+                <label htmlFor="budget" className="block text-xs font-semibold text-[#101418] mb-1.5 mt-4">
+                  {ar ? 'الميزانية المتوقعة، إن وجدت' : 'Expected budget, if available'}
+                </label>
+                <select
+                  id="budget"
+                  value={selectedBudget}
+                  onChange={(e) => setSelectedBudget(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
+                >
+                  <option value="">{ar ? 'اختر...' : 'Select...'}</option>
+                  {budgets.map((b) => {
+                    const label = ar ? b.ar : b.en;
+                    return <option key={label} value={label}>{label}</option>;
+                  })}
+                </select>
               </div>
             </div>
 
@@ -179,31 +184,6 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
                 className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors resize-none"
                 placeholder={freeTextPrompt}
               />
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-[#101418] mb-2">
-                {ar ? 'الميزانية المتوقعة، إن وجدت' : 'Expected budget, if available'}
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {budgets.map((b) => {
-                  const label = ar ? b.ar : b.en;
-                  return (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => setSelectedBudget(label)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
-                        selectedBudget === label
-                          ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                          : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
             </div>
 
             {error && (
