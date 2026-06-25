@@ -23,7 +23,7 @@ interface ServiceRequestFormProps {
 export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stageOptions, freeTextPrompt, hiddenFields }: ServiceRequestFormProps) {
   const { language } = useLanguage();
   const ar = language === 'ar';
-  const [selectedNeeds, setSelectedNeeds] = useState<string[]>([]);
+  const [selectedNeed, setSelectedNeed] = useState('');
   const [selectedStage, setSelectedStage] = useState('');
   const [selectedBudget, setSelectedBudget] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -51,7 +51,7 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
         company: String(data.get('company') ?? '') || undefined,
         role: String(data.get('role') ?? '') || undefined,
         country: String(data.get('country') ?? '') || undefined,
-        challenge: selectedNeeds.join(', ') || undefined,
+        challenge: selectedNeed || undefined,
         budget: selectedBudget || undefined,
         details: detailsParts.join('\n\n') || undefined,
         source_page: hiddenFields.source_page,
@@ -124,21 +124,20 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
               ))}
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-end">
               <div>
                 <label htmlFor="needs" className="block text-xs font-semibold text-[#101418] mb-1.5">{needsLabel}</label>
                 <select
                   id="needs"
-                  multiple
-                  value={selectedNeeds}
-                  onChange={(e) => setSelectedNeeds(Array.from(e.target.selectedOptions, (o) => o.value))}
-                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white h-[110px]"
+                  value={selectedNeed}
+                  onChange={(e) => setSelectedNeed(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
                 >
+                  <option value="">{ar ? 'اختر...' : 'Select...'}</option>
                   {needsOptions.map((need) => (
                     <option key={need} value={need}>{need}</option>
                   ))}
                 </select>
-                <p className="text-[10px] text-[#4F555E] mt-1">{ar ? 'اضغط مع Ctrl/Cmd لاختيار أكثر من خيار' : 'Hold Ctrl/Cmd to select multiple'}</p>
               </div>
 
               <div>
@@ -154,8 +153,10 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
                     <option key={stage} value={stage}>{stage}</option>
                   ))}
                 </select>
+              </div>
 
-                <label htmlFor="budget" className="block text-xs font-semibold text-[#101418] mb-1.5 mt-4">
+              <div>
+                <label htmlFor="budget" className="block text-xs font-semibold text-[#101418] mb-1.5">
                   {ar ? 'الميزانية المتوقعة، إن وجدت' : 'Expected budget, if available'}
                 </label>
                 <select
@@ -195,7 +196,7 @@ export function ServiceRequestForm({ needsLabel, needsOptions, stageLabel, stage
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
             >
               {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : (ar ? 'إرسال الطلب' : 'Send Request')}
             </button>
