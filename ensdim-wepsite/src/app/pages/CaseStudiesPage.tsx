@@ -1,22 +1,40 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, Briefcase, Search, Repeat, BarChart3, Users, Gauge } from 'lucide-react';
+import { ArrowRight, Briefcase } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
-import { QuickAnswer } from '../components/QuickAnswer';
 import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
 
-const whatWeMeasure = [
-  { Icon: Search, en: { title: 'The starting problem', desc: 'What was breaking down before any system existed — lost leads, slow response, or unclear operations.' }, ar: { title: 'المشكلة في البداية', desc: 'ما كان يتعطل قبل بناء أي نظام — عملاء ضائعون، رد متأخر، أو تشغيل غير واضح.' } },
-  { Icon: Repeat, en: { title: 'The solution we built', desc: 'The exact system, workflow, or layer we implemented to close the gap.' }, ar: { title: 'الحل الذي بنيناه', desc: 'النظام أو المسار أو الطبقة التي نفذناها لإغلاق الفجوة.' } },
-  { Icon: BarChart3, en: { title: 'Measurable business impact', desc: 'Conversion, response time, and operational visibility after the system went live.' }, ar: { title: 'الأثر التجاري القابل للقياس', desc: 'التحويل، سرعة الاستجابة، والرؤية التشغيلية بعد تشغيل النظام.' } },
-  { Icon: Users, en: { title: 'Team and customer experience', desc: 'How daily work changed for the team, and how the experience improved for the customer.' }, ar: { title: 'تجربة الفريق والعميل', desc: 'كيف تغيّر العمل اليومي للفريق، وكيف تحسّنت تجربة العميل.' } },
-  { Icon: Gauge, en: { title: 'Readiness to scale', desc: 'Whether the system can absorb more customers, branches, or volume without breaking down again.' }, ar: { title: 'الجاهزية للتوسع', desc: 'هل يستطيع النظام استيعاب عملاء أو فروع أو حجم عمل أكبر دون أن يتعطل من جديد.' } },
+/**
+ * sector_en / sector_ar store three "|"-delimited segments authored together
+ * in the admin: "<breadcrumb tags>|<case type badge>|<challenge filter category>".
+ * This avoids a schema migration while still supporting two distinct badges
+ * per card and a challenge-type filter independent from the breadcrumb tags.
+ */
+function parseSector(raw: string) {
+  const [tags, caseType, filterCategory] = raw.split('|');
+  return { tags: tags ?? raw, caseType: caseType ?? '', filterCategory: filterCategory ?? tags ?? raw };
+}
+
+const resultsStrip = [
+  { en: { stat: '+6,000 contracts', desc: 'Moved from manual tracking into a clearer digital operations system.' }, ar: { stat: '+6,000 عقد', desc: 'تحولت من متابعة يدوية إلى منظومة تشغيل رقمية أوضح.' } },
+  { en: { stat: 'One week', desc: 'A real estate project sold out after a structured growth launch.' }, ar: { stat: 'أسبوع واحد', desc: 'بيع مشروع عقاري كامل بعد بناء استراتيجية نمو وطرح منظم.' } },
+  { en: { stat: 'Faster decisions', desc: 'Scattered data turned into dashboards and a management data assistant.' }, ar: { stat: 'قرار أسرع', desc: 'تحويل بيانات متفرقة إلى Dashboard ومساعد بيانات للإدارة.' } },
+  { en: { stat: 'Higher trust', desc: 'Security review focused on protecting user accounts and data.' }, ar: { stat: 'ثقة أعلى', desc: 'مراجعة أمنية لحماية الحسابات وبيانات المستخدمين.' } },
+  { en: { stat: 'Clearer follow-up', desc: 'Communication channels connected to customer records and sales flow.' }, ar: { stat: 'متابعة أوضح', desc: 'ربط قنوات التواصل بملف العميل ومسار المبيعات.' } },
+];
+
+const provenTraits = [
+  { en: { title: 'We understand business before the solution', desc: 'We do not start from the tool; we start from the problem blocking growth or operations.' }, ar: { title: 'نفهم البزنس قبل الحل', desc: 'لا نبدأ من الأداة، بل من المشكلة التي تعطل النمو أو التشغيل.' } },
+  { en: { title: 'We connect technology to return', desc: 'Every solution should serve sales, follow-up, decisions, experience, or efficiency.' }, ar: { title: 'نربط التقنية بالعائد', desc: 'كل حل يجب أن يخدم مبيعات، متابعة، قرار، تجربة، أو كفاءة.' } },
+  { en: { title: 'We design around customer behavior', desc: 'We look at where customers hesitate, where opportunities are lost, and what helps them decide.' }, ar: { title: 'نصمم حول سلوك العميل', desc: 'ننظر إلى أين يتردد العميل، وأين تضيع الفرصة، وما الذي يساعده على القرار.' } },
+  { en: { title: 'We build for scale and trust', desc: 'Systems must handle growth, data, permissions, and security.' }, ar: { title: 'نبني للتوسع والثقة', desc: 'الأنظمة يجب أن تتحمل النمو، البيانات، الصلاحيات، والأمان.' } },
 ];
 
 function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean; featured?: boolean }) {
+  const { tags, caseType } = parseSector(ar ? c.sector_ar : c.sector_en);
   return (
     <Link
       to={`/case-studies/${c.slug}`}
@@ -32,9 +50,14 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
         </div>
       )}
       <div className={`p-6 flex flex-col flex-1 ${featured ? 'justify-center' : ''}`}>
-        <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold mb-3 inline-block w-fit">
-          {ar ? c.sector_ar : c.sector_en}
-        </span>
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
+          <span className="text-[10px] text-[#4F555E] font-medium">{tags}</span>
+          {caseType && (
+            <span className="text-[10px] px-2 py-0.5 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold">
+              {caseType}
+            </span>
+          )}
+        </div>
         <h3 className={`font-bold text-[#101418] mb-2 leading-snug ${featured ? 'text-xl sm:text-2xl' : 'text-base'}`}>
           {ar ? c.title_ar : c.title_en}
         </h3>
@@ -78,15 +101,14 @@ export function CaseStudiesPage() {
   }, []);
 
   const filterOptions = useMemo(() => {
-    const seen = new Map<string, string>();
-    cases.forEach((c) => {
-      const key = c.sector_en;
-      if (!seen.has(key)) seen.set(key, ar ? c.sector_ar : c.sector_en);
-    });
-    return Array.from(seen, ([key, label]) => ({ key, label }));
+    const seen = new Set<string>();
+    cases.forEach((c) => seen.add(parseSector(ar ? c.sector_ar : c.sector_en).filterCategory));
+    return Array.from(seen);
   }, [cases, ar]);
 
-  const filteredCases = activeFilter ? cases.filter((c) => c.sector_en === activeFilter) : cases;
+  const filteredCases = activeFilter
+    ? cases.filter((c) => parseSector(ar ? c.sector_ar : c.sector_en).filterCategory === activeFilter)
+    : cases;
   const [featuredCase, ...restCases] = filteredCases;
 
   const scrollTo = (id: string) => {
@@ -97,12 +119,12 @@ export function CaseStudiesPage() {
     <>
       <SEO
         title="Case Studies | ENSDIM - Real Business Transformations in Egypt & Gulf"
-        description="See how ENSDIM helped businesses in Egypt, Saudi Arabia, and UAE replace scattered follow-up with CRM systems, automate operations, and gain real-time visibility through dashboards and AI."
+        description="See how ENSDIM helped businesses turn business problems into measurable return across operations, growth, sales, data, security, and customer experience."
         keywords="AI automation case studies Egypt, CRM case study Saudi Arabia, business automation results UAE, digital transformation examples Middle East"
         canonical="/case-studies"
       />
 
-      {/* Hero */}
+      {/* 1. Hero */}
       <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -115,66 +137,85 @@ export function CaseStudiesPage() {
             <span className="text-white/70 font-medium">{ar ? 'دراسات الحالة' : 'Case Studies'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'دراسات الحالة' : 'Case Studies'}
+            {ar ? 'دراسات حالة إنسديم' : 'ENSDIM Case Studies'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
-            {ar ? 'أمثلة حقيقية. نتائج قابلة للقياس.' : 'Real examples. Measurable outcomes.'}
+            {ar
+              ? 'دراسات حالة تثبت كيف نحول مشاكل البزنس إلى عائد قابل للقياس.'
+              : 'Case studies that show how we turn business problems into measurable return.'}
           </h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-8 text-[#EEEAFE]/75">
-            {ar ? 'أمثلة عملية لكيفية تحسين الأداء من خلال أنظمة أوضح، مبنية على مشاريع حقيقية نفذتها إنسديم.' : 'Examples of how clearer systems improve business performance, built on real projects ENSDIM has delivered.'}
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
+            {ar
+              ? 'نعرض هنا كيف ساعدت إنسديم شركات في التشغيل، النمو، المبيعات، البيانات، الأمان، وتجربة العميل على تحويل التحديات اليومية إلى حلول رقمية أوضح، قرارات أسرع، ومكاسب عملية يمكن قياسها.'
+              : 'Explore how ENSDIM helped companies across operations, growth, sales, data, security, and customer experience turn daily business challenges into clearer digital systems, faster decisions, and measurable business gains.'}
+          </p>
+          <p className="text-sm text-[#EEEAFE]/55 mb-8">
+            {ar ? 'مشاكل أوضح. حلول أذكى. عائد أقرب.' : 'Clearer problems. Smarter solutions. Closer return.'}
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              to="/book-consultation"
+              to="/contact"
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
-              {ar ? 'احجز استشارة مجانية' : 'Book a Free Consultation'} <ArrowRight size={15} />
+              {ar ? 'شارك تحدي عملك' : 'Share your business challenge'} <ArrowRight size={15} />
             </Link>
-            <button
-              type="button"
-              onClick={() => scrollTo('case-studies-grid')}
+            <Link
+              to="/solutions"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
-              {ar ? 'استعرض دراسات الحالة' : 'Browse Case Studies'}
-            </button>
+              {ar ? 'استكشف الحلول' : 'Explore solutions'}
+            </Link>
           </div>
         </div>
       </section>
 
-      <QuickAnswer
-        question={ar ? 'ما نوع المشاريع التي تنفذها إنسديم؟' : 'What types of projects has ENSDIM delivered?'}
-        answer={ar
-          ? 'نفذت إنسديم مشاريع للأعمال الخدمية والرعاية الصحية والعقارات والخدمات المهنية والتشغيل. تشمل النتائج النموذجية: استجابة أسرع للعملاء المحتملين، رؤية تشغيلية أوضح من خلال لوحات التحكم، وتقليل المهام اليدوية المتكررة.'
-          : 'ENSDIM has delivered projects for service businesses, healthcare, real estate, professional services, and operations. Typical outcomes include faster lead response, clearer operational visibility through dashboards, and reduced repetitive manual work.'}
-      />
+      {/* 2. Results that prove value */}
+      <section className="py-14 bg-white border-b border-[#F0F0F0]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <ScrollReveal className="text-center mb-10">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#101418]">
+              {ar ? 'نتائج من حالات حقيقية ونماذج عملية.' : 'Outcomes from real cases and applied models.'}
+            </h2>
+          </ScrollReveal>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+            {resultsStrip.map((item, i) => (
+              <ScrollReveal key={i} delay={i * 0.05}>
+                <div className="text-center p-4 h-full">
+                  <p className="text-lg sm:text-xl font-bold text-[#6D5DF6] mb-1">{ar ? item.ar.stat : item.en.stat}</p>
+                  <p className="text-xs text-[#4F555E] leading-relaxed">{ar ? item.ar.desc : item.en.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* From problem to impact */}
+      {/* 3. From problem to return */}
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">{ar ? 'دراسات الحالة' : 'Case Studies'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
-              {ar ? 'من المشكلة إلى الأثر القابل للقياس.' : 'From the problem to a measurable impact.'}
+              {ar ? 'نقرأ كل دراسة حالة من زاوية البزنس، لا من زاوية التنفيذ فقط.' : 'We read every case through the business lens, not only delivery.'}
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
-                ? 'كل دراسة حالة هنا تبدأ من تحدٍّ تشغيلي حقيقي — متابعة ضائعة، حجز يدوي، أو تشغيل بلا رؤية — وتنتهي بنظام واضح يمكن قياس أثره على العمل. لا نعرض شاشات جميلة فقط، بل نوضح ما تغيّر فعليًا في التحويل، سرعة الاستجابة، والرؤية التشغيلية.'
-                : 'Every case study here starts from a real operating challenge — lost follow-up, manual booking, or operations without visibility — and ends with a clear system whose business impact can be measured. We do not just show good-looking screens; we show what actually changed in conversion, response speed, and operational visibility.'}
+                ? 'كل حالة داخل هذه الصفحة توضح ثلاث نقاط: المشكلة التي كانت تعطل النمو أو التشغيل، ما الذي تم بناؤه أو تنظيمه لمعالجة المشكلة، ثم العائد الذي ظهر على العميل، الفريق، القرار، أو المبيعات.'
+                : 'Each case clarifies three points: the problem blocking growth or operations, what was built or organized to solve it, and the return that appeared across customers, teams, decisions, or sales.'}
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Case Studies Grid */}
+      {/* 4 & 5 & 6. Filters + Featured + Grid */}
       <section id="case-studies-grid" className="py-4 pb-16 bg-white scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          {/* Filter Bar */}
           {!loading && !error && filterOptions.length > 1 && (
             <ScrollReveal className="mb-10">
+              <p className="text-xs font-semibold text-[#4F555E] mb-3">
+                {ar ? 'استكشف حسب نوع التحدي' : 'Explore by challenge type'}
+              </p>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold text-[#4F555E] me-1">
-                  {ar ? 'فلترة حسب نوع التحدي:' : 'Filter by challenge type:'}
-                </span>
                 <button
                   type="button"
                   onClick={() => setActiveFilter(null)}
@@ -186,18 +227,18 @@ export function CaseStudiesPage() {
                 >
                   {ar ? 'الكل' : 'All'}
                 </button>
-                {filterOptions.map((f) => (
+                {filterOptions.map((label) => (
                   <button
-                    key={f.key}
+                    key={label}
                     type="button"
-                    onClick={() => setActiveFilter(f.key)}
+                    onClick={() => setActiveFilter(label)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 active:scale-95 ${
-                      activeFilter === f.key
+                      activeFilter === label
                         ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
                         : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
                     }`}
                   >
-                    {f.label}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -252,47 +293,28 @@ export function CaseStudiesPage() {
               ))}
             </div>
           )}
-
-          {!loading && !error && filteredCases.length > 0 && (
-            <ScrollReveal className="text-center mt-12 p-8 bg-[#FAFAFA] border border-[#E5E5E5] rounded-2xl">
-              <h3 className="text-lg font-bold text-[#101418] mb-2">
-                {ar ? 'هل تواجه تحديًا مشابهًا؟' : 'Facing a similar challenge?'}
-              </h3>
-              <p className="text-sm text-[#4F555E] mb-5">
-                {ar
-                  ? 'احجز استشارة مجانية وسنساعدك على تحديد المسار الأقرب لبناء نظام أوضح.'
-                  : 'Book a free consultation and we will help you identify the closest path to building a clearer system.'}
-              </p>
-              <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
-                {ar ? 'احجز استشارة مجانية' : 'Book a Free Consultation'} <ArrowRight size={15} />
-              </Link>
-            </ScrollReveal>
-          )}
         </div>
       </section>
 
-      {/* What We Measure */}
+      {/* 7. What do these cases prove about ENSDIM */}
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">
-              {ar ? 'ما الذي نقيسه في كل دراسة حالة' : 'What we measure in every case study'}
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3 max-w-3xl mx-auto">
+              {ar ? 'ما الذي تثبته هذه الحالات عن إنسديم؟' : 'What do these cases prove about ENSDIM?'}
             </h2>
-            <p className="text-sm text-[#4F555E] max-w-2xl mx-auto">
+            <p className="text-sm text-[#4F555E] max-w-2xl mx-auto leading-relaxed">
               {ar
-                ? 'كل دراسة حالة تتبع نفس الإطار، حتى تستطيع مقارنة الوضع قبل وبعد الحل بوضوح.'
-                : 'Every case study follows the same framework, so you can clearly compare before and after.'}
+                ? 'هذه الحالات لا تعرض مشاريع منفذة فقط، بل تكشف طريقة إنسديم في التفكير: نبدأ من فهم المشكلة، نقرأ سلوك العميل أو التشغيل، نحدد أين يضيع العائد، ثم نبني حلًا رقميًا يخدم قرارًا أوضح، متابعة أفضل، وتجربة أكثر قابلية للنمو.'
+                : 'These cases do not only show delivered projects. They reveal ENSDIM’s way of thinking: we start by understanding the problem, reading customer behavior or operations, identifying where return is lost, then building a digital solution that supports clearer decisions, better follow-up, and more scalable experiences.'}
             </p>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {whatWeMeasure.map(({ Icon, en, ar: arContent }, i) => (
+          <div className="grid sm:grid-cols-2 gap-4">
+            {provenTraits.map((trait, i) => (
               <ScrollReveal key={i} delay={i * 0.06}>
                 <div className="p-5 bg-white border border-[#E5E5E5] rounded-2xl h-full hover:border-[#6D5DF6]/40 hover:shadow-md transition-all duration-200">
-                  <div className="w-9 h-9 bg-[#EEEAFE] rounded-xl flex items-center justify-center mb-3">
-                    <Icon size={16} className="text-[#6D5DF6]" />
-                  </div>
-                  <h3 className="text-sm font-bold text-[#101418] mb-2">{ar ? arContent.title : en.title}</h3>
-                  <p className="text-xs text-[#4F555E] leading-relaxed">{ar ? arContent.desc : en.desc}</p>
+                  <h3 className="text-sm font-bold text-[#101418] mb-2">{ar ? trait.ar.title : trait.en.title}</h3>
+                  <p className="text-xs text-[#4F555E] leading-relaxed">{ar ? trait.ar.desc : trait.en.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -314,35 +336,29 @@ export function CaseStudiesPage() {
         ]}
       />
 
-      {/* Final CTA */}
+      {/* 8. Final CTA */}
       <section className="py-14 bg-[#0f0d19] text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl font-bold mb-3">
-            {ar ? 'هل تواجه تحديًا مشابهًا داخل عملك؟' : 'Facing a similar challenge inside your business?'}
+            {ar ? 'هل تريد تحويل تحدي شركتك إلى نتيجة قابلة للقياس؟' : 'Do you want to turn your company’s challenge into a measurable result?'}
           </h2>
           <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
             {ar
-              ? 'شاركنا كيف تتم إدارة العملاء، الحجز، أو التشغيل داخل شركتك الآن، وسنساعدك على تحديد المسار الأقرب لبناء نظام أوضح يحقق نتائج مشابهة.'
-              : 'Tell us how customers, booking, or operations are currently managed inside your business, and we will help you identify the closest path to building a clearer system with similar results.'}
+              ? 'سواء كانت المشكلة في المبيعات، التشغيل، المتابعة، البيانات، تجربة العميل، أو الأمان، نساعدك على فهم أين يتعطل العائد، ثم نبني المسار الرقمي الأقرب لتحسينه.'
+              : 'Whether the problem is sales, operations, follow-up, data, customer experience, or security, we help you understand where return is blocked, then build the digital path most likely to improve it.'}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
-              to="/book-consultation"
+              to="/contact"
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
-              {ar ? 'احجز استشارة مجانية' : 'Book a Free Consultation'} <ArrowRight size={15} />
-            </Link>
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
-            >
-              {ar ? 'استكشف الخدمات' : 'Explore Services'}
+              {ar ? 'شارك تحدي عملك' : 'Share your business challenge'} <ArrowRight size={15} />
             </Link>
             <Link
               to="/solutions"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
-              {ar ? 'استكشف الحلول' : 'Explore Solutions'}
+              {ar ? 'استكشف الحلول' : 'Explore solutions'}
             </Link>
           </div>
         </div>
