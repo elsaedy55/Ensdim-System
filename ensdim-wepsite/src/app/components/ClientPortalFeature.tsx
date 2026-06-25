@@ -1,4 +1,3 @@
-import { Button } from './Button';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
 import ensdimLogo from '../../imports/Asset_6__1_.png';
@@ -173,10 +172,18 @@ export function ClientPortalFeature() {
         </div>
 
         <div className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <button className="px-8 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.97] transition-all duration-200 font-medium inline-flex items-center justify-center gap-2">
+          <a
+            href="https://app.ensdim.com/login"
+            className="px-8 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.97] transition-all duration-200 font-medium inline-flex items-center justify-center gap-2"
+          >
             {t('clientPortal.primaryCTA')}
-          </button>
-          <Button variant="outline">{t('clientPortal.secondaryCTA')}</Button>
+          </a>
+          <a
+            href="https://app.ensdim.com/register"
+            className="px-8 py-3 rounded-xl transition-all duration-200 font-medium inline-flex items-center justify-center gap-2 active:scale-[0.97] bg-transparent text-[#101418] border border-[#E5E5E5] hover:border-[#6D5DF6] hover:text-[#6D5DF6]"
+          >
+            {t('clientPortal.secondaryCTA')}
+          </a>
         </div>
         <p className="text-center text-sm text-[#4F555E] mt-4">
           {t('clientPortal.note')}
