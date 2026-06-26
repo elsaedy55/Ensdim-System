@@ -2,8 +2,9 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { STALE_TIME } from "@/lib/query-config";
 import {
-  adminGetAllProjects, adminGetRecentProjects, adminCreateProject, adminUpdateProject, adminDeleteProject,
+  adminGetAllProjects, adminGetRecentProjects, adminGetProjectById, adminCreateProject, adminUpdateProject, adminDeleteProject,
   adminCreateMilestone, adminUpdateMilestone, adminDeleteMilestone, adminSetMilestoneStatus,
   adminGetAllClients, adminGetClientById, adminGetClientProjects, adminUpdateClientStatus, adminUpdateClient,
   adminBanClient, adminUnbanClient, adminDeleteClient,
@@ -20,8 +21,8 @@ export function useAdminKPIs() {
   return useQuery({
     queryKey:  ["admin-kpis"],
     queryFn:   adminGetKPIs,
-    staleTime: 2 * 60 * 1000,
-    refetchInterval: 5 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
+    refetchInterval: STALE_TIME.VERY_LONG,
   });
 }
 
@@ -31,7 +32,7 @@ export function useAdminProjects() {
   return useQuery({
     queryKey:  ["admin-projects"],
     queryFn:   adminGetAllProjects,
-    staleTime: 60 * 1000,
+    staleTime: STALE_TIME.MEDIUM,
   });
 }
 
@@ -39,7 +40,22 @@ export function useAdminRecentProjects(limit = 8) {
   return useQuery({
     queryKey:  ["admin-projects-recent", limit],
     queryFn:   () => adminGetRecentProjects(limit),
-    staleTime: 60 * 1000,
+    staleTime: STALE_TIME.MEDIUM,
+  });
+}
+
+export function useAdminProject(id: string | undefined) {
+  const qc = useQueryClient();
+  return useQuery({
+    queryKey:  ["admin-project", id],
+    queryFn:   () => adminGetProjectById(id!),
+    enabled:   !!id,
+    staleTime: STALE_TIME.MEDIUM,
+    // Renders instantly from the list cache (if already fetched) while the
+    // single-project query revalidates in the background.
+    placeholderData: () =>
+      qc.getQueryData<Awaited<ReturnType<typeof adminGetAllProjects>>>(["admin-projects"])
+        ?.find((p) => p.id === id),
   });
 }
 
@@ -70,7 +86,16 @@ export function useAdminDeleteProject() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => adminDeleteProject(id),
-    onSuccess: () => {
+    onMutate: async (id) => {
+      await qc.cancelQueries({ queryKey: ["admin-projects"] });
+      const prev = qc.getQueryData<Awaited<ReturnType<typeof adminGetAllProjects>>>(["admin-projects"]);
+      qc.setQueryData(["admin-projects"], prev?.filter((p) => p.id !== id));
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["admin-projects"], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: ["admin-projects"] });
       qc.invalidateQueries({ queryKey: ["admin-kpis"] });
     },
@@ -130,7 +155,7 @@ export function useAdminClients() {
   return useQuery({
     queryKey:  ["admin-clients"],
     queryFn:   adminGetAllClients,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 
@@ -139,7 +164,7 @@ export function useAdminClient(id: string | undefined) {
     queryKey:  ["admin-client", id],
     queryFn:   () => adminGetClientById(id!),
     enabled:   !!id,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 
@@ -156,8 +181,21 @@ export function useAdminUpdateClientStatus() {
   return useMutation({
     mutationFn: ({ clientId, status }: { clientId: string; status: Parameters<typeof adminUpdateClientStatus>[1] }) =>
       adminUpdateClientStatus(clientId, status),
-    onSuccess: () => {
+    onMutate: async ({ clientId, status }) => {
+      await qc.cancelQueries({ queryKey: ["admin-clients"] });
+      const prev = qc.getQueryData<Awaited<ReturnType<typeof adminGetAllClients>>>(["admin-clients"]);
+      qc.setQueryData(
+        ["admin-clients"],
+        prev?.map((c) => c.id === clientId ? { ...c, client_status: status } : c),
+      );
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["admin-clients"], ctx.prev);
+    },
+    onSettled: (_, __, { clientId }) => {
       qc.invalidateQueries({ queryKey: ["admin-clients"] });
+      qc.invalidateQueries({ queryKey: ["admin-client", clientId] });
     },
   });
 }
@@ -201,7 +239,16 @@ export function useAdminDeleteClient() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (clientId: string) => adminDeleteClient(clientId),
-    onSuccess: () => {
+    onMutate: async (clientId) => {
+      await qc.cancelQueries({ queryKey: ["admin-clients"] });
+      const prev = qc.getQueryData<Awaited<ReturnType<typeof adminGetAllClients>>>(["admin-clients"]);
+      qc.setQueryData(["admin-clients"], prev?.filter((c) => c.id !== clientId));
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["admin-clients"], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: ["admin-clients"] });
       qc.invalidateQueries({ queryKey: ["admin-kpis"] });
     },
@@ -214,7 +261,7 @@ export function useAdminTeam() {
   return useQuery({
     queryKey:  ["admin-team"],
     queryFn:   adminGetTeamMembers,
-    staleTime: 5 * 60 * 1000,
+    staleTime: STALE_TIME.VERY_LONG,
   });
 }
 

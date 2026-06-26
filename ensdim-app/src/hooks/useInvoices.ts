@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { STALE_TIME } from "@/lib/query-config";
 import {
   getMyInvoices,
   getInvoiceById,
@@ -13,7 +14,7 @@ export function useMyInvoices() {
   return useQuery({
     queryKey:  ["invoices"],
     queryFn:   getMyInvoices,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 
@@ -22,7 +23,7 @@ export function useInvoice(id: string | undefined) {
     queryKey:  ["invoice", id],
     queryFn:   () => getInvoiceById(id!),
     enabled:   !!id,
-    staleTime: 60 * 1000,
+    staleTime: STALE_TIME.MEDIUM,
   });
 }
 
@@ -30,7 +31,7 @@ export function useFinancialSummary() {
   return useQuery({
     queryKey:  ["financial-summary"],
     queryFn:   getFinancialSummary,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 

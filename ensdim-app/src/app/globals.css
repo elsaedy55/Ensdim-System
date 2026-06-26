@@ -6,9 +6,14 @@
 
 @theme {
   /* ---------- FONTS ---------- */
-  --font-sans: var(--font-geist-sans), "Inter", system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), "Fira Code", monospace;
-  --font-arabic: var(--font-cairo), "Cairo", system-ui, sans-serif;
+  /* Brand identity: Barlow for headings, Readex Pro for body (matches the
+     marketing site). Arabic headings use Alexandria; Arabic body stays on
+     Readex Pro, which already covers the Arabic subset. */
+  --font-sans:     var(--font-readex), "Readex Pro", system-ui, sans-serif;
+  --font-heading:  var(--font-barlow), "Barlow", system-ui, sans-serif;
+  --font-mono:     var(--font-geist-mono), "Fira Code", monospace;
+  --font-arabic:         var(--font-readex), "Readex Pro", system-ui, sans-serif;
+  --font-arabic-heading: var(--font-alexandria), "Alexandria", system-ui, sans-serif;
 
   /* ---------- TYPOGRAPHY SCALE ---------- */
   --text-xs:   0.75rem;    /* 12px — caption, labels */
@@ -21,12 +26,12 @@
   --text-4xl:  2.25rem;    /* 36px */
   --text-5xl:  3rem;       /* 48px — display */
 
-  /* ---------- BORDER RADIUS ---------- */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 20px;
+  /* ---------- BORDER RADIUS (matches the marketing site's softer scale) ---------- */
+  --radius-sm: 12px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
   --radius-full: 9999px;
 
   /* ---------- SPACING (8pt grid) ---------- */
@@ -63,63 +68,63 @@
    COLOR SYSTEM — LIGHT MODE
    ============================================ */
 :root {
-  /* Backgrounds */
-  --bg-base:      #fafafa;   /* zinc-50  — page background */
+  /* Backgrounds — lavender-tinted, matches the marketing site's light theme */
+  --bg-base:      #fafafe;   /* near-white with a hint of lavender — page background */
   --bg-surface:   #ffffff;   /* white    — cards, panels */
-  --bg-muted:     #f4f4f5;   /* zinc-100 — subtle fills */
-  --bg-hover:     #f1f1f3;   /* hover state */
-  --bg-active:    #e4e4e7;   /* active/pressed state */
+  --bg-muted:     #eeeafe;   /* soft lavender (brand) — subtle fills */
+  --bg-hover:     #e4ddfc;   /* hover state */
+  --bg-active:    #dcd3fa;   /* active/pressed state */
 
   /* Borders */
-  --border:         #e4e4e7;   /* zinc-200 — default border */
-  --border-subtle:  #f1f1f3;   /* very subtle border */
-  --border-strong:  #d4d4d8;   /* zinc-300 — stronger border */
+  --border:         #e5e5e5;   /* brand border */
+  --border-subtle:  #efefef;   /* very subtle border */
+  --border-strong:  #d0d0d5;   /* stronger border */
 
   /* Text */
-  --text-primary:   #09090b;   /* zinc-950 — headings, main content */
-  --text-secondary: #52525b;   /* zinc-600 — supporting text */
-  --text-muted:     #a1a1aa;   /* zinc-400 — placeholders, disabled labels */
-  --text-disabled:  #d4d4d8;   /* zinc-300 — disabled text */
+  --text-primary:   #101418;   /* logo black — headings, main content */
+  --text-secondary: #69717d;   /* cool gray — supporting text */
+  --text-muted:     #9aa1aa;   /* lighter gray — placeholders, disabled labels */
+  --text-disabled:  #c7cbd1;   /* disabled text */
   --text-inverse:   #ffffff;   /* white on dark backgrounds */
 
-  /* Accent — Indigo */
-  --accent:           #6366f1;   /* indigo-500 */
-  --accent-hover:     #4f46e5;   /* indigo-600 */
-  --accent-active:    #4338ca;   /* indigo-700 */
-  --accent-subtle:    #eef2ff;   /* indigo-50 */
-  --accent-muted:     #e0e7ff;   /* indigo-100 */
+  /* Accent — Intelligent Purple (brand) */
+  --accent:           #6d5df6;
+  --accent-hover:     #5b4ce0;
+  --accent-active:    #4a3dbf;
+  --accent-subtle:    #eeeafe;   /* soft lavender */
+  --accent-muted:     #ddd4fd;
   --accent-foreground:#ffffff;
 
-  /* Success — Emerald */
+  /* Success — Emerald (no brand equivalent, kept as semantic signal) */
   --success:          #10b981;   /* emerald-500 */
   --success-hover:    #059669;   /* emerald-600 */
   --success-subtle:   #ecfdf5;   /* emerald-50 */
   --success-muted:    #d1fae5;   /* emerald-100 */
   --success-foreground: #065f46; /* emerald-900 */
 
-  /* Warning — Amber */
+  /* Warning — Amber (no brand equivalent, kept as semantic signal) */
   --warning:          #f59e0b;   /* amber-500 */
   --warning-hover:    #d97706;   /* amber-600 */
   --warning-subtle:   #fffbeb;   /* amber-50 */
   --warning-muted:    #fef3c7;   /* amber-100 */
   --warning-foreground: #78350f; /* amber-900 */
 
-  /* Danger — Rose */
-  --danger:           #f43f5e;   /* rose-500 */
-  --danger-hover:     #e11d48;   /* rose-600 */
-  --danger-active:    #be123c;   /* rose-700 */
-  --danger-subtle:    #fff1f2;   /* rose-50 */
-  --danger-muted:     #ffe4e6;   /* rose-100 */
-  --danger-foreground: #881337;  /* rose-900 */
+  /* Danger — Pronunciation Red (brand) */
+  --danger:           #d63a3a;
+  --danger-hover:     #c13030;
+  --danger-active:    #a82828;
+  --danger-subtle:    #fbeaea;
+  --danger-muted:     #f6d0d0;
+  --danger-foreground: #7a1f1f;
 
-  /* Sidebar */
+  /* Sidebar — white shell, brand purple for active/hover accents */
   --sidebar-bg:         #ffffff;
-  --sidebar-border:     #e4e4e7;
-  --sidebar-item-hover: #f4f4f5;
-  --sidebar-item-active:#eef2ff;
-  --sidebar-item-active-border: #6366f1;
-  --sidebar-text:       #52525b;
-  --sidebar-text-active:#3730a3;
+  --sidebar-border:     #e5e5e5;
+  --sidebar-item-hover: #f5f3fe;
+  --sidebar-item-active:#eeeafe;
+  --sidebar-item-active-border: #6d5df6;
+  --sidebar-text:       #69717d;
+  --sidebar-text-active:#4a3dbf;
 
   /* Z-index scale */
   --z-sidebar:  40;
@@ -134,30 +139,31 @@
    COLOR SYSTEM — DARK MODE
    ============================================ */
 .dark {
-  /* Backgrounds */
-  --bg-base:      #09090b;   /* zinc-950 */
-  --bg-surface:   #18181b;   /* zinc-900 */
-  --bg-muted:     #27272a;   /* zinc-800 */
-  --bg-hover:     #3f3f46;   /* zinc-700 */
-  --bg-active:    #52525b;   /* zinc-600 */
+  /* Backgrounds — logo black with a violet undertone, matches the marketing site's dark theme */
+  --bg-base:      #101418;   /* logo black (brand) */
+  --bg-surface:   #181320;   /* near-black, violet undertone — cards, panels */
+  --bg-muted:     #221a33;   /* subtle violet fill */
+  --bg-hover:     #2c2240;
+  --bg-active:    #382c52;
 
   /* Borders */
-  --border:         #27272a;   /* zinc-800 */
-  --border-subtle:  #1f1f22;
-  --border-strong:  #3f3f46;   /* zinc-700 */
+  --border:         #2a2240;
+  --border-subtle:  #1f1928;
+  --border-strong:  #3d324f;
 
   /* Text */
-  --text-primary:   #fafafa;   /* zinc-50 */
-  --text-secondary: #a1a1aa;   /* zinc-400 */
-  --text-muted:     #52525b;   /* zinc-600 */
-  --text-disabled:  #3f3f46;   /* zinc-700 */
-  --text-inverse:   #09090b;
+  --text-primary:   #ffffff;
+  --text-secondary: #9aa1aa;   /* lightened cool gray for dark-bg contrast */
+  --text-muted:     #6b7280;
+  --text-disabled:  #3d3f52;
+  --text-inverse:   #101418;
 
-  /* Accent — slightly brighter in dark */
-  --accent:           #818cf8;   /* indigo-400 */
-  --accent-hover:     #6366f1;   /* indigo-500 */
-  --accent-subtle:    #1e1b4b;   /* indigo-950 */
-  --accent-muted:     #312e81;   /* indigo-900 */
+  /* Accent — brightened Intelligent Purple for contrast on dark surfaces */
+  --accent:           #8b7cf8;
+  --accent-hover:     #6d5df6;   /* brand purple */
+  --accent-active:    #5b4ce0;
+  --accent-subtle:    #2c2240;
+  --accent-muted:     #3b2a78;   /* deep violet (brand) */
 
   /* Success */
   --success:          #34d399;   /* emerald-400 */
@@ -171,21 +177,21 @@
   --warning-muted:    #451a03;   /* amber-950 */
   --warning-foreground: #fef3c7;
 
-  /* Danger */
-  --danger:           #fb7185;   /* rose-400 */
-  --danger-hover:     #f43f5e;
-  --danger-subtle:    #1f0010;
-  --danger-muted:     #4c0519;   /* rose-950 */
-  --danger-foreground: #ffe4e6;
+  /* Danger — brightened Pronunciation Red for contrast on dark surfaces */
+  --danger:           #ff6b6b;
+  --danger-hover:     #d63a3a;   /* brand red */
+  --danger-subtle:    #2a1414;
+  --danger-muted:     #3d1a1a;
+  --danger-foreground: #ffd9d9;
 
-  /* Sidebar */
+  /* Sidebar — dark neutral shell, brighter purple for active/hover accents */
   --sidebar-bg:         #111113;
   --sidebar-border:     #27272a;
   --sidebar-item-hover: #1f1f22;
-  --sidebar-item-active:#1e1b4b;
-  --sidebar-item-active-border: #818cf8;
+  --sidebar-item-active:#2c2240;
+  --sidebar-item-active-border: #8b7cf8;
   --sidebar-text:       #a1a1aa;
-  --sidebar-text-active:#a5b4fc;
+  --sidebar-text-active:#c4b5fd;
 }
 
 /* ============================================
@@ -209,6 +215,10 @@ body {
   font-size: var(--text-sm);
   line-height: 1.5;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 /* Scrollbar */
@@ -265,15 +275,16 @@ body {
    RTL / ARABIC OVERRIDES
    ============================================ */
 
-/* Switch font to Cairo for Arabic */
+/* Arabic body copy stays on Readex Pro (already covers the Arabic subset);
+   headings switch to Alexandria to match the marketing site. */
 :root:is([lang="ar"]) body,
 [lang="ar"] body {
   font-family: var(--font-arabic);
 }
 
-/* Ensure all text inherits Cairo in Arabic mode */
-[lang="ar"] * {
-  font-family: inherit;
+[lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3,
+[lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+  font-family: var(--font-arabic-heading);
 }
 
 /* RTL-specific letter spacing reset (Arabic doesn't use letter-spacing) */

@@ -65,20 +65,22 @@ export function ClientWorkspacePage() {
         ]}
       />
 
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-2xl font-bold text-[#101418] mb-3">
             {ar ? 'اطلب تفعيل مساحة العميل لمشروعك' : 'Request workspace activation for your project'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/75 mb-6">
+          <p className="text-sm text-[#4F555E] mb-6">
             {ar ? 'شاركنا تفاصيل مشروعك وسنساعدك على البدء.' : 'Share your project details and we will help you get started.'}
           </p>
           <Link
             to="/book-consultation"
-            className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] transition-colors text-sm font-semibold"
+            className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
           >
             {ar ? 'احجز استشارة' : 'Book a Consultation'} <ArrowRight size={15} />
           </Link>
+        </div>
         </div>
       </section>
     </>

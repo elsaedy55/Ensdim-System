@@ -3,9 +3,17 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants/routes";
+import { adminGetAllProjects, adminGetAllClients } from "@/lib/services/admin.service";
+import { getAllRoles } from "@/lib/services/roles.service";
+import { getAllResearchArticles } from "@/lib/services/research.service";
+import { getAllBlogPosts } from "@/lib/services/blog.service";
+import { getAllCaseStudies } from "@/lib/services/case-studies.service";
+import { getAllTasks } from "@/lib/services/tasks.service";
+import { getAllInquiries } from "@/lib/services/inquiries.service";
 import { SimpleTooltip } from "@/components/ui/tooltip";
 import { UserAvatar } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -28,6 +36,19 @@ import { useAuthStore } from "@/store/auth.store";
 type TooltipSide = "left" | "right";
 type NavEntry    = { href: string; key: string; icon: LucideIcon };
 type NavGroup    = { labelKey: string; items: NavEntry[] };
+
+// Warms the React Query cache for a nav target's list query on hover, so
+// the destination page renders from cache instead of showing a skeleton.
+const NAV_PREFETCH: Record<string, { queryKey: unknown[]; queryFn: () => Promise<unknown> }> = {
+  projects: { queryKey: ["admin-projects"], queryFn: adminGetAllProjects },
+  clients:  { queryKey: ["admin-clients"],  queryFn: adminGetAllClients },
+  tasks:    { queryKey: ["tasks", "all"],   queryFn: () => getAllTasks() },
+  research: { queryKey: ["research-articles"], queryFn: getAllResearchArticles },
+  blog:     { queryKey: ["blog-posts"],     queryFn: getAllBlogPosts },
+  caseStudies: { queryKey: ["case-studies"], queryFn: getAllCaseStudies },
+  roles:    { queryKey: ["roles"],          queryFn: getAllRoles },
+  inquiries: { queryKey: ["inquiries"],     queryFn: getAllInquiries },
+};
 
 // ─── Nav configuration ────────────────────────────────────────────────────────
 
@@ -96,6 +117,7 @@ function NavItem({
   badge = 0,
   side,
   isRTL,
+  onPrefetch,
 }: {
   href: string;
   icon: LucideIcon;
@@ -105,11 +127,14 @@ function NavItem({
   badge?: number;
   side: TooltipSide;
   isRTL?: boolean;
+  onPrefetch?: () => void;
 }) {
   const item = (
     <Link
       href={href}
       aria-current={isActive ? "page" : undefined}
+      onMouseEnter={onPrefetch}
+      onFocus={onPrefetch}
       className={cn(
         "group relative flex items-center rounded-xl text-sm font-medium",
         "select-none outline-none",
@@ -170,6 +195,7 @@ export function AdminSidebar({
   forceExpanded,
 }: AdminSidebarProps) {
   const pathname = usePathname();
+  const queryClient = useQueryClient();
   const t    = useTranslations("common.nav");
   const ta   = useTranslations("common.actions");
   const tg   = useTranslations("common.sidebarGroups");
@@ -273,19 +299,25 @@ export function AdminSidebar({
                 />
               )}
 
-              {group.items.map(({ href, key, icon }) => (
-                <NavItem
-                  key={href}
-                  href={href}
-                  icon={icon}
-                  label={t(key as Parameters<typeof t>[0])}
-                  isActive={isActive(href)}
-                  isCollapsed={isCollapsed}
-                  badge={key === "notifications" ? notificationCount : 0}
-                  side={side}
+              {group.items.map(({ href, key, icon }) => {
+                const prefetch = NAV_PREFETCH[key];
+                return (
+                  <NavItem
+                    key={href}
+                    href={href}
+                    icon={icon}
+                    label={t(key as Parameters<typeof t>[0])}
+                    isActive={isActive(href)}
+                    isCollapsed={isCollapsed}
+                    badge={key === "notifications" ? notificationCount : 0}
+                    side={side}
                     isRTL={isRTL}
-                />
-              ))}
+                    onPrefetch={prefetch
+                      ? () => queryClient.prefetchQuery({ queryKey: prefetch.queryKey, queryFn: prefetch.queryFn })
+                      : undefined}
+                  />
+                );
+              })}
             </div>
           ))}
         </nav>

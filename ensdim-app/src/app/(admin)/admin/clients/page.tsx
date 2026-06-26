@@ -19,6 +19,7 @@ import Link from "next/link";
 import { Plus, Users, UserPlus, Mail, Building2, Kanban, List, ArrowRight, Ban } from "lucide-react";
 import { toast } from "sonner";
 import { useAdminClients, useAdminDeleteClient } from "@/hooks/useAdmin";
+import { useUrlState } from "@/hooks/useUrlState";
 import type { ProfileRow } from "@/lib/supabase/types";
 
 // ─── Add Client Modal ─────────────────────────────────────────────
@@ -133,15 +134,14 @@ function ClientTableRow({ client, onDelete }: { client: ProfileRow; onDelete: (i
 
 // ─── Page ─────────────────────────────────────────────────────────
 
-type ViewMode = "pipeline" | "table";
-
 export default function AdminClientsPage() {
   const t = useTranslations("admin.clients");
   const { data: clients, isLoading } = useAdminClients();
   const deleteClient = useAdminDeleteClient();
 
-  const [search,   setSearch]   = React.useState("");
-  const [view,     setView]     = React.useState<ViewMode>("pipeline");
+  const [search, setSearch]  = useUrlState("q");
+  const [viewParam, setView] = useUrlState("view", "pipeline");
+  const view = viewParam === "table" ? "table" : "pipeline";
   const [addOpen,  setAddOpen]  = React.useState(false);
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; name: string } | null>(null);
 

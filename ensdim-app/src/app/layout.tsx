@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Cairo } from "next/font/google";
+import { Barlow, Readex_Pro, Alexandria, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { localeDir } from "@/i18n/common";
@@ -11,9 +11,12 @@ import { AuthInitializer } from "@/components/common/AuthInitializer";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
-const cairo     = Cairo({ variable: "--font-cairo", subsets: ["arabic", "latin"], display: "swap" });
+// Matches the marketing site's identity: Barlow for headings, Readex Pro for
+// body copy (both directions), Alexandria for Arabic headings.
+const barlow     = Barlow({ variable: "--font-barlow", subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"], display: "swap" });
+const readexPro  = Readex_Pro({ variable: "--font-readex", subsets: ["latin", "arabic"], display: "swap" });
+const alexandria = Alexandria({ variable: "--font-alexandria", subsets: ["latin", "arabic"], display: "swap" });
+const geistMono  = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "Ensdim — Agency Operating System", template: "%s | Ensdim" },
@@ -31,7 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html
       lang={locale}
       dir={dir}
-      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full`}
+      className={`${barlow.variable} ${readexPro.variable} ${alexandria.variable} ${geistMono.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="h-full antialiased" suppressHydrationWarning>

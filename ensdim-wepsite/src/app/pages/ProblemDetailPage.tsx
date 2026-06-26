@@ -498,16 +498,18 @@ export function ProblemDetailPage() {
         </div>
       </section>
 
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-xl sm:text-2xl font-bold mb-3">{d.ctaHeading}</h2>
-          <p className="text-sm text-[#EEEAFE]/75 leading-relaxed mb-6">{d.ctaBody}</p>
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#101418] mb-3">{d.ctaHeading}</h2>
+          <p className="text-sm text-[#4F555E] leading-relaxed mb-6">{d.ctaBody}</p>
           <Link
             to="/book-consultation"
             className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
           >
             {d.ctaButton} <ArrowRight size={15} />
           </Link>
+        </div>
         </div>
       </section>
     </>

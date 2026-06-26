@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { STALE_TIME } from "@/lib/query-config";
 import {
   getRevisionsByProject,
   getRevisionById,
@@ -16,7 +17,7 @@ export function useRevisions(projectId: string | undefined) {
     queryKey:  ["revisions", projectId],
     queryFn:   () => getRevisionsByProject(projectId!),
     enabled:   !!projectId,
-    staleTime: 60 * 1000,
+    staleTime: STALE_TIME.MEDIUM,
   });
 }
 
@@ -25,7 +26,7 @@ export function useRevision(id: string | undefined) {
     queryKey:  ["revision", id],
     queryFn:   () => getRevisionById(id!),
     enabled:   !!id,
-    staleTime: 60 * 1000,
+    staleTime: STALE_TIME.MEDIUM,
   });
 }
 

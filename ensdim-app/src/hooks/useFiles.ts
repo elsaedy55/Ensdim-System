@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { STALE_TIME } from "@/lib/query-config";
 import {
   getFilesByProject,
   uploadProjectFile,
@@ -14,7 +15,7 @@ export function useFiles(projectId: string | undefined, category?: string) {
     queryKey:  ["files", projectId, category],
     queryFn:   () => getFilesByProject(projectId!, category),
     enabled:   !!projectId,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 

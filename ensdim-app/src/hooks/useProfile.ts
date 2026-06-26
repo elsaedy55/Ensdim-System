@@ -2,6 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { STALE_TIME } from "@/lib/query-config";
 import {
   getMyProfile,
   updateMyProfile,
@@ -18,7 +19,7 @@ export function useMyProfile() {
   return useQuery({
     queryKey:  ["profile"],
     queryFn:   getMyProfile,
-    staleTime: 5 * 60 * 1000,
+    staleTime: STALE_TIME.VERY_LONG,
   });
 }
 

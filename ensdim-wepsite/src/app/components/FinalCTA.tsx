@@ -5,6 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
 import { submitInquiry } from '../../lib/supabase';
 import { challenges } from './ConsultationForm';
+import { SuccessModal } from './SuccessModal';
 
 export function FinalCTA() {
   const { t, language } = useLanguage();
@@ -18,7 +19,8 @@ export function FinalCTA() {
     setError(false);
     setSubmitting(true);
 
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     try {
       await submitInquiry({
         type:        'contact',
@@ -30,6 +32,7 @@ export function FinalCTA() {
         language,
       });
       setSubmitted(true);
+      form.reset();
     } catch {
       setError(true);
     } finally {
@@ -38,46 +41,41 @@ export function FinalCTA() {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#0c0a14] text-white relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#FAFAFA] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#3B2A78] rounded-full blur-[100px] opacity-25" />
-        <div className="absolute bottom-0 right-1/3 w-[400px] h-[250px] bg-[#6D5DF6] rounded-full blur-[90px] opacity-15" />
+        <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#6D5DF6] rounded-full blur-[120px] opacity-[0.07]" />
+        <div className="absolute bottom-0 right-1/3 w-[400px] h-[250px] bg-[#3B2A78] rounded-full blur-[100px] opacity-[0.06]" />
       </div>
-      {/* Subtle top border accent */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#6D5DF6]/40 to-transparent" />
 
       <ScrollReveal className="relative max-w-xl mx-auto px-4 sm:px-6 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#6D5DF6]/10 border border-[#6D5DF6]/25 rounded-full text-[#EEEAFE]/80 text-xs mb-7">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#6D5DF6]/10 border border-[#6D5DF6]/20 rounded-full text-[#3B2A78] text-xs mb-7">
           <div className="w-1.5 h-1.5 bg-[#6D5DF6] rounded-full animate-pulse" />
           <span>{t('finalCTA.badge')}</span>
         </div>
 
-        <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-snug text-white">
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-snug text-[#101418]">
           {t('finalCTA.title')}
         </h2>
 
-        <p className="text-sm sm:text-[15px] text-[#EEEAFE]/70 mb-9 max-w-xl mx-auto leading-[1.75]">
+        <p className="text-sm sm:text-[15px] text-[#4F555E] mb-9 max-w-xl mx-auto leading-[1.75]">
           {t('finalCTA.subtitle')}
         </p>
 
-        <div className="bg-white rounded-2xl p-6 sm:p-7 text-start">
-          {submitted ? (
-            <div className="text-center py-6">
-              <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg viewBox="0 0 20 20" fill="none" className="w-7 h-7 text-green-600 no-mirror">
-                  <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <p className="text-[#101418] font-semibold mb-1">{ar ? 'تم إرسال طلبك' : 'Request sent'}</p>
-              <p className="text-sm text-[#4F555E] mb-5">{ar ? 'سنتواصل معك قريباً.' : 'We will be in touch soon.'}</p>
-              <div className="flex items-center justify-center gap-4 text-sm font-medium">
-                <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
-                <span className="text-[#E5E5E5]">•</span>
-                <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
-              </div>
+        <div className="bg-white border border-[#E5E5E5] rounded-2xl p-6 sm:p-7 text-start shadow-[0_8px_32px_rgba(109,93,246,0.08)]">
+          <SuccessModal
+            open={submitted}
+            onClose={() => setSubmitted(false)}
+            title={ar ? 'تم إرسال طلبك' : 'Request sent'}
+            message={ar ? 'سنتواصل معك قريباً.' : 'We will be in touch soon.'}
+          >
+            <div className="flex items-center justify-center gap-4 text-sm font-medium mt-5">
+              <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
+              <span className="text-[#E5E5E5]">•</span>
+              <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
             </div>
-          ) : (
+          </SuccessModal>
+
             <form onSubmit={handleSubmit} className="space-y-3.5">
               <div className="grid sm:grid-cols-2 gap-3.5">
                 <input
@@ -116,10 +114,9 @@ export function FinalCTA() {
                 {!submitting && <ArrowRight size={15} />}
               </button>
             </form>
-          )}
         </div>
 
-        <Link to="/contact" className="inline-block mt-5 text-sm font-medium text-[#EEEAFE]/70 hover:text-[#EEEAFE]/90 active:scale-95 transition-all">
+        <Link to="/contact" className="inline-block mt-5 text-sm font-medium text-[#6D5DF6] hover:text-[#3B2A78] active:scale-95 transition-all">
           {t('finalCTA.secondaryCTA')}
         </Link>
       </ScrollReveal>

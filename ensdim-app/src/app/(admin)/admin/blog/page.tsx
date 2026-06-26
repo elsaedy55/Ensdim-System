@@ -21,6 +21,7 @@ import {
   useToggleBlogPublished,
 } from "@/hooks/useBlog";
 import type { BlogPost } from "@/lib/services/blog.service";
+import { useUrlState } from "@/hooks/useUrlState";
 
 // ─── PostRow ───────────────────────────────────────────────────────
 
@@ -165,7 +166,7 @@ export default function AdminBlogPage() {
   const { data: posts, isLoading, error } = useBlogPosts();
   const deletePost = useDeleteBlogPost();
 
-  const [search, setSearch]     = React.useState("");
+  const [search, setSearch] = useUrlState("q");
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; title: string } | null>(null);
 
   const list     = posts ?? [];

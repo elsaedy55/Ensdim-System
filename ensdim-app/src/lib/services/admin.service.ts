@@ -81,6 +81,18 @@ export async function adminGetRecentProjects(limit = 8): Promise<ProjectWithClie
   return (data ?? []) as unknown as ProjectWithClient[];
 }
 
+export async function adminGetProjectById(id: string): Promise<ProjectWithClient> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*, client:profiles!client_id(id, name, avatar_url)")
+    .eq("id", id)
+    .single();
+
+  if (error) throw new Error(error.message);
+  return data as ProjectWithClient;
+}
+
 export async function adminCreateProject(input: CreateProjectInput): Promise<ProjectRow> {
   const supabase = createClient();
 

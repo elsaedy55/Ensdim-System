@@ -14,6 +14,8 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 import { Plus, Receipt, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
+import { STALE_TIME } from "@/lib/query-config";
+import { useUrlState } from "@/hooks/useUrlState";
 import type { InvoiceRow } from "@/lib/supabase/types";
 
 type InvoiceWithRels = InvoiceRow & {
@@ -33,13 +35,15 @@ function useAdminInvoices() {
       if (error) throw new Error(error.message);
       return (data ?? []) as InvoiceWithRels[];
     },
+    staleTime: STALE_TIME.MEDIUM,
   });
 }
 
 export default function AdminInvoicesListPage() {
   const t = useTranslations("admin.financial");
   const { data: invoices, isLoading } = useAdminInvoices();
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = useUrlState("q");
+  const [tab, setTab]       = useUrlState("tab", "all");
 
   const all = invoices ?? [];
   const filtered = (status?: string) => {
@@ -91,7 +95,7 @@ export default function AdminInvoicesListPage() {
       {isLoading ? (
         <div className="space-y-3">{Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}</div>
       ) : (
-        <Tabs defaultValue="all">
+        <Tabs value={tab} onValueChange={setTab}>
           <TabsList variant="underline" className="w-full">
             <TabsTrigger value="all"     variant="underline" count={filtered().length}>{t("invoiceList.filters.all")}</TabsTrigger>
             <TabsTrigger value="sent"    variant="underline" count={filtered("sent").length}>{t("invoiceList.filters.sent")}</TabsTrigger>

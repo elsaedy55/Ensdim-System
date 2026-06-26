@@ -324,24 +324,26 @@ export function BlogPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-2xl font-bold text-[#101418] mb-3">
             {ar ? 'حوّل ما قرأته إلى خطوة أوضح داخل عملك.' : 'Turn what you read into a clearer step inside your business.'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
+          <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar
               ? 'إذا وجدت في المقال فكرة تشبه تحديًا يحدث داخل شركتك، شاركنا ما يحدث. سنساعدك على فهم السبب، تحديد الأولوية، واختيار المسار الرقمي الأقرب للعائد.'
               : 'If an idea in the article reflects a challenge happening inside your company, share what is happening with us. We will help you understand the cause, define the priority, and choose the digital path closest to return.'}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] transition-colors text-sm font-semibold">
+            <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
               {ar ? 'شارك تحدي عملك' : 'Share your business challenge'} <ArrowRight size={15} />
             </Link>
-            <Link to="/solutions" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white transition-colors text-sm font-semibold">
+            <Link to="/solutions" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
               {ar ? 'استكشف الحلول' : 'Explore solutions'}
             </Link>
           </div>
+        </div>
         </div>
       </section>
     </>

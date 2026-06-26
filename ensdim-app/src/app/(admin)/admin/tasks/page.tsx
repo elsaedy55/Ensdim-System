@@ -15,6 +15,7 @@ import { formatDate } from "@/lib/utils";
 import { Plus, LayoutGrid, List } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTasks } from "@/hooks/useTasks";
+import { useUrlState } from "@/hooks/useUrlState";
 import type { TaskWithRelations, TaskStatus } from "@/lib/services/tasks.service";
 
 type ViewMode = "board" | "list";
@@ -23,12 +24,13 @@ export default function AdminTasksPage() {
   const t = useTranslations("admin.tasks");
   const { data: tasks, isLoading } = useTasks();
 
-  const [view,         setView]         = React.useState<ViewMode>("board");
+  const [viewParam, setView]            = useUrlState("view", "board");
+  const view = viewParam === "list" ? "list" : "board";
   const [mobileCol,    setMobileCol]    = React.useState<TaskStatus>("todo");
   const [selectedTask, setSelectedTask] = React.useState<TaskWithRelations | null>(null);
   const [createOpen,   setCreateOpen]   = React.useState(false);
   const [defaultStatus, setDefaultStatus] = React.useState<TaskStatus>("todo");
-  const [search,       setSearch]       = React.useState("");
+  const [search, setSearch] = useUrlState("q");
 
   const allTasks = tasks ?? [];
   const filtered = search

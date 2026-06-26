@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { STALE_TIME } from "@/lib/query-config";
 import { getMyProject, getAllProjects, updateProject, getProjectMembers } from "@/lib/services/projects.service";
 
 export function useProjectMembers(projectId: string | undefined) {
@@ -8,7 +9,7 @@ export function useProjectMembers(projectId: string | undefined) {
     queryKey:  ["project-members", projectId],
     queryFn:   () => getProjectMembers(projectId!),
     enabled:   !!projectId,
-    staleTime: 5 * 60 * 1000,
+    staleTime: STALE_TIME.VERY_LONG,
   });
 }
 
@@ -16,7 +17,7 @@ export function useMyProject() {
   return useQuery({
     queryKey: ["project", "mine"],
     queryFn:  getMyProject,
-    staleTime: 5 * 60 * 1000, // 5 min
+    staleTime: STALE_TIME.VERY_LONG,
   });
 }
 
@@ -24,7 +25,7 @@ export function useAllProjects() {
   return useQuery({
     queryKey: ["projects"],
     queryFn:  getAllProjects,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 

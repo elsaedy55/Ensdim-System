@@ -26,7 +26,7 @@ import {
   Settings, Send, CreditCard, KeyRound, Download,
 } from "lucide-react";
 import {
-  useAdminProjects, useAdminUpdateProject, useAdminDeleteProject,
+  useAdminProject, useAdminUpdateProject, useAdminDeleteProject,
   useAdminCreateMilestone, useAdminUpdateMilestone, useAdminDeleteMilestone, useAdminSetMilestoneStatus,
   useAdminProjectMembers, useAdminTeam, useAdminAddProjectMember, useAdminRemoveProjectMember,
   useAdminProjectInvoices, useAdminCreateInvoice, useAdminSendInvoice, useAdminMarkInvoicePaid,
@@ -699,12 +699,11 @@ export default function ProjectDetailPage() {
   const ta = useTranslations("admin.projects");
   const router = useRouter();
 
-  const { data: projects, isLoading } = useAdminProjects();
+  const { data: project, isLoading } = useAdminProject(id);
   const updateProject = useAdminUpdateProject();
   const deleteProject = useAdminDeleteProject();
   const { data: milestones } = useMilestones(id);
 
-  const project = (projects ?? []).find((p) => p.id === id);
   const sortedMilestones = [...(milestones ?? [])].sort((a, b) => a.order - b.order);
 
   const [deleteOpen, setDeleteOpen] = React.useState(false);

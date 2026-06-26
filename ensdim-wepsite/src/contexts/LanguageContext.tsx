@@ -555,8 +555,10 @@ function detectInitialLanguage(): Language {
   return isArabicPath(window.location.pathname) ? 'ar' : 'en';
 }
 
+const DEFAULT_COUNTRY = 'AE';
+
 function detectInitialCountry(): string {
-  return localStorage.getItem('ensdim_country') || 'AE';
+  return localStorage.getItem('ensdim_country') || DEFAULT_COUNTRY;
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -567,6 +569,33 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }, [language]);
+
+  // Geo-detect the visitor's country on first visit only (no saved preference
+  // yet), so the flag/country shown matches where they are browsing from.
+  // Language always stays English by default — only the country flag changes.
+  // Falls back to UAE if detection fails or the country isn't one we serve.
+  useEffect(() => {
+    if (localStorage.getItem('ensdim_country')) return;
+
+    let cancelled = false;
+    fetch('https://get.geojs.io/v1/ip/country.json')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (cancelled || !data?.country) return;
+        const code = String(data.country).toUpperCase();
+        if (code in countries) {
+          setCountryState(code);
+          localStorage.setItem('ensdim_country', code);
+        }
+      })
+      .catch(() => {
+        // Network/geo-IP failure: silently keep the UAE default.
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const setLanguage = (lang: Language) => {
     if (lang === language) return;

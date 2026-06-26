@@ -23,6 +23,7 @@ import {
 } from "@/hooks/useInquiries";
 import { InquiryDetailsDialog } from "@/components/admin/InquiryDetailsDialog";
 import type { Inquiry, InquiryStatus } from "@/lib/services/inquiries.service";
+import { useUrlState } from "@/hooks/useUrlState";
 
 // ─── Helpers ───────────────────────────────────────────────────────
 
@@ -203,9 +204,11 @@ export default function AdminInquiriesPage() {
   const { data: inquiries, isLoading, error } = useInquiries();
   const deleteInquiry = useDeleteInquiry();
 
-  const [search, setSearch]             = React.useState("");
-  const [typeFilter, setTypeFilter]     = React.useState<TypeFilter>("all");
-  const [statusFilter, setStatusFilter] = React.useState<StatusFilter>("all");
+  const [search, setSearch] = useUrlState("q");
+  const [typeFilterParam, setTypeFilter]     = useUrlState("type", "all");
+  const [statusFilterParam, setStatusFilter] = useUrlState("status", "all");
+  const typeFilter   = typeFilterParam as TypeFilter;
+  const statusFilter = statusFilterParam as StatusFilter;
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; name: string } | null>(null);
   const [detailsTarget, setDetailsTarget] = React.useState<Inquiry | null>(null);
 

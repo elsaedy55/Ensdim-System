@@ -21,6 +21,7 @@ import {
   useToggleCaseStudyPublished,
 } from "@/hooks/useCaseStudies";
 import type { CaseStudy } from "@/lib/services/case-studies.service";
+import { useUrlState } from "@/hooks/useUrlState";
 
 // ─── CaseStudyRow ──────────────────────────────────────────────────
 
@@ -62,7 +63,7 @@ function CaseStudyRow({
           className="w-14 h-14 rounded-lg object-cover shrink-0 hidden sm:block"
         />
       ) : (
-        <div className="w-14 h-14 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 hidden sm:block">
+        <div className="w-14 h-14 rounded-lg bg-(--bg-muted) flex items-center justify-center shrink-0 sm:block">
           <Briefcase className="h-5 w-5 text-(--text-muted)" />
         </div>
       )}
@@ -164,7 +165,7 @@ export default function AdminCaseStudiesPage() {
   const { data: studies, isLoading, error } = useCaseStudies();
   const deleteStudy = useDeleteCaseStudy();
 
-  const [search, setSearch]     = React.useState("");
+  const [search, setSearch] = useUrlState("q");
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; title: string } | null>(null);
 
   const list     = studies ?? [];

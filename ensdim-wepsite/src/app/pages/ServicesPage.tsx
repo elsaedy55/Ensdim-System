@@ -364,12 +364,13 @@ export function ServicesPage() {
       />
 
       {/* Final CTA */}
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-2xl font-bold text-[#101418] mb-3">
             {ar ? 'ابدأ الآن بالخدمة التي تحقق أثرًا واضحًا في عملك.' : 'Start now with the service that can create clear impact inside your business.'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
+          <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar
               ? 'ليس المطلوب أن تبدأ بمشروع كبير، بل أن تختار أول خطوة ذكية: خدمة تحسّن البيع، تنظّم المتابعة، تقلل الضغط التشغيلي، أو تجعل القرار أوضح. احجز استشارة مجانية، وسنراجع وضعك الحالي ونحدد معك الخدمة الأنسب ونطاق التنفيذ الأقرب للعائد.'
               : 'You do not need to begin with a large project. You need to choose the smartest first step: a service that improves sales, organizes follow-up, reduces operational pressure, or makes decisions clearer. Book a free consultation, and we will review your current situation, identify the most relevant service, and define the execution scope closest to return.'}
@@ -377,23 +378,24 @@ export function ServicesPage() {
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               to="/book-consultation"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               {ar ? 'احجز استشارة مجانية' : 'Book a Free Consultation'} <ArrowRight size={15} />
             </Link>
             <Link
               to="/solutions"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               {ar ? 'استكشف الحلول' : 'Explore Solutions'}
             </Link>
             <Link
               to="/case-studies"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               {ar ? 'شاهد مشاريع سابقة' : 'View Previous Projects'}
             </Link>
           </div>
+        </div>
         </div>
       </section>
     </>

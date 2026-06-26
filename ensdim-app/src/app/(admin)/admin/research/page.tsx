@@ -21,6 +21,7 @@ import {
   useToggleResearchPublished,
 } from "@/hooks/useResearch";
 import type { ResearchArticle } from "@/lib/services/research.service";
+import { useUrlState } from "@/hooks/useUrlState";
 
 // ─── ArticleRow ────────────────────────────────────────────────────
 
@@ -165,7 +166,7 @@ export default function AdminResearchPage() {
   const { data: articles, isLoading, error } = useResearchArticles();
   const deleteArticle = useDeleteResearchArticle();
 
-  const [search, setSearch]     = React.useState("");
+  const [search, setSearch] = useUrlState("q");
   const [deleteTarget, setDeleteTarget] = React.useState<{ id: string; title: string } | null>(null);
 
   const list     = articles ?? [];

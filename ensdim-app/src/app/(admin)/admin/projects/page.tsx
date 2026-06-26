@@ -20,6 +20,7 @@ import {
   DropdownMenuSeparator, DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAdminProjects, useAdminDeleteProject } from "@/hooks/useAdmin";
+import { useUrlState } from "@/hooks/useUrlState";
 import type { ProjectWithClient } from "@/lib/services/admin.service";
 
 // ─── ProjectRow ───────────────────────────────────────────────────
@@ -99,7 +100,8 @@ export default function AdminProjectsPage() {
   const { data: projects, isLoading } = useAdminProjects();
   const deleteProject = useAdminDeleteProject();
 
-  const [search, setSearch]     = React.useState("");
+  const [search, setSearch] = useUrlState("q");
+  const [tab, setTab]       = useUrlState("tab", "all");
   const [deleteId, setDeleteId] = React.useState<string | null>(null);
 
   const list = projects ?? [];
@@ -159,7 +161,7 @@ export default function AdminProjectsPage() {
       {isLoading ? (
         <div className="space-y-3">{Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}</div>
       ) : (
-        <Tabs defaultValue="all">
+        <Tabs value={tab} onValueChange={setTab}>
           <TabsList variant="underline" className="w-full">
             <TabsTrigger value="all"       variant="underline" count={counts.all}>{t("list.filters.all")}</TabsTrigger>
             <TabsTrigger value="active"    variant="underline" count={counts.active}>{t("list.filters.active")}</TabsTrigger>

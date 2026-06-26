@@ -278,16 +278,18 @@ export function ContactPage() {
       </section>
 
       {/* Closing line */}
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-xl sm:text-2xl font-bold mb-3">
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#101418] mb-3">
             {ar ? 'ابدأ من وصف التحدي، وسنساعدك على ترتيب الخطوة التالية.' : 'Start by describing the challenge, and we’ll help you shape the next step.'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/75 leading-relaxed">
+          <p className="text-sm text-[#4F555E] leading-relaxed">
             {ar
               ? 'لا تحتاج إلى تحديد الخدمة أو الحل من البداية. اكتب ما يحدث داخل عملك الآن، وسنراجع الرسالة ونقترح المسار الأقرب للعائد.'
               : 'You do not need to define the service or solution from the beginning. Tell us what is happening inside your business now, and we’ll review your message and suggest the path closest to business return.'}
           </p>
+        </div>
         </div>
       </section>
     </>

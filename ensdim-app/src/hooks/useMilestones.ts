@@ -2,6 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { STALE_TIME } from "@/lib/query-config";
 import {
   getMilestonesByProject,
   getMilestoneById,
@@ -15,7 +16,7 @@ export function useMilestones(projectId: string | undefined) {
     queryKey:  ["milestones", projectId],
     queryFn:   () => getMilestonesByProject(projectId!),
     enabled:   !!projectId,
-    staleTime: 2 * 60 * 1000,
+    staleTime: STALE_TIME.LONG,
   });
 }
 
@@ -24,7 +25,7 @@ export function useMilestone(id: string | undefined) {
     queryKey:  ["milestone", id],
     queryFn:   () => getMilestoneById(id!),
     enabled:   !!id,
-    staleTime: 60 * 1000,
+    staleTime: STALE_TIME.MEDIUM,
   });
 }
 

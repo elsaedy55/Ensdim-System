@@ -172,29 +172,31 @@ export function LocalSEOPage({ config }: { config: LocalPageConfig }) {
       />
 
       {/* CTA */}
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-2xl font-bold text-[#101418] mb-3">
             Ready to start your {config.service} project in {config.country}?
           </h2>
-          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
+          <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             Book a free consultation. We&apos;ll understand your business first, then build the right system around it.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               to="/book-consultation"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               Book Free Consultation
               <ArrowRight size={15} />
             </Link>
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 px-6 py-2.5 border border-white/20 text-white/80 rounded-xl hover:border-white/40 hover:text-white transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#6D5DF6]/30 text-[#3B2A78] rounded-xl hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               View All Services
             </Link>
           </div>
+        </div>
         </div>
       </section>
     </>

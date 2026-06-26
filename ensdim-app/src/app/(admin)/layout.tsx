@@ -14,20 +14,26 @@ async function getLayoutData() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { user: null, profile: null, workspace: null, notificationCount: 0 };
 
-  const [profileRes, workspaceRes, notifRes] = await Promise.all([
-    supabase.from("profiles").select("name, role, avatar_url, workspace_id").eq("id", user.id).maybeSingle(),
-    supabase.from("profiles").select("workspace_id").eq("id", user.id).maybeSingle().then(async (r) => {
-      if (!r.data?.workspace_id) return null;
-      const w = await supabase.from("workspaces").select("name").eq("id", r.data.workspace_id).maybeSingle();
-      return w.data;
-    }),
+  // workspace_id only comes from the profile row, so it must resolve first —
+  // but the workspace and notifications queries that depend on it (or don't)
+  // now run together instead of one nesting inside the other.
+  const profileRes = await supabase
+    .from("profiles")
+    .select("name, role, avatar_url, workspace_id")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const [workspaceRes, notifRes] = await Promise.all([
+    profileRes.data?.workspace_id
+      ? supabase.from("workspaces").select("name").eq("id", profileRes.data.workspace_id).maybeSingle()
+      : Promise.resolve({ data: null }),
     supabase.from("notifications").select("*", { count: "exact", head: true }).eq("user_id", user.id).eq("is_read", false),
   ]);
 
   return {
     user,
     profile:           profileRes.data,
-    workspace:         workspaceRes,
+    workspace:         workspaceRes.data,
     notificationCount: (notifRes as any).count ?? 0,
   };
 }

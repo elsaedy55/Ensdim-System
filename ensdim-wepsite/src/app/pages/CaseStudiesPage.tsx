@@ -337,12 +337,13 @@ export function CaseStudiesPage() {
       />
 
       {/* 8. Final CTA */}
-      <section className="py-14 bg-[#0f0d19] text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold mb-3">
+      <section className="py-16 bg-[#FAFAFA]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-2xl font-bold text-[#101418] mb-3">
             {ar ? 'هل تريد تحويل تحدي شركتك إلى نتيجة قابلة للقياس؟' : 'Do you want to turn your company’s challenge into a measurable result?'}
           </h2>
-          <p className="text-sm text-[#EEEAFE]/75 mb-6 max-w-xl mx-auto">
+          <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar
               ? 'سواء كانت المشكلة في المبيعات، التشغيل، المتابعة، البيانات، تجربة العميل، أو الأمان، نساعدك على فهم أين يتعطل العائد، ثم نبني المسار الرقمي الأقرب لتحسينه.'
               : 'Whether the problem is sales, operations, follow-up, data, customer experience, or security, we help you understand where return is blocked, then build the digital path most likely to improve it.'}
@@ -356,11 +357,12 @@ export function CaseStudiesPage() {
             </Link>
             <Link
               to="/solutions"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               {ar ? 'استكشف الحلول' : 'Explore solutions'}
             </Link>
           </div>
+        </div>
         </div>
       </section>
     </>
