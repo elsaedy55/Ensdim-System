@@ -9,16 +9,22 @@ export function CareersPreview() {
 
   const roles = [
     // Research
-    { slug: 'ux-researcher', label: ar ? 'باحث تجربة المستخدم' : 'UX Researcher', type: ar ? 'البحث' : 'Research' },
-    { slug: 'behavioral-psychology-researcher', label: ar ? 'باحث في علم النفس السلوكي' : 'Behavioral Psychology Researcher', type: ar ? 'البحث' : 'Research' },
-    { slug: 'market-researcher', label: ar ? 'باحث سوق' : 'Market Researcher', type: ar ? 'البحث' : 'Research' },
+    { slug: 'ux-researcher', label: 'UX Researcher', type: ar ? 'البحث' : 'Research' },
+    { slug: 'behavioral-psychology-researcher', label: 'Behavioral Psychology Researcher', type: ar ? 'البحث' : 'Research' },
+    { slug: 'market-researcher', label: 'Market Researcher', type: ar ? 'البحث' : 'Research' },
     // Growth
-    { slug: 'business-developer', label: ar ? 'مطور أعمال' : 'Business Developer', type: ar ? 'النمو' : 'Growth' },
-    { slug: 'sales-specialist', label: ar ? 'متخصص مبيعات' : 'Sales Specialist', type: ar ? 'النمو' : 'Growth' },
+    { slug: 'business-developer', label: 'Business Developer', type: ar ? 'النمو' : 'Growth' },
+    { slug: 'sales-specialist', label: 'Sales Specialist', type: ar ? 'النمو' : 'Growth' },
+    { slug: 'content-strategist', label: 'Content Strategist', type: ar ? 'النمو' : 'Growth' },
     // Engineering
-    { slug: 'backend-developer', label: ar ? 'مطور واجهات خلفية' : 'Backend Developer', type: ar ? 'الهندسة' : 'Engineering' },
-    { slug: 'frontend-developer', label: ar ? 'مطور واجهات أمامية' : 'Frontend Developer', type: ar ? 'الهندسة' : 'Engineering' },
-    { slug: 'ai-engineer', label: ar ? 'مهندس ذكاء اصطناعي' : 'AI Engineer', type: ar ? 'الهندسة' : 'Engineering' },
+    { slug: 'backend-developer', label: 'Backend Developer', type: ar ? 'الهندسة' : 'Engineering' },
+    { slug: 'frontend-developer', label: 'Frontend Developer', type: ar ? 'الهندسة' : 'Engineering' },
+    { slug: 'ai-engineer', label: 'AI Engineer', type: ar ? 'الهندسة' : 'Engineering' },
+    { slug: 'data-analyst', label: 'Data Analyst', type: ar ? 'الهندسة' : 'Engineering' },
+    // Product
+    { slug: 'ui-ux-designer', label: 'UI/UX Designer', type: ar ? 'المنتج' : 'Product' },
+    // Strategy
+    { slug: 'technical-project-manager', label: 'Technical Project Manager', type: ar ? 'الاستراتيجية' : 'Strategy' },
   ];
 
   return (
@@ -28,17 +34,19 @@ export function CareersPreview() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
               <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
-                {ar ? 'الوظائف' : 'Careers'}
+                {ar ? 'مكان لمن يريد أن يبني شيئًا أكبر من وظيفة.' : 'A place for people who want to build more than a job.'}
               </h2>
               <p className="text-sm text-[#4F555E] max-w-2xl">
-                {ar ? 'انضم إلى إنسديم وساهم في بناء أنظمة أعمال أذكى حول الإنسان، السلوك، والتشغيل.' : 'Join ENSDIM and help build smarter business systems around people, behavior, and operations.'}
+                {ar
+                  ? 'في إنسديم، لا نبحث عن منفذين فقط. نبحث عن أشخاص لديهم فضول، تفكير عميق، ورغبة حقيقية في التطور من خلال العمل على مشاريع تجمع بين التقنية، السلوك، التصميم، والنمو.'
+                  : 'At ENSDIM, we are not looking for executors only. We look for curious people with deep thinking and a real desire to grow through projects that connect technology, behavior, design, and business growth.'}
               </p>
             </div>
             <Link
               to="/careers"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl hover:bg-[#1e232b] active:scale-[0.97] transition-all duration-200 text-sm font-medium flex-shrink-0 self-start sm:self-auto"
             >
-              {ar ? 'عرض الوظائف المتاحة' : 'View Open Roles'}
+              {ar ? 'استعرض الوظائف المتاحة' : 'View Open Roles'}
               <ArrowRight size={15} />
             </Link>
           </div>
@@ -49,7 +57,9 @@ export function CareersPreview() {
             {/* Left: description */}
             <div className="sm:max-w-[280px] flex-shrink-0">
               <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
-                {ar ? 'نبني فريقًا مرنًا يجمع بين المنتج، الهندسة، البحث، التصميم، البيانات، النمو، واستراتيجية الأعمال.' : 'We are building a flexible team across product, engineering, research, design, data, growth, and business strategy.'}
+                {ar
+                  ? 'هنا ستعمل مع فرق مرنة، تتعلم بسرعة، تتحمل مسؤولية حقيقية، وتشارك في بناء حلول لشركات تواجه تحديات فعلية في التشغيل، المتابعة، تجربة العميل، واتخاذ القرار.'
+                  : 'Here, you will work with flexible teams, learn fast, take real responsibility, and help build solutions for companies facing real challenges in operations, follow-up, customer experience, and decision-making.'}
               </p>
               <Link
                 to="/careers/general-application"
@@ -63,7 +73,7 @@ export function CareersPreview() {
             {/* Right: roles */}
             <div className="flex-1">
               <p className="text-[11px] text-[#4F555E] mb-3 uppercase tracking-widest font-semibold">
-                {ar ? 'الوظائف المتاحة' : 'AVAILABLE ROLES'}
+                {ar ? 'الأدوار المطلوبة' : 'AVAILABLE ROLES'}
               </p>
               <div className="flex flex-wrap gap-2">
                 {roles.map((role, index) => (

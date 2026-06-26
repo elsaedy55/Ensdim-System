@@ -12,7 +12,6 @@ import { FeaturedResearch } from '../components/FeaturedResearch';
 import { FeaturedCaseStudy } from '../components/FeaturedCaseStudy';
 import { FinalCTA } from '../components/FinalCTA';
 import { CareersPreview } from '../components/CareersPreview';
-import { BookConsultationCTA } from '../components/BookConsultationCTA';
 import { SEO } from '../components/SEO';
 
 const homeFaqSchema = {
@@ -66,24 +65,22 @@ export function HomePage() {
   return (
     <>
       <SEO
-        title="ENSDIM | Human-Centered Digital Solutions"
-        description="ENSDIM builds AI automation systems, CRM platforms, SaaS products, and behavior-led digital experiences for businesses in Egypt, Saudi Arabia, and UAE. Strategy first. Technology around people."
+        title="Ensdim | Human-Centered Digital Solutions"
+        description="Human-centered digital solutions built around customer behavior, customer journeys, and real business challenges."
         keywords="AI automation agency Egypt, AI agents Saudi Arabia, SaaS development UAE, CRM development Middle East, digital transformation, AI agency Cairo, automation agency Dubai, وكالة ذكاء اصطناعي مصر, أتمتة الأعمال"
         canonical="/"
         jsonLd={homeFaqSchema}
       />
       <Hero />
       <ProblemsSection />
-      <BookConsultationCTA variant="compact" />
       <WhoIsSection />
+      <MaturitySection />
       <SolutionsSection />
       <SectorsSection />
-      <TestimonialsSection />
-      <TechnologyEcosystem />
-      <MaturitySection />
-      <BookConsultationCTA />
       <MethodologySection />
+      <TechnologyEcosystem />
       <ClientPortalFeature />
+      <TestimonialsSection />
       <FeaturedResearch />
       <FeaturedCaseStudy />
       <FinalCTA />

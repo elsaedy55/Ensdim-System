@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Download, Users, Workflow, BarChart3 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
@@ -31,14 +31,20 @@ const aboutWebPageSchema = {
 
 const lenses = [
   {
+    Icon: Users,
+    accent: '#6D5DF6',
     en: { title: 'How We See the Customer', lead: 'Customers do not only need a new tool. They need an experience that leads them to a decision.', body: 'Every customer moves through a journey before they trust, request, book, buy, or continue. That journey can break because of unclear messaging, crowded pages, delayed responses, weak follow-up, or an experience that does not create enough confidence.\n\nThat is why we build digital solutions around customer behavior: what they see first, when they understand the offer, where they hesitate, what makes them submit their information, and how the team can follow up in an organized way afterwards.', outcome: 'The outcome we aim for: turning the digital experience from a company-facing interface into a path that helps the customer take a clear next step.' },
     ar: { title: 'كيف نرى العميل؟', lead: 'العميل لا يحتاج أداة جديدة فقط… يحتاج تجربة تقوده للقرار.', body: 'كل عميل يمر برحلة قبل أن يثق، يطلب، يحجز، يشتري، أو يستمر. هذه الرحلة قد تتعطل بسبب رسالة غير واضحة، صفحة مزدحمة، رد متأخر، متابعة ضعيفة، أو تجربة لا تطمئنه بما يكفي.\n\nلذلك نبني الحلول الرقمية حول سلوك العميل: ماذا يرى أولًا؟ متى يفهم العرض؟ أين يتردد؟ ما الذي يجعله يترك بياناته؟ وكيف يمكن للفريق متابعته بطريقة منظمة بعد ذلك؟', outcome: 'النتيجة التي نبحث عنها: أن تتحول التجربة الرقمية من واجهة تعرض الشركة إلى مسار يساعد العميل على اتخاذ خطوة واضحة.' },
   },
   {
+    Icon: Workflow,
+    accent: '#D63A3A',
     en: { title: 'How We See Operations', lead: 'Good operations do not depend on memory. They depend on clear systems.', body: 'In many companies, the problem is not lack of effort. It is too much unorganized effort: too many messages, follow-up files, scattered tasks, undocumented requests, and delayed decisions because the full picture is not visible.\n\nWe build technology to reduce that pressure: organizing requests, customer follow-up, task distribution, stage documentation, data visibility, and connecting each team member to what they need to see at the right time.', outcome: 'The outcome we aim for: daily work that is clearer, less dependent on memory, and easier to track and improve.' },
     ar: { title: 'كيف نرى التشغيل؟', lead: 'التشغيل الجيد لا يعتمد على الذاكرة… بل على نظام واضح.', body: 'في كثير من الشركات، لا تكون المشكلة في نقص المجهود، بل في كثرة المجهود غير المنظم. رسائل كثيرة، ملفات متابعة، مهام متفرقة، طلبات غير موثقة، وقرارات تحتاج وقتًا لأن الصورة غير مكتملة.\n\nنحن نبني التكنولوجيا لتقلل هذا الضغط: تنظيم الطلبات، متابعة العملاء، توزيع المهام، توثيق المراحل، إظهار البيانات، وربط الفريق بما يحتاج أن يراه في الوقت المناسب.', outcome: 'النتيجة التي نبحث عنها: أن يصبح العمل اليومي أوضح، أقل اعتمادًا على التذكر، وأكثر قابلية للمتابعة والتطوير.' },
   },
   {
+    Icon: BarChart3,
+    accent: '#3B2A78',
     en: { title: 'How We See Data', lead: 'Data is not enough unless it becomes a decision.', body: 'Every company has data in one form or another: customers, visits, requests, conversations, sales, campaigns, or daily operations. The real value appears when that data becomes indicators that help management understand what is happening and act at the right time.\n\nWe do not treat data as numbers only. We treat it as signals: where opportunities come from, where they get blocked, which service performs best, which team needs support, and what decision needs to be made now.', outcome: 'The outcome we aim for: clearer visibility that helps management act early instead of waiting until the problem becomes obvious too late.' },
     ar: { title: 'كيف نرى البيانات؟', lead: 'البيانات لا تكفي إذا لم تتحول إلى قرار.', body: 'كل شركة تمتلك بيانات بشكل أو بآخر: عملاء، زيارات، طلبات، محادثات، مبيعات، حملات، أو تشغيل يومي. لكن القيمة الحقيقية تظهر عندما تتحول هذه البيانات إلى مؤشرات تساعد الإدارة على فهم ما يحدث واتخاذ القرار في الوقت المناسب.\n\nلذلك لا نتعامل مع البيانات كأرقام فقط، بل كإشارات: أين تأتي الفرص؟ أين تتعطل؟ ما الخدمة الأفضل أداءً؟ ما الفريق الذي يحتاج دعمًا؟ وما القرار الذي يجب اتخاذه الآن؟', outcome: 'النتيجة التي نبحث عنها: رؤية أوضح تساعد الإدارة على التحرك مبكرًا بدل الانتظار حتى تظهر المشكلة متأخرة.' },
   },
@@ -283,16 +289,30 @@ export function AboutPage() {
       {/* Three lenses: Customer / Operations / Data */}
       {lenses.map((lens, idx) => {
         const d = ar ? lens.ar : lens.en;
+        const { Icon, accent } = lens;
         return (
           <section key={idx} className={`py-16 ${idx % 2 === 0 ? 'bg-[#FAFAFA]' : 'bg-white'}`}>
             <div className="max-w-3xl mx-auto px-4 sm:px-6">
               <ScrollReveal>
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: `${accent}1A` }}
+                  >
+                    <Icon size={20} style={{ color: accent }} />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider" style={{ color: accent }}>
+                    {String(idx + 1).padStart(2, '0')} / 03
+                  </span>
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3 leading-tight">{d.title}</h2>
                 <p className="text-sm font-medium text-[#101418] mb-4">{d.lead}</p>
                 {d.body.split('\n\n').map((para, i) => (
                   <p key={i} className="text-sm text-[#4F555E] leading-relaxed mb-4">{para}</p>
                 ))}
-                <p className="text-sm text-[#4F555E] leading-relaxed italic">{d.outcome}</p>
+                <div className="border-s-[3px] ps-4 mt-2" style={{ borderColor: accent }}>
+                  <p className="text-sm text-[#101418] leading-relaxed font-medium">{d.outcome}</p>
+                </div>
               </ScrollReveal>
             </div>
           </section>

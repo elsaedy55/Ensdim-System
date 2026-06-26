@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -227,6 +228,21 @@ export function MaturitySection() {
             </ScrollReveal>
           ))}
         </div>
+
+        <ScrollReveal className="text-center mt-12 p-8 sm:p-10 bg-[#FAFAFA] border border-[#E5E5E5] rounded-2xl">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 uppercase tracking-wider bg-[#6D5DF6]/10 text-[#6D5DF6]">
+            {t('maturity.ctaBadge')}
+          </span>
+          <h3 className="text-lg sm:text-xl font-bold text-[#101418] mb-2 max-w-xl mx-auto">
+            {t('maturity.ctaTitle')}
+          </h3>
+          <p className="text-sm text-[#4F555E] mb-5 max-w-xl mx-auto">
+            {t('maturity.ctaDesc')}
+          </p>
+          <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
+            {t('maturity.ctaButton')} <ArrowRight size={15} />
+          </Link>
+        </ScrollReveal>
       </div>
     </section>
   );

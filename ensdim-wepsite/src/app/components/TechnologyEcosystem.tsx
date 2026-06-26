@@ -80,6 +80,9 @@ export function TechnologyEcosystem() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 text-center">
+        <p className="text-sm text-[#4F555E] mb-2">
+          {t('technology.footerLine')}
+        </p>
         <p className="text-xs text-[#4F555E]/40">
           Platforms and technologies we work with — not an official partnership or endorsement.
         </p>

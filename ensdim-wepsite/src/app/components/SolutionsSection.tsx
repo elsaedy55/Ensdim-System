@@ -71,12 +71,12 @@ export function SolutionsSection() {
   const { t } = useLanguage();
 
   const solutions = [
-    { title: t('solutions.solution1Title'), description: t('solutions.solution1Desc'), includes: t('solutions.solution1Includes') },
-    { title: t('solutions.solution2Title'), description: t('solutions.solution2Desc'), includes: t('solutions.solution2Includes') },
-    { title: t('solutions.solution3Title'), description: t('solutions.solution3Desc'), includes: t('solutions.solution3Includes') },
-    { title: t('solutions.solution4Title'), description: t('solutions.solution4Desc'), includes: t('solutions.solution4Includes') },
-    { title: t('solutions.solution5Title'), description: t('solutions.solution5Desc'), includes: [] },
-    { title: t('solutions.solution6Title'), description: t('solutions.solution6Desc'), includes: [] },
+    { title: t('solutions.solution1Title'), description: t('solutions.solution1Desc'), impact: t('solutions.solution1Impact'), includes: t('solutions.solution1Includes') },
+    { title: t('solutions.solution2Title'), description: t('solutions.solution2Desc'), impact: t('solutions.solution2Impact'), includes: t('solutions.solution2Includes') },
+    { title: t('solutions.solution3Title'), description: t('solutions.solution3Desc'), impact: t('solutions.solution3Impact'), includes: t('solutions.solution3Includes') },
+    { title: t('solutions.solution4Title'), description: t('solutions.solution4Desc'), impact: t('solutions.solution4Impact'), includes: t('solutions.solution4Includes') },
+    { title: t('solutions.solution5Title'), description: t('solutions.solution5Desc'), impact: t('solutions.solution5Impact'), includes: t('solutions.solution5Includes') },
+    { title: t('solutions.solution6Title'), description: t('solutions.solution6Desc'), impact: t('solutions.solution6Impact'), includes: t('solutions.solution6Includes') },
   ];
 
   return (
@@ -104,7 +104,20 @@ export function SolutionsSection() {
                   <div className="text-[#6D5DF6]"><Icon /></div>
                 </div>
                 <h3 className="text-base font-bold text-[#101418] mb-2.5 leading-snug">{solution.title}</h3>
-                <p className="text-[#4F555E] text-sm leading-relaxed mb-5 flex-1">{solution.description}</p>
+                <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{solution.description}</p>
+                {Array.isArray(solution.impact) && solution.impact.length > 0 && (
+                  <div className="mb-5 flex-1">
+                    <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('solutions.impactLabel')}</p>
+                    <ul className="space-y-1.5">
+                      {solution.impact.map((item: string, i: number) => (
+                        <li key={i} className="flex items-start gap-2 text-xs text-[#101418]">
+                          <span className="w-1 h-1 rounded-full bg-[#6D5DF6] mt-1.5 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {Array.isArray(solution.includes) && solution.includes.length > 0 && (
                   <div className="mb-5">
                     <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('solutions.includes')}</p>

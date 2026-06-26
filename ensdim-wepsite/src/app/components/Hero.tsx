@@ -600,8 +600,8 @@ export function Hero() {
             </div>
 
             <h1
-              className={`font-bold tracking-tight text-white mb-6 ${language === 'ar' ? 'leading-[1.2]' : 'leading-[1.06]'}`}
-              style={{ fontSize: language === 'ar' ? 'clamp(1.75rem, 5vw, 3.4rem)' : 'clamp(1.75rem, 6vw, 4.4rem)' }}
+              className={`font-bold tracking-tight text-white mb-6 ${language === 'ar' ? 'leading-[1.25]' : 'leading-[1.15]'}`}
+              style={{ fontSize: language === 'ar' ? 'clamp(1.6rem, 4.2vw, 2.9rem)' : 'clamp(1.6rem, 4.8vw, 3.4rem)' }}
             >
               {t('hero.headline')}
             </h1>
@@ -625,7 +625,7 @@ export function Hero() {
               </Link>
             </div>
 
-            <div className="flex items-center gap-3 mt-10">
+            <div className="flex items-center gap-3 mt-10 mb-5">
               <div className="flex -space-x-1.5">
                 {['#3B2A78','#6D5DF6','#4a3a8a'].map((c, i) => (
                   <div key={i} className="w-7 h-7 rounded-full border border-[#0a0c12]" style={{ background: c, opacity: 0.7 }} />
@@ -635,6 +635,18 @@ export function Hero() {
               <p className="text-xs text-[#EEEAFE]/50 leading-relaxed">
                 {t('hero.trustLine')}
               </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {[t('hero.card1'), t('hero.card2'), t('hero.card3')].map((label, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/[0.05] border border-white/[0.1] rounded-full text-[11px] text-[#EEEAFE]/75"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {label}
+                </span>
+              ))}
             </div>
           </div>
 
