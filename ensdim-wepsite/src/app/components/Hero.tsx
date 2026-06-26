@@ -586,13 +586,13 @@ export function Hero() {
       />
 
       {/* ── Main content grid ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-16">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10">
 
           {/* ── LEFT: Text content ── */}
           <div className="flex-shrink-0 lg:w-[52%] max-w-[600px]">
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/[0.06] border border-white/[0.11] rounded-full mb-7 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/[0.06] border border-white/[0.11] rounded-full mb-5 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#6D5DF6] animate-pulse" />
               <p className="text-[11px] sm:text-xs text-[#EEEAFE]/75 tracking-[0.15em] uppercase font-medium">
                 {t('hero.tag1')}
@@ -600,26 +600,26 @@ export function Hero() {
             </div>
 
             <h1
-              className={`font-bold tracking-tight text-white mb-6 ${language === 'ar' ? 'leading-[1.25]' : 'leading-[1.15]'}`}
-              style={{ fontSize: language === 'ar' ? 'clamp(1.6rem, 4.2vw, 2.9rem)' : 'clamp(1.6rem, 4.8vw, 3.4rem)' }}
+              className={`font-bold tracking-tight text-white mb-4 ${language === 'ar' ? 'leading-[1.2]' : 'leading-[1.1]'}`}
+              style={{ fontSize: language === 'ar' ? 'clamp(1.5rem, 3.6vw, 2.5rem)' : 'clamp(1.5rem, 4.1vw, 2.9rem)' }}
             >
               {t('hero.headline')}
             </h1>
 
-            <p className="text-base sm:text-lg text-[#EEEAFE]/80 leading-[1.78] mb-10 max-w-[480px]">
+            <p className="text-sm sm:text-base text-[#EEEAFE]/80 leading-[1.65] mb-7 max-w-[480px]">
               {t('hero.subheadline')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/book-consultation"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-base font-semibold shadow-lg shadow-[#6D5DF6]/35"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-sm sm:text-base font-semibold shadow-lg shadow-[#6D5DF6]/35"
               >
                 {t('hero.primaryCTA')} <ArrowRight size={17} />
               </Link>
               <Link
                 to="/solutions"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/[0.18] text-white/75 rounded-xl hover:bg-white/[0.05] hover:border-white/30 active:scale-[0.98] transition-all duration-200 text-base font-medium"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/[0.18] text-white/75 rounded-xl hover:bg-white/[0.05] hover:border-white/30 active:scale-[0.98] transition-all duration-200 text-sm sm:text-base font-medium"
               >
                 {t('hero.secondaryCTA')}
               </Link>
@@ -653,7 +653,7 @@ export function Hero() {
           {/* ── RIGHT: Custom visualization (desktop) ── */}
           <div
             className="hidden lg:block flex-1 relative"
-            style={{ height: 'clamp(440px, 65vh, 620px)' }}
+            style={{ height: 'clamp(380px, 52vh, 500px)' }}
           >
             {/* Outer glow container */}
             <div

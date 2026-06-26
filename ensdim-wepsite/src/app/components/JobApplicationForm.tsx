@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Upload } from 'lucide-react';
 import { uploadJobApplicationFiles, submitJobApplication } from '../../lib/supabase';
+import { SuccessModal } from './SuccessModal';
 
 interface JobApplicationFormProps {
   roleTitle?: string;
@@ -35,7 +36,8 @@ export function JobApplicationForm({
     setError(null);
     setSubmitting(true);
 
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     try {
       const { cv_path, portfolio_file_path } = await uploadJobApplicationFiles(cvFile, portfolioFile);
 
@@ -68,6 +70,9 @@ export function JobApplicationForm({
         language: hiddenFields.language || language,
       });
       setSubmitted(true);
+      form.reset();
+      setCvFile(null);
+      setPortfolioFile(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : (ar ? 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.' : 'Something went wrong while sending. Please try again.'));
     } finally {
@@ -75,26 +80,15 @@ export function JobApplicationForm({
     }
   };
 
-  if (submitted) {
-    return (
-      <div className="bg-white border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 text-center">
-        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg viewBox="0 0 20 20" fill="none" className="w-6 h-6 text-green-600 no-mirror">
-            <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </div>
-        <h3 className="text-lg font-bold text-[#101418] mb-1">
-          {ar ? 'تم استلام طلبك بنجاح.' : 'Your application has been received.'}
-        </h3>
-        <p className="text-sm text-[#4F555E]">
-          {ar ? 'سنراجع بياناتك ونعود إليك إذا كان هناك توافق.' : 'We will review your profile and get back to you if there is a fit.'}
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-white border border-[#E5E5E5] rounded-2xl p-6 sm:p-8">
+      <SuccessModal
+        open={submitted}
+        onClose={() => setSubmitted(false)}
+        title={ar ? 'تم استلام طلبك بنجاح.' : 'Your application has been received.'}
+        message={ar ? 'سنراجع بياناتك ونعود إليك إذا كان هناك توافق.' : 'We will review your profile and get back to you if there is a fit.'}
+      />
+
       <h3 className="text-xl sm:text-2xl font-bold text-[#101418] mb-6">
         {displayFormTitle}
       </h3>

@@ -8,7 +8,7 @@ function Skeleton({ className, rounded = "md", ...props }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "animate-pulse bg-[var(--bg-muted)]",
+        "animate-pulse bg-(--bg-muted)",
         {
           "rounded-sm":   rounded === "sm",
           "rounded-md":   rounded === "md",
@@ -54,7 +54,7 @@ function SkeletonCard({ className }: { className?: string }) {
 
 function SkeletonTableRow() {
   return (
-    <div className="flex items-center gap-4 px-4 py-3 border-b border-[var(--border)]">
+    <div className="flex items-center gap-4 px-4 py-3 border-b border-(--border)">
       <Skeleton className="h-4 w-4" rounded="sm" />
       <Skeleton className="h-4 w-36" />
       <Skeleton className="h-5 w-20" rounded="full" />
@@ -104,7 +104,7 @@ function SkeletonDashboard() {
       </div>
       {/* Table */}
       <div className="surface overflow-hidden">
-        <div className="px-4 py-3 border-b border-[var(--border)]">
+        <div className="px-4 py-3 border-b border-(--border)">
           <Skeleton className="h-5 w-40" />
         </div>
         {[...Array(5)].map((_, i) => <SkeletonTableRow key={i} />)}

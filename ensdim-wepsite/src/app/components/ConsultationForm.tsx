@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { submitInquiry } from '../../lib/supabase';
+import { SuccessModal } from './SuccessModal';
 
 export const challenges = [
   { en: 'Losing leads', ar: 'ضياع العملاء المحتملين' },
@@ -41,7 +42,8 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
     setError(false);
     setSubmitting(true);
 
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     try {
       await submitInquiry({
         type:          'consultation',
@@ -60,6 +62,9 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
         language,
       });
       setSubmitted(true);
+      form.reset();
+      setSelectedChallenge('');
+      setSelectedBudget('');
     } catch {
       setError(true);
     } finally {
@@ -71,23 +76,20 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
 
   return (
     <div className="bg-white rounded-2xl border border-[#E5E5E5] p-6 sm:p-8">
-      {submitted ? (
-        <div className="text-center py-12">
-          <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
-            <svg viewBox="0 0 20 20" fill="none" className="w-7 h-7 text-green-600 no-mirror">
-              <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <h2 className="text-xl font-bold text-[#101418] mb-2">{ar ? 'تم إرسال طلبك' : 'Request sent'}</h2>
-          <p className="text-sm text-[#4F555E]">{ar ? 'سنتواصل معك خلال يوم عمل.' : 'We will be in touch within one business day.'}</p>
-          <div className="flex items-center justify-center gap-4 text-sm font-medium mt-5">
-            <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
-            <span className="text-[#E5E5E5]">•</span>
-            <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
-          </div>
+      <SuccessModal
+        open={submitted}
+        onClose={() => setSubmitted(false)}
+        title={ar ? 'تم إرسال طلبك' : 'Request sent'}
+        message={ar ? 'سنتواصل معك خلال يوم عمل.' : 'We will be in touch within one business day.'}
+      >
+        <div className="flex items-center justify-center gap-4 text-sm font-medium mt-5">
+          <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
+          <span className="text-[#E5E5E5]">•</span>
+          <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
         </div>
-      ) : (
-        <>
+      </SuccessModal>
+
+      <>
           <h2 className="text-xl sm:text-2xl font-bold text-[#101418] mb-6">{formTitle}</h2>
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Hidden fields for tracking */}
@@ -187,8 +189,7 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
               {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : (ar ? 'إرسال الطلب' : 'Send Request')}
             </button>
           </form>
-        </>
-      )}
+      </>
     </div>
   );
 }
