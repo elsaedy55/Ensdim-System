@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { Layout } from './components/Layout';
 import { ScrollToTop } from './components/ScrollToTop';
+import { Analytics } from './components/Analytics';
 import { HomePage } from './pages/HomePage';
 import { SolutionsPage } from './pages/SolutionsPage';
 import { SolutionDetailPage } from './pages/SolutionDetailPage';
@@ -51,6 +52,7 @@ export default function App() {
     <LanguageProvider>
       <BrowserRouter basename={basename}>
         <ScrollToTop />
+        <Analytics />
         <Routes>
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
