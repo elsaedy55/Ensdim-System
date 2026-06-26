@@ -8,33 +8,33 @@ import { SEO } from '../components/SEO';
 const problems = [
   {
     slug: 'leads-get-lost',
-    en: { title: 'Leads get lost', desc: 'Inquiries come in from multiple channels with no central system to track or follow up.' },
-    ar: { title: 'العملاء المحتملون يضيعون', desc: 'تأتي الاستفسارات من قنوات متعددة دون نظام مركزي للتتبع أو المتابعة.' },
+    en: { title: 'Customers and opportunities are lost before they turn into sales', desc: 'Inquiries come in from multiple channels with no central system to track or follow up.' },
+    ar: { title: 'العملاء والفرص تضيع قبل ما تتحول لمبيعات', desc: 'تأتي الاستفسارات من قنوات متعددة دون نظام مركزي للتتبع أو المتابعة.' },
   },
   {
-    slug: 'follow-up-memory',
-    en: { title: 'Follow-up depends on memory', desc: 'There\'s no structured reminder system. Follow-up happens when someone remembers, not when it should.' },
-    ar: { title: 'المتابعة تعتمد على الذاكرة', desc: 'لا يوجد نظام تذكير منظم. المتابعة تحدث عندما يتذكر أحد، لا عندما يجب.' },
-  },
-  {
-    slug: 'slow-response',
-    en: { title: 'Customers wait too long', desc: 'Slow response to inquiries frustrates potential customers and pushes them to competitors.' },
-    ar: { title: 'العملاء ينتظرون طويلاً', desc: 'بطء الرد على الاستفسارات يحبط العملاء المحتملين ويدفعهم للمنافسين.' },
-  },
-  {
-    slug: 'no-visibility',
-    en: { title: 'Management lacks visibility', desc: 'No clear view of leads, operations, or performance. Decisions are made without data.' },
-    ar: { title: 'الإدارة تفتقر للرؤية', desc: 'لا رؤية واضحة للعملاء المحتملين أو التشغيل أو الأداء. القرارات تُتخذ بدون بيانات.' },
+    slug: 'visitors-not-converting',
+    en: { title: 'Visitors are not turning into clear requests', desc: 'Website or campaign traffic arrives, but most visitors leave without submitting a clear inquiry or request.' },
+    ar: { title: 'الزوار لا يتحولون إلى طلبات واضحة', desc: 'تصل زيارات الموقع أو الحملات، لكن معظم الزوار يرحلون دون ترك استفسار أو طلب واضح.' },
   },
   {
     slug: 'repeated-work',
-    en: { title: 'Teams repeat the same work', desc: 'Manual data entry, repeated messages, and duplicated tasks waste time that should go to customers.' },
-    ar: { title: 'الفرق تكرر نفس العمل', desc: 'إدخال البيانات اليدوي، والرسائل المتكررة، والمهام المكررة تضيع وقتاً يجب أن يذهب للعملاء.' },
+    en: { title: 'Manual operations drain the team and increase costs', desc: 'Manual data entry, repeated messages, and duplicated tasks waste time that should go to customers.' },
+    ar: { title: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة', desc: 'إدخال البيانات اليدوي، والرسائل المتكررة، والمهام المكررة تضيع وقتاً يجب أن يذهب للعملاء.' },
   },
   {
-    slug: 'growth-pressure',
-    en: { title: 'Growth creates pressure', desc: 'When the business grows, operations become harder to manage. The system doesn\'t scale.' },
-    ar: { title: 'النمو يخلق ضغطاً', desc: 'عندما تنمو الأعمال، تصبح العمليات أصعب في الإدارة. النظام لا يتوسع.' },
+    slug: 'slow-response',
+    en: { title: 'Slow response reduces trust and loses ready-to-buy customers', desc: 'Slow response to inquiries frustrates potential customers and pushes them to competitors.' },
+    ar: { title: 'الرد المتأخر يقلل الثقة ويخسر عملاء جاهزين', desc: 'بطء الرد على الاستفسارات يحبط العملاء المحتملين ويدفعهم للمنافسين.' },
+  },
+  {
+    slug: 'no-visibility',
+    en: { title: 'Management cannot see the full picture in time', desc: 'No clear view of leads, operations, or performance. Decisions are made without data.' },
+    ar: { title: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', desc: 'لا رؤية واضحة للعملاء المحتملين أو التشغيل أو الأداء. القرارات تُتخذ بدون بيانات.' },
+  },
+  {
+    slug: 'data-not-helping-decisions',
+    en: { title: 'The data exists, but it is not helping you make decisions', desc: 'Numbers are collected, but management still decides on instinct rather than evidence.' },
+    ar: { title: 'البيانات موجودة… لكنها لا تساعدك على القرار', desc: 'الأرقام موجودة، لكن الإدارة ما زالت تقرر بالحدس لا بالدليل.' },
   },
 ];
 

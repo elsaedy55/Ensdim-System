@@ -34,13 +34,11 @@ const stages = [
 
 const problemSlugs: { en: string; ar: string; slug: string | null }[] = [
   { en: 'Customers and opportunities are lost before they turn into sales', ar: 'العملاء والفرص تضيع قبل ما تتحول لمبيعات', slug: 'leads-get-lost' },
-  { en: 'Follow-up is unclear, and opportunities get forgotten under pressure', ar: 'المتابعة غير واضحة… والفرص تُنسى وسط الضغط', slug: 'follow-up-memory' },
-  { en: 'Slow response reduces trust and loses ready-to-buy customers', ar: 'الرد المتأخر يقلل الثقة ويخسر عملاء جاهزين', slug: 'slow-response' },
-  { en: 'Visitors are not turning into clear requests', ar: 'الزوار لا يتحولون إلى طلبات واضحة', slug: null },
-  { en: 'Management cannot see the full picture in time', ar: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', slug: 'no-visibility' },
+  { en: 'Visitors are not turning into clear requests', ar: 'الزوار لا يتحولون إلى طلبات واضحة', slug: 'visitors-not-converting' },
   { en: 'Manual operations drain the team and increase costs', ar: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة', slug: 'repeated-work' },
-  { en: 'Growth has become pressure instead of higher profit', ar: 'النمو أصبح ضغطًا بدل أن يزيد الأرباح', slug: 'growth-pressure' },
-  { en: 'The data exists, but it is not helping you make decisions', ar: 'البيانات موجودة… لكنها لا تساعدك على القرار', slug: null },
+  { en: 'Slow response reduces trust and loses ready-to-buy customers', ar: 'الرد المتأخر يقلل الثقة ويخسر عملاء جاهزين', slug: 'slow-response' },
+  { en: 'Management cannot see the full picture in time', ar: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', slug: 'no-visibility' },
+  { en: 'The data exists, but it is not helping you make decisions', ar: 'البيانات موجودة… لكنها لا تساعدك على القرار', slug: 'data-not-helping-decisions' },
 ];
 
 const howWeChoose = [

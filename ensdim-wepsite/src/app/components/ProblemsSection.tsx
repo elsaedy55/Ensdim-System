@@ -16,14 +16,12 @@ function IconScatteredLeads() {
     </svg>
   );
 }
-function IconMemoryFollowUp() {
+function IconVisitorsNotConverting() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="9" r="4" />
-      <path d="M12 13v2" />
-      <path d="M15 18h4" opacity="0.5" strokeDasharray="1.5 1.5" />
-      <path d="M15 21h2" opacity="0.3" strokeDasharray="1.5 1.5" />
-      <circle cx="13" cy="18" r="1" opacity="0.5" />
+      <path d="M13 3l3 7-3 7-3-7 3-7z" opacity="0.5" />
+      <path d="M13 10l7 3" />
+      <circle cx="20" cy="13" r="1.5" />
     </svg>
   );
 }
@@ -53,35 +51,36 @@ function IconDuplicatedWork() {
     </svg>
   );
 }
-function IconGrowthChaos() {
+function IconDataNotHelping() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 20h18" opacity="0.4" />
-      <path d="M6 20v-5M10 20v-9M14 20v-13M18 20V4" />
-      <path d="M14 7l2-2M18 4l2.5-1.5" opacity="0.4" strokeDasharray="1.5 1.5" />
+      <path d="M6 20v-6M11 20v-9M16 20v-4" />
+      <circle cx="19" cy="6" r="2.5" />
+      <path d="M19 5v.01" strokeWidth="2" />
     </svg>
   );
 }
 
 const problemSlugs = [
   'leads-get-lost',
-  'follow-up-memory',
+  'visitors-not-converting',
+  'repeated-work',
   'slow-response',
   'no-visibility',
-  'repeated-work',
-  'growth-pressure',
+  'data-not-helping-decisions',
 ];
 
 export function ProblemsSection() {
   const { t } = useLanguage();
 
   const problems = [
-    { Icon: IconScatteredLeads,  title: t('problems.problem1Title'), description: t('problems.problem1Desc') },
-    { Icon: IconMemoryFollowUp,  title: t('problems.problem2Title'), description: t('problems.problem2Desc') },
-    { Icon: IconSlowResponse,    title: t('problems.problem3Title'), description: t('problems.problem3Desc') },
-    { Icon: IconNoVisibility,    title: t('problems.problem4Title'), description: t('problems.problem4Desc') },
-    { Icon: IconDuplicatedWork,  title: t('problems.problem5Title'), description: t('problems.problem5Desc') },
-    { Icon: IconGrowthChaos,     title: t('problems.problem6Title'), description: t('problems.problem6Desc') },
+    { Icon: IconScatteredLeads,         title: t('problems.problem1Title'), description: t('problems.problem1Desc') },
+    { Icon: IconVisitorsNotConverting,  title: t('problems.problem2Title'), description: t('problems.problem2Desc') },
+    { Icon: IconDuplicatedWork,         title: t('problems.problem5Title'), description: t('problems.problem5Desc') },
+    { Icon: IconSlowResponse,           title: t('problems.problem3Title'), description: t('problems.problem3Desc') },
+    { Icon: IconNoVisibility,           title: t('problems.problem4Title'), description: t('problems.problem4Desc') },
+    { Icon: IconDataNotHelping,         title: t('problems.problem6Title'), description: t('problems.problem6Desc') },
   ];
 
   return (

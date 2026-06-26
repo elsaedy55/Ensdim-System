@@ -78,7 +78,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       ],
       relatedProblems: [
         { label: 'Customers and opportunities are lost before they turn into sales', slug: 'leads-get-lost' },
-        { label: 'Follow-up is unclear, and opportunities get forgotten under pressure', slug: 'follow-up-memory' },
         { label: 'Slow response reduces trust and loses ready-to-buy customers', slug: 'slow-response' },
       ],
       ctaHeading: 'Do you know where your opportunities are being lost?',
@@ -125,7 +124,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       ],
       relatedProblems: [
         { label: 'العملاء والفرص تضيع قبل ما تتحول لمبيعات', slug: 'leads-get-lost' },
-        { label: 'المتابعة غير واضحة… والفرص تُنسى وسط الضغط', slug: 'follow-up-memory' },
         { label: 'الرد المتأخر يقلل الثقة ويخسر عملاء جاهزين', slug: 'slow-response' },
       ],
       ctaHeading: 'هل تريد أن تعرف أين تضيع فرصك؟',
@@ -265,7 +263,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       ],
       relatedProblems: [
         { label: 'Management cannot see the full picture in time', slug: 'no-visibility' },
-        { label: 'Growth has become pressure instead of higher profit', slug: 'growth-pressure' },
       ],
       ctaHeading: 'Are your decisions delayed because numbers are not ready?',
       ctaBody: 'Share your current data sources, and we will help you identify the closest management visibility layer for your business.',
@@ -310,7 +307,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       ],
       relatedProblems: [
         { label: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', slug: 'no-visibility' },
-        { label: 'النمو أصبح ضغطًا بدل أن يزيد الأرباح', slug: 'growth-pressure' },
       ],
       ctaHeading: 'هل قراراتك تتأخر لأن الأرقام غير جاهزة؟',
       ctaBody: 'شاركنا مصادر بياناتك الحالية، وسنساعدك على تحديد أقرب لوحة رؤية لإدارة نشاطك بشكل أسرع.',
@@ -358,7 +354,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       relatedProblems: [
         { label: 'Manual operations drain the team and increase costs', slug: 'repeated-work' },
         { label: 'Slow response reduces trust and loses ready-to-buy customers', slug: 'slow-response' },
-        { label: 'Growth has become pressure instead of higher profit', slug: 'growth-pressure' },
       ],
       ctaHeading: 'What task does your team repeat every day?',
       ctaBody: 'Share your daily workflow, and we will help identify what can be organized or automated to reduce cost and pressure.',
@@ -404,7 +399,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       relatedProblems: [
         { label: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة', slug: 'repeated-work' },
         { label: 'الرد المتأخر يقلل الثقة ويخسر عملاء جاهزين', slug: 'slow-response' },
-        { label: 'النمو أصبح ضغطًا بدل أن يزيد الأرباح', slug: 'growth-pressure' },
       ],
       ctaHeading: 'ما أكثر مهمة يكررها فريقك كل يوم؟',
       ctaBody: 'شاركنا خطوات التشغيل اليومية، وسنساعدك على تحديد ما يمكن تنظيمه أو أتمتته لتقليل الضغط والتكلفة.',
@@ -450,7 +444,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         { outcome: 'Consistent quality', explanation: 'Service does not depend only on memory.' },
       ],
       relatedProblems: [
-        { label: 'Growth has become pressure instead of higher profit', slug: 'growth-pressure' },
         { label: 'Manual operations drain the team and increase costs', slug: 'repeated-work' },
         { label: 'Management cannot see the full picture in time', slug: 'no-visibility' },
       ],
@@ -496,7 +489,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         { outcome: 'جودة ثابتة', explanation: 'الخدمة لا تعتمد فقط على ذاكرة الأشخاص.' },
       ],
       relatedProblems: [
-        { label: 'النمو أصبح ضغطًا بدل أن يزيد الأرباح', slug: 'growth-pressure' },
         { label: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة', slug: 'repeated-work' },
         { label: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', slug: 'no-visibility' },
       ],
@@ -545,7 +537,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       ],
       relatedProblems: [
         { label: 'Management cannot see the full picture in time', slug: 'no-visibility' },
-        { label: 'Growth has become pressure instead of higher profit', slug: 'growth-pressure' },
       ],
       ctaHeading: 'Can you see the important signals inside your data?',
       ctaBody: 'Share what data you currently have, and we will help identify how to turn it into visibility that reveals opportunities and drops early.',
@@ -590,7 +581,6 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       ],
       relatedProblems: [
         { label: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', slug: 'no-visibility' },
-        { label: 'النمو أصبح ضغطًا بدل أن يزيد الأرباح', slug: 'growth-pressure' },
       ],
       ctaHeading: 'هل ترى الإشارات المهمة داخل بياناتك؟',
       ctaBody: 'شاركنا نوع البيانات المتاحة لديك، وسنساعدك على تحديد كيف يمكن تحويلها إلى رؤية تكشف الفرص والانخفاضات مبكرًا.',

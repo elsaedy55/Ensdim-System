@@ -167,7 +167,6 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
       ],
       problems: [
         { label: 'Customers and opportunities are lost before they turn into sales', slug: 'leads-get-lost' },
-        { label: 'Follow-up is unclear, and opportunities get forgotten under pressure', slug: 'follow-up-memory' },
         { label: 'Slow response reduces trust and loses ready-to-buy customers', slug: 'slow-response' },
         { label: 'Manual operations drain the team and increase costs', slug: 'repeated-work' },
       ],
@@ -216,7 +215,6 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
       ],
       problems: [
         { label: 'العملاء والفرص تضيع قبل ما تتحول لمبيعات', slug: 'leads-get-lost' },
-        { label: 'المتابعة غير واضحة… والفرص تُنسى وسط الضغط', slug: 'follow-up-memory' },
         { label: 'الرد المتأخر يقلل الثقة ويخسر عملاء جاهزين', slug: 'slow-response' },
         { label: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة', slug: 'repeated-work' },
       ],
@@ -269,8 +267,6 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
       problems: [
         { label: 'Management cannot see the full picture in time', slug: 'no-visibility' },
         { label: 'Manual operations drain the team and increase costs', slug: 'repeated-work' },
-        { label: 'Growth has become pressure instead of higher profit', slug: 'growth-pressure' },
-        { label: 'Follow-up is unclear, and opportunities get forgotten under pressure', slug: 'follow-up-memory' },
       ],
       ctaHeading: 'Do you want to scale without losing operational control?',
       ctaBody: 'Tell us where your data lives now, which process consumes the most team time, and which decision you need to see faster. We will help you define the right growth layer: data, automation, intelligence, security, or scalable operations.',
@@ -319,8 +315,6 @@ const stageData: Record<'build' | 'start' | 'growth', { en: StageContent; ar: St
       problems: [
         { label: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب', slug: 'no-visibility' },
         { label: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة', slug: 'repeated-work' },
-        { label: 'النمو أصبح ضغطًا بدل أن يزيد الأرباح', slug: 'growth-pressure' },
-        { label: 'المتابعة غير واضحة… والفرص تُنسى وسط الضغط', slug: 'follow-up-memory' },
       ],
       ctaHeading: 'هل تريد التوسع بدون أن تفقد السيطرة على التشغيل؟',
       ctaBody: 'شاركنا أين تتجمع بياناتك الآن، ما أكثر عملية تستهلك وقت فريقك، وما القرار الذي تحتاج أن تراه بشكل أسرع. سنساعدك على تحديد طبقة النمو المناسبة: بيانات، أتمتة، ذكاء، أمان، أو تشغيل قابل للتوسع.',
