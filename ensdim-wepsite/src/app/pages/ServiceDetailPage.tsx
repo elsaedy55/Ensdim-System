@@ -969,7 +969,18 @@ export function ServiceDetailPage() {
             {ar ? 'خدمات إنسديم' : 'ENSDIM Services'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">{d.title}</h1>
-          <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-8 text-[#EEEAFE]/75">{d.heroDesc}</p>
+          <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-6 text-[#EEEAFE]/75">{d.heroDesc}</p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {d.tags.split('·').map((tag: string, i: number) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+              >
+                <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                {tag.trim()}
+              </span>
+            ))}
+          </div>
           <div className="flex flex-wrap gap-3">
             <button
               type="button"
@@ -987,12 +998,6 @@ export function ServiceDetailPage() {
           </div>
         </div>
       </section>
-
-      <div className="bg-[#FAFAFA] border-b border-[#E5E5E5] py-4">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider">{d.tags}</p>
-        </div>
-      </div>
 
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
