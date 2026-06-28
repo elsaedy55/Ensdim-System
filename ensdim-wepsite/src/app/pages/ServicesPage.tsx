@@ -143,9 +143,21 @@ export function ServicesPage() {
               ? 'في إنسديم، لا نتعامل مع الموقع أو التطبيق أو الـ CRM كمنتج منفصل. نربط كل خدمة برحلة العميل، طريقة عمل الفريق، البيانات، والمتابعة؛ حتى تتحول الخدمة من واجهة أو أداة إلى جزء فعلي يساعد شركتك على جذب فرص أفضل، تنظيم العمل، واتخاذ قرارات أوضح.'
               : 'At ENSDIM, we do not treat a website, application, or CRM as a separate product. We connect every service to the customer journey, the team workflow, data, and follow-up, so it becomes more than an interface or tool: it becomes a real part of how your company attracts better opportunities, organizes work, and makes clearer decisions.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55 mb-8">
-            {ar ? 'تجربة عميل أوضح. تشغيل أذكى. نمو قابل للقياس.' : 'Clearer customer experience. Smarter operations. Measurable growth.'}
-          </p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {(ar ? 'تجربة عميل أوضح. تشغيل أذكى. نمو قابل للقياس.' : 'Clearer customer experience. Smarter operations. Measurable growth.')
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
           <div className="flex flex-wrap gap-3">
             <Link
               to="/book-consultation"

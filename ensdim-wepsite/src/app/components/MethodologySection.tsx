@@ -22,7 +22,7 @@ export function MethodologySection() {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-[#EEEAFE]">
+    <section className="py-20 sm:py-24 bg-white border-y border-[#EBEBEB]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <ScrollReveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4">
@@ -33,47 +33,19 @@ export function MethodologySection() {
           </p>
         </ScrollReveal>
 
-        {/* Desktop timeline */}
-        <div className="hidden lg:block">
-          <div className="relative">
-            <div className="absolute top-[44px] left-[8.33%] right-[8.33%] h-px bg-gradient-to-r from-transparent via-[#6D5DF6]/30 to-transparent" />
-            <div className="grid grid-cols-6 gap-3">
-              {steps.map((step, index) => (
-                <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.3)} className="flex flex-col items-center text-center group">
-                  <div className="relative z-10 w-[88px] h-[88px] bg-white rounded-full border border-[#E5E5E5] group-hover:border-[#6D5DF6]/60 group-hover:shadow-[0_4px_20px_rgba(109,93,246,0.12)] flex items-center justify-center mb-4 transition-all duration-300">
-                    <step.Icon
-                      size={30}
-                      className="text-[#6D5DF6] group-hover:text-[#3B2A78] transition-colors duration-300"
-                    />
-                    <span className="absolute -top-1 -end-1 w-5 h-5 bg-[#3B2A78] text-white rounded-full flex items-center justify-center text-[10px] font-bold">
-                      {index + 1}
-                    </span>
-                  </div>
-                  <h3 className="text-xs font-bold text-[#101418] mb-1 leading-snug">{step.title}</h3>
-                  <p className="text-[11px] text-[#4F555E] leading-relaxed">{step.description}</p>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile list */}
-        <div className="lg:hidden space-y-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {steps.map((step, index) => (
-            <ScrollReveal key={index} delay={Math.min(index * 0.05, 0.2)} className="flex gap-4">
-              <div className="flex flex-col items-center flex-shrink-0">
-                <div className="w-12 h-12 bg-white rounded-full border border-[#6D5DF6]/25 flex items-center justify-center shadow-sm relative">
-                  <step.Icon size={20} className="text-[#6D5DF6]" />
-                  <span className="absolute -top-1 -end-1 w-4 h-4 bg-[#3B2A78] text-white rounded-full flex items-center justify-center text-[9px] font-bold">
-                    {index + 1}
+            <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.3)}>
+              <div className="group relative flex flex-col p-6 rounded-2xl border border-[#EBEBEB] bg-[#FAFAFC] hover:bg-white hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] transition-all duration-300 h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-11 h-11 bg-[#F4F2FF] rounded-xl flex items-center justify-center group-hover:bg-[#6D5DF6] transition-colors duration-300 flex-shrink-0">
+                    <step.Icon size={22} className="text-[#6D5DF6] group-hover:text-white transition-colors duration-300" />
+                  </div>
+                  <span className="text-3xl font-bold text-[#6D5DF6]/15 group-hover:text-[#6D5DF6]/25 transition-colors duration-300 leading-none">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
-                {index < steps.length - 1 && (
-                  <div className="w-px flex-1 my-2 bg-gradient-to-b from-[#6D5DF6]/25 to-transparent min-h-[24px]" />
-                )}
-              </div>
-              <div className="pb-7 pt-1">
-                <h3 className="text-sm font-bold text-[#101418] mb-1">{step.title}</h3>
+                <h3 className="text-base font-bold text-[#101418] mb-2">{step.title}</h3>
                 <p className="text-sm text-[#4F555E] leading-relaxed">{step.description}</p>
               </div>
             </ScrollReveal>

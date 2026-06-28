@@ -91,23 +91,25 @@ export function SolutionsSection() {
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {solutions.map((solution, index) => {
             const Icon = solutionIcons[index];
             return (
               <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
               <Link
                 to={`/solutions/${solutionSlugs[index]}`}
-                className="group bg-white rounded-2xl p-7 border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 transition-all duration-200 flex flex-col h-full"
+                className="group flex flex-col p-5 sm:p-6 rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 active:shadow-[0_4px_16px_rgba(109,93,246,0.12)] transition-all duration-200 bg-white h-full"
               >
-                <div className="w-13 h-13 min-w-[52px] min-h-[52px] bg-[#F4F2FF] rounded-xl flex items-center justify-center mb-5 flex-shrink-0 group-hover:bg-[#6D5DF6]/15 transition-colors duration-300">
-                  <div className="text-[#6D5DF6]"><Icon /></div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 bg-[#F4F2FF] rounded-xl flex items-center justify-center group-hover:bg-[#6D5DF6] group-active:bg-[#6D5DF6] transition-colors duration-300 flex-shrink-0">
+                    <div className="text-[#6D5DF6] group-hover:text-white group-active:text-white transition-colors duration-300 [&>svg]:w-[18px] [&>svg]:h-[18px]"><Icon /></div>
+                  </div>
+                  <h3 className="text-base font-semibold text-[#101418] leading-snug">{solution.title}</h3>
                 </div>
-                <h3 className="text-base font-bold text-[#101418] mb-2.5 leading-snug">{solution.title}</h3>
                 <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{solution.description}</p>
                 {Array.isArray(solution.impact) && solution.impact.length > 0 && (
-                  <div className="mb-5 flex-1">
-                    <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('solutions.impactLabel')}</p>
+                  <div className="mb-4 flex-1">
+                    <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2">{t('solutions.impactLabel')}</p>
                     <ul className="space-y-1.5">
                       {solution.impact.map((item: string, i: number) => (
                         <li key={i} className="flex items-start gap-2 text-xs text-[#101418]">
@@ -119,8 +121,8 @@ export function SolutionsSection() {
                   </div>
                 )}
                 {Array.isArray(solution.includes) && solution.includes.length > 0 && (
-                  <div className="mb-5">
-                    <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('solutions.includes')}</p>
+                  <div className="mb-1">
+                    <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2">{t('solutions.includes')}</p>
                     <div className="flex flex-wrap gap-2">
                       {solution.includes.map((item: string, i: number) => (
                         <span key={i} className="px-2.5 py-1 bg-[#EEEAFE] text-xs text-[#6D5DF6] font-medium rounded-full">{item}</span>
@@ -128,9 +130,10 @@ export function SolutionsSection() {
                     </div>
                   </div>
                 )}
-                <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium mt-auto group-hover:gap-2.5 group-active:gap-2.5 transition-all duration-200">
-                  {t(`solutions.solution${index + 1}CTA`) || 'Explore solution'} <ArrowRight size={13} />
-                </span>
+                <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium opacity-0 group-hover:opacity-100 group-active:opacity-100 -translate-x-1 group-hover:translate-x-0 group-active:translate-x-0 transition-all duration-200">
+                  <span>{t(`solutions.solution${index + 1}CTA`) || 'Explore solution'}</span>
+                  <ArrowRight size={11} />
+                </div>
               </Link>
               </ScrollReveal>
             );

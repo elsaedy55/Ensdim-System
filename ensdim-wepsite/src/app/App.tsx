@@ -13,6 +13,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { ManagementChatbotPage } from './pages/ManagementChatbotPage';
 import { ProductsPage } from './pages/ProductsPage';
+import { ProductFindFitPage } from './pages/ProductFindFitPage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { ResourcesPage } from './pages/ResourcesPage';
 import { ResearchPage } from './pages/ResearchPage';
@@ -75,6 +76,7 @@ export default function App() {
 
             {/* Products */}
             <Route path="products" element={<ProductsPage />} />
+            <Route path="products/find-fit" element={<ProductFindFitPage />} />
             <Route path="products/:slug" element={<ProductDetailPage />} />
 
             {/* Resources */}

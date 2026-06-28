@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router';
+import { AnimatePresence, motion } from 'motion/react';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Quote } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 const testimonialsEn = [
@@ -69,15 +70,16 @@ const testimonialsAr = [
 export function TestimonialsSection() {
   const { t, language } = useLanguage();
   const testimonials = language === 'ar' ? testimonialsAr : testimonialsEn;
-  const [isPaused, setIsPaused] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const isAr = language === 'ar';
+  const [index, setIndex] = useState(0);
+  const current = testimonials[index];
 
-  const quadrupled = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+  const goTo = (i: number) => setIndex((i + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-20 sm:py-24 bg-[#F4F2FF] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-10 sm:mb-12">
-        <ScrollReveal className="text-center">
+    <section className="py-20 sm:py-24 bg-[#F4F2FF]">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <ScrollReveal className="text-center mb-10 sm:mb-14">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
             {t('testimonials.title')}
           </h2>
@@ -85,72 +87,96 @@ export function TestimonialsSection() {
             {t('testimonials.subtitle')}
           </p>
         </ScrollReveal>
-      </div>
 
-      <div
-        className="relative"
-        dir="ltr"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        {/* fade edges */}
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F4F2FF] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#F4F2FF] to-transparent z-10 pointer-events-none" />
+        <div className="relative flex items-center gap-3 sm:gap-6">
+          <button
+            type="button"
+            onClick={() => goTo(index - 1)}
+            aria-label={isAr ? 'الشهادة السابقة' : 'Previous testimonial'}
+            className="hidden sm:flex flex-shrink-0 w-11 h-11 rounded-full bg-white border border-[#E5E5E5] items-center justify-center text-[#101418] hover:border-[#6D5DF6]/40 hover:text-[#6D5DF6] transition-colors duration-200"
+          >
+            {isAr ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}
+          </button>
 
-        <div
-          ref={trackRef}
-          className="flex gap-4"
-          style={{
-            animation: `testimonial-scroll 72s linear infinite`,
-            animationPlayState: isPaused ? 'paused' : 'running',
-            width: 'max-content',
-            direction: 'ltr',
-          }}
-        >
-          {quadrupled.map((testimonial, index) => (
-            <div
-              key={index}
-              dir={language === 'ar' ? 'rtl' : 'ltr'}
-              className="w-[320px] flex-shrink-0 bg-white rounded-2xl p-6 border border-[#E5E5E5] hover:border-[#6D5DF6]/40 hover:shadow-[0_8px_28px_rgba(109,93,246,0.09)] transition-all duration-300 flex flex-col"
-            >
-              <div className="flex-1 mb-4">
-                <p className="text-[#2a2d34] text-sm leading-[1.7]">
-                  "{testimonial.quote}"
+          <div className="flex-1 overflow-hidden min-h-[360px] sm:min-h-[320px]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: isAr ? -24 : 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: isAr ? 24 : -24 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-white rounded-3xl p-7 sm:p-10 border border-[#E5E5E5] relative overflow-hidden"
+              >
+                <Quote className="absolute top-6 ltr:right-6 rtl:left-6 text-[#6D5DF6]/10" size={88} strokeWidth={1} />
+                <p className="relative text-[#101418] text-sm sm:text-base leading-relaxed font-medium mb-8">
+                  "{current.quote}"
                 </p>
-              </div>
-
-              <div className="border-t border-[#F0F0F0] pt-4 space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#6D5DF6] flex items-center justify-center flex-shrink-0 ring-2 ring-[#EEEAFE] text-white text-sm font-semibold">
-                    {testimonial.name.trim().charAt(0)}
+                <div className="relative flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#F0F0F0]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-full bg-[#6D5DF6] flex items-center justify-center flex-shrink-0 ring-2 ring-[#EEEAFE] text-white text-base font-semibold">
+                      {current.name.trim().charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#101418]">{current.name}</p>
+                      <p className="text-xs text-[#4F555E]">{current.company}</p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-[#101418] truncate">{testimonial.name}</p>
-                    <p className="text-xs text-[#4F555E] truncate">{testimonial.company}</p>
-                  </div>
+                  <Link
+                    to={current.caseStudy}
+                    className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium hover:gap-2 transition-all duration-200"
+                  >
+                    {isAr ? 'عرض قصة النجاح' : 'View Success Story'}
+                    <ArrowRight size={11} className="rtl:rotate-180" />
+                  </Link>
                 </div>
-                <span className="inline-block px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] text-[10px] font-semibold rounded-full whitespace-nowrap w-fit">
-                  {testimonial.result}
-                </span>
-                <Link
-                  to={testimonial.caseStudy}
-                  className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium hover:gap-2 transition-all duration-200"
-                >
-                  {language === 'ar' ? 'عرض قصة النجاح' : 'View Success Story'}
-                  <ArrowRight size={11} />
-                </Link>
-              </div>
-            </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goTo(index + 1)}
+            aria-label={isAr ? 'الشهادة التالية' : 'Next testimonial'}
+            className="hidden sm:flex flex-shrink-0 w-11 h-11 rounded-full bg-white border border-[#E5E5E5] items-center justify-center text-[#101418] hover:border-[#6D5DF6]/40 hover:text-[#6D5DF6] transition-colors duration-200"
+          >
+            {isAr ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 mt-6 sm:hidden">
+          <button
+            type="button"
+            onClick={() => goTo(index - 1)}
+            aria-label={isAr ? 'الشهادة السابقة' : 'Previous testimonial'}
+            className="w-10 h-10 rounded-full bg-white border border-[#E5E5E5] flex items-center justify-center text-[#101418]"
+          >
+            {isAr ? <ArrowRight size={16} /> : <ArrowLeft size={16} />}
+          </button>
+          <button
+            type="button"
+            onClick={() => goTo(index + 1)}
+            aria-label={isAr ? 'الشهادة التالية' : 'Next testimonial'}
+            className="w-10 h-10 rounded-full bg-white border border-[#E5E5E5] flex items-center justify-center text-[#101418]"
+          >
+            {isAr ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
+          </button>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`${isAr ? 'الذهاب إلى الشهادة' : 'Go to testimonial'} ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === index ? 'w-7 bg-[#6D5DF6]' : 'w-2 bg-[#D9D4F5] hover:bg-[#6D5DF6]/50'
+              }`}
+            />
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes testimonial-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-25%); }
-        }
-      `}</style>
     </section>
   );
 }

@@ -13,7 +13,7 @@ const productData: Record<string, {
   'clinics-workspace': {
     en: {
       title: 'Clinics Workspace',
-      for: 'For clinics and healthcare centers',
+      for: 'For clinics and medical centers that need better appointment management, follow-up, and patient experience',
       outcome: 'Fewer missed appointments and better patient experience.',
       problems: [
         'Appointments are booked manually and often missed',
@@ -25,8 +25,8 @@ const productData: Record<string, {
       results: ['Fewer missed appointments', 'Faster patient communication', 'Better staff visibility', 'Clearer daily operations', 'Scalable patient management'],
     },
     ar: {
-      title: 'مساحة العيادات',
-      for: 'للعيادات والمراكز الصحية',
+      title: 'Clinics Workspace',
+      for: 'للعيادات والمراكز الطبية التي تحتاج تنظيم الحجز، المتابعة، وتجربة المريض',
       outcome: 'مواعيد أقل فواتاً وتجربة مريض أفضل.',
       problems: [
         'تُحجز المواعيد يدوياً وكثيراً ما تُفوَّت',
@@ -38,10 +38,10 @@ const productData: Record<string, {
       results: ['مواعيد أقل فواتاً', 'تواصل أسرع مع المرضى', 'رؤية أفضل للموظفين', 'عمليات يومية أوضح', 'إدارة مرضى قابلة للتوسع'],
     },
   },
-  'real-estate-flow': {
+  'real-estate-follow-up-ai': {
     en: {
-      title: 'Real Estate Flow',
-      for: 'For real estate and property service businesses',
+      title: 'Real Estate Follow-up AI',
+      for: 'For real estate companies, developers, and teams handling a high volume of leads and inquiries',
       outcome: 'No lost leads and clearer sales visibility.',
       problems: [
         'Leads come from multiple channels and get lost',
@@ -53,8 +53,8 @@ const productData: Record<string, {
       results: ['No lost leads', 'Faster agent response', 'Clearer sales pipeline', 'Better proposal tracking', 'Easier team management'],
     },
     ar: {
-      title: 'منظومة العقارات',
-      for: 'لشركات العقارات وخدمات الممتلكات',
+      title: 'Real Estate Follow-up AI',
+      for: 'لشركات العقارات، التطوير العقاري، والفرق التي تتعامل مع عدد كبير من العملاء والاستفسارات',
       outcome: 'لا ضياع للعملاء ووضوح في خط المبيعات.',
       problems: [
         'تأتي الفرص من قنوات متعددة وتضيع',
@@ -66,10 +66,10 @@ const productData: Record<string, {
       results: ['لا ضياع للعملاء', 'استجابة أسرع من الوكلاء', 'خط مبيعات أوضح', 'تتبع عروض أفضل', 'إدارة فريق أسهل'],
     },
   },
-  'operations-workspace': {
+  'agricultural-operations-workspace': {
     en: {
-      title: 'Operations Workspace',
-      for: 'For service businesses with daily requests and teams',
+      title: 'Agricultural Operations Workspace',
+      for: 'For agricultural maintenance, garden maintenance, palm care, agricultural contracting, and similar field-service businesses',
       outcome: 'Organized requests, visible teams, and easier growth.',
       problems: [
         'Requests arrive through multiple channels and get missed',
@@ -81,8 +81,8 @@ const productData: Record<string, {
       results: ['Organized daily requests', 'Clear team visibility', 'Less scheduling chaos', 'Better customer communication', 'Easier scaling of operations'],
     },
     ar: {
-      title: 'مساحة التشغيل',
-      for: 'للأعمال الخدمية التي تدير طلبات يومية وفرق عمل',
+      title: 'منظومة تشغيل شركات الصيانة والمقاولات الزراعية',
+      for: 'لشركات الصيانة الزراعية، صيانة الحدائق، النخيل، المقاولات الزراعية، والخدمات الميدانية المشابهة',
       outcome: 'طلبات منظمة، فرق واضحة، ونمو أسهل.',
       problems: [
         'تصل الطلبات عبر قنوات متعددة وتُفوَّت',
@@ -122,10 +122,10 @@ export function ProductDetailPage() {
         canonical={`/products/${slug}`}
       />
       <PageHero
-        eyebrow={data.for}
+        eyebrow={ar ? 'منتجات إنسديم' : 'ENSDIM Products'}
         title={data.title}
-        subtitle={data.outcome}
-        primaryCTA={{ label: ar ? 'ابنِ هذا النظام لعملك' : 'Build this system for your business', href: '/book-consultation' }}
+        subtitle={`${data.for}. ${data.outcome}`}
+        primaryCTA={{ label: ar ? 'اعرف المنتج الأنسب لتشغيل شركتك' : 'Find the best product for your operations', href: `/products/find-fit?product=${slug}` }}
         secondaryCTA={{ label: ar ? 'عرض جميع المنتجات' : 'View all products', href: '/products' }}
         breadcrumbs={[
           { label: 'Products', labelAr: 'المنتجات', href: '/products' },

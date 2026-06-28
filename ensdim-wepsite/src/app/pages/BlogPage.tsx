@@ -139,9 +139,21 @@ export function BlogPage() {
               ? 'هنا ننشر محتوى مختصرًا وعمليًا يساعد أصحاب الأعمال والفرق على فهم ما يحدث داخل العمل: لماذا تضيع الفرص؟ كيف تتعطل المتابعة؟ متى تحتاج إلى أتمتة؟ كيف تؤثر تجربة العميل على التحويل؟ وكيف يمكن للتكنولوجيا أن تتحول من أداة إضافية إلى جزء يخدم التشغيل والنمو والعائد.'
               : 'Here, we publish concise and practical content that helps business owners and teams understand what is happening inside their operations: why opportunities are lost, why follow-up breaks down, when automation is useful, how customer experience affects conversion, and how technology can become part of operations, growth, and return.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55">
-            {ar ? 'أفكار واضحة. تطبيق عملي. ربط مباشر بنتائج الأعمال.' : 'Clear ideas. Practical application. Direct connection to business results.'}
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {(ar ? 'أفكار واضحة. تطبيق عملي. ربط مباشر بنتائج الأعمال.' : 'Clear ideas. Practical application. Direct connection to business results.')
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
         </div>
       </section>
 

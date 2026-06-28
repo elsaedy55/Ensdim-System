@@ -191,9 +191,21 @@ export function ResourcesPage() {
               ? 'موارد إنسديم ليست محتوى عامًا عن التقنية. هي مساحة معرفية نشارك فيها أبحاثًا، تحليلات، مقالات، ودراسات حالة تربط بين سلوك العملاء، ذكاء الأعمال، تحديات النمو، تجربة المستخدم، والأفكار التقنية الحديثة التي تنعكس على الأداء والعائد.'
               : 'ENSDIM Resources is not generic technology content. It is a knowledge space where we share research, analysis, insights, and case studies that connect customer behavior, business intelligence, growth challenges, user experience, and modern technologies with measurable business performance and return.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55">
-            Business Intelligence. Growth Systems. User Experience. Business Impact.
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {'Business Intelligence. Growth Systems. User Experience. Business Impact.'
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
         </div>
       </section>
 

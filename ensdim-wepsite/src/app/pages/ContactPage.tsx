@@ -92,11 +92,23 @@ export function ContactPage() {
               ? 'شاركنا فكرتك أو التحدي الذي تواجهه الآن داخل عملك، وسنساعدك على فهم أول خطوة واضحة يمكن أن تحوّل هذا التحدي إلى مسار رقمي يخدم العائد.'
               : 'Share the idea or challenge your business is facing now, and we’ll help you identify the first clear digital step that can turn it into a path with measurable business value.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55">
-            {ar
-              ? 'ابدأ بما يحدث الآن: عميل يضيع، متابعة تتأخر، تشغيل مرهق، بيانات غير واضحة، أو فرصة نمو تحتاج تنظيمًا.'
-              : 'Start with what is happening today: lost leads, delayed follow-up, operational pressure, unclear data, or a growth opportunity that needs structure.'}
+          <p className="text-sm text-[#EEEAFE]/55 mb-3">
+            {ar ? 'ابدأ بما يحدث الآن:' : 'Start with what is happening today:'}
           </p>
+          <div className="flex flex-wrap gap-2">
+            {(ar
+              ? ['عميل يضيع', 'متابعة تتأخر', 'تشغيل مرهق', 'بيانات غير واضحة', 'فرصة نمو تحتاج تنظيمًا']
+              : ['Lost leads', 'Delayed follow-up', 'Operational pressure', 'Unclear data', 'A growth opportunity that needs structure']
+            ).map((tag, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+              >
+                <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 

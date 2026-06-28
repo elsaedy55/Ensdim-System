@@ -116,9 +116,21 @@ export function AboutPage() {
               ? 'نحن نؤمن أن أفضل الحلول الرقمية لا تبدأ من الكود، بل من فهم السلوك: كيف يفكر العميل، أين يتردد، كيف يعمل الفريق، وما الذي تحتاجه الإدارة حتى ترى الصورة بوضوح. من هذا الفهم نبني تكنولوجيا تساعد الأعمال على البيع بشكل أوضح، التشغيل بضغط أقل، والنمو بثقة أكبر.'
               : 'We believe the strongest digital solutions do not begin with code. They begin with understanding behavior: how customers think, where they hesitate, how teams operate, and what management needs to see clearly. From that understanding, we build technology that helps businesses sell with more clarity, operate with less pressure, and grow with more confidence.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55 mb-8">
-            Listen to data. Understand business. Build solutions.
-          </p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {'Listen to data. Understand business. Build solutions.'
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
           <div className="flex flex-wrap gap-3">
             <Link
               to="#vision"

@@ -26,18 +26,18 @@ function BuildIcon() {
         .build-ray-2 { animation: build-rays 2s ease-in-out infinite; animation-delay: 0.15s; }
       `}</style>
       {/* Foundation layer — widest, bottom */}
-      <rect x="6" y="36" width="36" height="5" rx="2" fill="white" className="build-layer-1"/>
+      <rect x="6" y="36" width="36" height="5" rx="2" fill="currentColor" className="build-layer-1"/>
       {/* Middle layer */}
-      <rect x="11" y="28" width="26" height="5" rx="2" fill="white" className="build-layer-2"/>
+      <rect x="11" y="28" width="26" height="5" rx="2" fill="currentColor" className="build-layer-2"/>
       {/* Top layer */}
-      <rect x="16" y="20" width="16" height="5" rx="2" fill="white" className="build-layer-3"/>
+      <rect x="16" y="20" width="16" height="5" rx="2" fill="currentColor" className="build-layer-3"/>
       {/* Signal rising from center — first activation */}
-      <line x1="24" y1="19" x2="24" y2="12" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+      <line x1="24" y1="19" x2="24" y2="12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
       {/* Signal dot at top */}
-      <circle cx="24" cy="10" r="2.5" fill="white" className="build-pulse"/>
+      <circle cx="24" cy="10" r="2.5" fill="currentColor" className="build-pulse"/>
       {/* Radiating pulse lines */}
-      <line x1="24" y1="10" x2="19" y2="6" stroke="white" strokeWidth="1.2" strokeLinecap="round" className="build-ray-1"/>
-      <line x1="24" y1="10" x2="29" y2="6" stroke="white" strokeWidth="1.2" strokeLinecap="round" className="build-ray-2"/>
+      <line x1="24" y1="10" x2="19" y2="6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" className="build-ray-1"/>
+      <line x1="24" y1="10" x2="29" y2="6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" className="build-ray-2"/>
     </svg>
   );
 }
@@ -61,23 +61,23 @@ function StartIcon() {
         .start-branch-2 { animation: start-branch 2.5s ease-in-out infinite; animation-delay: 0.2s; }
       `}</style>
       {/* Horizontal workflow path */}
-      <line x1="8" y1="24" x2="40" y2="24" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="3 2" className="start-path"/>
+      <line x1="8" y1="24" x2="40" y2="24" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="3 2" className="start-path"/>
       {/* Node 1 — inactive */}
-      <circle cx="10" cy="24" r="4" fill="white" className="start-node-1"/>
+      <circle cx="10" cy="24" r="4" fill="currentColor" className="start-node-1"/>
       {/* Node 2 — activating */}
-      <circle cx="24" cy="24" r="5" fill="white" className="start-node-2"/>
-      <circle cx="24" cy="24" r="2.5" fill="white"/>
+      <circle cx="24" cy="24" r="5" fill="currentColor" className="start-node-2"/>
+      <circle cx="24" cy="24" r="2.5" fill="currentColor"/>
       {/* Node 3 — active destination */}
-      <circle cx="38" cy="24" r="4" stroke="white" strokeWidth="1.8" fill="none" className="start-node-3"/>
+      <circle cx="38" cy="24" r="4" stroke="currentColor" strokeWidth="1.8" fill="none" className="start-node-3"/>
       {/* Arrow indicating direction */}
       <g className="start-arrow" style={{ transformOrigin: '36px 24px' }}>
-        <path d="M34 20 L38 24 L34 28" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M34 20 L38 24 L34 28" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
       </g>
       {/* Vertical branch from active node — showing workflow expanding */}
-      <line x1="24" y1="19" x2="24" y2="12" stroke="white" strokeWidth="1.6" strokeLinecap="round" className="start-branch-1"/>
-      <circle cx="24" cy="10.5" r="2.5" stroke="white" strokeWidth="1.5" fill="none" className="start-branch-1"/>
-      <line x1="24" y1="29" x2="24" y2="36" stroke="white" strokeWidth="1.6" strokeLinecap="round" className="start-branch-2"/>
-      <circle cx="24" cy="37.5" r="2.5" stroke="white" strokeWidth="1.5" fill="none" className="start-branch-2"/>
+      <line x1="24" y1="19" x2="24" y2="12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="start-branch-1"/>
+      <circle cx="24" cy="10.5" r="2.5" stroke="currentColor" strokeWidth="1.5" fill="none" className="start-branch-1"/>
+      <line x1="24" y1="29" x2="24" y2="36" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" className="start-branch-2"/>
+      <circle cx="24" cy="37.5" r="2.5" stroke="currentColor" strokeWidth="1.5" fill="none" className="start-branch-2"/>
     </svg>
   );
 }
@@ -96,11 +96,11 @@ function GrowthIcon() {
         .growth-ring-2 { animation: growth-ring-2 3.5s ease-in-out infinite; animation-delay: 0.3s; }
       `}</style>
       {/* Center core node */}
-      <circle cx="24" cy="24" r="4.5" fill="white" className="growth-core"/>
+      <circle cx="24" cy="24" r="4.5" fill="currentColor" className="growth-core"/>
       {/* Inner ring */}
-      <circle cx="24" cy="24" r="9" stroke="white" strokeWidth="1" fill="none" className="growth-ring-1"/>
+      <circle cx="24" cy="24" r="9" stroke="currentColor" strokeWidth="1" fill="none" className="growth-ring-1"/>
       {/* Outer ring */}
-      <circle cx="24" cy="24" r="16" stroke="white" strokeWidth="0.8" fill="none" className="growth-ring-2"/>
+      <circle cx="24" cy="24" r="16" stroke="currentColor" strokeWidth="0.8" fill="none" className="growth-ring-2"/>
       {/* 6 satellite nodes expanding outward */}
       {[0, 60, 120, 180, 240, 300].map((deg, i) => {
         const rad = (deg * Math.PI) / 180;
@@ -113,11 +113,11 @@ function GrowthIcon() {
           <g key={i} style={{ animation: `growth-spoke 2s ease-in-out infinite`, animationDelay: `${i * 0.15}s` }}>
             {/* spoke line */}
             <line x1={x1} y1={y1} x2={x2} y2={y2}
-              stroke="white" strokeWidth="1.2" strokeLinecap="round" opacity={isActive ? 0.7 : 0.35}/>
+              stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity={isActive ? 0.7 : 0.35}/>
             {/* outer node */}
             <circle cx={x2} cy={y2} r={isActive ? 3 : 2}
-              fill={isActive ? 'white' : 'none'}
-              stroke="white" strokeWidth="1.4"
+              fill={isActive ? 'currentColor' : 'none'}
+              stroke="currentColor" strokeWidth="1.4"
               style={{ animation: `growth-node 2s ease-in-out infinite`, animationDelay: `${i * 0.15}s` }}/>
           </g>
         );
@@ -138,7 +138,6 @@ export function MaturitySection() {
       bestFor: t('maturity.stage1BestFor'),
       cta: t('maturity.stage1CTA'),
       href: '/solutions/build',
-      gradient: 'from-[#3B2A78] to-[#5040A0]',
       accent: '#6D5DF6',
     },
     {
@@ -149,7 +148,6 @@ export function MaturitySection() {
       bestFor: t('maturity.stage2BestFor'),
       cta: t('maturity.stage2CTA'),
       href: '/solutions/start',
-      gradient: 'from-[#1a1a2e] to-[#3B2A78]',
       accent: '#8B7BF7',
     },
     {
@@ -160,16 +158,15 @@ export function MaturitySection() {
       bestFor: t('maturity.stage3BestFor'),
       cta: t('maturity.stage3CTA'),
       href: '/solutions/growth',
-      gradient: 'from-[#6D5DF6] to-[#3B2A78]',
       accent: '#9B8BFF',
     },
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-white">
+    <section className="py-20 sm:py-24 bg-[#EEEAFE]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <ScrollReveal className="text-center mb-14">
-          <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-3">
+        <ScrollReveal className="text-center mb-16">
+          <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4 max-w-3xl mx-auto leading-tight">
             {t('maturity.title')}
           </h2>
           <p className="text-base sm:text-lg text-[#4F555E] max-w-2xl mx-auto">
@@ -177,59 +174,47 @@ export function MaturitySection() {
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {stages.map((item, index) => (
-            <ScrollReveal key={index} delay={Math.min(index * 0.08, 0.16)}>
+            <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
             <Link
               to={item.href}
-              className="group relative flex flex-col bg-white rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_20px_60px_rgba(109,93,246,0.15)] hover:-translate-y-1 active:scale-[0.98] active:translate-y-0 transition-all duration-300 overflow-hidden cursor-pointer"
+              className="group bg-white rounded-2xl p-7 border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 transition-all duration-200 flex flex-col h-full"
             >
-              {/* Gradient icon panel */}
-              <div className={`bg-gradient-to-br ${item.gradient} px-7 pt-8 pb-7 relative overflow-hidden group-hover:pb-8 transition-all duration-500`}>
-                <div className="absolute inset-0 opacity-20 group-hover:opacity-35 transition-opacity duration-500" style={{ background: 'radial-gradient(ellipse 80% 80% at 50% 0%, rgba(255,255,255,0.12) 0%, transparent 70%)' }} />
-                {/* Animated glow effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(circle at 50% 30%, rgba(255,255,255,0.15) 0%, transparent 60%)' }} />
-                <div className="relative w-20 h-20 sm:w-16 sm:h-16 mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+              <div
+                className="w-13 h-13 min-w-[52px] min-h-[52px] rounded-xl flex items-center justify-center mb-5 flex-shrink-0 transition-colors duration-300"
+                style={{ backgroundColor: `${item.accent}1A` }}
+              >
+                <div className="w-7 h-7" style={{ color: item.accent }}>
                   <item.Icon />
                 </div>
-                <span className="relative text-base sm:text-sm font-extrabold uppercase tracking-[0.2em] text-white/80 group-hover:text-white transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-                  {item.stage}
-                </span>
               </div>
+              <span className="text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: item.accent }}>
+                {item.stage}
+              </span>
+              <h3 className="text-base font-bold text-[#101418] mb-2.5 leading-snug">{item.title}</h3>
+              <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{item.description}</p>
 
-              {/* Content */}
-              <div className="flex flex-col flex-1 p-7">
-                <h3 className="text-xl font-bold text-[#101418] mb-3 leading-snug group-hover:text-[#6D5DF6] transition-colors duration-300">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#4F555E] mb-5 leading-relaxed">
-                  {item.description}
-                </p>
-
-                <div className="mb-6 flex-1">
-                  <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-3">
-                    {t('maturity.bestFor')}
-                  </p>
-                  <div className="space-y-2.5">
-                    {Array.isArray(item.bestFor) && item.bestFor.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-2.5 group/item">
-                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300" style={{ backgroundColor: item.accent }} />
-                        <span className="text-sm text-[#101418] group-hover/item:text-[#6D5DF6] transition-colors duration-200">{feature}</span>
-                      </div>
+              {Array.isArray(item.bestFor) && item.bestFor.length > 0 && (
+                <div className="mb-5 flex-1">
+                  <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('maturity.bestFor')}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {item.bestFor.map((feature, i) => (
+                      <span key={i} className="px-2.5 py-1 bg-[#EEEAFE] text-xs text-[#6D5DF6] font-medium rounded-full">{feature}</span>
                     ))}
                   </div>
                 </div>
+              )}
 
-                <div className="w-full mt-auto inline-flex items-center justify-center gap-2 px-4 py-3 border border-[#E5E5E5] text-[#4F555E] rounded-xl group-hover:border-[#6D5DF6] group-hover:text-white group-hover:bg-[#6D5DF6] group-hover:shadow-lg group-hover:shadow-[#6D5DF6]/25 transition-all duration-300 text-sm font-semibold">
-                  {item.cta}
-                </div>
-              </div>
+              <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium mt-auto group-hover:gap-2.5 group-active:gap-2.5 transition-all duration-200">
+                {item.cta} <ArrowRight size={13} />
+              </span>
             </Link>
             </ScrollReveal>
           ))}
         </div>
 
-        <ScrollReveal className="text-center mt-12 p-8 sm:p-10 bg-[#FAFAFA] border border-[#E5E5E5] rounded-2xl">
+        <ScrollReveal className="text-center mt-12 p-8 sm:p-10 bg-white border border-[#E5E5E5] rounded-2xl">
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 uppercase tracking-wider bg-[#6D5DF6]/10 text-[#6D5DF6]">
             {t('maturity.ctaBadge')}
           </span>

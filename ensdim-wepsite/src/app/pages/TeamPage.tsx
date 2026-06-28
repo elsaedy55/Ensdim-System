@@ -96,9 +96,21 @@ export function TeamPage() {
               ? 'وراء إنسديم فريق يعمل على فهم التحدي قبل بناء الحل. نجمع بين التفكير في البزنس، تجربة المستخدم، الهندسة، البيانات، الأمان، والذكاء الاصطناعي لتحويل المشكلات التشغيلية والأفكار الرقمية إلى حلول واضحة قابلة للاستخدام والقياس.'
               : 'Behind ENSDIM is a team that works to understand the challenge before building the solution. We bring together business thinking, user experience, engineering, data, security, and artificial intelligence to turn operational problems and digital ideas into clear, usable, and measurable solutions.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55">
-            {ar ? 'فهم أعمق. تنفيذ منظم. تكنولوجيا تخدم العائد.' : 'Deeper understanding. Organized delivery. Technology built for return.'}
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {(ar ? 'فهم أعمق. تنفيذ منظم. تكنولوجيا تخدم العائد.' : 'Deeper understanding. Organized delivery. Technology built for return.')
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
         </div>
       </section>
 

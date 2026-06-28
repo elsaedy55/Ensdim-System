@@ -133,9 +133,21 @@ export function ResearchPage() {
               ? 'نحلل التحديات التي تؤثر على أداء الشركات: كيف يفكر العميل، أين تتعطل المتابعة، لماذا لا تتحول الفرص إلى مبيعات، وكيف تؤثر تجربة المستخدم والبيانات والتشغيل على الربحية والنمو. الهدف ليس إنتاج محتوى نظري، بل تقديم رؤى عملية تساعدك على اتخاذ قرارات أوضح قبل بناء الحل الرقمي.'
               : 'We analyze the challenges that affect business performance: how customers think, where follow-up breaks down, why opportunities fail to become sales, and how user experience, data, and operations influence profitability and growth. The goal is not theoretical content, but practical insight that helps you make clearer decisions before building a digital solution.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55">
-            {ar ? 'فهم أعمق للأعمال. قراءة أوضح لسلوك العميل. قرارات أقرب للعائد.' : 'Deeper business understanding. Clearer customer insight. Decisions closer to return.'}
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {(ar ? 'فهم أعمق للأعمال. قراءة أوضح لسلوك العميل. قرارات أقرب للعائد.' : 'Deeper business understanding. Clearer customer insight. Decisions closer to return.')
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
         </div>
       </section>
 

@@ -149,9 +149,21 @@ export function CaseStudiesPage() {
               ? 'نعرض هنا كيف ساعدت إنسديم شركات في التشغيل، النمو، المبيعات، البيانات، الأمان، وتجربة العميل على تحويل التحديات اليومية إلى حلول رقمية أوضح، قرارات أسرع، ومكاسب عملية يمكن قياسها.'
               : 'Explore how ENSDIM helped companies across operations, growth, sales, data, security, and customer experience turn daily business challenges into clearer digital systems, faster decisions, and measurable business gains.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55 mb-8">
-            {ar ? 'مشاكل أوضح. حلول أذكى. عائد أقرب.' : 'Clearer problems. Smarter solutions. Closer return.'}
-          </p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {(ar ? 'مشاكل أوضح. حلول أذكى. عائد أقرب.' : 'Clearer problems. Smarter solutions. Closer return.')
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
           <div className="flex flex-wrap gap-3">
             <Link
               to="/contact"

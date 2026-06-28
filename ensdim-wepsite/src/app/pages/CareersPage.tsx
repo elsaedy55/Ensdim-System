@@ -116,9 +116,21 @@ export function CareersPage() {
               ? 'في إنسديم، لا نبحث عن مهارات تقنية فقط. نبحث عن أشخاص يفهمون سياق العمل، يهتمون بسلوك العميل، يحترمون البيانات، ويستطيعون تحويل الأفكار والتحديات إلى عمل منظم له أثر واضح على البزنس.'
               : 'At ENSDIM, we do not look for technical skills alone. We look for people who understand business context, care about customer behavior, respect data, and can turn ideas and challenges into organized work with a clear business impact.'}
           </p>
-          <p className="text-sm text-[#EEEAFE]/55 mb-8">
-            {ar ? 'تفكير عملي. تعلم مستمر. تنفيذ مسؤول.' : 'Practical thinking. Continuous learning. Responsible execution.'}
-          </p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            {(ar ? 'تفكير عملي. تعلم مستمر. تنفيذ مسؤول.' : 'Practical thinking. Continuous learning. Responsible execution.')
+              .split('.')
+              .map((tag) => tag.trim())
+              .filter(Boolean)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-white/5 border border-white/10 text-[#EEEAFE]/70"
+                >
+                  <span className="w-1 h-1 rounded-full bg-[#6D5DF6]" />
+                  {tag}
+                </span>
+              ))}
+          </div>
           <div className="flex flex-wrap gap-3">
             <Link
               to="#roles"
