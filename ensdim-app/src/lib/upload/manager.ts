@@ -179,5 +179,6 @@ async function uploadOne(item: QueueItem): Promise<void> {
     size: item.file.size,
     mimeType: item.file.type,
     category: item.category,
+    userId: session.user.id,
   });
 }

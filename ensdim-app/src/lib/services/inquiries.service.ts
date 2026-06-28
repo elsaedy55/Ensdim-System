@@ -12,7 +12,8 @@ export async function getAllInquiries(): Promise<Inquiry[]> {
   const { data, error } = await supabase
     .from("inquiries")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(500);
   if (error) throw new Error(error.message);
   return data ?? [];
 }
@@ -41,30 +42,26 @@ export async function deleteInquiry(id: string): Promise<void> {
 
 // ─── Create (client dashboard "contact us" / new project request) ─
 
-export async function createClientInquiry(message: string): Promise<void> {
+export async function createClientInquiry(
+  message: string,
+  profile: { name: string; phone: string | null; email: string | null; company: string | null; workspace_id: string },
+  fallbackEmail: string | null,
+): Promise<void> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("name, phone, email, company, workspace_id")
-    .eq("id", user.id)
-    .maybeSingle();
 
   const { error } = await supabase.from("inquiries").insert({
     type:          "contact",
-    name:          profile?.name ?? "",
-    whatsapp:      profile?.phone ?? "",
-    email:         profile?.email ?? user.email ?? null,
-    company:       profile?.company ?? null,
+    name:          profile.name ?? "",
+    whatsapp:      profile.phone ?? "",
+    email:         profile.email ?? fallbackEmail ?? null,
+    company:       profile.company ?? null,
     message,
     source_page:   "client_dashboard",
     interest_type: "new_project",
   });
   if (error) throw new Error(error.message);
 
-  if (profile?.workspace_id) {
+  if (profile.workspace_id) {
     await notifyNewInquiry(supabase, profile.workspace_id, profile.name ?? "عميل");
   }
 }

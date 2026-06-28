@@ -81,6 +81,7 @@ function NavItem({
   badge = 0,
   side,
   isRTL,
+  onNavigate,
 }: {
   href: string;
   icon: LucideIcon;
@@ -90,11 +91,13 @@ function NavItem({
   badge?: number;
   side: TooltipSide;
   isRTL?: boolean;
+  onNavigate?: () => void;
 }) {
   const item = (
     <Link
       href={href}
       aria-current={isActive ? "page" : undefined}
+      onClick={onNavigate}
       className={cn(
         "group relative flex items-center rounded-xl text-sm font-medium",
         "select-none outline-none transition-all duration-150",
@@ -139,10 +142,11 @@ interface ClientSidebarProps {
   notificationCount?: number;
   onLogout?: () => void;
   forceExpanded?: boolean;
+  onNavigate?: () => void;
 }
 
 export function ClientSidebar({
-  user, notificationCount = 0, onLogout, forceExpanded,
+  user, notificationCount = 0, onLogout, forceExpanded, onNavigate,
 }: ClientSidebarProps) {
   const pathname = usePathname();
   const t   = useTranslations("common.nav");
@@ -231,6 +235,7 @@ export function ClientSidebar({
                   isCollapsed={isCollapsed}
                   side={side}
                   isRTL={isRTL}
+                  onNavigate={onNavigate}
                 />
               ))}
             </div>
@@ -247,6 +252,7 @@ export function ClientSidebar({
               badge={key === "notifications" ? notificationCount : 0}
               side={side}
               isRTL={isRTL}
+              onNavigate={onNavigate}
             />
           ))}
         </nav>
@@ -285,7 +291,7 @@ export function ClientSidebar({
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href={ROUTES.CLIENT.SETTINGS} className="flex items-center gap-2.5">
+                <Link href={ROUTES.CLIENT.SETTINGS} onClick={onNavigate} className="flex items-center gap-2.5">
                   <Settings className="size-4" strokeWidth={1.75} />
                   {ta("profileSettings")}
                 </Link>

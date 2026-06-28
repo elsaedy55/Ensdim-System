@@ -9,11 +9,14 @@ import {
   markInvoiceAsSeen,
   uploadPaymentProofAndUpdateInvoice,
 } from "@/lib/services/invoices.service";
+import { useUser } from "@/store/auth.store";
 
 export function useMyInvoices() {
+  const userId = useUser()?.id;
   return useQuery({
-    queryKey:  ["invoices"],
-    queryFn:   getMyInvoices,
+    queryKey:  ["invoices", userId],
+    queryFn:   () => getMyInvoices(userId!),
+    enabled:   !!userId,
     staleTime: STALE_TIME.LONG,
   });
 }
@@ -28,9 +31,11 @@ export function useInvoice(id: string | undefined) {
 }
 
 export function useFinancialSummary() {
+  const userId = useUser()?.id;
   return useQuery({
-    queryKey:  ["financial-summary"],
-    queryFn:   getFinancialSummary,
+    queryKey:  ["financial-summary", userId],
+    queryFn:   () => getFinancialSummary(userId!),
+    enabled:   !!userId,
     staleTime: STALE_TIME.LONG,
   });
 }

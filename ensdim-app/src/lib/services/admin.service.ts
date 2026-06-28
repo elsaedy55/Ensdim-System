@@ -93,26 +93,14 @@ export async function adminGetProjectById(id: string): Promise<ProjectWithClient
   return data as ProjectWithClient;
 }
 
-export async function adminCreateProject(input: CreateProjectInput): Promise<ProjectRow> {
+export async function adminCreateProject(input: CreateProjectInput, workspaceId: string): Promise<ProjectRow> {
   const supabase = createClient();
-
-  // Get current user's workspace_id
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("workspace_id")
-    .eq("id", user.id)
-    .single();
-
-  if (!profile?.workspace_id) throw new Error("Workspace not found");
 
   const { data, error } = await supabase
     .from("projects")
     .insert({
       ...input,
-      workspace_id: profile.workspace_id,
+      workspace_id: workspaceId,
       status: input.status ?? "planning",
       health: input.health ?? "on_track",
       progress: 0,
@@ -235,7 +223,8 @@ export async function adminGetAllClients(): Promise<ProfileRow[]> {
     .from("profiles")
     .select("*")
     .eq("role", "client")
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(500);
 
   if (error) throw new Error(error.message);
   return data ?? [];

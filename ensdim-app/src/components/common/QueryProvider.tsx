@@ -13,6 +13,9 @@ function makeQueryClient() {
         retry:                1,
         refetchOnWindowFocus: false, // don't refetch when user switches tabs/clicks window
         refetchOnReconnect:   true,
+        // Serve cached data immediately on a flaky/offline connection instead
+        // of sitting in a perpetual loading state waiting on the network.
+        networkMode:          "offlineFirst",
       },
       mutations: {
         retry: 0,

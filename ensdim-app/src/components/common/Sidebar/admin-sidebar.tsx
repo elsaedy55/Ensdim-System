@@ -118,6 +118,7 @@ function NavItem({
   side,
   isRTL,
   onPrefetch,
+  onNavigate,
 }: {
   href: string;
   icon: LucideIcon;
@@ -128,6 +129,7 @@ function NavItem({
   side: TooltipSide;
   isRTL?: boolean;
   onPrefetch?: () => void;
+  onNavigate?: () => void;
 }) {
   const item = (
     <Link
@@ -135,6 +137,7 @@ function NavItem({
       aria-current={isActive ? "page" : undefined}
       onMouseEnter={onPrefetch}
       onFocus={onPrefetch}
+      onClick={onNavigate}
       className={cn(
         "group relative flex items-center rounded-xl text-sm font-medium",
         "select-none outline-none",
@@ -185,6 +188,7 @@ interface AdminSidebarProps {
   notificationCount?: number;
   onLogout?: () => void;
   forceExpanded?: boolean;
+  onNavigate?: () => void;
 }
 
 export function AdminSidebar({
@@ -193,6 +197,7 @@ export function AdminSidebar({
   notificationCount = 0,
   onLogout,
   forceExpanded,
+  onNavigate,
 }: AdminSidebarProps) {
   const pathname = usePathname();
   const queryClient = useQueryClient();
@@ -315,6 +320,7 @@ export function AdminSidebar({
                     onPrefetch={prefetch
                       ? () => queryClient.prefetchQuery({ queryKey: prefetch.queryKey, queryFn: prefetch.queryFn })
                       : undefined}
+                    onNavigate={onNavigate}
                   />
                 );
               })}
@@ -370,7 +376,7 @@ export function AdminSidebar({
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href={ROUTES.ADMIN.SETTINGS} className="flex items-center gap-2.5">
+                <Link href={ROUTES.ADMIN.SETTINGS} onClick={onNavigate} className="flex items-center gap-2.5">
                   <Settings className="size-4" strokeWidth={1.75} />
                   {ta("profileSettings")}
                 </Link>

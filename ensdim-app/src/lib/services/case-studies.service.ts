@@ -57,7 +57,8 @@ export async function getAllCaseStudies(): Promise<CaseStudy[]> {
   const { data, error } = await supabase
     .from("case_studies")
     .select("*")
-    .order("sort_order", { ascending: true });
+    .order("sort_order", { ascending: true })
+    .limit(200);
   if (error) throw new Error(error.message);
   return data ?? [];
 }

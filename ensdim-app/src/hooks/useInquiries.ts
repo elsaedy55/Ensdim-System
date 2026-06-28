@@ -9,6 +9,7 @@ import {
   createClientInquiry,
   type InquiryStatus,
 } from "@/lib/services/inquiries.service";
+import { useUser, useProfile } from "@/store/auth.store";
 
 const KEY = "inquiries";
 
@@ -63,7 +64,9 @@ export function useDeleteInquiry() {
 }
 
 export function useCreateClientInquiry() {
+  const profile = useProfile();
+  const email   = useUser()?.email ?? null;
   return useMutation({
-    mutationFn: (message: string) => createClientInquiry(message),
+    mutationFn: (message: string) => createClientInquiry(message, profile!, email),
   });
 }

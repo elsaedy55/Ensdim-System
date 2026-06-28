@@ -59,20 +59,20 @@ function ProfileTab() {
 
   if (isLoading) {
     return (
-      <div className="space-y-4 max-w-lg mt-4">
+      <div className="surface mt-4 max-w-2xl p-6 space-y-4">
         <Skeleton className="h-16 w-full" /><Skeleton className="h-10 w-full" /><Skeleton className="h-10 w-full" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-6 max-w-lg mt-4">
+    <div className="surface mt-4 max-w-2xl p-6 space-y-6">
       <div>
-        <p className="text-sm font-medium text-(--text-primary)">{t("sectionTitle")}</p>
+        <p className="text-sm font-semibold text-(--text-primary)">{t("sectionTitle")}</p>
         <p className="text-xs text-(--text-muted) mt-0.5">{t("sectionDescription")}</p>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 pb-6 border-b border-(--border)">
         <div className="relative">
           <UserAvatar name={profile?.name ?? "U"} src={profile?.avatar_url ?? undefined} size="lg" />
           <label
@@ -99,7 +99,7 @@ function ProfileTab() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <FormField label={t("fields.name")} required htmlFor="name" error={errors.name?.message}>
           <Input id="name" autoComplete="name" placeholder={t("fields.namePlaceholder")} error={!!errors.name} leftElement={<User className="h-4 w-4" />} {...register("name")} />
         </FormField>
@@ -112,7 +112,9 @@ function ProfileTab() {
         <FormField label={t("fields.company")} htmlFor="company">
           <Input id="company" autoComplete="organization" placeholder={t("fields.companyPlaceholder")} leftElement={<Building2 className="h-4 w-4" />} {...register("company")} />
         </FormField>
-        <Button type="submit" loading={isSubmitting || updateProfile.isPending}>{t("saveButton")}</Button>
+        <div className="pt-1">
+          <Button type="submit" loading={isSubmitting || updateProfile.isPending}>{t("saveButton")}</Button>
+        </div>
       </form>
     </div>
   );
@@ -152,12 +154,12 @@ function SecurityTab() {
   );
 
   return (
-    <div className="space-y-6 max-w-lg mt-4">
-      <div>
-        <p className="text-sm font-medium text-(--text-primary)">{t("sectionTitle")}</p>
+    <div className="surface mt-4 max-w-2xl p-6 space-y-6">
+      <div className="pb-6 border-b border-(--border)">
+        <p className="text-sm font-semibold text-(--text-primary)">{t("sectionTitle")}</p>
         <p className="text-xs text-(--text-muted) mt-0.5">{t("sectionDescription")}</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <FormField label={t("fields.currentPassword")} required htmlFor="current" error={errors.currentPassword?.message}>
           <Input id="current" type={showCurrent ? "text" : "password"} autoComplete="current-password" leftElement={<Lock className="h-4 w-4" />} rightElement={<ToggleBtn show={showCurrent} onToggle={() => setShowCurrent((p) => !p)} />} error={!!errors.currentPassword} {...register("currentPassword")} />
         </FormField>
@@ -167,7 +169,9 @@ function SecurityTab() {
         <FormField label={t("fields.confirmPassword")} required htmlFor="confirmpwd" error={errors.confirmPassword?.message}>
           <Input id="confirmpwd" type="password" autoComplete="new-password" leftElement={<Lock className="h-4 w-4" />} error={!!errors.confirmPassword} {...register("confirmPassword")} />
         </FormField>
-        <Button type="submit" loading={isSubmitting}>{t("saveButton")}</Button>
+        <div className="pt-1">
+          <Button type="submit" loading={isSubmitting}>{t("saveButton")}</Button>
+        </div>
       </form>
     </div>
   );
@@ -207,14 +211,14 @@ function NotificationsTab() {
   };
 
   if (isLoading) {
-    return <div className="space-y-3 max-w-lg mt-4">{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-12 w-full" />)}</div>;
+    return <div className="space-y-4 max-w-2xl mt-4">{Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className="h-12 w-full" />)}</div>;
   }
 
   return (
-    <div className="space-y-6 max-w-lg mt-4">
-      <p className="text-sm font-medium text-(--text-primary)">{t("sectionTitle")}</p>
+    <div className="space-y-5 max-w-2xl mt-4">
+      <p className="text-sm font-semibold text-(--text-primary)">{t("sectionTitle")}</p>
       {(["email", "inApp"] as const).map((section) => (
-        <div key={section} className="surface p-5 space-y-4">
+        <div key={section} className="surface p-6 space-y-5">
           <p className="text-xs font-semibold uppercase tracking-widest text-(--text-muted)">{section === "email" ? t("emailSection") : t("inAppSection")}</p>
           {NOTIF_ITEMS.map((key) => {
             const prefKey = section === "email" ? EMAIL_KEYS[key] : INAPP_KEYS[key];

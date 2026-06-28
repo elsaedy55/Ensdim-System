@@ -9,6 +9,7 @@ import {
   updateRevisionStatus,
 } from "@/lib/services/revisions.service";
 import type { RevisionRow } from "@/lib/supabase/types";
+import { useUser } from "@/store/auth.store";
 
 type RevisionInsert = Partial<RevisionRow>;
 
@@ -32,8 +33,9 @@ export function useRevision(id: string | undefined) {
 
 export function useCreateRevision() {
   const qc = useQueryClient();
+  const userId = useUser()?.id;
   return useMutation({
-    mutationFn: (data: Omit<RevisionInsert, "submitted_by">) => createRevision(data),
+    mutationFn: (data: Omit<RevisionInsert, "submitted_by">) => createRevision(data, userId!),
     onSuccess: (_, vars) => {
       qc.invalidateQueries({ queryKey: ["revisions", vars.project_id] });
     },
@@ -42,6 +44,7 @@ export function useCreateRevision() {
 
 export function useUpdateRevisionStatus() {
   const qc = useQueryClient();
+  const userId = useUser()?.id;
   return useMutation({
     mutationFn: ({
       id, status, teamResponse,
@@ -49,7 +52,7 @@ export function useUpdateRevisionStatus() {
       id: string;
       status: Parameters<typeof updateRevisionStatus>[1];
       teamResponse?: string;
-    }) => updateRevisionStatus(id, status, teamResponse),
+    }) => updateRevisionStatus(id, status, userId!, teamResponse),
     onSuccess: (result) => {
       qc.invalidateQueries({ queryKey: ["revisions", result.project_id] });
       qc.invalidateQueries({ queryKey: ["revision", result.id] });

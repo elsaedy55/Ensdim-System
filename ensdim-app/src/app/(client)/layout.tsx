@@ -6,6 +6,7 @@ import { ClientSidebar } from "@/components/common/Sidebar/client-sidebar";
 import { Header } from "@/components/common/Header/header";
 import { MobileSidebarTrigger } from "@/components/common/Sidebar/sidebar-mobile-trigger";
 import { ClientBottomNav } from "@/components/common/BottomNav";
+import { AuthHydrate } from "@/components/common/AuthHydrate";
 
 export default async function ClientLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -14,7 +15,7 @@ export default async function ClientLayout({ children }: { children: React.React
 
   const [profileResult, notifResult] = await Promise.all([
     user
-      ? supabase.from("profiles").select("name, avatar_url").eq("id", user.id).maybeSingle()
+      ? supabase.from("profiles").select("*").eq("id", user.id).maybeSingle()
       : Promise.resolve({ data: null }),
     user
       ? supabase.from("notifications").select("*", { count: "exact", head: true })
@@ -32,6 +33,8 @@ export default async function ClientLayout({ children }: { children: React.React
 
   return (
     <div className="flex h-screen overflow-hidden bg-(--bg-base)">
+      {user && profile && <AuthHydrate user={user} profile={profile} />}
+
       <ClientSidebar user={clientUser} notificationCount={notificationCount} />
 
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">

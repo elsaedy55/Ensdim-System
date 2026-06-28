@@ -16,6 +16,7 @@ interface AuthState {
   isAuthenticated: boolean;
 
   // Actions
+  hydrate: (user: User, profile: Profile) => void;
   initialize: () => Promise<void>;
   refreshProfile: () => Promise<void>;
   clearAuth: () => void;
@@ -27,25 +28,41 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
   isLoading:       true,
   isAuthenticated: false,
 
+  // Seeds the store from a server component's already-validated user +
+  // profile (fetched once by the route group's layout), so the client
+  // doesn't repeat that auth round-trip on every full page load.
+  hydrate: (user, profile) => {
+    set({ user, profile, isAuthenticated: true, isLoading: false });
+  },
+
   initialize: async () => {
     const supabase = createClient();
-    set({ isLoading: true });
 
-    const { data: { user } } = await supabase.auth.getUser();
+    // A layout further down the tree may have already hydrated this
+    // request's user/profile from its server-side fetch — skip the
+    // redundant client-side fetch in that case.
+    if (!get().user) {
+      set({ isLoading: true });
 
-    if (!user) {
-      set({ user: null, profile: null, isAuthenticated: false, isLoading: false });
-      return;
+      // getSession() reads the locally persisted session (no network call),
+      // unlike getUser() which always revalidates against the Auth server.
+      // That's fine here since this only feeds display state — actual data
+      // access is still authorized server-side via RLS + middleware.
+      const { data: { session } } = await supabase.auth.getSession();
+      const user = session?.user ?? null;
+
+      if (!user) {
+        set({ user: null, profile: null, isAuthenticated: false, isLoading: false });
+      } else {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+
+        set({ user, profile, isAuthenticated: true, isLoading: false });
+      }
     }
-
-    // Fetch profile
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-
-    set({ user, profile, isAuthenticated: true, isLoading: false });
 
     // Subscribe to auth changes
     supabase.auth.onAuthStateChange(async (event: AuthChangeEvent, session: Session | null) => {

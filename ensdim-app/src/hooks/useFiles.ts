@@ -9,6 +9,7 @@ import {
   getSignedDownloadUrl,
   deleteFile,
 } from "@/lib/services/files.service";
+import { useUser } from "@/store/auth.store";
 
 export function useFiles(projectId: string | undefined, category?: string) {
   return useQuery({
@@ -51,8 +52,10 @@ export function useDeleteFile() {
 
 export function useCreateCredential() {
   const qc = useQueryClient();
+  const userId = useUser()?.id;
   return useMutation({
-    mutationFn: createCredentialEntry,
+    mutationFn: (params: { projectId: string; name: string; credentialData: Parameters<typeof createCredentialEntry>[0]["credentialData"] }) =>
+      createCredentialEntry({ ...params, userId: userId! }),
     onSuccess: (_, vars) => {
       qc.invalidateQueries({ queryKey: ["files", vars.projectId] });
     },

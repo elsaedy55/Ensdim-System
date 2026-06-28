@@ -91,6 +91,12 @@ export function Header({
         className
       )}
     >
+      {/* Mobile sidebar trigger — kept as its own leading item (not part of
+          the trailing ms-auto cluster) so it stays pinned to the start
+          edge instead of crowding the avatar/notification icons on
+          narrow screens. */}
+      {actions && <div className="flex items-center gap-2">{actions}</div>}
+
       {/* Title */}
       {title && (
         <h1 className="text-base font-semibold text-(--text-primary) truncate">
@@ -103,9 +109,6 @@ export function Header({
           flex-1 spacer that can leave a dead gap depending on viewport
           width and writing direction. */}
       <div className="flex items-center gap-2 ms-auto">
-        {/* Mobile sidebar trigger (passed as actions) */}
-        {actions && <div className="flex items-center gap-2">{actions}</div>}
-
         {/* Structured action buttons */}
         {actionsData && (
           <div className="hidden sm:flex items-center gap-2">

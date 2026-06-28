@@ -3,16 +3,14 @@ import type { ProjectRow, ProfileRow } from "@/lib/supabase/types";
 
 type Project = ProjectRow;
 
-export async function getMyProject(): Promise<Project | null> {
+export async function getMyProject(userId: string): Promise<Project | null> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
 
   // Clients have one active project
   const { data, error } = await supabase
     .from("projects")
     .select("*")
-    .eq("client_id", user.id)
+    .eq("client_id", userId)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();

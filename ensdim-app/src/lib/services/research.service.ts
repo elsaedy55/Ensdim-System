@@ -25,7 +25,8 @@ export async function getAllResearchArticles(): Promise<ResearchArticle[]> {
   const { data, error } = await supabase
     .from("research_articles")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(200);
   if (error) throw new Error(error.message);
   return data ?? [];
 }

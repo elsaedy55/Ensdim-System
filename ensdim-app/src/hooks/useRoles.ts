@@ -2,6 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getAllRoles, getRoleById, createRole, updateRole, deleteRole } from "@/lib/services/roles.service";
+import { useWorkspaceId } from "@/store/auth.store";
 
 export function useRoles() {
   return useQuery({
@@ -22,8 +23,9 @@ export function useRoleById(id: string | undefined) {
 
 export function useCreateRole() {
   const qc = useQueryClient();
+  const workspaceId = useWorkspaceId();
   return useMutation({
-    mutationFn: (input: Parameters<typeof createRole>[0]) => createRole(input),
+    mutationFn: (input: Parameters<typeof createRole>[0]) => createRole(input, workspaceId!),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["roles"] }),
   });
 }

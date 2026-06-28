@@ -12,17 +12,21 @@ import {
 import { useUser } from "@/store/auth.store";
 
 export function useNotifications() {
+  const userId = useUser()?.id;
   return useQuery({
-    queryKey:  ["notifications"],
-    queryFn:   getMyNotifications,
+    queryKey:  ["notifications", userId],
+    queryFn:   () => getMyNotifications(userId!),
+    enabled:   !!userId,
     staleTime: 30 * 1000, // 30 seconds — notifications are time-sensitive
   });
 }
 
 export function useUnreadCount(initialCount?: number) {
+  const userId = useUser()?.id;
   return useQuery({
-    queryKey:  ["notifications-count"],
-    queryFn:   getUnreadCount,
+    queryKey:  ["notifications-count", userId],
+    queryFn:   () => getUnreadCount(userId!),
+    enabled:   !!userId,
     staleTime: 30 * 1000,
     refetchInterval: 60 * 1000, // Poll every minute as fallback
     ...(initialCount !== undefined ? { initialData: initialCount } : {}),
@@ -54,8 +58,9 @@ export function useMarkNotificationRead() {
 
 export function useMarkAllRead() {
   const qc = useQueryClient();
+  const userId = useUser()?.id;
   return useMutation({
-    mutationFn: markAllNotificationsRead,
+    mutationFn: () => markAllNotificationsRead(userId!),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["notifications"] });
       qc.invalidateQueries({ queryKey: ["notifications-count"] });

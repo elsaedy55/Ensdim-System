@@ -298,3 +298,13 @@ h1, h2, h3, h4, h5, h6 {
 /* Sidebar RTL: natural flex-row in dir="rtl" already places items correctly.
    Icon (first in DOM) appears on the inline-start edge, label flows inward.
    No flex-direction overrides needed. */
+
+/* Chromium forces direction:ltr on these input types regardless of the
+   page's dir, which left every email/phone/number field (e.g. Settings
+   → Profile) rendering LTR inside an RTL page. Make them inherit instead. */
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="url"],
+[dir="rtl"] input[type="number"] {
+  direction: inherit;
+}

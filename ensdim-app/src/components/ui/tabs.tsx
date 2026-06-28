@@ -2,9 +2,21 @@
 
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
+import { localeDir, type Locale } from "@/i18n/common";
 
-const Tabs = TabsPrimitive.Root;
+// Radix defaults its internal direction context to "ltr" and stamps that
+// onto List/Content when no `dir` prop is given, forcing every tab panel
+// (and its form fields, icons, etc.) into LTR even on an RTL page.
+const Tabs = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>
+>(({ dir, ...props }, ref) => {
+  const locale = useLocale();
+  return <TabsPrimitive.Root ref={ref} dir={dir ?? localeDir[locale as Locale]} {...props} />;
+});
+Tabs.displayName = TabsPrimitive.Root.displayName;
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,

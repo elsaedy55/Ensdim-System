@@ -47,25 +47,23 @@ export async function getAllTasks(projectId?: string): Promise<TaskWithRelations
   return (data ?? []) as TaskWithRelations[];
 }
 
-export async function createTask(input: Omit<TaskRow, "id" | "workspace_id" | "created_by" | "created_at" | "updated_at" | "order">): Promise<TaskRow> {
+export async function createTask(
+  input: Omit<TaskRow, "id" | "workspace_id" | "created_by" | "created_at" | "updated_at" | "order">,
+  workspaceId: string,
+  userId: string,
+): Promise<TaskRow> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
-
-  const { data: profile } = await supabase
-    .from("profiles").select("workspace_id").eq("id", user.id).single();
-  if (!profile) throw new Error("Profile not found");
 
   const { count } = await supabase
     .from("tasks").select("*", { count: "exact", head: true })
-    .eq("workspace_id", profile.workspace_id).eq("status", input.status ?? "todo");
+    .eq("workspace_id", workspaceId).eq("status", input.status ?? "todo");
 
   const { data, error } = await supabase
     .from("tasks")
     .insert({
       ...input,
-      workspace_id: profile.workspace_id,
-      created_by:   user.id,
+      workspace_id: workspaceId,
+      created_by:   userId,
       order:        count ?? 0,
     })
     .select()

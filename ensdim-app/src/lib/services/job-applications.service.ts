@@ -11,7 +11,8 @@ export async function getAllJobApplications(): Promise<JobApplication[]> {
   const { data, error } = await supabase
     .from("job_applications")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(500);
   if (error) throw new Error(error.message);
   return data ?? [];
 }

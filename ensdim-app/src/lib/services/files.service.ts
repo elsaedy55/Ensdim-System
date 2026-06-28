@@ -75,10 +75,9 @@ export async function createFileRecord(params: {
   size: number;
   mimeType: string;
   category?: string;
+  userId: string;
 }): Promise<FileRow> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
 
   const { data, error } = await supabase
     .from("files")
@@ -90,7 +89,7 @@ export async function createFileRecord(params: {
       size:         params.size,
       mime_type:    params.mimeType,
       category:     params.category ?? "general",
-      uploaded_by:  user.id,
+      uploaded_by:  params.userId,
     })
     .select()
     .single();
@@ -101,7 +100,7 @@ export async function createFileRecord(params: {
     throw new Error(error.message);
   }
 
-  await notifyFileUploaded(supabase, data, user.id);
+  await notifyFileUploaded(supabase, data, params.userId);
 
   return data;
 }
@@ -138,6 +137,7 @@ export async function uploadProjectFile(params: {
     size:        params.file.size,
     mimeType:    params.file.type,
     category:    params.category,
+    userId:      session.user.id,
   });
 }
 
@@ -145,10 +145,9 @@ export async function createCredentialEntry(params: {
   projectId: string;
   name: string;
   credentialData: CredentialData;
+  userId: string;
 }): Promise<FileRow> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
 
   const { data, error } = await supabase
     .from("files")
@@ -157,7 +156,7 @@ export async function createCredentialEntry(params: {
       name:            params.name,
       category:        "credentials",
       credential_data: params.credentialData,
-      uploaded_by:     user.id,
+      uploaded_by:     params.userId,
     })
     .select()
     .single();
@@ -191,8 +190,8 @@ export async function deleteFile(fileId: string, storagePath: string | null) {
 
 export async function uploadPaymentProof(invoiceId: string, file: File): Promise<string> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) throw new Error("Not authenticated");
 
   const ext  = file.name.split(".").pop();
   const path = `${invoiceId}/proof.${ext}`;

@@ -5,6 +5,7 @@ import {
   getAllTasks, createTask, updateTask, updateTaskStatus, deleteTask, reorderTasks,
   type TaskRow, type TaskStatus,
 } from "@/lib/services/tasks.service";
+import { useUser, useWorkspaceId } from "@/store/auth.store";
 
 export function useTasks(projectId?: string) {
   return useQuery({
@@ -16,8 +17,10 @@ export function useTasks(projectId?: string) {
 
 export function useCreateTask() {
   const qc = useQueryClient();
+  const userId = useUser()?.id;
+  const workspaceId = useWorkspaceId();
   return useMutation({
-    mutationFn: (input: Parameters<typeof createTask>[0]) => createTask(input),
+    mutationFn: (input: Parameters<typeof createTask>[0]) => createTask(input, workspaceId!, userId!),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["tasks"] }),
   });
 }

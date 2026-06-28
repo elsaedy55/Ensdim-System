@@ -78,7 +78,8 @@ export async function getMilestoneActivity(milestoneId: string) {
     .select("*, profiles(name, avatar_url)")
     .eq("entity_id", milestoneId)
     .eq("entity_type", "milestone")
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .limit(100);
 
   if (error) throw new Error(error.message);
   return data ?? [];

@@ -3,6 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { STALE_TIME } from "@/lib/query-config";
 import { getMyProject, getAllProjects, updateProject, getProjectMembers } from "@/lib/services/projects.service";
+import { useUser } from "@/store/auth.store";
 
 export function useProjectMembers(projectId: string | undefined) {
   return useQuery({
@@ -14,9 +15,11 @@ export function useProjectMembers(projectId: string | undefined) {
 }
 
 export function useMyProject() {
+  const userId = useUser()?.id;
   return useQuery({
-    queryKey: ["project", "mine"],
-    queryFn:  getMyProject,
+    queryKey: ["project", "mine", userId],
+    queryFn:  () => getMyProject(userId!),
+    enabled:  !!userId,
     staleTime: STALE_TIME.VERY_LONG,
   });
 }

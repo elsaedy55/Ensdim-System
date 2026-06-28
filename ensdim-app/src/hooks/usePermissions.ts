@@ -8,9 +8,11 @@ import { useRole } from "@/store/auth.store";
 // ─── React Query hook for permissions ─────────────────────────────
 
 export function useMyPermissionsQuery() {
+  const role = useRole();
   return useQuery({
-    queryKey:  ["my-permissions"],
-    queryFn:   getMyPermissions,
+    queryKey:  ["my-permissions", role],
+    queryFn:   () => getMyPermissions(role),
+    enabled:   !!role,
     staleTime: 10 * 60 * 1000,
   });
 }

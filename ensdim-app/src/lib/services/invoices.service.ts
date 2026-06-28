@@ -9,15 +9,13 @@ export interface InvoiceWithItems extends Invoice {
   project: { name: string } | null;
 }
 
-export async function getMyInvoices(): Promise<Invoice[]> {
+export async function getMyInvoices(userId: string): Promise<Invoice[]> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
 
   const { data, error } = await supabase
     .from("invoices")
     .select("*, projects(name)")
-    .eq("client_id", user.id)
+    .eq("client_id", userId)
     .order("issue_date", { ascending: false });
 
   if (error) throw new Error(error.message);
@@ -40,15 +38,13 @@ export async function getInvoiceById(id: string): Promise<InvoiceWithItems> {
   return data as InvoiceWithItems;
 }
 
-export async function getFinancialSummary() {
+export async function getFinancialSummary(userId: string) {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
 
   const { data, error } = await supabase
     .from("invoices")
     .select("total, status")
-    .eq("client_id", user.id);
+    .eq("client_id", userId);
 
   if (error) throw new Error(error.message);
 

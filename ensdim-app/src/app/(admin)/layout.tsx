@@ -7,6 +7,7 @@ import { AdminSidebar } from "@/components/common/Sidebar/admin-sidebar";
 import { Header } from "@/components/common/Header/header";
 import { MobileSidebarTrigger } from "@/components/common/Sidebar/sidebar-mobile-trigger";
 import { AdminBottomNav } from "@/components/common/BottomNav";
+import { AuthHydrate } from "@/components/common/AuthHydrate";
 import { ROUTES } from "@/constants/routes";
 
 async function getLayoutData() {
@@ -19,7 +20,7 @@ async function getLayoutData() {
   // now run together instead of one nesting inside the other.
   const profileRes = await supabase
     .from("profiles")
-    .select("name, role, avatar_url, workspace_id")
+    .select("*")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -52,6 +53,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="flex h-screen overflow-hidden bg-(--bg-base)">
+      {user && profile && <AuthHydrate user={user} profile={profile} />}
+
       <AdminSidebar
         user={adminUser}
         workspace={adminWorkspace}

@@ -8,7 +8,7 @@ import { MilestonesMiniList } from "@/components/client/MilestonesMiniList";
 import { ActivityFeed } from "@/components/client/ActivityFeed";
 import { FinancialSummaryStrip } from "@/components/client/FinancialSummaryStrip";
 import { StartProjectCTA } from "@/components/client/StartProjectCTA";
-import { SkeletonDashboard } from "@/components/ui/skeleton";
+import { SkeletonCard } from "@/components/ui/skeleton";
 import { useProfile } from "@/store/auth.store";
 import { useMyProject } from "@/hooks/useProject";
 import { useMilestones } from "@/hooks/useMilestones";
@@ -22,22 +22,16 @@ export default function ClientDashboardPage() {
   const t       = useTranslations("dashboard");
   const profile = useProfile();
 
-  const { data: project,  isLoading: projectLoading  } = useMyProject();
+  const { data: project,    isLoading: projectLoading    } = useMyProject();
   const { data: milestones, isLoading: milestonesLoading } = useMilestones(project?.id);
   const { data: invoices,   isLoading: invoicesLoading   } = useMyInvoices();
-  const { data: financial }                               = useFinancialSummary();
-  const { data: notifications }                           = useNotifications();
+  const { data: financial,  isLoading: financialLoading  } = useFinancialSummary();
+  const { data: notifications, isLoading: notificationsLoading } = useNotifications();
 
-  const isLoading = projectLoading || milestonesLoading || invoicesLoading;
-
-  if (isLoading) {
-    return (
-      <div className="space-y-6">
-        <PageHeader title={t("title")} />
-        <SkeletonDashboard />
-      </div>
-    );
-  }
+  // Each section renders as soon as its own data is ready instead of
+  // blocking on every query — milestones/invoices/financial/notifications
+  // load independently, so a slow connection delays only the slowest card.
+  const pendingActionsLoading = milestonesLoading || invoicesLoading;
 
   // Build pending actions from milestones + invoices
   const pendingActions = [
@@ -101,15 +95,19 @@ export default function ClientDashboardPage() {
         subtitle={profile ? t("welcome", { name: profile.name.split(" ")[0] }) : undefined}
       />
 
-      <ProjectStatusHeroCard project={heroProject} />
+      <ProjectStatusHeroCard project={heroProject} isLoading={projectLoading || milestonesLoading} />
 
-      {!heroProject && <StartProjectCTA />}
+      {!projectLoading && !heroProject && <StartProjectCTA />}
 
-      {pendingActions.length > 0 && (
+      {pendingActionsLoading ? (
+        <SkeletonCard />
+      ) : pendingActions.length > 0 ? (
         <PendingActionsPanel actions={pendingActions} />
-      )}
+      ) : null}
 
-      {financial && (
+      {financialLoading ? (
+        <SkeletonCard />
+      ) : financial ? (
         <FinancialSummaryStrip
           total={financial.total}
           paid={financial.paid}
@@ -117,14 +115,14 @@ export default function ClientDashboardPage() {
           nextDueDate={(invoices ?? []).find((i) => i.status === "sent")?.due_date}
           nextDueAmount={(invoices ?? []).find((i) => i.status === "sent")?.total}
         />
-      )}
+      ) : null}
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3">
-          <MilestonesMiniList milestones={miniMilestones} />
+          {milestonesLoading ? <SkeletonCard /> : <MilestonesMiniList milestones={miniMilestones} />}
         </div>
         <div className="lg:col-span-2">
-          <ActivityFeed activities={activities} />
+          {notificationsLoading ? <SkeletonCard /> : <ActivityFeed activities={activities} />}
         </div>
       </div>
     </div>

@@ -43,15 +43,14 @@ export async function getRevisionById(id: string) {
 }
 
 export async function createRevision(
-  revision: Omit<RevisionInsert, "submitted_by">
+  revision: Omit<RevisionInsert, "submitted_by">,
+  userId: string,
 ): Promise<Revision> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
 
   const { data, error } = await supabase
     .from("revisions")
-    .insert({ ...revision, submitted_by: user.id })
+    .insert({ ...revision, submitted_by: userId })
     .select()
     .single();
 
@@ -62,7 +61,8 @@ export async function createRevision(
 export async function updateRevisionStatus(
   id: string,
   status: Revision["status"],
-  teamResponse?: string
+  userId: string,
+  teamResponse?: string,
 ): Promise<Revision> {
   const supabase = createClient();
   const { data, error } = await supabase
@@ -79,8 +79,7 @@ export async function updateRevisionStatus(
   if (error) throw new Error(error.message);
 
   if (status === "done" || status === "rejected") {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) await notifyRevisionResolved(supabase, data, user.id);
+    await notifyRevisionResolved(supabase, data, userId);
   }
 
   return data;

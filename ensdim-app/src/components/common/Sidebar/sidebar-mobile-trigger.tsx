@@ -53,6 +53,7 @@ export function MobileSidebarTrigger({
               user={user}
               notificationCount={notificationCount}
               onLogout={() => { setOpen(false); onLogout?.(); }}
+              onNavigate={() => setOpen(false)}
               forceExpanded
             />
           ) : (
@@ -61,6 +62,7 @@ export function MobileSidebarTrigger({
               workspace={workspace}
               notificationCount={notificationCount}
               onLogout={() => { setOpen(false); onLogout?.(); }}
+              onNavigate={() => setOpen(false)}
               forceExpanded
             />
           )}

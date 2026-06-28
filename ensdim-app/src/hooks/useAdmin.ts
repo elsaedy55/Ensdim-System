@@ -14,6 +14,7 @@ import {
   adminGetKPIs,
   type CreateProjectInput, type CreateMilestoneInput, type CreateInvoiceInput,
 } from "@/lib/services/admin.service";
+import { useWorkspaceId } from "@/store/auth.store";
 
 // ─── KPIs ─────────────────────────────────────────────────────────
 
@@ -61,8 +62,9 @@ export function useAdminProject(id: string | undefined) {
 
 export function useAdminCreateProject() {
   const qc = useQueryClient();
+  const workspaceId = useWorkspaceId();
   return useMutation({
-    mutationFn: (input: CreateProjectInput) => adminCreateProject(input),
+    mutationFn: (input: CreateProjectInput) => adminCreateProject(input, workspaceId!),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-projects"] });
       qc.invalidateQueries({ queryKey: ["admin-kpis"] });

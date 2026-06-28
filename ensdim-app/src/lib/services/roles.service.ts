@@ -33,16 +33,15 @@ export async function getRoleById(id: string): Promise<RoleRow> {
   return data as RoleRow;
 }
 
-export async function createRole(input: { name: string; description?: string; permissions: PermissionMatrix }): Promise<RoleRow> {
+export async function createRole(
+  input: { name: string; description?: string; permissions: PermissionMatrix },
+  workspaceId: string,
+): Promise<RoleRow> {
   const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) throw new Error("Not authenticated");
-  const { data: profile } = await supabase.from("profiles").select("workspace_id").eq("id", user.id).single();
-  if (!profile) throw new Error("Profile not found");
 
   const { data, error } = await supabase
     .from("roles")
-    .insert({ name: input.name, description: input.description ?? null, permissions: input.permissions, workspace_id: profile.workspace_id, is_system: false })
+    .insert({ name: input.name, description: input.description ?? null, permissions: input.permissions, workspace_id: workspaceId, is_system: false })
     .select().single();
   if (error) throw new Error(error.message);
   return data as RoleRow;
@@ -62,12 +61,10 @@ export async function deleteRole(id: string): Promise<void> {
   if (error) throw new Error(error.message);
 }
 
-export async function getMyPermissions(): Promise<PermissionMatrix> {
-  const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return {};
+export async function getMyPermissions(role: string | null): Promise<PermissionMatrix> {
+  if (!role) return {};
 
-  const role = user.user_metadata?.role as string ?? "client";
+  const supabase = createClient();
 
   // Admins have all permissions
   if (role === "admin") {
