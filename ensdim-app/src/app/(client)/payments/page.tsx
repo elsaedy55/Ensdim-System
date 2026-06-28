@@ -12,6 +12,7 @@ import { ROUTES } from "@/constants/routes";
 import { formatCurrency, formatDate, cn } from "@/lib/utils";
 import { AlertTriangle, ArrowRight, Receipt } from "lucide-react";
 import { useMyInvoices, useFinancialSummary } from "@/hooks/useInvoices";
+import { isInvoiceOverdue, effectiveInvoiceStatus } from "@/lib/invoice-status";
 import type { InvoiceRow } from "@/lib/supabase/types";
 
 type Invoice = InvoiceRow;
@@ -19,15 +20,15 @@ type Invoice = InvoiceRow;
 function InvoiceCard({ invoice }: { invoice: Invoice }) {
   const t = useTranslations("payments");
   const isPaid    = invoice.status === "paid";
-  const isOverdue = invoice.status === "overdue";
-  const isPending = invoice.status === "sent" || invoice.status === "viewed";
+  const isOverdue = isInvoiceOverdue(invoice);
+  const isPending = (invoice.status === "sent" || invoice.status === "viewed") && !isOverdue;
 
   return (
     <Link href={ROUTES.CLIENT.PAYMENT(invoice.id)} className={cn("surface flex items-start justify-between gap-4 p-5 transition-shadow hover:shadow-(--shadow-md) group", isOverdue && "border-(--danger-muted)")}>
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-3 mb-1.5 flex-wrap">
           <p className="text-sm font-semibold text-(--text-primary)">{invoice.invoice_number}</p>
-          <StatusBadge status={invoice.status} />
+          <StatusBadge status={effectiveInvoiceStatus(invoice)} />
         </div>
         <p className="text-xs text-(--text-muted)">
           {isPaid
@@ -59,19 +60,19 @@ export default function PaymentsPage() {
   const isLoading = invoicesLoading || financialLoading;
 
   const paidPct   = financial && financial.total > 0 ? Math.round((financial.paid / financial.total) * 100) : 0;
-  const nextDue   = list.find((i) => i.status === "sent" || i.status === "overdue");
+  const nextDue   = list.find((i) => i.status === "sent" || i.status === "viewed");
 
   const counts = {
     all:     list.length,
-    pending: list.filter((i) => i.status === "sent" || i.status === "viewed").length,
+    pending: list.filter((i) => (i.status === "sent" || i.status === "viewed") && !isInvoiceOverdue(i)).length,
     paid:    list.filter((i) => i.status === "paid").length,
-    overdue: list.filter((i) => i.status === "overdue").length,
+    overdue: list.filter((i) => isInvoiceOverdue(i)).length,
   };
 
   const byFilter = (f: string) => {
-    if (f === "pending") return list.filter((i) => i.status === "sent" || i.status === "viewed");
+    if (f === "pending") return list.filter((i) => (i.status === "sent" || i.status === "viewed") && !isInvoiceOverdue(i));
     if (f === "paid")    return list.filter((i) => i.status === "paid");
-    if (f === "overdue") return list.filter((i) => i.status === "overdue");
+    if (f === "overdue") return list.filter((i) => isInvoiceOverdue(i));
     return list;
   };
 
@@ -107,8 +108,8 @@ export default function PaymentsPage() {
 
       {/* Next Due Alert */}
       {nextDue && (
-        <div className={cn("flex items-center gap-3 rounded-xl border px-4 py-3", nextDue.status === "overdue" ? "border-(--danger-muted) bg-(--danger-subtle)" : "border-(--warning-muted) bg-(--warning-subtle)")}>
-          <AlertTriangle className={cn("h-4 w-4 shrink-0", nextDue.status === "overdue" ? "text-(--danger)" : "text-(--warning)")} />
+        <div className={cn("flex items-center gap-3 rounded-xl border px-4 py-3", isInvoiceOverdue(nextDue) ? "border-(--danger-muted) bg-(--danger-subtle)" : "border-(--warning-muted) bg-(--warning-subtle)")}>
+          <AlertTriangle className={cn("h-4 w-4 shrink-0", isInvoiceOverdue(nextDue) ? "text-(--danger)" : "text-(--warning)")} />
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-(--text-primary)">{nextDue.invoice_number} — {formatCurrency(nextDue.total, nextDue.currency)}</p>
             <p className="text-xs text-(--text-muted)">{t("nextDue.label", { days: 3 })}</p>

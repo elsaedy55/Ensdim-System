@@ -23,7 +23,10 @@ export async function signUp(params: {
     email: params.email,
     password: params.password,
     options: {
-      emailRedirectTo: `${window.location.origin}/auth/callback`,
+      // NEXT_PUBLIC_APP_URL takes priority so confirmation emails always
+      // point at the deployed domain, even when signup is triggered from
+      // a local dev server.
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin}/auth/callback`,
       data: {
         name: params.name,
         role: params.role ?? "client",
@@ -46,8 +49,11 @@ export async function signOut() {
 
 export async function forgotPassword(email: string, redirectOrigin: string) {
   const supabase = createClient();
+  // NEXT_PUBLIC_APP_URL takes priority so the reset link always points at
+  // the deployed domain, even when triggered from a local dev server.
+  const origin = process.env.NEXT_PUBLIC_APP_URL ?? redirectOrigin;
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${redirectOrigin}/reset-password`,
+    redirectTo: `${origin}/reset-password`,
   });
   if (error) throw new Error(error.message);
 }
@@ -89,7 +95,13 @@ export async function verifyOtp(email: string, token: string) {
 
 export async function resendVerification(email: string) {
   const supabase = createClient();
-  const { error } = await supabase.auth.resend({ type: "signup", email });
+  const { error } = await supabase.auth.resend({
+    type: "signup",
+    email,
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin}/auth/callback`,
+    },
+  });
   if (error) throw new Error(error.message);
 }
 

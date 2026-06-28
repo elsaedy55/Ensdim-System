@@ -16,6 +16,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/lib/supabase/client";
 import { STALE_TIME } from "@/lib/query-config";
 import { useUrlState } from "@/hooks/useUrlState";
+import { isInvoiceOverdue, effectiveInvoiceStatus } from "@/lib/invoice-status";
 import type { InvoiceRow } from "@/lib/supabase/types";
 
 type InvoiceWithRels = InvoiceRow & {
@@ -48,9 +49,9 @@ export default function AdminInvoicesListPage() {
   const all = invoices ?? [];
   const filtered = (status?: string) => {
     const base = status === "paid"    ? all.filter((i) => i.status === "paid") :
-                 status === "sent"    ? all.filter((i) => i.status === "sent" || i.status === "viewed") :
+                 status === "sent"    ? all.filter((i) => (i.status === "sent" || i.status === "viewed") && !isInvoiceOverdue(i)) :
                  status === "draft"   ? all.filter((i) => i.status === "draft") :
-                 status === "overdue" ? all.filter((i) => i.status === "overdue") : all;
+                 status === "overdue" ? all.filter((i) => isInvoiceOverdue(i)) : all;
     return search ? base.filter((i) => i.invoice_number.includes(search) || (i.client?.name ?? "").toLowerCase().includes(search.toLowerCase())) : base;
   };
 
@@ -64,7 +65,7 @@ export default function AdminInvoicesListPage() {
           <p className="text-sm font-semibold text-(--text-primary) group-hover:text-(--accent) transition-colors">
             {inv.invoice_number}
           </p>
-          <StatusBadge status={inv.status} />
+          <StatusBadge status={effectiveInvoiceStatus(inv)} />
         </div>
         <p className="text-xs text-(--text-muted)">
           {inv.client?.name ?? "—"} · {inv.project?.name ?? "—"} · Due: {formatDate(inv.due_date, { month: "short", day: "numeric", year: "numeric" })}

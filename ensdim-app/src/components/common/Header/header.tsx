@@ -93,46 +93,50 @@ export function Header({
     >
       {/* Title */}
       {title && (
-        <h1 className="text-base font-semibold text-(--text-primary) truncate me-auto">
+        <h1 className="text-base font-semibold text-(--text-primary) truncate">
           {title}
         </h1>
       )}
-      {!title && <div className="flex-1" />}
 
-      {/* Mobile sidebar trigger (passed as actions) */}
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
+      {/* Trailing controls — kept as one group with ms-auto so they always
+          hug the end edge as a single block, instead of relying on a
+          flex-1 spacer that can leave a dead gap depending on viewport
+          width and writing direction. */}
+      <div className="flex items-center gap-2 ms-auto">
+        {/* Mobile sidebar trigger (passed as actions) */}
+        {actions && <div className="flex items-center gap-2">{actions}</div>}
 
-      {/* Structured action buttons */}
-      {actionsData && (
-        <div className="hidden sm:flex items-center gap-2">
-          {actionsData.map((a) => {
-            const IconComp = a.icon
-              ? (Icons as Record<string, IconComp>)[a.icon] ?? Icons.Plus
-              : null;
+        {/* Structured action buttons */}
+        {actionsData && (
+          <div className="hidden sm:flex items-center gap-2">
+            {actionsData.map((a) => {
+              const IconComp = a.icon
+                ? (Icons as Record<string, IconComp>)[a.icon] ?? Icons.Plus
+                : null;
 
-            return (
-              <Link
-                key={a.href}
-                href={a.href}
-                className={cn(
-                  buttonVariants({ variant: a.variant ?? "secondary", size: a.size ?? "sm" }),
-                  "flex items-center gap-2"
-                )}
-              >
-                {IconComp && <UiIcon as={IconComp} size="md" className="text-(--text-muted)" />}
-                <span>{a.label}</span>
-              </Link>
-            );
-          })}
-        </div>
-      )}
+              return (
+                <Link
+                  key={a.href}
+                  href={a.href}
+                  className={cn(
+                    buttonVariants({ variant: a.variant ?? "secondary", size: a.size ?? "sm" }),
+                    "flex items-center gap-2"
+                  )}
+                >
+                  {IconComp && <UiIcon as={IconComp} size="md" className="text-(--text-muted)" />}
+                  <span>{a.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+        )}
 
-      {/* Language Switcher + Theme Toggle */}
-      <LanguageSwitcher variant="icon" />
-      <ThemeToggle variant="icon" />
+        {/* Language Switcher + Theme Toggle */}
+        <LanguageSwitcher variant="icon" />
+        <ThemeToggle variant="icon" />
 
-      {/* Notification Bell */}
-      <DropdownMenu>
+        {/* Notification Bell */}
+        <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
@@ -213,7 +217,7 @@ export function Header({
       {user && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon-sm" className="rounded-full p-0 h-8 w-8">
+            <Button variant="ghost" size="icon" className="rounded-full p-0">
               <UserAvatar name={user.name} src={user.avatar} size="sm" />
             </Button>
           </DropdownMenuTrigger>
@@ -236,7 +240,8 @@ export function Header({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )}
+        )}
+      </div>
     </header>
   );
 }

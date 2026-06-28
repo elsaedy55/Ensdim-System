@@ -41,7 +41,10 @@ export function LanguageSwitcher({ variant = "button", className }: LanguageSwit
         onClick={handleSwitch}
         disabled={switching}
         className={cn(
-          "flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs font-medium",
+          // Square icon-only button on mobile (matches the other header
+          // controls); expands to show the label from sm breakpoint up.
+          "flex h-9 w-9 shrink-0 items-center justify-center gap-1.5 rounded-md px-0 text-xs font-medium",
+          "sm:w-auto sm:justify-start sm:px-2.5",
           "text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-muted)",
           "transition-colors duration-150 disabled:opacity-50",
           className
@@ -52,7 +55,7 @@ export function LanguageSwitcher({ variant = "button", className }: LanguageSwit
           ? <Loader2 className="h-4 w-4 animate-spin" />
           : <Globe className="h-4 w-4 shrink-0" />
         }
-        <span>{targetLabel}</span>
+        <span className="hidden sm:inline">{targetLabel}</span>
       </button>
     );
   }

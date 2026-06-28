@@ -16,7 +16,7 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
 
   // Avoid hydration mismatch
   React.useEffect(() => setMounted(true), []);
-  if (!mounted) return <div className="h-8 w-8" />;
+  if (!mounted) return <div className={cn(variant === "icon" ? "h-9 w-9" : "h-9 w-full")} />;
 
   const isDark = resolvedTheme === "dark";
 
@@ -28,7 +28,7 @@ export function ThemeToggle({ variant = "icon", className }: ThemeToggleProps) {
         type="button"
         onClick={toggle}
         className={cn(
-          "flex items-center justify-center rounded-lg p-1.5",
+          "flex h-9 w-9 shrink-0 items-center justify-center rounded-md",
           "text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-muted)",
           "transition-colors duration-150",
           className,

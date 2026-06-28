@@ -14,6 +14,7 @@ import { AlertTriangle, Plus, ArrowRight, DollarSign } from "lucide-react";
 import { useAdminProjects } from "@/hooks/useAdmin";
 import { createClient } from "@/lib/supabase/client";
 import { useQuery } from "@tanstack/react-query";
+import { isInvoiceOverdue, effectiveInvoiceStatus } from "@/lib/invoice-status";
 import type { InvoiceRow } from "@/lib/supabase/types";
 
 // ─── Hook: all invoices in workspace ─────────────────────────────
@@ -42,8 +43,8 @@ export default function AdminFinancialPage() {
 
   const all    = invoices ?? [];
   const paid    = all.filter((i) => i.status === "paid");
-  const pending = all.filter((i) => i.status === "sent" || i.status === "viewed");
-  const overdue = all.filter((i) => i.status === "overdue");
+  const pending = all.filter((i) => (i.status === "sent" || i.status === "viewed") && !isInvoiceOverdue(i));
+  const overdue = all.filter((i) => isInvoiceOverdue(i));
 
   const totalRevenue  = all.reduce((s, i) => s + i.total, 0);
   const totalCollected = paid.reduce((s, i) => s + i.total, 0);
@@ -86,7 +87,7 @@ export default function AdminFinancialPage() {
             {t("overdueAlert", { count: overdue.length, amount: formatCurrency(totalOverdue) })}
           </p>
           <Button size="sm" variant="secondary" asChild>
-            <Link href={ROUTES.ADMIN.INVOICES + "?filter=overdue"}>{t("quickLinks.viewAll")}</Link>
+            <Link href={ROUTES.ADMIN.INVOICES + "?tab=overdue"}>{t("quickLinks.viewAll")}</Link>
           </Button>
         </div>
       )}
@@ -135,7 +136,7 @@ export default function AdminFinancialPage() {
                     <td className="px-5 py-3 text-(--text-muted) text-xs">
                       {formatDate(inv.due_date, { month: "short", day: "numeric", year: "numeric" })}
                     </td>
-                    <td className="px-5 py-3"><StatusBadge status={inv.status} /></td>
+                    <td className="px-5 py-3"><StatusBadge status={effectiveInvoiceStatus(inv)} /></td>
                   </tr>
                 ))}
               </tbody>

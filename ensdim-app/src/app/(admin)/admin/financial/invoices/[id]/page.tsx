@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useAdminSendInvoice, useAdminMarkInvoicePaid } from "@/hooks/useAdmin";
 import { useInvoice } from "@/hooks/useInvoices";
+import { effectiveInvoiceStatus } from "@/lib/invoice-status";
 
 export default function AdminInvoiceDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -69,7 +70,7 @@ export default function AdminInvoiceDetailPage() {
             </div>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
-            <StatusBadge status={invoice.status} size="md" />
+            <StatusBadge status={effectiveInvoiceStatus(invoice)} size="md" />
             <Button variant="secondary" size="sm" asChild>
               <a href="#" download><Download className="h-4 w-4" /> {ts("download")}</a>
             </Button>

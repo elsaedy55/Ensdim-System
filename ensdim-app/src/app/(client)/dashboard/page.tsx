@@ -14,6 +14,7 @@ import { useMyProject } from "@/hooks/useProject";
 import { useMilestones } from "@/hooks/useMilestones";
 import { useMyInvoices, useFinancialSummary } from "@/hooks/useInvoices";
 import { useNotifications } from "@/hooks/useNotifications";
+import { isInvoiceOverdue } from "@/lib/invoice-status";
 import { ROUTES } from "@/constants/routes";
 import type { MilestoneStatus } from "@/types";
 
@@ -51,14 +52,14 @@ export default function ClientDashboardPage() {
         urgent: false,
       })),
     ...(invoices ?? [])
-      .filter((inv) => inv.status === "sent" || inv.status === "overdue")
+      .filter((inv) => inv.status === "sent" || inv.status === "viewed")
       .map((inv) => ({
         id:     inv.id,
         type:   "invoice_due" as const,
         title:  inv.invoice_number,
         body:   `$${inv.total} due ${inv.due_date}`,
         href:   ROUTES.CLIENT.PAYMENT(inv.id),
-        urgent: inv.status === "overdue",
+        urgent: isInvoiceOverdue(inv),
       })),
   ];
 

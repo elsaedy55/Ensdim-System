@@ -14,6 +14,7 @@ import { ROUTES } from "@/constants/routes";
 import { formatCurrency, formatDate, cn } from "@/lib/utils";
 import { ChevronLeft, Download, CheckCircle2, Upload } from "lucide-react";
 import { useInvoice, useMarkInvoiceSeen, useUploadPaymentProof } from "@/hooks/useInvoices";
+import { effectiveInvoiceStatus } from "@/lib/invoice-status";
 
 // ─── PaymentProofUploader ─────────────────────────────────────────
 
@@ -111,7 +112,7 @@ export default function InvoiceDetailPage() {
     );
   }
 
-  const canUploadProof = invoice.status === "sent" || invoice.status === "viewed" || invoice.status === "overdue";
+  const canUploadProof = invoice.status === "sent" || invoice.status === "viewed";
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -133,7 +134,7 @@ export default function InvoiceDetailPage() {
             </div>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
-            <StatusBadge status={invoice.status} size="md" />
+            <StatusBadge status={effectiveInvoiceStatus(invoice)} size="md" />
             <Button variant="secondary" size="sm" asChild>
               <a href="#" download><Download className="h-4 w-4" /> {t("downloadPdf")}</a>
             </Button>
