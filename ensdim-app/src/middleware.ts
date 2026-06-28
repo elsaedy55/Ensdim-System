@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const { user, response, supabase } = await updateSession(request);
+  const { user, response } = await updateSession(request);
 
   const isPublic = PUBLIC_PATHS.some(
     (p) => pathname === p || pathname.startsWith(p + "/"),
@@ -41,22 +41,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // 1b. Banned users — block access to everything except /login
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("banned_until")
-    .eq("id", user.id)
-    .single();
-
-  const isBanned = !!profile?.banned_until && new Date(profile.banned_until) > new Date();
-
-  if (isBanned) {
-    if (pathname === "/login") return response;
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("banned", "true");
-    loginUrl.searchParams.set("until", profile!.banned_until as string);
-    return NextResponse.redirect(loginUrl);
-  }
+  // Banned users are already rejected by Supabase Auth itself (ban_duration
+  // set via auth.admin.updateUserById — see /api/admin/clients/[id]),
+  // so `user` above is already null for them once their session revalidates.
+  // No separate DB query is needed here on every navigation.
 
   const role = (user.user_metadata?.role as string | undefined) ?? "client";
 

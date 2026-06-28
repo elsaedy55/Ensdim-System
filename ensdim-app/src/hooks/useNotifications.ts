@@ -28,7 +28,10 @@ export function useUnreadCount(initialCount?: number) {
     queryFn:   () => getUnreadCount(userId!),
     enabled:   !!userId,
     staleTime: 30 * 1000,
-    refetchInterval: 60 * 1000, // Poll every minute as fallback
+    // Realtime subscription (useRealtimeNotifications, mounted in Header on
+    // every page) keeps this current — this interval is only a safety net
+    // for a missed/dropped realtime event, so it doesn't need to be tight.
+    refetchInterval: 5 * 60 * 1000,
     ...(initialCount !== undefined ? { initialData: initialCount } : {}),
   });
 }

@@ -17,48 +17,33 @@ import { UserAvatar } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Camera, Globe, Building2, Clock, Eye, EyeOff, Lock } from "lucide-react";
 import { useMyProfile, useUpdateProfile, useUploadAvatar } from "@/hooks/useProfile";
+import { useWorkspace, useUpdateWorkspace } from "@/hooks/useWorkspace";
 import { changePassword } from "@/lib/auth.service";
-import { createClient } from "@/lib/supabase/client";
 import { LOCALE_COOKIE, localeDir } from "@/i18n/common";
 
 // ─── Workspace Tab ────────────────────────────────────────────────
 
 function WorkspaceTab() {
   const t = useTranslations("admin.adminSettings.workspace");
+  const { data: workspace } = useWorkspace();
+  const updateWorkspace = useUpdateWorkspace();
   const [workspaceName, setWorkspaceName] = React.useState("");
   const [currency, setCurrency]           = React.useState("USD");
-  const [saving, setSaving]               = React.useState(false);
 
   React.useEffect(() => {
-    const load = async () => {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-      const { data: profile } = await supabase.from("profiles").select("workspace_id").eq("id", user.id).single();
-      if (!profile) return;
-      const { data: workspace } = await supabase.from("workspaces").select("name, currency").eq("id", profile.workspace_id).single();
-      if (workspace) { setWorkspaceName(workspace.name); setCurrency(workspace.currency); }
-    };
-    load();
-  }, []);
+    if (workspace) { setWorkspaceName(workspace.name); setCurrency(workspace.currency); }
+  }, [workspace]);
 
   const te = useTranslations("common.errors");
 
-  const handleSave = async () => {
-    setSaving(true);
-    try {
-      const supabase = createClient();
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-      const { data: profile } = await supabase.from("profiles").select("workspace_id").eq("id", user.id).single();
-      if (!profile) return;
-      await supabase.from("workspaces").update({ name: workspaceName, currency }).eq("id", profile.workspace_id);
-      toast.success(t("workspace.savedSuccess"));
-    } catch (e: unknown) {
-      toast.error(e instanceof Error ? e.message : te("failed"));
-    } finally {
-      setSaving(false);
-    }
+  const handleSave = () => {
+    updateWorkspace.mutate(
+      { name: workspaceName, currency },
+      {
+        onSuccess: () => toast.success(t("workspace.savedSuccess")),
+        onError: (e) => toast.error(e instanceof Error ? e.message : te("failed")),
+      },
+    );
   };
 
   const handleLanguageChange = (lang: string) => {
@@ -96,7 +81,7 @@ function WorkspaceTab() {
             </SelectContent>
           </Select>
         </FormField>
-        <Button onClick={handleSave} loading={saving}>{t("saveButton")}</Button>
+        <Button onClick={handleSave} loading={updateWorkspace.isPending}>{t("saveButton")}</Button>
       </div>
     </div>
   );
