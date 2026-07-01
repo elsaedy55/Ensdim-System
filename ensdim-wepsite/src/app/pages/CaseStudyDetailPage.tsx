@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
 import { ArrowRight, ArrowLeft, ExternalLink, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -16,6 +16,7 @@ export function CaseStudyDetailPage() {
   const [loading, setLoading]   = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [mediaIndex, setMediaIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -36,6 +37,22 @@ export function CaseStudyDetailPage() {
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent, count: number) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    const SWIPE_THRESHOLD = 40;
+    if (delta > SWIPE_THRESHOLD) {
+      setMediaIndex((i) => (i - 1 + count) % count);
+    } else if (delta < -SWIPE_THRESHOLD) {
+      setMediaIndex((i) => (i + 1) % count);
+    }
   };
 
   if (loading) {
@@ -134,11 +151,16 @@ export function CaseStudyDetailPage() {
       {mediaItems.length > 0 && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
           <div className="relative group">
-            <div className="w-full aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] flex items-center justify-center p-4 sm:p-6">
+            <div
+              className="w-full aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] flex items-center justify-center p-4 sm:p-6 touch-pan-y select-none"
+              onTouchStart={mediaItems.length > 1 ? handleTouchStart : undefined}
+              onTouchEnd={mediaItems.length > 1 ? (e) => handleTouchEnd(e, mediaItems.length) : undefined}
+            >
               <img
                 src={mediaItems[mediaIndex]}
                 alt={`${title} - ${mediaIndex + 1}`}
-                className="w-full h-full object-contain rounded-lg"
+                className="w-full h-full object-contain rounded-lg pointer-events-none"
+                draggable={false}
               />
             </div>
             {mediaItems.length > 1 && (
@@ -147,7 +169,7 @@ export function CaseStudyDetailPage() {
                   type="button"
                   onClick={() => setMediaIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length)}
                   aria-label={ar ? 'الصورة السابقة' : 'Previous image'}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white active:scale-95 opacity-0 group-hover:opacity-100 transition-all"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white active:scale-95 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
                 >
                   <ArrowLeft size={16} className="no-mirror" />
                 </button>
@@ -155,7 +177,7 @@ export function CaseStudyDetailPage() {
                   type="button"
                   onClick={() => setMediaIndex((i) => (i + 1) % mediaItems.length)}
                   aria-label={ar ? 'الصورة التالية' : 'Next image'}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white active:scale-95 opacity-0 group-hover:opacity-100 transition-all"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white active:scale-95 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
                 >
                   <ArrowRight size={16} className="no-mirror" />
                 </button>
