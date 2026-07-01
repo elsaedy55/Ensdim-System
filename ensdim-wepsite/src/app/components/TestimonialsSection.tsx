@@ -27,13 +27,6 @@ const testimonialsEn = [
     result: "From idea to first market trial",
     caseStudy: "/case-studies/triboo-travel-mvp",
   },
-  {
-    quote: "We used to work in a traditional way, and following up with clients and quotation requests was exhausting for the team. Relying on Excel and WhatsApp made the picture unclear and made it harder to know the status of each client or request at the right time. After organizing follow-up and building a clear dashboard for clients and quotation requests, we gained better visibility, faster follow-up, and easier decision-making for management.",
-    name: "Eng. Fahad Al Otaibi",
-    company: "Operations Manager · Contracting & Real Estate Development, Saudi Arabia",
-    result: "Clearer follow-up & faster decisions",
-    caseStudy: "/case-studies/real-estate-sales-crm-saudi",
-  },
 ];
 
 const testimonialsAr = [
@@ -58,13 +51,6 @@ const testimonialsAr = [
     result: "من الفكرة إلى أول نسخة تجريبية",
     caseStudy: "/case-studies/triboo-travel-mvp",
   },
-  {
-    quote: "كنا نشتغل بالطريقة التقليدية، والمتابعة وإرسال طلبات الأسعار كانت مرهقة على الفريق. الاعتماد على الإكسيل والواتساب كان يخلّي الصورة غير واضحة، ويصعّب علينا معرفة حالة كل عميل أو طلب في الوقت المناسب. بعد تنظيم المتابعة وبناء لوحة واضحة للعملاء وطلبات الأسعار، صار عندنا وضوح أكبر، ومتابعة أسرع، وقرار أسهل داخل الإدارة.",
-    name: "م. فهد العتيبي",
-    company: "مدير العمليات · شركة مقاولات وتطوير عقاري، السعودية",
-    result: "متابعة أوضح وقرار أسرع",
-    caseStudy: "/case-studies/real-estate-sales-crm-saudi",
-  },
 ];
 
 export function TestimonialsSection() {
@@ -88,17 +74,18 @@ export function TestimonialsSection() {
           </p>
         </ScrollReveal>
 
-        <div className="relative flex items-center gap-3 sm:gap-6">
+        {/* Desktop: single card with fade transition + side arrows */}
+        <div className="hidden sm:flex relative items-center gap-6">
           <button
             type="button"
             onClick={() => goTo(index - 1)}
             aria-label={isAr ? 'الشهادة السابقة' : 'Previous testimonial'}
-            className="hidden sm:flex flex-shrink-0 w-11 h-11 rounded-full bg-white border border-[#E5E5E5] items-center justify-center text-[#101418] hover:border-[#6D5DF6]/40 hover:text-[#6D5DF6] transition-colors duration-200"
+            className="flex flex-shrink-0 w-11 h-11 rounded-full bg-white border border-[#E5E5E5] items-center justify-center text-[#101418] hover:border-[#6D5DF6]/40 hover:text-[#6D5DF6] transition-colors duration-200"
           >
             {isAr ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}
           </button>
 
-          <div className="flex-1 overflow-hidden min-h-[360px] sm:min-h-[320px]">
+          <div className="flex-1 overflow-hidden min-h-[320px]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={index}
@@ -106,10 +93,10 @@ export function TestimonialsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: isAr ? 24 : -24 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white rounded-3xl p-7 sm:p-10 border border-[#E5E5E5] relative overflow-hidden"
+                className="bg-white rounded-3xl p-10 border border-[#E5E5E5] relative overflow-hidden"
               >
                 <Quote className="absolute top-6 ltr:right-6 rtl:left-6 text-[#6D5DF6]/10" size={88} strokeWidth={1} />
-                <p className="relative text-[#101418] text-sm sm:text-base leading-relaxed font-medium mb-8">
+                <p className="relative text-[#101418] text-base leading-relaxed font-medium mb-8">
                   "{current.quote}"
                 </p>
                 <div className="relative flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#F0F0F0]">
@@ -138,32 +125,13 @@ export function TestimonialsSection() {
             type="button"
             onClick={() => goTo(index + 1)}
             aria-label={isAr ? 'الشهادة التالية' : 'Next testimonial'}
-            className="hidden sm:flex flex-shrink-0 w-11 h-11 rounded-full bg-white border border-[#E5E5E5] items-center justify-center text-[#101418] hover:border-[#6D5DF6]/40 hover:text-[#6D5DF6] transition-colors duration-200"
+            className="flex flex-shrink-0 w-11 h-11 rounded-full bg-white border border-[#E5E5E5] items-center justify-center text-[#101418] hover:border-[#6D5DF6]/40 hover:text-[#6D5DF6] transition-colors duration-200"
           >
             {isAr ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
           </button>
         </div>
 
-        <div className="flex items-center justify-center gap-3 mt-6 sm:hidden">
-          <button
-            type="button"
-            onClick={() => goTo(index - 1)}
-            aria-label={isAr ? 'الشهادة السابقة' : 'Previous testimonial'}
-            className="w-10 h-10 rounded-full bg-white border border-[#E5E5E5] flex items-center justify-center text-[#101418]"
-          >
-            {isAr ? <ArrowRight size={16} /> : <ArrowLeft size={16} />}
-          </button>
-          <button
-            type="button"
-            onClick={() => goTo(index + 1)}
-            aria-label={isAr ? 'الشهادة التالية' : 'Next testimonial'}
-            className="w-10 h-10 rounded-full bg-white border border-[#E5E5E5] flex items-center justify-center text-[#101418]"
-          >
-            {isAr ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
-          </button>
-        </div>
-
-        <div className="flex items-center justify-center gap-2 mt-6">
+        <div className="hidden sm:flex items-center justify-center gap-2 mt-6">
           {testimonials.map((_, i) => (
             <button
               key={i}
@@ -174,6 +142,42 @@ export function TestimonialsSection() {
                 i === index ? 'w-7 bg-[#6D5DF6]' : 'w-2 bg-[#D9D4F5] hover:bg-[#6D5DF6]/50'
               }`}
             />
+          ))}
+        </div>
+
+        {/* Mobile: swipeable strip, no buttons */}
+        <div
+          className="sm:hidden -mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          dir={isAr ? 'rtl' : 'ltr'}
+        >
+          {testimonials.map((item, i) => (
+            <div
+              key={i}
+              className="snap-center shrink-0 w-[85vw] bg-white rounded-3xl p-7 border border-[#E5E5E5] relative overflow-hidden"
+            >
+              <Quote className="absolute top-6 ltr:right-6 rtl:left-6 text-[#6D5DF6]/10" size={88} strokeWidth={1} />
+              <p className="relative text-[#101418] text-sm leading-relaxed font-medium mb-8">
+                "{item.quote}"
+              </p>
+              <div className="relative flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#F0F0F0]">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full bg-[#6D5DF6] flex items-center justify-center flex-shrink-0 ring-2 ring-[#EEEAFE] text-white text-base font-semibold">
+                    {item.name.trim().charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#101418]">{item.name}</p>
+                    <p className="text-xs text-[#4F555E]">{item.company}</p>
+                  </div>
+                </div>
+                <Link
+                  to={item.caseStudy}
+                  className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium"
+                >
+                  {isAr ? 'عرض قصة النجاح' : 'View Success Story'}
+                  <ArrowRight size={11} className="rtl:rotate-180" />
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </div>
