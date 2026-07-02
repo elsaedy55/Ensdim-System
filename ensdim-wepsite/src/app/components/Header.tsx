@@ -290,16 +290,24 @@ export function Header() {
               {navItems.map((item) => (
                 <div key={item.label}>
                   <div className="flex items-center border-b border-[#F0F0F0]">
-                    {/* Mobile: clicking label opens dropdown instead of navigating */}
-                    <button
-                      onClick={() => setActiveMobileAccordion(activeMobileAccordion === item.label ? null : item.label)}
-                      className="flex-1 py-3 text-sm font-medium text-[#101418] hover:text-[#6D5DF6] active:opacity-60 transition-all text-start flex items-center justify-between gap-2"
-                    >
-                      <span>{ar ? item.labelAr : item.label}</span>
-                      {item.dropdown && (
+                    {item.dropdown ? (
+                      /* Mobile: clicking label opens dropdown instead of navigating */
+                      <button
+                        onClick={() => setActiveMobileAccordion(activeMobileAccordion === item.label ? null : item.label)}
+                        className="flex-1 py-3 text-sm font-medium text-[#101418] hover:text-[#6D5DF6] active:opacity-60 transition-all text-start flex items-center justify-between gap-2"
+                      >
+                        <span>{ar ? item.labelAr : item.label}</span>
                         <ChevronDown size={14} className={`text-[#4F555E] transition-transform duration-200 ${activeMobileAccordion === item.label ? 'rotate-180' : ''}`} />
-                      )}
-                    </button>
+                      </button>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        onClick={closeAll}
+                        className="flex-1 py-3 text-sm font-medium text-[#101418] hover:text-[#6D5DF6] active:opacity-60 transition-all text-start flex items-center justify-between gap-2"
+                      >
+                        <span>{ar ? item.labelAr : item.label}</span>
+                      </Link>
+                    )}
                   </div>
                   {item.dropdown && activeMobileAccordion === item.label && (
                     <div className="bg-[#FAFAFA] border-b border-[#F0F0F0]">

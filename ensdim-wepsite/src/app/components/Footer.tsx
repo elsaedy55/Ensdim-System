@@ -10,14 +10,6 @@ export function Footer() {
 
   const footerSections = [
     {
-      title: ar ? 'الشركة' : 'Company',
-      links: [
-        { label: ar ? 'عن إنسديم' : 'About', href: '/about' },
-        { label: ar ? 'الفريق' : 'Team', href: '/team' },
-        { label: ar ? 'تواصل معنا' : 'Contact', href: '/contact' },
-      ],
-    },
-    {
       title: ar ? 'الحلول' : 'Solutions',
       links: [
         { label: ar ? 'البناء' : 'Build', href: '/solutions/build' },
@@ -34,20 +26,28 @@ export function Footer() {
       ],
     },
     {
-      title: ar ? 'المنتجات' : 'Products',
-      links: [
-        { label: ar ? 'مساحة العمل للعيادات' : 'Clinics Workspace', href: '/products/clinics-workspace' },
-        { label: ar ? 'نظام العقارات' : 'Real Estate Flow', href: '/products/real-estate-flow' },
-        { label: ar ? 'مساحة التشغيل' : 'Operations Workspace', href: '/products/operations-workspace' },
-      ],
-    },
-    {
       title: ar ? 'الموارد' : 'Resources',
       links: [
         { label: ar ? 'الأبحاث' : 'Research', href: '/research' },
         { label: ar ? 'دراسات الحالة' : 'Case Studies', href: '/case-studies' },
         { label: ar ? 'الوظائف' : 'Careers', href: '/careers' },
         { label: ar ? 'المدونة' : 'Blog', href: '/blog' },
+      ],
+    },
+    {
+      title: ar ? 'الشركة' : 'Company',
+      links: [
+        { label: ar ? 'عن إنسديم' : 'About', href: '/about' },
+        { label: ar ? 'الفريق' : 'Team', href: '/team' },
+        { label: ar ? 'تواصل معنا' : 'Contact', href: '/contact' },
+      ],
+    },
+    {
+      title: ar ? 'المنتجات' : 'Products',
+      links: [
+        { label: ar ? 'مساحة العمل للعيادات' : 'Clinics Workspace', href: '/products/clinics-workspace' },
+        { label: ar ? 'نظام العقارات' : 'Real Estate Flow', href: '/products/real-estate-flow' },
+        { label: ar ? 'مساحة التشغيل' : 'Operations Workspace', href: '/products/operations-workspace' },
       ],
     },
     {
