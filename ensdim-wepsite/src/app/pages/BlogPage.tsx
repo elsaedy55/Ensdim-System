@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, Clock, FileText } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
-import { getPublishedBlogPosts, type BlogPost } from '../../lib/supabase';
+import { type BlogPost } from '../../lib/supabase';
+import { useBlogPosts } from '../../hooks/useContent';
 
 /**
  * /resources/research in the approved content brief doesn't exist as a
@@ -49,6 +50,8 @@ function BlogCard({ post, ar, featured }: { post: BlogPost; ar: boolean; feature
         <img
           src={post.image_url}
           alt={ar ? post.title_ar : post.title_en}
+          loading="lazy"
+          decoding="async"
           className={`w-full object-cover ${featured ? 'h-56' : 'h-40'}`}
         />
       )}
@@ -83,17 +86,9 @@ export function BlogPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
 
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: posts = [], isLoading: loading, error: queryError } = useBlogPosts();
+  const error = queryError ? (queryError as Error).message : null;
   const [activeFilter, setActiveFilter] = useState('All');
-
-  useEffect(() => {
-    getPublishedBlogPosts()
-      .then(setPosts)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
 
   const featured = posts[0];
   const rest = posts.slice(1);

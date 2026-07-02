@@ -1,29 +1,18 @@
-import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
-import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
+import { useCaseStudies } from '../../hooks/useContent';
 
 export function FeaturedCaseStudy() {
   const { t, language } = useLanguage();
   const ar = language === 'ar';
   const navigate = useNavigate();
 
-  const [study, setStudy]     = useState<CaseStudy | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getPublishedCaseStudies()
-      .then((studies) => {
-        const sorted = [...studies].sort((a, b) =>
-          (b.published_at ?? '').localeCompare(a.published_at ?? '')
-        );
-        setStudy(sorted[0] ?? null);
-      })
-      .catch(() => setStudy(null))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: studies = [], isLoading: loading } = useCaseStudies();
+  const study = [...studies].sort((a, b) =>
+    (b.published_at ?? '').localeCompare(a.published_at ?? '')
+  )[0] ?? null;
 
   if (!loading && !study) return null;
 
@@ -112,6 +101,8 @@ export function FeaturedCaseStudy() {
                 <img
                   src={study.image_url}
                   alt={ar ? study.title_ar : study.title_en}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>

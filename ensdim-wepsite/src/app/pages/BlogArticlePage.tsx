@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowRight, ArrowLeft, Clock, FileText } from 'lucide-react';
 import { SEO } from '../components/SEO';
-import { getBlogPostBySlug, type BlogPost } from '../../lib/supabase';
+import { useBlogPost } from '../../hooks/useContent';
 
 // Render simple markdown-like content: ## Heading, paragraphs separated by blank lines
 function ArticleContent({ content }: { content: string }) {
@@ -55,25 +54,8 @@ export function BlogArticlePage() {
   const { language }            = useLanguage();
   const ar                      = language === 'ar';
 
-  const [post, setPost]         = useState<BlogPost | null>(null);
-  const [loading, setLoading]   = useState(true);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    if (!slug) return;
-    setLoading(true);
-    setNotFound(false);
-    getBlogPostBySlug(slug)
-      .then((data) => {
-        if (!data) {
-          setNotFound(true);
-        } else {
-          setPost(data);
-        }
-      })
-      .catch(() => setNotFound(true))
-      .finally(() => setLoading(false));
-  }, [slug]);
+  const { data: post, isLoading: loading, isError } = useBlogPost(slug);
+  const notFound = isError || (!loading && !post);
 
   if (loading) {
     return (
@@ -177,6 +159,7 @@ export function BlogArticlePage() {
             <img
               src={post.image_url}
               alt={title}
+              decoding="async"
               className="w-full aspect-[16/9] object-cover rounded-2xl shadow-xl"
             />
           </div>

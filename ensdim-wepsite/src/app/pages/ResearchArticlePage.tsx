@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ArrowRight, ArrowLeft, Clock, BookOpen } from 'lucide-react';
 import { SEO } from '../components/SEO';
-import { getResearchArticleBySlug, type ResearchArticle } from '../../lib/supabase';
+import { useResearchArticle } from '../../hooks/useContent';
 
 // Render simple markdown-like content: ## Heading, paragraphs separated by blank lines
 function ArticleContent({ content }: { content: string }) {
@@ -55,25 +54,8 @@ export function ResearchArticlePage() {
   const { language }            = useLanguage();
   const ar                      = language === 'ar';
 
-  const [article, setArticle]   = useState<ResearchArticle | null>(null);
-  const [loading, setLoading]   = useState(true);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    if (!slug) return;
-    setLoading(true);
-    setNotFound(false);
-    getResearchArticleBySlug(slug)
-      .then((data) => {
-        if (!data) {
-          setNotFound(true);
-        } else {
-          setArticle(data);
-        }
-      })
-      .catch(() => setNotFound(true))
-      .finally(() => setLoading(false));
-  }, [slug]);
+  const { data: article, isLoading: loading, isError } = useResearchArticle(slug);
+  const notFound = isError || (!loading && !article);
 
   if (loading) {
     return (
@@ -166,6 +148,7 @@ export function ResearchArticlePage() {
             <img
               src={article.image_url}
               alt={title}
+              decoding="async"
               className="w-full h-56 sm:h-72 object-cover rounded-2xl shadow-lg"
             />
           </div>

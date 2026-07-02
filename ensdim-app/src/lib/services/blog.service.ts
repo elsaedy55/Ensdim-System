@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import { compressImage } from "@/lib/utils/image-compression";
 import type { BlogPostRow } from "@/lib/supabase/types";
 
 export type BlogPost = BlogPostRow;
@@ -155,11 +156,12 @@ export async function deleteBlogPost(id: string): Promise<void> {
 
 export async function uploadBlogImage(postId: string, file: File): Promise<string> {
   const supabase = createClient();
-  const ext  = file.name.split(".").pop();
+  const compressed = await compressImage(file);
+  const ext  = compressed.name.split(".").pop();
   const path = `${postId}/${Date.now()}.${ext}`;
 
   const { error: storageError } = await Promise.race([
-    supabase.storage.from("blog-images").upload(path, file, { upsert: true }),
+    supabase.storage.from("blog-images").upload(path, compressed, { upsert: true }),
     timeoutAfter(30_000, "Uploading the image"),
   ]);
 

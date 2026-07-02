@@ -1,11 +1,12 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, Briefcase } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
-import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
+import { type CaseStudy } from '../../lib/supabase';
+import { useCaseStudies } from '../../hooks/useContent';
 
 /**
  * sector_en / sector_ar store three "|"-delimited segments authored together
@@ -20,7 +21,6 @@ function parseSector(raw: string) {
 
 const resultsStrip = [
   { en: { stat: '+6,000 contracts', desc: 'Moved from manual tracking into a clearer digital operations system.' }, ar: { stat: '+6,000 عقد', desc: 'تحولت من متابعة يدوية إلى منظومة تشغيل رقمية أوضح.' } },
-  { en: { stat: 'One week', desc: 'A real estate project sold out after a structured growth launch.' }, ar: { stat: 'أسبوع واحد', desc: 'بيع مشروع عقاري كامل بعد بناء استراتيجية نمو وطرح منظم.' } },
   { en: { stat: 'Faster decisions', desc: 'Scattered data turned into dashboards and a management data assistant.' }, ar: { stat: 'قرار أسرع', desc: 'تحويل بيانات متفرقة إلى Dashboard ومساعد بيانات للإدارة.' } },
   { en: { stat: 'Higher trust', desc: 'Security review focused on protecting user accounts and data.' }, ar: { stat: 'ثقة أعلى', desc: 'مراجعة أمنية لحماية الحسابات وبيانات المستخدمين.' } },
   { en: { stat: 'Clearer follow-up', desc: 'Communication channels connected to customer records and sales flow.' }, ar: { stat: 'متابعة أوضح', desc: 'ربط قنوات التواصل بملف العميل ومسار المبيعات.' } },
@@ -45,6 +45,8 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
           <img
             src={c.image_url}
             alt={ar ? c.title_ar : c.title_en}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain rounded-lg shadow-[0_4px_20px_rgba(109,93,246,0.12)]"
           />
         </div>
@@ -88,17 +90,9 @@ export function CaseStudiesPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
 
-  const [cases, setCases]     = useState<CaseStudy[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState<string | null>(null);
+  const { data: cases = [], isLoading: loading, error: queryError } = useCaseStudies();
+  const error = queryError ? (queryError as Error).message : null;
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-
-  useEffect(() => {
-    getPublishedCaseStudies()
-      .then(setCases)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
 
   const filterOptions = useMemo(() => {
     const seen = new Set<string>();

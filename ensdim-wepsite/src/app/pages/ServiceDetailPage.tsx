@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -6,7 +5,7 @@ import { ScrollReveal } from '../components/ScrollReveal';
 import { ServiceRequestForm } from '../components/ServiceRequestForm';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
-import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
+import { useCaseStudies } from '../../hooks/useContent';
 
 interface ServiceDetail {
   title: string;
@@ -878,13 +877,8 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
 };
 
 function RelatedCaseStudies({ solutionSlugs, ar }: { solutionSlugs: string[]; ar: boolean }) {
-  const [studies, setStudies] = useState<CaseStudy[]>([]);
-
-  useEffect(() => {
-    getPublishedCaseStudies()
-      .then((all) => setStudies(all.filter((s) => solutionSlugs.includes(s.solution_slug)).slice(0, 2)))
-      .catch(() => setStudies([]));
-  }, [solutionSlugs]);
+  const { data: allStudies = [] } = useCaseStudies();
+  const studies = allStudies.filter((s) => solutionSlugs.includes(s.solution_slug)).slice(0, 2);
 
   if (studies.length === 0) return null;
 

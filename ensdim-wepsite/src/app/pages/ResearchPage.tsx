@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
-import { getPublishedResearchArticles, type ResearchArticle } from '../../lib/supabase';
+import { type ResearchArticle } from '../../lib/supabase';
+import { useResearchArticles } from '../../hooks/useContent';
 
 const methodPoints = [
   { en: 'Define a research question linked to return, growth, or customer behavior.', ar: 'تحديد سؤال بحث مرتبط بالعائد أو النمو أو سلوك العميل.' },
@@ -45,6 +46,8 @@ function ResearchCard({ article, ar, featured }: { article: ResearchArticle; ar:
         <img
           src={article.image_url}
           alt={ar ? article.title_ar : article.title_en}
+          loading="lazy"
+          decoding="async"
           className={`w-full object-cover ${featured ? 'h-56' : 'h-40'}`}
         />
       )}
@@ -77,17 +80,9 @@ export function ResearchPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
 
-  const [articles, setArticles] = useState<ResearchArticle[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: articles = [], isLoading: loading, error: queryError } = useResearchArticles();
+  const error = queryError ? (queryError as Error).message : null;
   const [activeFilter, setActiveFilter] = useState('All');
-
-  useEffect(() => {
-    getPublishedResearchArticles()
-      .then(setArticles)
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
 
   const featured = articles[0];
   const rest = articles.slice(1);

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -6,7 +5,7 @@ import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
-import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
+import { useCaseStudies } from '../../hooks/useContent';
 
 /**
  * Solution cards link to the closest existing solution page until the
@@ -50,13 +49,8 @@ const howWeChoose = [
 ];
 
 function RelatedCaseStudies({ ar }: { ar: boolean }) {
-  const [studies, setStudies] = useState<CaseStudy[]>([]);
-
-  useEffect(() => {
-    getPublishedCaseStudies()
-      .then((all) => setStudies(all.slice(0, 4)))
-      .catch(() => setStudies([]));
-  }, []);
+  const { data: allStudies = [] } = useCaseStudies();
+  const studies = allStudies.slice(0, 4);
 
   if (studies.length === 0) return null;
 

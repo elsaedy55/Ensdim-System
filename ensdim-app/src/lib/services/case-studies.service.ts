@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import { compressImage } from "@/lib/utils/image-compression";
 import type { CaseStudyRow } from "@/lib/supabase/types";
 
 export type CaseStudy = CaseStudyRow;
@@ -179,11 +180,12 @@ export async function deleteCaseStudy(id: string): Promise<void> {
 
 export async function uploadCaseStudyImage(caseStudyId: string, file: File): Promise<string> {
   const supabase = createClient();
-  const ext  = file.name.split(".").pop();
+  const compressed = await compressImage(file);
+  const ext  = compressed.name.split(".").pop();
   const path = `${caseStudyId}/${Date.now()}.${ext}`;
 
   const { error: storageError } = await Promise.race([
-    supabase.storage.from("case-study-images").upload(path, file, { upsert: true }),
+    supabase.storage.from("case-study-images").upload(path, compressed, { upsert: true }),
     timeoutAfter(30_000, "Uploading the image"),
   ]);
 
@@ -197,11 +199,12 @@ export async function uploadCaseStudyImage(caseStudyId: string, file: File): Pro
 
 export async function uploadCaseStudyGalleryImage(caseStudyId: string, file: File): Promise<string> {
   const supabase = createClient();
-  const ext  = file.name.split(".").pop();
+  const compressed = await compressImage(file);
+  const ext  = compressed.name.split(".").pop();
   const path = `${caseStudyId}/gallery/${Date.now()}.${ext}`;
 
   const { error: storageError } = await Promise.race([
-    supabase.storage.from("case-study-images").upload(path, file, { upsert: true }),
+    supabase.storage.from("case-study-images").upload(path, compressed, { upsert: true }),
     timeoutAfter(30_000, "Uploading the image"),
   ]);
 

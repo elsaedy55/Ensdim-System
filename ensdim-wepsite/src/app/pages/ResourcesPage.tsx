@@ -1,18 +1,10 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
-import {
-  getPublishedResearchArticles,
-  getPublishedBlogPosts,
-  getPublishedCaseStudies,
-  type ResearchArticle,
-  type BlogPost,
-  type CaseStudy,
-} from '../../lib/supabase';
+import { useResearchArticles, useBlogPosts, useCaseStudies } from '../../hooks/useContent';
 
 /**
  * /resources/research and /resources/blog in the approved content brief
@@ -128,15 +120,9 @@ export function ResourcesPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
 
-  const [research, setResearch] = useState<ResearchArticle[]>([]);
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [cases, setCases] = useState<CaseStudy[]>([]);
-
-  useEffect(() => {
-    getPublishedResearchArticles().then(setResearch).catch(() => setResearch([]));
-    getPublishedBlogPosts().then(setPosts).catch(() => setPosts([]));
-    getPublishedCaseStudies().then(setCases).catch(() => setCases([]));
-  }, []);
+  const { data: research = [] } = useResearchArticles();
+  const { data: posts = [] } = useBlogPosts();
+  const { data: cases = [] } = useCaseStudies();
 
   const researchPreview: CardItem[] = research.slice(0, 3).map((r) => ({
     key: r.id, type: 'research', title: ar ? r.title_ar : r.title_en, href: `/research/${r.slug}`, date: r.published_at,

@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
-import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
+import { useCaseStudies } from '../../hooks/useContent';
 
 /**
  * Solution/problem labels below use the new naming from the content brief.
@@ -328,13 +327,8 @@ interface StagePageProps {
 }
 
 function RelatedCaseStudies({ solutionSlugs, ar }: { solutionSlugs: string[]; ar: boolean }) {
-  const [studies, setStudies] = useState<CaseStudy[]>([]);
-
-  useEffect(() => {
-    getPublishedCaseStudies()
-      .then((all) => setStudies(all.filter((s) => solutionSlugs.includes(s.solution_slug)).slice(0, 3)))
-      .catch(() => setStudies([]));
-  }, [solutionSlugs]);
+  const { data: allStudies = [] } = useCaseStudies();
+  const studies = allStudies.filter((s) => solutionSlugs.includes(s.solution_slug)).slice(0, 3);
 
   if (studies.length === 0) return null;
 

@@ -5,53 +5,92 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SEO } from '../components/SEO';
-import { getCaseStudyBySlug, type CaseStudy } from '../../lib/supabase';
+import { useCaseStudy } from '../../hooks/useContent';
 
 export function CaseStudyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { language } = useLanguage();
   const ar = language === 'ar';
 
-  const [study, setStudy]       = useState<CaseStudy | null>(null);
-  const [loading, setLoading]   = useState(true);
-  const [notFound, setNotFound] = useState(false);
+  const { data: study, isLoading: loading, isError } = useCaseStudy(slug);
+  const notFound = isError || (!loading && !study);
   const [mediaIndex, setMediaIndex] = useState(0);
+  const [dragPx, setDragPx] = useState(0);
+  const [animateTrack, setAnimateTrack] = useState(false);
+
+  const viewportRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const touchStartTime = useRef(0);
+  const containerWidthRef = useRef(0);
+  const draggingRef = useRef(false);
+  const animatingRef = useRef(false);
 
   useEffect(() => {
-    if (!slug) return;
-    setLoading(true);
-    setNotFound(false);
     setMediaIndex(0);
-    getCaseStudyBySlug(slug)
-      .then((data) => {
-        if (!data) {
-          setNotFound(true);
-        } else {
-          setStudy(data);
-        }
-      })
-      .catch(() => setNotFound(true))
-      .finally(() => setLoading(false));
   }, [slug]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const SLIDE_DURATION = 280;
+
+  const commitSlide = (direction: 1 | -1, count: number) => {
+    if (animatingRef.current || count < 2) return;
+    animatingRef.current = true;
+    const width = containerWidthRef.current || viewportRef.current?.clientWidth || 0;
+    setAnimateTrack(true);
+    setDragPx(direction === 1 ? -width : width);
+    window.setTimeout(() => {
+      setMediaIndex((i) => (direction === 1 ? (i + 1) % count : (i - 1 + count) % count));
+      setAnimateTrack(false);
+      setDragPx(0);
+      animatingRef.current = false;
+    }, SLIDE_DURATION);
+  };
+
+  const springBack = () => {
+    setAnimateTrack(true);
+    setDragPx(0);
+    window.setTimeout(() => setAnimateTrack(false), SLIDE_DURATION);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent, count: number) => {
+    if (animatingRef.current || count < 2) return;
     touchStartX.current = e.touches[0].clientX;
+    touchStartTime.current = Date.now();
+    containerWidthRef.current = viewportRef.current?.clientWidth || 0;
+    draggingRef.current = true;
+    setAnimateTrack(false);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!draggingRef.current || touchStartX.current === null) return;
+    const width = containerWidthRef.current || 1;
+    const rawDelta = e.touches[0].clientX - touchStartX.current;
+    const clamped = Math.max(-width, Math.min(width, rawDelta));
+    setDragPx(clamped);
   };
 
   const handleTouchEnd = (e: React.TouchEvent, count: number) => {
-    if (touchStartX.current === null) return;
+    if (!draggingRef.current || touchStartX.current === null) return;
+    const width = containerWidthRef.current || viewportRef.current?.clientWidth || 1;
     const delta = e.changedTouches[0].clientX - touchStartX.current;
+    const elapsed = Date.now() - touchStartTime.current;
+    const velocity = Math.abs(delta) / Math.max(elapsed, 1);
     touchStartX.current = null;
-    const SWIPE_THRESHOLD = 40;
-    if (delta > SWIPE_THRESHOLD) {
-      setMediaIndex((i) => (i - 1 + count) % count);
-    } else if (delta < -SWIPE_THRESHOLD) {
-      setMediaIndex((i) => (i + 1) % count);
+    draggingRef.current = false;
+
+    const DISTANCE_THRESHOLD = width * 0.2;
+    const FLICK_VELOCITY = 0.5;
+    const swiped = Math.abs(delta) > DISTANCE_THRESHOLD || velocity > FLICK_VELOCITY;
+
+    if (swiped && delta < 0) {
+      commitSlide(1, count);
+    } else if (swiped && delta > 0) {
+      commitSlide(-1, count);
+    } else {
+      springBack();
     }
   };
 
@@ -152,22 +191,54 @@ export function CaseStudyDetailPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
           <div className="relative group">
             <div
-              className="w-full aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] flex items-center justify-center p-4 sm:p-6 touch-pan-y select-none"
-              onTouchStart={mediaItems.length > 1 ? handleTouchStart : undefined}
+              ref={viewportRef}
+              className="w-full aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] overflow-hidden touch-pan-y select-none"
+              onTouchStart={mediaItems.length > 1 ? (e) => handleTouchStart(e, mediaItems.length) : undefined}
+              onTouchMove={mediaItems.length > 1 ? handleTouchMove : undefined}
               onTouchEnd={mediaItems.length > 1 ? (e) => handleTouchEnd(e, mediaItems.length) : undefined}
             >
-              <img
-                src={mediaItems[mediaIndex]}
-                alt={`${title} - ${mediaIndex + 1}`}
-                className="w-full h-full object-contain rounded-lg pointer-events-none"
-                draggable={false}
-              />
+              {mediaItems.length > 1 ? (
+                <div
+                  className={`flex h-full w-[300%] ${animateTrack ? 'transition-transform ease-out' : ''}`}
+                  style={{
+                    transitionDuration: animateTrack ? `${SLIDE_DURATION}ms` : undefined,
+                    transform: `translate3d(calc(-33.3333% + ${dragPx}px), 0, 0)`,
+                  }}
+                >
+                  {[
+                    (mediaIndex - 1 + mediaItems.length) % mediaItems.length,
+                    mediaIndex,
+                    (mediaIndex + 1) % mediaItems.length,
+                  ].map((idx, slot) => (
+                    <div key={slot} className="w-1/3 h-full flex items-center justify-center p-4 sm:p-6">
+                      <img
+                        src={mediaItems[idx]}
+                        alt={`${title} - ${idx + 1}`}
+                        loading={slot === 1 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        className="w-full h-full object-contain rounded-lg pointer-events-none"
+                        draggable={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center p-4 sm:p-6">
+                  <img
+                    src={mediaItems[0]}
+                    alt={title}
+                    decoding="async"
+                    className="w-full h-full object-contain rounded-lg pointer-events-none"
+                    draggable={false}
+                  />
+                </div>
+              )}
             </div>
             {mediaItems.length > 1 && (
               <>
                 <button
                   type="button"
-                  onClick={() => setMediaIndex((i) => (i - 1 + mediaItems.length) % mediaItems.length)}
+                  onClick={() => commitSlide(-1, mediaItems.length)}
                   aria-label={ar ? 'الصورة السابقة' : 'Previous image'}
                   className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white active:scale-95 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
                 >
@@ -175,7 +246,7 @@ export function CaseStudyDetailPage() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setMediaIndex((i) => (i + 1) % mediaItems.length)}
+                  onClick={() => commitSlide(1, mediaItems.length)}
                   aria-label={ar ? 'الصورة التالية' : 'Next image'}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#101418] hover:bg-white active:scale-95 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
                 >
@@ -186,7 +257,12 @@ export function CaseStudyDetailPage() {
                     <button
                       key={i}
                       type="button"
-                      onClick={() => setMediaIndex(i)}
+                      onClick={() => {
+                        if (animatingRef.current) return;
+                        setAnimateTrack(false);
+                        setDragPx(0);
+                        setMediaIndex(i);
+                      }}
                       aria-label={`${ar ? 'الصورة' : 'Image'} ${i + 1}`}
                       className={`w-1.5 h-1.5 rounded-full transition-all ${i === mediaIndex ? 'bg-white w-4' : 'bg-white/50'}`}
                     />

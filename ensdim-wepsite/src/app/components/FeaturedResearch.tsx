@@ -1,24 +1,16 @@
-import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { ArrowRight, Clock } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
-import { getPublishedResearchArticles, type ResearchArticle } from '../../lib/supabase';
+import { useResearchArticles } from '../../hooks/useContent';
 
 export function FeaturedResearch() {
   const { t, language } = useLanguage();
   const ar = language === 'ar';
   const navigate = useNavigate();
 
-  const [article, setArticle] = useState<ResearchArticle | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getPublishedResearchArticles()
-      .then((articles) => setArticle(articles[0] ?? null))
-      .catch(() => setArticle(null))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: articles = [], isLoading: loading } = useResearchArticles();
+  const article = articles[0] ?? null;
 
   if (!loading && !article) return null;
 
@@ -44,6 +36,8 @@ export function FeaturedResearch() {
                 <img
                   src={article.image_url}
                   alt={ar ? article.title_ar : article.title_en}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>

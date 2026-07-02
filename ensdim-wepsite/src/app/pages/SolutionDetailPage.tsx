@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -6,7 +6,7 @@ import { PageHero } from '../components/PageHero';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SEO } from '../components/SEO';
-import { getPublishedCaseStudies, type CaseStudy } from '../../lib/supabase';
+import { useCaseStudies } from '../../hooks/useContent';
 
 /**
  * Related problems only link to problem pages that already exist.
@@ -589,13 +589,8 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
 };
 
 function RelatedCaseStudy({ solutionSlug, ar }: { solutionSlug: string; ar: boolean }) {
-  const [study, setStudy] = useState<CaseStudy | null>(null);
-
-  useEffect(() => {
-    getPublishedCaseStudies()
-      .then((all) => setStudy(all.find((s) => s.solution_slug === solutionSlug) ?? null))
-      .catch(() => setStudy(null));
-  }, [solutionSlug]);
+  const { data: allStudies = [] } = useCaseStudies();
+  const study = allStudies.find((s) => s.solution_slug === solutionSlug) ?? null;
 
   if (!study) return null;
 
