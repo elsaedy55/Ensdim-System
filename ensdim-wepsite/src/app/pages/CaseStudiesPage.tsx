@@ -183,7 +183,7 @@ export function CaseStudiesPage() {
               {ar ? 'نتائج من حالات حقيقية ونماذج عملية.' : 'Outcomes from real cases and applied models.'}
             </h2>
           </ScrollReveal>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {resultsStrip.map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.05}>
                 <div className="text-center p-4 h-full">
