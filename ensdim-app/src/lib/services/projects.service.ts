@@ -1,11 +1,8 @@
-import { createClient } from "@/lib/supabase/client";
-import type { ProjectRow, ProfileRow } from "@/lib/supabase/types";
+import type { ProjectRow, ProfileRow, SupabaseClient } from "@/lib/supabase/types";
 
 type Project = ProjectRow;
 
-export async function getMyProject(userId: string): Promise<Project | null> {
-  const supabase = createClient();
-
+export async function getMyProject(supabase: SupabaseClient, userId: string): Promise<Project | null> {
   // Clients have one active project
   const { data, error } = await supabase
     .from("projects")
@@ -19,8 +16,7 @@ export async function getMyProject(userId: string): Promise<Project | null> {
   return data;
 }
 
-export async function getAllProjects() {
-  const supabase = createClient();
+export async function getAllProjects(supabase: SupabaseClient) {
   const { data, error } = await supabase
     .from("projects")
     .select("*, profiles!client_id(name, email, avatar_url)")
@@ -30,8 +26,7 @@ export async function getAllProjects() {
   return data ?? [];
 }
 
-export async function getProjectById(id: string) {
-  const supabase = createClient();
+export async function getProjectById(supabase: SupabaseClient, id: string) {
   const { data, error } = await supabase
     .from("projects")
     .select("*")
@@ -42,8 +37,7 @@ export async function getProjectById(id: string) {
   return data;
 }
 
-export async function getProjectMembers(projectId: string): Promise<ProfileRow[]> {
-  const supabase = createClient();
+export async function getProjectMembers(supabase: SupabaseClient, projectId: string): Promise<ProfileRow[]> {
   const { data, error } = await supabase
     .from("project_members")
     .select("profiles(*)")
@@ -53,10 +47,10 @@ export async function getProjectMembers(projectId: string): Promise<ProfileRow[]
 }
 
 export async function updateProject(
+  supabase: SupabaseClient,
   id: string,
   updates: Partial<ProjectRow>
 ) {
-  const supabase = createClient();
   const { data, error } = await supabase
     .from("projects")
     .update({ ...updates, updated_at: new Date().toISOString() })

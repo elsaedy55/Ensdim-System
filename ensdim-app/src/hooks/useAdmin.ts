@@ -3,6 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { STALE_TIME } from "@/lib/query-config";
+import { createClient } from "@/lib/supabase/client";
 import {
   adminGetAllProjects, adminGetRecentProjects, adminGetProjectById, adminCreateProject, adminUpdateProject, adminDeleteProject,
   adminCreateMilestone, adminUpdateMilestone, adminDeleteMilestone, adminSetMilestoneStatus,
@@ -21,7 +22,7 @@ import { useWorkspaceId } from "@/store/auth.store";
 export function useAdminKPIs() {
   return useQuery({
     queryKey:  ["admin-kpis"],
-    queryFn:   adminGetKPIs,
+    queryFn:   () => adminGetKPIs(createClient()),
     staleTime: STALE_TIME.LONG,
     refetchInterval: STALE_TIME.VERY_LONG,
   });
@@ -40,7 +41,7 @@ export function useAdminProjects() {
 export function useAdminRecentProjects(limit = 8) {
   return useQuery({
     queryKey:  ["admin-projects-recent", limit],
-    queryFn:   () => adminGetRecentProjects(limit),
+    queryFn:   () => adminGetRecentProjects(createClient(), limit),
     staleTime: STALE_TIME.MEDIUM,
   });
 }

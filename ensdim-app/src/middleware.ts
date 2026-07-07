@@ -27,14 +27,14 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const { user, response } = await updateSession(request);
+  const { claims, response } = await updateSession(request);
 
   const isPublic = PUBLIC_PATHS.some(
     (p) => pathname === p || pathname.startsWith(p + "/"),
   );
 
   // 1. Not authenticated
-  if (!user) {
+  if (!claims) {
     if (isPublic) return response;
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("from", pathname);
@@ -43,10 +43,10 @@ export async function middleware(request: NextRequest) {
 
   // Banned users are already rejected by Supabase Auth itself (ban_duration
   // set via auth.admin.updateUserById — see /api/admin/clients/[id]),
-  // so `user` above is already null for them once their session revalidates.
+  // so `claims` above is already null for them once their session revalidates.
   // No separate DB query is needed here on every navigation.
 
-  const role = (user.user_metadata?.role as string | undefined) ?? "client";
+  const role = (claims.user_metadata?.role as string | undefined) ?? "client";
 
   // 2. Authenticated user hitting a public route → redirect to their area
   if (isPublic) {

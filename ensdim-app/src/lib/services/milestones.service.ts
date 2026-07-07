@@ -1,10 +1,8 @@
-import { createClient } from "@/lib/supabase/client";
-import type { MilestoneRow } from "@/lib/supabase/types";
+import type { MilestoneRow, SupabaseClient } from "@/lib/supabase/types";
 
 type Milestone = MilestoneRow;
 
-export async function getMilestonesByProject(projectId: string): Promise<Milestone[]> {
-  const supabase = createClient();
+export async function getMilestonesByProject(supabase: SupabaseClient, projectId: string): Promise<Milestone[]> {
   const { data, error } = await supabase
     .from("milestones")
     .select("*")
@@ -15,8 +13,7 @@ export async function getMilestonesByProject(projectId: string): Promise<Milesto
   return data ?? [];
 }
 
-export async function getMilestoneById(id: string) {
-  const supabase = createClient();
+export async function getMilestoneById(supabase: SupabaseClient, id: string) {
   const { data, error } = await supabase
     .from("milestones")
     .select(`
@@ -30,8 +27,7 @@ export async function getMilestoneById(id: string) {
   return data;
 }
 
-export async function approveMilestone(id: string): Promise<Milestone> {
-  const supabase = createClient();
+export async function approveMilestone(supabase: SupabaseClient, id: string): Promise<Milestone> {
   const { data, error } = await supabase
     .from("milestones")
     .update({
@@ -48,10 +44,10 @@ export async function approveMilestone(id: string): Promise<Milestone> {
 }
 
 export async function updateMilestoneStatus(
+  supabase: SupabaseClient,
   id: string,
   status: Milestone["status"]
 ): Promise<Milestone> {
-  const supabase = createClient();
   const updates: Partial<Milestone> = {
     status,
     updated_at: new Date().toISOString(),
@@ -71,8 +67,7 @@ export async function updateMilestoneStatus(
   return data;
 }
 
-export async function getMilestoneActivity(milestoneId: string) {
-  const supabase = createClient();
+export async function getMilestoneActivity(supabase: SupabaseClient, milestoneId: string) {
   const { data, error } = await supabase
     .from("activity_logs")
     .select("*, profiles(name, avatar_url)")

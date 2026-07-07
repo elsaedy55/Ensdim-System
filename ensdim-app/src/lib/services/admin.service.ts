@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import type {
   ProjectRow, MilestoneRow, FileRow, RevisionRow,
   InvoiceRow, InvoiceLineItemRow, ProfileRow, NotificationRow, ClientStatus,
+  SupabaseClient,
 } from "@/lib/supabase/types";
 import { notifyProjectStatusChanged, notifyMilestoneReview, notifyInvoiceSent } from "@/lib/services/notify.service";
 
@@ -69,8 +70,11 @@ export async function adminGetAllProjects(): Promise<ProjectWithClient[]> {
 
 // Lightweight variant for the dashboard's "recent projects" widget —
 // avoids loading every project + column just to display a handful.
-export async function adminGetRecentProjects(limit = 8): Promise<ProjectWithClient[]> {
-  const supabase = createClient();
+//
+// Takes `supabase` via DI (unlike most of this file, which still creates
+// its own browser client) so the admin overview page can prefetch it
+// server-side — see (admin)/admin/page.tsx.
+export async function adminGetRecentProjects(supabase: SupabaseClient, limit = 8): Promise<ProjectWithClient[]> {
   const { data, error } = await supabase
     .from("projects")
     .select("id, name, status, health, progress, target_delivery, client:profiles!client_id(id, name, avatar_url)")
@@ -463,9 +467,10 @@ export interface AdminKPIs {
   openRevisions:   number;
 }
 
-export async function adminGetKPIs(): Promise<AdminKPIs> {
-  const supabase = createClient();
-
+// Takes `supabase` via DI (unlike most of this file, which still creates
+// its own browser client) so the admin overview page can prefetch it
+// server-side — see (admin)/admin/page.tsx.
+export async function adminGetKPIs(supabase: SupabaseClient): Promise<AdminKPIs> {
   const [projectsRes, clientsRes, revenueRes, revisionsRes] = await Promise.all([
     supabase.from("projects").select("id, status, health", { count: "exact" }),
     supabase.from("profiles").select("id", { count: "exact" }).eq("role", "client"),

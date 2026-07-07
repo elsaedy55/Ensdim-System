@@ -1,7 +1,4 @@
-import { createClient } from "@/lib/supabase/client";
-import type { ProjectRow, MilestoneRow, FileRow, RevisionRow, InvoiceRow } from "@/lib/supabase/types";
-
-type SupabaseClient = ReturnType<typeof createClient>;
+import type { ProjectRow, MilestoneRow, FileRow, RevisionRow, InvoiceRow, SupabaseClient } from "@/lib/supabase/types";
 
 // Notification text is stored as plain text (no i18n columns), so we write
 // it in the app's default locale (Arabic).

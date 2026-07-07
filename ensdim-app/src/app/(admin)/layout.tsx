@@ -1,14 +1,21 @@
 // No `force-dynamic` — layout renders once on first load and is preserved
 // across client-side navigation. Middleware handles session refresh on every request.
 
-import { getTranslations } from "next-intl/server";
+import { NextIntlClientProvider, createTranslator } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
+import { loadMessages } from "@/lib/i18n/messages";
 import { AdminSidebar } from "@/components/common/Sidebar/admin-sidebar";
 import { Header } from "@/components/common/Header/header";
 import { MobileSidebarTrigger } from "@/components/common/Sidebar/sidebar-mobile-trigger";
 import { AdminBottomNav } from "@/components/common/BottomNav";
 import { AuthHydrate } from "@/components/common/AuthHydrate";
 import { ROUTES } from "@/constants/routes";
+
+// Namespaces this route group's pages need, on top of the global set
+// (common, notifications) already loaded by the root layout — see
+// src/lib/i18n/messages.ts.
+const ADMIN_NAMESPACES = ["admin", "tables", "dialogs", "settings", "files"] as const;
 
 async function getLayoutData() {
   const supabase = await createClient();
@@ -40,10 +47,19 @@ async function getLayoutData() {
 }
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const [t, { user, profile, workspace, notificationCount }] = await Promise.all([
-    getTranslations("admin.overview.actions"),
+  const locale = await getLocale();
+
+  const [{ user, profile, workspace, notificationCount }, globalMessages, extraMessages] = await Promise.all([
     getLayoutData(),
+    getMessages(),
+    loadMessages(locale, ADMIN_NAMESPACES),
   ]);
+
+  const messages = { ...globalMessages, ...extraMessages };
+  // Server-side only — reads from `messages` directly instead of the
+  // request-wide config (which no longer carries "admin"), since this
+  // route group loads that namespace itself.
+  const t = createTranslator({ locale, messages, namespace: "admin.overview.actions" });
 
   const adminUser = user && profile
     ? { name: profile.name, email: user.email ?? "", role: profile.role, avatar: profile.avatar_url ?? undefined }
@@ -52,41 +68,43 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const adminWorkspace = workspace ? { name: (workspace as any).name } : undefined;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-(--bg-base)">
-      {user && profile && <AuthHydrate user={user} profile={profile} />}
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <div className="flex h-screen overflow-hidden bg-(--bg-base)">
+        {user && profile && <AuthHydrate user={user} profile={profile} />}
 
-      <AdminSidebar
-        user={adminUser}
-        workspace={adminWorkspace}
-        notificationCount={notificationCount}
-      />
-
-      <div className="flex flex-1 flex-col overflow-hidden min-w-0">
-        <Header
+        <AdminSidebar
           user={adminUser}
-          unreadCount={notificationCount}
-          settingsRoute={ROUTES.ADMIN.SETTINGS}
-          actionsData={[
-            { href: ROUTES.ADMIN.CLIENTS,     label: t("addClient"),  icon: "UserPlus", variant: "secondary", size: "sm" },
-            { href: ROUTES.ADMIN.PROJECT_NEW, label: t("newProject"), icon: "Plus",     size: "sm" },
-          ]}
-          actions={
-            <MobileSidebarTrigger
-              variant="admin"
-              user={adminUser}
-              workspace={adminWorkspace}
-              notificationCount={notificationCount}
-            />
-          }
+          workspace={adminWorkspace}
+          notificationCount={notificationCount}
         />
-        <main className="flex-1 overflow-y-auto pb-16 md:pb-0">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-            {children}
-          </div>
-        </main>
-      </div>
 
-      <AdminBottomNav notificationCount={notificationCount} />
-    </div>
+        <div className="flex flex-1 flex-col overflow-hidden min-w-0">
+          <Header
+            user={adminUser}
+            unreadCount={notificationCount}
+            settingsRoute={ROUTES.ADMIN.SETTINGS}
+            actionsData={[
+              { href: ROUTES.ADMIN.CLIENTS,     label: t("addClient"),  icon: "UserPlus", variant: "secondary", size: "sm" },
+              { href: ROUTES.ADMIN.PROJECT_NEW, label: t("newProject"), icon: "Plus",     size: "sm" },
+            ]}
+            actions={
+              <MobileSidebarTrigger
+                variant="admin"
+                user={adminUser}
+                workspace={adminWorkspace}
+                notificationCount={notificationCount}
+              />
+            }
+          />
+          <main className="flex-1 overflow-y-auto pb-16 md:pb-0">
+            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+              {children}
+            </div>
+          </main>
+        </div>
+
+        <AdminBottomNav notificationCount={notificationCount} />
+      </div>
+    </NextIntlClientProvider>
   );
 }

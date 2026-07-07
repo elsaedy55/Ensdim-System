@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { createClient } from "@/lib/supabase/client";
 import {
   getMyNotifications,
   markNotificationRead,
@@ -15,7 +16,7 @@ export function useNotifications() {
   const userId = useUser()?.id;
   return useQuery({
     queryKey:  ["notifications", userId],
-    queryFn:   () => getMyNotifications(userId!),
+    queryFn:   () => getMyNotifications(createClient(), userId!),
     enabled:   !!userId,
     staleTime: 30 * 1000, // 30 seconds — notifications are time-sensitive
   });
@@ -25,7 +26,7 @@ export function useUnreadCount(initialCount?: number) {
   const userId = useUser()?.id;
   return useQuery({
     queryKey:  ["notifications-count", userId],
-    queryFn:   () => getUnreadCount(userId!),
+    queryFn:   () => getUnreadCount(createClient(), userId!),
     enabled:   !!userId,
     staleTime: 30 * 1000,
     // Realtime subscription (useRealtimeNotifications, mounted in Header on
@@ -39,7 +40,7 @@ export function useUnreadCount(initialCount?: number) {
 export function useMarkNotificationRead() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (id: string) => markNotificationRead(id),
+    mutationFn: (id: string) => markNotificationRead(createClient(), id),
     onMutate: async (id) => {
       // Optimistic update
       await qc.cancelQueries({ queryKey: ["notifications"] });
@@ -63,7 +64,7 @@ export function useMarkAllRead() {
   const qc = useQueryClient();
   const userId = useUser()?.id;
   return useMutation({
-    mutationFn: () => markAllNotificationsRead(userId!),
+    mutationFn: () => markAllNotificationsRead(createClient(), userId!),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["notifications"] });
       qc.invalidateQueries({ queryKey: ["notifications-count"] });

@@ -1,5 +1,4 @@
-import { createClient } from "@/lib/supabase/client";
-import type { InvoiceRow, InvoiceLineItemRow } from "@/lib/supabase/types";
+import type { InvoiceRow, InvoiceLineItemRow, SupabaseClient } from "@/lib/supabase/types";
 
 type Invoice         = InvoiceRow;
 type InvoiceLineItem = InvoiceLineItemRow;
@@ -9,9 +8,7 @@ export interface InvoiceWithItems extends Invoice {
   project: { name: string } | null;
 }
 
-export async function getMyInvoices(userId: string): Promise<Invoice[]> {
-  const supabase = createClient();
-
+export async function getMyInvoices(supabase: SupabaseClient, userId: string): Promise<Invoice[]> {
   const { data, error } = await supabase
     .from("invoices")
     .select("*, projects(name)")
@@ -22,8 +19,7 @@ export async function getMyInvoices(userId: string): Promise<Invoice[]> {
   return (data as Invoice[]) ?? [];
 }
 
-export async function getInvoiceById(id: string): Promise<InvoiceWithItems> {
-  const supabase = createClient();
+export async function getInvoiceById(supabase: SupabaseClient, id: string): Promise<InvoiceWithItems> {
   const { data, error } = await supabase
     .from("invoices")
     .select(`
@@ -38,9 +34,7 @@ export async function getInvoiceById(id: string): Promise<InvoiceWithItems> {
   return data as InvoiceWithItems;
 }
 
-export async function getFinancialSummary(userId: string) {
-  const supabase = createClient();
-
+export async function getFinancialSummary(supabase: SupabaseClient, userId: string) {
   const { data, error } = await supabase
     .from("invoices")
     .select("total, status")
@@ -56,8 +50,7 @@ export async function getFinancialSummary(userId: string) {
   return { total, paid, remaining };
 }
 
-export async function markInvoiceAsSeen(id: string) {
-  const supabase = createClient();
+export async function markInvoiceAsSeen(supabase: SupabaseClient, id: string) {
   const { error } = await supabase
     .from("invoices")
     .update({ status: "viewed", updated_at: new Date().toISOString() })
@@ -67,10 +60,10 @@ export async function markInvoiceAsSeen(id: string) {
 }
 
 export async function uploadPaymentProofAndUpdateInvoice(
+  supabase: SupabaseClient,
   invoiceId: string,
   file: File
 ): Promise<Invoice> {
-  const supabase = createClient();
   const { uploadPaymentProof } = await import("./files.service");
   const proofUrl = await uploadPaymentProof(invoiceId, file);
 

@@ -9,6 +9,14 @@
  * Database interface for the Supabase client generic.
  */
 
+import type { SupabaseClient as RawSupabaseClient } from "@supabase/supabase-js";
+
+// Shared client type for service functions — both the browser client
+// (lib/supabase/client.ts) and the server client (lib/supabase/server.ts)
+// resolve to this same shape, since neither passes a Database generic yet.
+// Update this alias (not each call site) once real DB types are generated.
+export type SupabaseClient = RawSupabaseClient;
+
 export type Json =
   | string
   | number
