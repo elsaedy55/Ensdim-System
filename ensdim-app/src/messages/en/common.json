@@ -110,6 +110,7 @@
     "passwordMin": "Password must be at least 8 characters",
     "passwordMatch": "Passwords don't match",
     "nameMin": "Name must be at least 2 characters",
+    "phoneInvalid": "Please enter a valid phone number",
     "fieldTooShort": "Too short",
     "fieldTooLong": "Too long"
   },

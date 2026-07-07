@@ -36,18 +36,18 @@ function MilestoneCard({ m }: { m: MilestoneRow }) {
 
   return (
     <div className={cn("surface p-5 transition-all hover:shadow-(--shadow-md)", isReview && "border-(--warning-muted)")}>
-      <div className="flex items-start gap-4 rtl:flex-row-reverse">
+      <div className="flex items-start gap-4">
         <div className="mt-0.5 shrink-0">{STATUS_ICON[m.status]}</div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-3 mb-1.5 rtl:flex-row-reverse">
-            <h3 className="text-sm font-semibold text-(--text-primary) rtl:text-right">
+          <div className="flex items-start justify-between gap-3 mb-1.5">
+            <h3 className="text-sm font-semibold text-(--text-primary)">
               <Link href={ROUTES.CLIENT.MILESTONE(m.id)} className="hover:text-(--accent) transition-colors">{m.name}</Link>
             </h3>
             <StatusBadge status={m.status} />
           </div>
           {!isDone && m.progress > 0 && <Progress value={m.progress} size="xs" colorByValue className="mb-3" />}
-          <div className="flex items-center justify-between rtl:flex-row-reverse">
-            <div className="flex items-center gap-4 text-xs text-(--text-muted) rtl:flex-row-reverse">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4 text-xs text-(--text-muted)">
               <span>{t("card.due", { date: formatDate(m.due_date, { month: "short", day: "numeric" }) })}</span>
               {isDone && m.completed_at && (
                 <span className="text-(--success)">{t("card.completedOn", { date: formatDate(m.completed_at, { month: "short", day: "numeric" }) })}</span>
@@ -55,10 +55,10 @@ function MilestoneCard({ m }: { m: MilestoneRow }) {
             </div>
             {isReview ? (
               <Button size="sm" asChild>
-                <Link href={ROUTES.CLIENT.MILESTONE(m.id)} className="rtl:flex-row-reverse">{t("card.review")} <ArrowRight className="h-3 w-3 rtl:scale-x-[-1]" /></Link>
+                <Link href={ROUTES.CLIENT.MILESTONE(m.id)}>{t("card.review")} <ArrowRight className="h-3 w-3 rtl:scale-x-[-1]" /></Link>
               </Button>
             ) : (
-              <Link href={ROUTES.CLIENT.MILESTONE(m.id)} className="text-xs text-(--accent) hover:text-(--accent-hover) inline-flex items-center gap-1 rtl:flex-row-reverse">
+              <Link href={ROUTES.CLIENT.MILESTONE(m.id)} className="text-xs text-(--accent) hover:text-(--accent-hover) inline-flex items-center gap-1">
                 {t("card.viewDetails")} <ArrowRight className="h-3 w-3 rtl:scale-x-[-1]" />
               </Link>
             )}
@@ -98,12 +98,12 @@ export function MilestonesPanel({ projectId }: { projectId: string | undefined }
       />
 
       <div className="surface p-5">
-        <div className="flex items-center justify-between mb-3 rtl:flex-row-reverse">
+        <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium text-(--text-primary)">{t("page.overallProgress")}</span>
           <span className="text-lg font-bold text-(--text-primary)">{overall}%</span>
         </div>
         <Progress value={overall} size="md" colorByValue />
-        <div className="flex items-center gap-6 mt-3 text-xs text-(--text-muted) flex-wrap rtl:flex-row-reverse">
+        <div className="flex items-center gap-6 mt-3 text-xs text-(--text-muted) flex-wrap">
           <span>{t("stats.completed",  { count: counts.done })}</span>
           <span>{t("stats.inProgress", { count: counts.active })}</span>
           <span>{t("stats.upcoming",   { count: counts.pending })}</span>
@@ -112,7 +112,7 @@ export function MilestonesPanel({ projectId }: { projectId: string | undefined }
       </div>
 
       <Tabs defaultValue="all">
-        <TabsList variant="underline" className="w-full rtl:flex-row-reverse">
+        <TabsList variant="underline" className="w-full">
           <TabsTrigger value="all"    variant="underline" count={counts.all}>{t("tabs.all")}</TabsTrigger>
           <TabsTrigger value="review" variant="underline" count={counts.review}>{t("tabs.review")}</TabsTrigger>
           <TabsTrigger value="active" variant="underline" count={counts.active}>{t("tabs.active")}</TabsTrigger>

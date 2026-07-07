@@ -44,6 +44,8 @@ export function useApproveMilestone() {
     onSuccess: (_, id) => {
       qc.invalidateQueries({ queryKey: ["milestones"] });
       qc.invalidateQueries({ queryKey: ["milestone", id] });
+      // Approving shifts the DB-computed project.progress (see migration 023).
+      qc.invalidateQueries({ queryKey: ["project"] });
     },
   });
 }
@@ -56,6 +58,8 @@ export function useUpdateMilestoneStatus() {
     onSuccess: (_, { id }) => {
       qc.invalidateQueries({ queryKey: ["milestones"] });
       qc.invalidateQueries({ queryKey: ["milestone", id] });
+      // Status shifts the DB-computed project.progress (see migration 023).
+      qc.invalidateQueries({ queryKey: ["project"] });
     },
   });
 }

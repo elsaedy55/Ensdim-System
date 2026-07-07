@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeOff, Mail, Lock, User, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Phone, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormField } from "@/components/ui/form-field";
@@ -43,6 +43,7 @@ export default function RegisterPage() {
 
   const schema = z.object({
     name:            z.string().min(2, tv("nameMin")),
+    phone:           z.string().trim().min(8, tv("phoneInvalid")),
     email:           z.string().email(tv("emailInvalid")),
     password:        z.string().min(8, tv("passwordMin")),
     confirmPassword: z.string(),
@@ -72,11 +73,13 @@ export default function RegisterPage() {
         email:    data.email,
         password: data.password,
         name:     data.name,
+        phone:    data.phone,
         role:     "client",
       });
       setSuccess(true);
     } catch (err: unknown) {
-      setServerError(err instanceof Error ? err.message : "Registration failed. Please try again.");
+      const msg = err instanceof Error ? err.message : "Registration failed. Please try again.";
+      setServerError(msg === "EMAIL_ALREADY_REGISTERED" ? t("errors.emailExists") : msg);
     }
   };
 
@@ -121,6 +124,18 @@ export default function RegisterPage() {
               error={!!errors.name}
               leftElement={<User className="h-4 w-4" />}
               {...register("name")}
+            />
+          </FormField>
+
+          <FormField label={t("phoneLabel")} required htmlFor="phone" error={errors.phone?.message}>
+            <Input
+              id="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder={t("phonePlaceholder")}
+              error={!!errors.phone}
+              leftElement={<Phone className="h-4 w-4" />}
+              {...register("phone")}
             />
           </FormField>
 

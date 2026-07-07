@@ -31,20 +31,20 @@ function RevisionCard({ r }: { r: ReturnType<typeof useRevisions>["data"] extend
       href={ROUTES.CLIENT.REVISION(r.id)}
       className="block surface p-4 hover:shadow-(--shadow-md) transition-all group"
     >
-      <div className="flex items-start gap-3 rtl:flex-row-reverse">
+      <div className="flex items-start gap-3">
         <span className={`mt-0.5 inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium shrink-0 ${CATEGORY_COLORS[r.category] ?? CATEGORY_COLORS.question}`}>
           {t(`categories.${r.category}` as Parameters<typeof t>[0])}
         </span>
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-3 mb-1.5 rtl:flex-row-reverse">
-            <p className="text-sm font-semibold text-(--text-primary) group-hover:text-(--accent) transition-colors line-clamp-1 rtl:text-right">
+          <div className="flex items-start justify-between gap-3 mb-1.5">
+            <p className="text-sm font-semibold text-(--text-primary) group-hover:text-(--accent) transition-colors line-clamp-1">
               #{r.id.slice(-6).toUpperCase()} {r.title}
             </p>
             <StatusBadge status={r.status} showDot={false} size="sm" />
           </div>
 
-          <div className="flex items-center gap-3 text-xs text-(--text-muted) flex-wrap rtl:flex-row-reverse">
+          <div className="flex items-center gap-3 text-xs text-(--text-muted) flex-wrap">
             <PriorityBadge priority={r.priority as "high" | "medium" | "low"} />
             {(r as any).milestones?.name && (
               <span>{t("card.linkedTo", { milestone: (r as any).milestones.name })}</span>
@@ -97,7 +97,7 @@ export function RevisionsPanel({ projectId, showNewButton = true }: { projectId:
       {showNewButton && (
         <div className="flex justify-end">
           <Button asChild>
-            <Link href={ROUTES.CLIENT.REVISION_NEW} className="rtl:flex-row-reverse">
+            <Link href={ROUTES.CLIENT.REVISION_NEW}>
               <Plus className="h-4 w-4" />
               {t("new.title")}
             </Link>
@@ -106,7 +106,7 @@ export function RevisionsPanel({ projectId, showNewButton = true }: { projectId:
       )}
 
       <Tabs defaultValue="all">
-        <TabsList variant="underline" className="w-full rtl:flex-row-reverse">
+        <TabsList variant="underline" className="w-full">
           <TabsTrigger value="all"    variant="underline" count={counts.all}>{t("tabs.all")}</TabsTrigger>
           <TabsTrigger value="open"   variant="underline" count={counts.open}>{t("tabs.open")}</TabsTrigger>
           <TabsTrigger value="active" variant="underline" count={counts.active}>{t("tabs.active")}</TabsTrigger>

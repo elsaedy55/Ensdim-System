@@ -78,17 +78,17 @@ function FileRowItem({ file, blurred }: { file: FileRow; blurred: boolean }) {
   };
 
   return (
-    <div className="group flex items-center gap-4 px-4 py-3 hover:bg-(--bg-muted) transition-colors rounded-lg border border-(--border) mb-2 rtl:flex-row-reverse">
+    <div className="group flex items-center gap-4 px-4 py-3 hover:bg-(--bg-muted) transition-colors rounded-lg border border-(--border) mb-2">
       <div className="shrink-0">{getFileIcon(file.mime_type ?? "")}</div>
 
       <div className={cn("flex-1 min-w-0", blurred && !revealed && "blur-sm select-none")}>
-        <p className="text-sm font-medium text-(--text-primary) truncate rtl:text-right">{file.name}</p>
-        <p className="text-xs text-(--text-muted) rtl:text-right">
+        <p className="text-sm font-medium text-(--text-primary) truncate">{file.name}</p>
+        <p className="text-xs text-(--text-muted)">
           {formatBytes(file.size ?? 0)} · {(file as any).uploader?.name ?? "Team"} · {formatDate(file.created_at, { month: "short", day: "numeric", year: "numeric" })}
         </p>
       </div>
 
-      <div className="shrink-0 flex items-center gap-2 rtl:flex-row-reverse">
+      <div className="shrink-0 flex items-center gap-2">
         {blurred && !revealed ? (
           <Button size="sm" variant="secondary" onClick={() => setRevealed(true)}>
             <ShieldAlert className="h-3.5 w-3.5 me-1" /> {t("credentials.show")}
@@ -134,8 +134,8 @@ function CredentialField({ label, value, isLink, isSecret }: { label: string; va
   };
 
   return (
-    <div className="flex items-center justify-between gap-2 rounded-md bg-(--bg-muted) px-3 py-1.5 rtl:flex-row-reverse">
-      <div className="min-w-0 rtl:text-right">
+    <div className="flex items-center justify-between gap-2 rounded-md bg-(--bg-muted) px-3 py-1.5">
+      <div className="min-w-0">
         <p className="text-[10px] uppercase tracking-wide text-(--text-muted)">{label}</p>
         {isLink ? (
           <a href={value} target="_blank" rel="noopener noreferrer" className="text-xs text-(--accent) hover:underline truncate block">
@@ -166,12 +166,12 @@ function CredentialRowItem({ file }: { file: FileRow }) {
 
   return (
     <div className="px-4 py-3 hover:bg-(--bg-muted) transition-colors rounded-lg border border-(--border) mb-2">
-      <div className="flex items-center gap-4 rtl:flex-row-reverse">
+      <div className="flex items-center gap-4">
         <div className="shrink-0"><KeyRound className="h-5 w-5 text-(--accent)" /></div>
 
         <div className={cn("flex-1 min-w-0", !revealed && "blur-sm select-none")}>
-          <p className="text-sm font-medium text-(--text-primary) truncate rtl:text-right">{file.name}</p>
-          <p className="text-xs text-(--text-muted) rtl:text-right">
+          <p className="text-sm font-medium text-(--text-primary) truncate">{file.name}</p>
+          <p className="text-xs text-(--text-muted)">
             {(file as any).uploader?.name ?? "Team"} · {formatDate(file.created_at, { month: "short", day: "numeric", year: "numeric" })}
           </p>
         </div>
@@ -186,12 +186,12 @@ function CredentialRowItem({ file }: { file: FileRow }) {
       </div>
 
       {revealed && (
-        <div className="mt-3 space-y-2 ps-9 rtl:pe-9 rtl:ps-0">
+        <div className="mt-3 space-y-2 ps-9">
           {data.url && <CredentialField label={t("credentials.fields.url")} value={data.url} isLink />}
           {data.email && <CredentialField label={t("credentials.fields.email")} value={data.email} />}
           {data.username && <CredentialField label={t("credentials.fields.username")} value={data.username} />}
           {data.password && <CredentialField label={t("credentials.fields.password")} value={data.password} isSecret />}
-          {data.notes && <p className="text-xs text-(--text-muted) rtl:text-right">{data.notes}</p>}
+          {data.notes && <p className="text-xs text-(--text-muted)">{data.notes}</p>}
         </div>
       )}
     </div>
@@ -216,9 +216,9 @@ function FileList({ files, isCredentials = false }: { files: FileRow[]; isCreden
   return (
     <div>
       {isCredentials && (
-        <div className="mb-4 flex items-start gap-2.5 rounded-lg bg-(--warning-subtle) border border-(--warning-muted) px-4 py-3 rtl:flex-row-reverse">
+        <div className="mb-4 flex items-start gap-2.5 rounded-lg bg-(--warning-subtle) border border-(--warning-muted) px-4 py-3">
           <ShieldAlert className="h-4 w-4 text-(--warning) mt-0.5 shrink-0" />
-          <p className="text-sm text-(--warning-foreground) rtl:text-right">{t("credentials.warning")}</p>
+          <p className="text-sm text-(--warning-foreground)">{t("credentials.warning")}</p>
         </div>
       )}
       {files.map((f) =>
@@ -262,7 +262,7 @@ export function FilesPanel({ projectId }: { projectId: string | undefined }) {
   return (
     <Tabs defaultValue="all">
       <div className="overflow-x-auto">
-        <TabsList variant="underline" className="w-max min-w-full rtl:flex-row-reverse">
+        <TabsList variant="underline" className="w-max min-w-full">
           {TABS.map((tab) => (
             <TabsTrigger
               key={tab.value}

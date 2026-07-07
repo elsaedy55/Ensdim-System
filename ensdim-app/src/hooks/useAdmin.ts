@@ -106,12 +106,23 @@ export function useAdminDeleteProject() {
 
 // ─── Milestones ───────────────────────────────────────────────────
 
+// Milestone changes shift the DB-computed project.progress (see migration
+// 023) — every milestone mutation must also invalidate the project caches,
+// not just the milestone list, or the % shown stays stale until reload.
+function invalidateProjectCaches(qc: ReturnType<typeof useQueryClient>, projectId: string) {
+  qc.invalidateQueries({ queryKey: ["admin-project", projectId] });
+  qc.invalidateQueries({ queryKey: ["admin-projects"] });
+  qc.invalidateQueries({ queryKey: ["admin-projects-recent"] });
+  qc.invalidateQueries({ queryKey: ["project"] });
+}
+
 export function useAdminCreateMilestone() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (input: CreateMilestoneInput) => adminCreateMilestone(input),
     onSuccess: (result) => {
       qc.invalidateQueries({ queryKey: ["milestones", result.project_id] });
+      invalidateProjectCaches(qc, result.project_id);
     },
   });
 }
@@ -124,6 +135,7 @@ export function useAdminUpdateMilestone() {
     onSuccess: (result) => {
       qc.invalidateQueries({ queryKey: ["milestones", result.project_id] });
       qc.invalidateQueries({ queryKey: ["milestone", result.id] });
+      invalidateProjectCaches(qc, result.project_id);
     },
   });
 }
@@ -135,6 +147,7 @@ export function useAdminDeleteMilestone() {
       adminDeleteMilestone(id),
     onSuccess: (_, { projectId }) => {
       qc.invalidateQueries({ queryKey: ["milestones", projectId] });
+      invalidateProjectCaches(qc, projectId);
     },
   });
 }
@@ -147,6 +160,7 @@ export function useAdminSetMilestoneStatus() {
     onSuccess: (result) => {
       qc.invalidateQueries({ queryKey: ["milestones", result.project_id] });
       qc.invalidateQueries({ queryKey: ["milestone", result.id] });
+      invalidateProjectCaches(qc, result.project_id);
     },
   });
 }

@@ -2,7 +2,9 @@
 
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
+import { localeDir, type Locale } from "@/i18n/common";
 
 interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
   size?: "xs" | "sm" | "md";
@@ -14,6 +16,8 @@ const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
 >(({ className, value = 0, size = "sm", showLabel = false, colorByValue = false, ...props }, ref) => {
+  const locale = useLocale();
+  const isRtl  = localeDir[locale as Locale] === "rtl";
   const v = value ?? 0;
   const color = colorByValue
     ? v >= 90
@@ -49,7 +53,7 @@ const Progress = React.forwardRef<
       >
         <ProgressPrimitive.Indicator
           className={cn("h-full w-full flex-1 transition-all duration-700 ease-out rounded-full", color)}
-          style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}
+          style={{ transform: `translateX(${isRtl ? "" : "-"}${100 - (value ?? 0)}%)` }}
         />
       </ProgressPrimitive.Root>
     </div>

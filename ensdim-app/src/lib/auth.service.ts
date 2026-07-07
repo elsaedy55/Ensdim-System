@@ -16,6 +16,7 @@ export async function signUp(params: {
   email: string;
   password: string;
   name: string;
+  phone?: string;
   role?: UserRole;
 }) {
   const supabase = createClient();
@@ -29,11 +30,21 @@ export async function signUp(params: {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin}/auth/callback`,
       data: {
         name: params.name,
+        phone: params.phone,
         role: params.role ?? "client",
       },
     },
   });
   if (error) throw new Error(error.message);
+
+  // Supabase's fraud-prevention behavior: signing up with an email that's
+  // already registered returns a *fake* success (no error) instead of
+  // failing, to avoid leaking which emails exist. The tell is that the
+  // returned user has no identities attached.
+  if (data.user && data.user.identities?.length === 0) {
+    throw new Error("EMAIL_ALREADY_REGISTERED");
+  }
+
   return data;
 }
 

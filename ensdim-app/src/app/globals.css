@@ -217,6 +217,13 @@ body {
   min-height: 100vh;
 }
 
+/* Logo PNG has black wordmark text — invert it for dark backgrounds while
+   keeping the red brand color (invert + hue-rotate cancels out on the
+   saturated red pixels but flips the black pixels to white). */
+.dark .auth-logo {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
