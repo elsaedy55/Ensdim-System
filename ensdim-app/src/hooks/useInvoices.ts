@@ -3,6 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { STALE_TIME } from "@/lib/query-config";
 import { createClient } from "@/lib/supabase/client";
+import type { InvoiceRow } from "@/lib/supabase/types";
 import {
   getMyInvoices,
   getInvoiceById,
@@ -45,7 +46,24 @@ export function useMarkInvoiceSeen() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => markInvoiceAsSeen(createClient(), id),
-    onSuccess: (_, id) => {
+    onMutate: async (id) => {
+      await qc.cancelQueries({ queryKey: ["invoices"] });
+      const listQueries = qc.getQueriesData<InvoiceRow[]>({ queryKey: ["invoices"] });
+      listQueries.forEach(([key, data]) => {
+        if (data) {
+          qc.setQueryData(
+            key,
+            // markInvoiceAsSeen only upgrades "sent" → "viewed" server-side too
+            data.map((inv) => inv.id === id && inv.status === "sent" ? { ...inv, status: "viewed" } : inv),
+          );
+        }
+      });
+      return { listQueries };
+    },
+    onError: (_, __, ctx) => {
+      ctx?.listQueries.forEach(([key, data]) => qc.setQueryData(key, data));
+    },
+    onSettled: (_, __, id) => {
       qc.invalidateQueries({ queryKey: ["invoice", id] });
       qc.invalidateQueries({ queryKey: ["invoices"] });
     },

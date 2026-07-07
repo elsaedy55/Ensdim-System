@@ -20,7 +20,16 @@ export function useUpdateWorkspace() {
   const workspaceId = useWorkspaceId();
   return useMutation({
     mutationFn: (updates: Partial<WorkspaceSettings>) => updateWorkspace(workspaceId!, updates),
-    onSuccess: () => {
+    onMutate: async (updates) => {
+      await qc.cancelQueries({ queryKey: ["workspace", workspaceId] });
+      const prev = qc.getQueryData<WorkspaceSettings>(["workspace", workspaceId]);
+      if (prev) qc.setQueryData(["workspace", workspaceId], { ...prev, ...updates });
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["workspace", workspaceId], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: ["workspace", workspaceId] });
     },
   });

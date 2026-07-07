@@ -14,6 +14,8 @@ import {
 
 const KEY = "research-articles";
 
+type ResearchArticle = Awaited<ReturnType<typeof getAllResearchArticles>>[number];
+
 export function useResearchArticles() {
   return useQuery({
     queryKey:  [KEY],
@@ -46,7 +48,19 @@ export function useUpdateResearchArticle() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: Partial<UpsertResearchInput> }) =>
       updateResearchArticle(id, input),
-    onSuccess: (_, { id }) => {
+    onMutate: async ({ id, input }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<ResearchArticle[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.map((a) => a.id === id ? { ...a, ...input } : a));
+      const prevSingle = qc.getQueryData<ResearchArticle>([KEY, id]);
+      if (prevSingle) qc.setQueryData([KEY, id], { ...prevSingle, ...input });
+      return { prevList, prevSingle };
+    },
+    onError: (_, { id }, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+      if (ctx?.prevSingle) qc.setQueryData([KEY, id], ctx.prevSingle);
+    },
+    onSettled: (_, __, { id }) => {
       qc.invalidateQueries({ queryKey: [KEY] });
       qc.invalidateQueries({ queryKey: [KEY, id] });
     },
@@ -58,7 +72,16 @@ export function useToggleResearchPublished() {
   return useMutation({
     mutationFn: ({ id, isPublished }: { id: string; isPublished: boolean }) =>
       toggleResearchPublished(id, isPublished),
-    onSuccess: () => {
+    onMutate: async ({ id, isPublished }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<ResearchArticle[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.map((a) => a.id === id ? { ...a, is_published: isPublished } : a));
+      return { prevList };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });
@@ -68,7 +91,16 @@ export function useDeleteResearchArticle() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteResearchArticle(id),
-    onSuccess: () => {
+    onMutate: async (id) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<ResearchArticle[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.filter((a) => a.id !== id));
+      return { prevList };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });

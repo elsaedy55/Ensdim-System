@@ -5,6 +5,44 @@ import { processLock } from "@supabase/auth-js";
 let _client: ReturnType<typeof createBrowserClient> | null = null;
 
 const AUTH_FETCH_TIMEOUT_MS = 10_000;
+const LOCK_TIMEOUT_MS       = 6_000;
+
+// Safety net around processLock itself (not just the auth fetch below).
+// Confirmed by direct reproduction: the queue processLock uses internally
+// (@supabase/auth-js's PROCESS_LOCKS chain) can end up waiting on an
+// operation that never settles — observed after fast client-side
+// navigation — and once that happens, EVERY later Supabase call on the
+// page (including ones with no relation to the stuck one, e.g. a fresh
+// `.from(x).select()`) queues behind the same broken chain and hangs
+// forever, with no error and no timeout of its own. This doesn't un-wedge
+// the underlying queue (that requires a full page reload — the queue lives
+// in module state), but it does mean a hung call now surfaces as a normal
+// rejected promise after LOCK_TIMEOUT_MS instead of hanging the UI
+// indefinitely, so React Query can show its usual error/retry state.
+//
+// Once one call has timed out, the chain is confirmed broken for the rest
+// of this page's life — every subsequent lock request is chained behind
+// the same dead queue too, so there's no point paying LOCK_TIMEOUT_MS
+// again per call. `lockPoisoned` makes every later call fail immediately
+// instead of each queuing up its own full timeout (which otherwise
+// compounds badly, since GoTrueClient itself makes several sequential
+// locked calls per navigation).
+let lockPoisoned = false;
+
+function lockWithTimeout<R>(name: string, acquireTimeout: number, fn: () => Promise<R>): Promise<R> {
+  if (lockPoisoned) {
+    return Promise.reject(new Error("Request timed out — please refresh the page."));
+  }
+  return Promise.race([
+    processLock(name, acquireTimeout, fn),
+    new Promise<R>((_, reject) =>
+      setTimeout(() => {
+        lockPoisoned = true;
+        reject(new Error("Request timed out — please refresh the page."));
+      }, LOCK_TIMEOUT_MS),
+    ),
+  ]);
+}
 
 // Every Supabase call (table queries, storage, not just auth methods) calls
 // auth.getSession() first to attach the access token — and when a second
@@ -48,8 +86,10 @@ export function createClient() {
           // Avoid the Navigator LockManager-based session lock: an in-flight
           // auth call aborted by client-side route navigation can leave the
           // lock held, deadlocking every subsequent Supabase request until a
-          // full page reload. The process-level lock doesn't have this issue.
-          lock: processLock,
+          // full page reload. processLock (wrapped with its own timeout
+          // above) doesn't fully avoid an equivalent orphaning failure mode,
+          // but bounds how long it hangs when it happens.
+          lock: lockWithTimeout,
         },
         global: {
           fetch: fetchWithAuthTimeout,

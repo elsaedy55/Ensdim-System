@@ -15,6 +15,8 @@ import {
 
 const KEY = "case-studies";
 
+type CaseStudy = Awaited<ReturnType<typeof getAllCaseStudies>>[number];
+
 export function useCaseStudies() {
   return useQuery({
     queryKey:  [KEY],
@@ -47,7 +49,19 @@ export function useUpdateCaseStudy() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: Partial<UpsertCaseStudyInput> }) =>
       updateCaseStudy(id, input),
-    onSuccess: (_, { id }) => {
+    onMutate: async ({ id, input }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<CaseStudy[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.map((c) => c.id === id ? { ...c, ...input } : c));
+      const prevSingle = qc.getQueryData<CaseStudy>([KEY, id]);
+      if (prevSingle) qc.setQueryData([KEY, id], { ...prevSingle, ...input });
+      return { prevList, prevSingle };
+    },
+    onError: (_, { id }, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+      if (ctx?.prevSingle) qc.setQueryData([KEY, id], ctx.prevSingle);
+    },
+    onSettled: (_, __, { id }) => {
       qc.invalidateQueries({ queryKey: [KEY] });
       qc.invalidateQueries({ queryKey: [KEY, id] });
     },
@@ -59,7 +73,16 @@ export function useToggleCaseStudyPublished() {
   return useMutation({
     mutationFn: ({ id, isPublished }: { id: string; isPublished: boolean }) =>
       toggleCaseStudyPublished(id, isPublished),
-    onSuccess: () => {
+    onMutate: async ({ id, isPublished }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<CaseStudy[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.map((c) => c.id === id ? { ...c, is_published: isPublished } : c));
+      return { prevList };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });
@@ -69,7 +92,16 @@ export function useDeleteCaseStudy() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteCaseStudy(id),
-    onSuccess: () => {
+    onMutate: async (id) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<CaseStudy[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.filter((c) => c.id !== id));
+      return { prevList };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });

@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   getAllTasks, createTask, updateTask, updateTaskStatus, deleteTask, reorderTasks,
-  type TaskRow, type TaskStatus,
+  type TaskRow, type TaskWithRelations, type TaskStatus,
 } from "@/lib/services/tasks.service";
 import { useUser, useWorkspaceId } from "@/store/auth.store";
 
@@ -21,6 +21,29 @@ export function useCreateTask() {
   const workspaceId = useWorkspaceId();
   return useMutation({
     mutationFn: (input: Parameters<typeof createTask>[0]) => createTask(input, workspaceId!, userId!),
+    onMutate: async (input) => {
+      await qc.cancelQueries({ queryKey: ["tasks"] });
+      const queries = qc.getQueriesData<TaskWithRelations[]>({ queryKey: ["tasks"] });
+      // No assignee/project/milestone join data yet — the UI is expected to
+      // tolerate those being briefly absent until onSuccess's invalidate
+      // swaps this in for the real, fully-joined row.
+      const optimisticTask: TaskWithRelations = {
+        ...input,
+        id:           `temp-${crypto.randomUUID()}`,
+        workspace_id: workspaceId!,
+        created_by:   userId!,
+        order:        Date.now(),
+        created_at:   new Date().toISOString(),
+        updated_at:   new Date().toISOString(),
+      };
+      queries.forEach(([key, data]) => {
+        if (data) qc.setQueryData(key, [...data, optimisticTask]);
+      });
+      return { queries };
+    },
+    onError: (_, __, ctx) => {
+      ctx?.queries.forEach(([key, data]) => qc.setQueryData(key, data));
+    },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["tasks"] }),
   });
 }
@@ -30,7 +53,18 @@ export function useUpdateTask() {
   return useMutation({
     mutationFn: ({ id, updates }: { id: string; updates: Partial<TaskRow> }) =>
       updateTask(id, updates),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["tasks"] }),
+    onMutate: async ({ id, updates }) => {
+      await qc.cancelQueries({ queryKey: ["tasks"] });
+      const queries = qc.getQueriesData<TaskWithRelations[]>({ queryKey: ["tasks"] });
+      queries.forEach(([key, data]) => {
+        if (data) qc.setQueryData(key, data.map((t) => t.id === id ? { ...t, ...updates } : t));
+      });
+      return { queries };
+    },
+    onError: (_, __, ctx) => {
+      ctx?.queries.forEach(([key, data]) => qc.setQueryData(key, data));
+    },
+    onSettled: () => qc.invalidateQueries({ queryKey: ["tasks"] }),
   });
 }
 
@@ -61,7 +95,18 @@ export function useDeleteTask() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteTask(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["tasks"] }),
+    onMutate: async (id) => {
+      await qc.cancelQueries({ queryKey: ["tasks"] });
+      const queries = qc.getQueriesData<TaskWithRelations[]>({ queryKey: ["tasks"] });
+      queries.forEach(([key, data]) => {
+        if (data) qc.setQueryData(key, data.filter((t) => t.id !== id));
+      });
+      return { queries };
+    },
+    onError: (_, __, ctx) => {
+      ctx?.queries.forEach(([key, data]) => qc.setQueryData(key, data));
+    },
+    onSettled: () => qc.invalidateQueries({ queryKey: ["tasks"] }),
   });
 }
 

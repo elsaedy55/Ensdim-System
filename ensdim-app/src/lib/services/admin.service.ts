@@ -150,19 +150,17 @@ export async function adminDeleteProject(id: string): Promise<void> {
 export async function adminCreateMilestone(input: CreateMilestoneInput): Promise<MilestoneRow> {
   const supabase = createClient();
 
-  // Auto-assign order (last + 1)
-  const { count } = await supabase
-    .from("milestones")
-    .select("*", { count: "exact", head: true })
-    .eq("project_id", input.project_id);
-
+  // Auto-assign order by timestamp instead of fetching the current count
+  // first — a millisecond epoch is always greater than any existing
+  // small-integer order, so new milestones still sort last, without
+  // spending a round trip on a count query before the insert can start.
   const { data, error } = await supabase
     .from("milestones")
     .insert({
       ...input,
       status: "pending",
       progress: 0,
-      order: input.order ?? (count ?? 0),
+      order: input.order ?? Date.now(),
     })
     .select()
     .single();

@@ -14,6 +14,8 @@ import {
 
 const KEY = "blog-posts";
 
+type BlogPost = Awaited<ReturnType<typeof getAllBlogPosts>>[number];
+
 export function useBlogPosts() {
   return useQuery({
     queryKey:  [KEY],
@@ -46,7 +48,19 @@ export function useUpdateBlogPost() {
   return useMutation({
     mutationFn: ({ id, input }: { id: string; input: Partial<UpsertBlogPostInput> }) =>
       updateBlogPost(id, input),
-    onSuccess: (_, { id }) => {
+    onMutate: async ({ id, input }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<BlogPost[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.map((p) => p.id === id ? { ...p, ...input } : p));
+      const prevSingle = qc.getQueryData<BlogPost>([KEY, id]);
+      if (prevSingle) qc.setQueryData([KEY, id], { ...prevSingle, ...input });
+      return { prevList, prevSingle };
+    },
+    onError: (_, { id }, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+      if (ctx?.prevSingle) qc.setQueryData([KEY, id], ctx.prevSingle);
+    },
+    onSettled: (_, __, { id }) => {
       qc.invalidateQueries({ queryKey: [KEY] });
       qc.invalidateQueries({ queryKey: [KEY, id] });
     },
@@ -58,7 +72,16 @@ export function useToggleBlogPublished() {
   return useMutation({
     mutationFn: ({ id, isPublished }: { id: string; isPublished: boolean }) =>
       toggleBlogPublished(id, isPublished),
-    onSuccess: () => {
+    onMutate: async ({ id, isPublished }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<BlogPost[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.map((p) => p.id === id ? { ...p, is_published: isPublished } : p));
+      return { prevList };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });
@@ -68,7 +91,16 @@ export function useDeleteBlogPost() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteBlogPost(id),
-    onSuccess: () => {
+    onMutate: async (id) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prevList = qc.getQueryData<BlogPost[]>([KEY]);
+      qc.setQueryData([KEY], prevList?.filter((p) => p.id !== id));
+      return { prevList };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prevList) qc.setQueryData([KEY], ctx.prevList);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });

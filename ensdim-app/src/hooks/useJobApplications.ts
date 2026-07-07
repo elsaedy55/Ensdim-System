@@ -24,7 +24,16 @@ export function useUpdateJobApplicationStatus() {
   return useMutation({
     mutationFn: ({ id, status }: { id: string; status: JobApplicationStatus }) =>
       updateJobApplicationStatus(id, status),
-    onSuccess: () => {
+    onMutate: async ({ id, status }) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prev = qc.getQueryData<JobApplication[]>([KEY]);
+      qc.setQueryData([KEY], prev?.map((a) => a.id === id ? { ...a, status } : a));
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData([KEY], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });
@@ -35,7 +44,16 @@ export function useDeleteJobApplication() {
   return useMutation({
     mutationFn: (application: Pick<JobApplication, "id" | "cv_path" | "portfolio_file_path">) =>
       deleteJobApplication(application),
-    onSuccess: () => {
+    onMutate: async (application) => {
+      await qc.cancelQueries({ queryKey: [KEY] });
+      const prev = qc.getQueryData<JobApplication[]>([KEY]);
+      qc.setQueryData([KEY], prev?.filter((a) => a.id !== application.id));
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData([KEY], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: [KEY] });
     },
   });

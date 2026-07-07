@@ -54,17 +54,18 @@ export async function createTask(
 ): Promise<TaskRow> {
   const supabase = createClient();
 
-  const { count } = await supabase
-    .from("tasks").select("*", { count: "exact", head: true })
-    .eq("workspace_id", workspaceId).eq("status", input.status ?? "todo");
-
+  // Auto-assign order by timestamp instead of fetching the current count
+  // first — a millisecond epoch is always greater than any existing
+  // small-integer order, so new tasks still sort last within their column,
+  // without spending a round trip on a count query before the insert can
+  // start.
   const { data, error } = await supabase
     .from("tasks")
     .insert({
       ...input,
       workspace_id: workspaceId,
       created_by:   userId,
-      order:        count ?? 0,
+      order:        Date.now(),
     })
     .select()
     .single();

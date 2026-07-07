@@ -36,7 +36,16 @@ export function useUpdateProfile() {
   const userId = useUser()?.id;
   return useMutation({
     mutationFn: (updates: Pick<ProfileUpdate, "name" | "phone" | "company">) => updateMyProfile(userId!, updates),
-    onSuccess: () => {
+    onMutate: async (updates) => {
+      await qc.cancelQueries({ queryKey: ["profile", userId] });
+      const prev = qc.getQueryData<ProfileRow>(["profile", userId]);
+      if (prev) qc.setQueryData(["profile", userId], { ...prev, ...updates });
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["profile", userId], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: ["profile"] });
     },
   });
@@ -67,7 +76,16 @@ export function useUpdateNotifPreferences() {
   const userId = useUser()?.id;
   return useMutation({
     mutationFn: (prefs: Partial<PrefUpdate>) => updateNotificationPreferences(userId!, prefs),
-    onSuccess: () => {
+    onMutate: async (prefs) => {
+      await qc.cancelQueries({ queryKey: ["notif-prefs", userId] });
+      const prev = qc.getQueryData<NotificationPrefsRow>(["notif-prefs", userId]);
+      if (prev) qc.setQueryData(["notif-prefs", userId], { ...prev, ...prefs });
+      return { prev };
+    },
+    onError: (_, __, ctx) => {
+      if (ctx?.prev) qc.setQueryData(["notif-prefs", userId], ctx.prev);
+    },
+    onSettled: () => {
       qc.invalidateQueries({ queryKey: ["notif-prefs"] });
     },
   });

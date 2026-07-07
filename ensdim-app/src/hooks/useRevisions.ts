@@ -53,7 +53,23 @@ export function useUpdateRevisionStatus() {
       status: Parameters<typeof updateRevisionStatus>[1];
       teamResponse?: string;
     }) => updateRevisionStatus(id, status, userId!, teamResponse),
-    onSuccess: (result) => {
+    onMutate: async ({ id, status, teamResponse }) => {
+      await qc.cancelQueries({ queryKey: ["revisions"] });
+      const patch = { status, ...(teamResponse !== undefined ? { team_response: teamResponse } : {}) };
+      const listQueries = qc.getQueriesData<RevisionRow[]>({ queryKey: ["revisions"] });
+      listQueries.forEach(([key, data]) => {
+        if (data) qc.setQueryData(key, data.map((r) => r.id === id ? { ...r, ...patch } : r));
+      });
+      const prevSingle = qc.getQueryData<RevisionRow>(["revision", id]);
+      if (prevSingle) qc.setQueryData(["revision", id], { ...prevSingle, ...patch });
+      return { listQueries, prevSingle };
+    },
+    onError: (_, { id }, ctx) => {
+      ctx?.listQueries.forEach(([key, data]) => qc.setQueryData(key, data));
+      if (ctx?.prevSingle) qc.setQueryData(["revision", id], ctx.prevSingle);
+    },
+    onSettled: (result) => {
+      if (!result) return;
       qc.invalidateQueries({ queryKey: ["revisions", result.project_id] });
       qc.invalidateQueries({ queryKey: ["revision", result.id] });
     },

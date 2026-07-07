@@ -9,6 +9,7 @@ import {
   getSignedDownloadUrl,
   deleteFile,
 } from "@/lib/services/files.service";
+import type { FileRow } from "@/lib/supabase/types";
 import { useUser } from "@/store/auth.store";
 
 export function useFiles(projectId: string | undefined, category?: string) {
@@ -44,7 +45,18 @@ export function useDeleteFile() {
   return useMutation({
     mutationFn: ({ fileId, storagePath, projectId }: { fileId: string; storagePath: string | null; projectId: string }) =>
       deleteFile(fileId, storagePath),
-    onSuccess: (_, { projectId }) => {
+    onMutate: async ({ fileId, projectId }) => {
+      await qc.cancelQueries({ queryKey: ["files", projectId] });
+      const listQueries = qc.getQueriesData<FileRow[]>({ queryKey: ["files", projectId] });
+      listQueries.forEach(([key, data]) => {
+        if (data) qc.setQueryData(key, data.filter((f) => f.id !== fileId));
+      });
+      return { listQueries };
+    },
+    onError: (_, __, ctx) => {
+      ctx?.listQueries.forEach(([key, data]) => qc.setQueryData(key, data));
+    },
+    onSettled: (_, __, { projectId }) => {
       qc.invalidateQueries({ queryKey: ["files", projectId] });
     },
   });
