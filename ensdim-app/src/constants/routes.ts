@@ -3,6 +3,7 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   VERIFY_EMAIL: "/verify-email",
+  EMAIL_CONFIRMED: "/email-confirmed",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
 
@@ -59,6 +60,7 @@ export const PUBLIC_ROUTES = [
   ROUTES.LOGIN,
   ROUTES.REGISTER,
   ROUTES.VERIFY_EMAIL,
+  ROUTES.EMAIL_CONFIRMED,
   ROUTES.FORGOT_PASSWORD,
   ROUTES.RESET_PASSWORD,
 ];

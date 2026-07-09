@@ -44,23 +44,33 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     if (!get().user) {
       set({ isLoading: true });
 
-      // getSession() reads the locally persisted session (no network call),
-      // unlike getUser() which always revalidates against the Auth server.
-      // That's fine here since this only feeds display state — actual data
-      // access is still authorized server-side via RLS + middleware.
-      const { data: { session } } = await supabase.auth.getSession();
-      const user = session?.user ?? null;
+      try {
+        // getSession() reads the locally persisted session (no network call),
+        // unlike getUser() which always revalidates against the Auth server.
+        // That's fine here since this only feeds display state — actual data
+        // access is still authorized server-side via RLS + middleware.
+        const { data: { session } } = await supabase.auth.getSession();
+        const user = session?.user ?? null;
 
-      if (!user) {
+        if (!user) {
+          set({ user: null, profile: null, isAuthenticated: false, isLoading: false });
+        } else {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", user.id)
+            .single();
+
+          set({ user, profile, isAuthenticated: true, isLoading: false });
+        }
+      } catch (err) {
+        // e.g. the Supabase client's internal auth lock timing out after the
+        // tab was idle (see client.ts's lockWithTimeout) — without this catch
+        // the store is left stuck in isLoading: true forever, and the
+        // rejection surfaces as an unhandled runtime error since callers
+        // (AuthInitializer) don't await this function.
+        console.warn("Auth initialization failed:", err);
         set({ user: null, profile: null, isAuthenticated: false, isLoading: false });
-      } else {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
-          .single();
-
-        set({ user, profile, isAuthenticated: true, isLoading: false });
       }
     }
 
@@ -69,12 +79,17 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
       if (event === "SIGNED_OUT" || !session) {
         set({ user: null, profile: null, isAuthenticated: false });
       } else if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
-        const { data: updatedProfile } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", session.user.id)
-          .single();
-        set({ user: session.user, profile: updatedProfile, isAuthenticated: true });
+        try {
+          const { data: updatedProfile } = await supabase
+            .from("profiles")
+            .select("*")
+            .eq("id", session.user.id)
+            .single();
+          set({ user: session.user, profile: updatedProfile, isAuthenticated: true });
+        } catch (err) {
+          console.warn("Failed to refresh profile after auth change:", err);
+          set({ user: session.user, isAuthenticated: true });
+        }
       }
     });
   },

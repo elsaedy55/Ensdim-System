@@ -52,7 +52,12 @@ export async function signUp(params: {
 
 export async function signOut() {
   const supabase = createClient();
-  const { error } = await supabase.auth.signOut();
+  // Local scope only — clears the session on this device without waiting on
+  // a network round trip to revoke the refresh token server-side. Avoids
+  // depending on the auth fetch/lock chain (see client.ts's lockWithTimeout
+  // comment) that can stall for several seconds after the tab has been
+  // idle/backgrounded, which made the sign-out button look unresponsive.
+  const { error } = await supabase.auth.signOut({ scope: "local" });
   if (error) throw new Error(error.message);
 }
 

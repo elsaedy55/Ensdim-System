@@ -15,6 +15,7 @@ import {
   Calendar, Link as LinkIcon, MessageCircle, MessageSquare,
 } from "lucide-react";
 import { useRevision } from "@/hooks/useRevisions";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 
 // ─── Category badge ───────────────────────────────────────────────
 
@@ -32,7 +33,7 @@ export default function RevisionDetailPage() {
   const t  = useTranslations("revisions");
   const tc = useTranslations("revisions.detail");
 
-  const { data: revision, isLoading } = useRevision(id);
+  const { data: revision, isLoading, error } = useRevision(id);
 
   if (isLoading) {
     return (
@@ -41,6 +42,14 @@ export default function RevisionDetailPage() {
         <Skeleton className="h-32 w-full" />
         <Skeleton className="h-24 w-full" />
         <Skeleton className="h-24 w-full" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto max-w-3xl">
+        <QueryErrorState title="Could not load this revision" error={error} />
       </div>
     );
   }

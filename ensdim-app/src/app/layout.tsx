@@ -8,7 +8,6 @@ import { AppToaster } from "@/components/ui/toast";
 import { OfflineBanner } from "@/components/common/OfflineBanner";
 import { UploadStatusWidget } from "@/components/common/UploadStatusWidget";
 import { AuthInitializer } from "@/components/common/AuthInitializer";
-import { ThemeProvider } from "@/components/common/ThemeProvider";
 import "./globals.css";
 
 // Matches the marketing site's identity: Barlow for headings, Readex Pro for
@@ -38,17 +37,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <body className="h-full antialiased" suppressHydrationWarning>
-        <ThemeProvider>
-          <QueryProvider>
-            <NextIntlClientProvider locale={locale} messages={messages}>
-              <AuthInitializer />
-              <OfflineBanner />
-              {children}
-              <UploadStatusWidget />
-              <AppToaster />
-            </NextIntlClientProvider>
-          </QueryProvider>
-        </ThemeProvider>
+        <QueryProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <AuthInitializer />
+            <OfflineBanner />
+            {children}
+            <UploadStatusWidget />
+            <AppToaster />
+          </NextIntlClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );

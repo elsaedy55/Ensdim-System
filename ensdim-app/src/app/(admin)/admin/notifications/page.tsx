@@ -13,6 +13,7 @@ import {
   useNotifications, useMarkNotificationRead,
   useMarkAllRead,
 } from "@/hooks/useNotifications";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 import type { NotificationRow } from "@/lib/supabase/types";
 
 const TYPE_ICON: Record<string, React.ReactNode> = {
@@ -75,7 +76,7 @@ export default function AdminNotificationsPage() {
   const t  = useTranslations("notifications");
   const ta = useTranslations("common.actions");
 
-  const { data: items, isLoading } = useNotifications();
+  const { data: items, isLoading, error } = useNotifications();
   const markRead    = useMarkNotificationRead();
   const markAllRead = useMarkAllRead();
 
@@ -97,6 +98,8 @@ export default function AdminNotificationsPage() {
         }
       />
 
+      {error && <QueryErrorState title="Could not load notifications" error={error} />}
+
       {isLoading ? (
         <div className="space-y-3">{Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="flex gap-4 p-4 rounded-xl border border-(--border) animate-pulse">
@@ -104,7 +107,7 @@ export default function AdminNotificationsPage() {
             <div className="flex-1 space-y-2"><div className="h-4 bg-(--bg-muted) rounded w-3/4" /><div className="h-3 bg-(--bg-muted) rounded w-1/2" /></div>
           </div>
         ))}</div>
-      ) : notifications.length === 0 ? (
+      ) : error ? null : notifications.length === 0 ? (
         <div className="surface flex flex-col items-center justify-center py-24 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-(--bg-muted)">
             <Bell className="h-7 w-7 text-(--text-muted)" />

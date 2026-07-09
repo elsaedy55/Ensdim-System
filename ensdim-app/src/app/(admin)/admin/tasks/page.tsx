@@ -16,13 +16,14 @@ import { Plus, LayoutGrid, List } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTasks } from "@/hooks/useTasks";
 import { useUrlState } from "@/hooks/useUrlState";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 import type { TaskWithRelations, TaskStatus } from "@/lib/services/tasks.service";
 
 type ViewMode = "board" | "list";
 
 export default function AdminTasksPage() {
   const t = useTranslations("admin.tasks");
-  const { data: tasks, isLoading } = useTasks();
+  const { data: tasks, isLoading, error } = useTasks();
 
   const [viewParam, setView]            = useUrlState("view", "board");
   const view = viewParam === "list" ? "list" : "board";
@@ -83,8 +84,10 @@ export default function AdminTasksPage() {
         </div>
       </div>
 
+      {error && <QueryErrorState title="Could not load tasks" error={error} />}
+
       {/* Board View — desktop: all columns, mobile: single column with tab switcher */}
-      {view === "board" && (
+      {!error && view === "board" && (
         <>
           {/* Mobile: column switcher tabs */}
           <div className="flex gap-1.5 overflow-x-auto pb-1 md:hidden">
@@ -160,7 +163,7 @@ export default function AdminTasksPage() {
       )}
 
       {/* List View */}
-      {view === "list" && (
+      {!error && view === "list" && (
         <div className="surface overflow-hidden">
           <table className="w-full text-sm">
             <thead>

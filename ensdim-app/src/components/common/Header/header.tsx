@@ -15,7 +15,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
-import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { signOut } from "@/lib/auth.service";
 import { useAuthStore } from "@/store/auth.store";
 import {
@@ -60,10 +59,18 @@ export function Header({
   const router = useRouter();
 
   const clearAuth = useAuthStore((s) => s.clearAuth);
+  const [signingOut, setSigningOut] = React.useState(false);
 
   const handleLogout = React.useCallback(async () => {
+    setSigningOut(true);
     try {
       await signOut();
+    } catch (err) {
+      // Local state is cleared and we navigate to /login regardless (below) —
+      // this only prevents a failed/stalled signOut() (e.g. the Supabase
+      // client's internal auth lock timing out after the tab was idle, see
+      // client.ts's lockWithTimeout) from surfacing as an unhandled rejection.
+      console.warn("Sign-out request failed, continuing with local sign-out:", err);
     } finally {
       clearAuth();
       window.location.href = ROUTES.LOGIN;
@@ -134,9 +141,8 @@ export function Header({
           </div>
         )}
 
-        {/* Language Switcher + Theme Toggle */}
+        {/* Language Switcher */}
         <LanguageSwitcher variant="icon" />
-        <ThemeToggle variant="icon" />
 
         {/* Notification Bell */}
         <DropdownMenu>
@@ -237,8 +243,13 @@ export function Header({
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem destructive onClick={onLogout ?? handleLogout} className="flex items-center gap-2">
-              <UiIcon as={Icons.LogOut} size="md" />
+            <DropdownMenuItem
+              destructive
+              disabled={signingOut}
+              onClick={onLogout ?? handleLogout}
+              className="flex items-center gap-2"
+            >
+              <UiIcon as={signingOut ? Icons.Loader2 : Icons.LogOut} size="md" className={signingOut ? "animate-spin" : undefined} />
               {ta("signOut")}
             </DropdownMenuItem>
           </DropdownMenuContent>

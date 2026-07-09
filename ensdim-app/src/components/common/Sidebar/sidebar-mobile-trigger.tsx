@@ -15,7 +15,6 @@ interface MobileSidebarTriggerProps {
   user?: { name: string; email: string; avatar?: string; role?: string };
   workspace?: { name: string; logo?: string };
   notificationCount?: number;
-  onLogout?: () => void;
 }
 
 export function MobileSidebarTrigger({
@@ -23,7 +22,6 @@ export function MobileSidebarTrigger({
   user,
   workspace,
   notificationCount = 0,
-  onLogout,
 }: MobileSidebarTriggerProps) {
   const t      = useTranslations("common.user");
   const locale = useLocale() as Locale;
@@ -52,7 +50,6 @@ export function MobileSidebarTrigger({
             <ClientSidebar
               user={user}
               notificationCount={notificationCount}
-              onLogout={() => { setOpen(false); onLogout?.(); }}
               onNavigate={() => setOpen(false)}
               forceExpanded
             />
@@ -61,7 +58,6 @@ export function MobileSidebarTrigger({
               user={user}
               workspace={workspace}
               notificationCount={notificationCount}
-              onLogout={() => { setOpen(false); onLogout?.(); }}
               onNavigate={() => setOpen(false)}
               forceExpanded
             />

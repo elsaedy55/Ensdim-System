@@ -7,7 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Eye, EyeOff, Mail, Lock, AlertCircle, Clock, CheckCircle } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, AlertCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormField } from "@/components/ui/form-field";
@@ -29,7 +29,6 @@ export default function LoginPage() {
   const locale       = useLocale();
   const searchParams = useSearchParams();
   const isExpired    = searchParams.get("expired") === "true";
-  const isVerified   = searchParams.get("verified") === "true";
   const isBanned     = searchParams.get("banned") === "true";
   const bannedUntil  = searchParams.get("until");
 
@@ -77,14 +76,6 @@ export default function LoginPage() {
           <h1 className="text-xl font-bold text-(--text-primary)">{t("title")}</h1>
           <p className="mt-1 text-sm text-(--text-muted)">{t("subtitle")}</p>
         </div>
-
-        {/* Email verified banner */}
-        {isVerified && !serverError && (
-          <div className="mb-4 flex items-start gap-2.5 rounded-lg bg-(--success-subtle) border border-(--success-muted) px-3.5 py-3">
-            <CheckCircle className="h-4 w-4 text-(--success) mt-0.5 shrink-0" />
-            <p className="text-sm text-(--text-secondary)">{t("emailVerifiedBanner")}</p>
-          </div>
-        )}
 
         {/* Session expired banner */}
         {isExpired && !serverError && (

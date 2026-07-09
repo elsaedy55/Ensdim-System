@@ -14,6 +14,7 @@ import {
   useMarkNotificationRead,
   useMarkAllRead,
 } from "@/hooks/useNotifications";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 import type { NotificationRow } from "@/lib/supabase/types";
 
 type Notification = NotificationRow;
@@ -90,7 +91,7 @@ export default function NotificationsPage() {
   const t  = useTranslations("notifications");
   const ta = useTranslations("common.actions");
 
-  const { data: items, isLoading } = useNotifications();
+  const { data: items, isLoading, error } = useNotifications();
   const markRead   = useMarkNotificationRead();
   const markAllRead = useMarkAllRead();
 
@@ -118,6 +119,8 @@ export default function NotificationsPage() {
         }
       />
 
+      {error && <QueryErrorState title="Could not load notifications" error={error} />}
+
       {isLoading ? (
         <div className="space-y-3">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -130,7 +133,7 @@ export default function NotificationsPage() {
             </div>
           ))}
         </div>
-      ) : notifications.length === 0 ? (
+      ) : error ? null : notifications.length === 0 ? (
         <div className="surface flex flex-col items-center justify-center py-24 text-center">
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-(--bg-muted)">
             <Bell className="h-7 w-7 text-(--text-muted)" />

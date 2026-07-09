@@ -5,7 +5,12 @@ import { processLock } from "@supabase/auth-js";
 let _client: ReturnType<typeof createBrowserClient> | null = null;
 
 const AUTH_FETCH_TIMEOUT_MS = 10_000;
-const LOCK_TIMEOUT_MS       = 6_000;
+// Must stay above AUTH_FETCH_TIMEOUT_MS: a stuck auth fetch needs to actually
+// reach its own abort (at AUTH_FETCH_TIMEOUT_MS) and unwind the real internal
+// queue before we give up on the lock from out here. Racing this shorter than
+// the fetch timeout meant we'd declare the queue poisoned while the original
+// call was still occupying it, when it may otherwise have cleared on its own.
+const LOCK_TIMEOUT_MS       = AUTH_FETCH_TIMEOUT_MS + 2_000;
 
 // Safety net around processLock itself (not just the auth fetch below).
 // Confirmed by direct reproduction: the queue processLock uses internally
@@ -29,16 +34,18 @@ const LOCK_TIMEOUT_MS       = 6_000;
 // locked calls per navigation).
 let lockPoisoned = false;
 
+const LOCK_TIMEOUT_MESSAGE = "Request timed out — please refresh the page.";
+
 function lockWithTimeout<R>(name: string, acquireTimeout: number, fn: () => Promise<R>): Promise<R> {
   if (lockPoisoned) {
-    return Promise.reject(new Error("Request timed out — please refresh the page."));
+    return Promise.reject(new Error(LOCK_TIMEOUT_MESSAGE));
   }
   return Promise.race([
     processLock(name, acquireTimeout, fn),
     new Promise<R>((_, reject) =>
       setTimeout(() => {
         lockPoisoned = true;
-        reject(new Error("Request timed out — please refresh the page."));
+        reject(new Error(LOCK_TIMEOUT_MESSAGE));
       }, LOCK_TIMEOUT_MS),
     ),
   ]);
@@ -76,8 +83,25 @@ function fetchWithAuthTimeout(input: RequestInfo | URL, init?: RequestInit): Pro
   return fetch(input, { ...init, signal: controller.signal }).finally(() => clearTimeout(timeoutId));
 }
 
+// supabase-js runs its own auth-refresh check internally whenever the tab
+// regains visibility (GoTrueClient's _handleVisibilityChange), outside any
+// promise our app code awaits or can wrap in try/catch. If that refresh hits
+// the poisoned lock above, the rejection surfaces as an unhandled rejection
+// straight from the library. Only this exact, already-understood message is
+// downgraded to a warning — anything else still surfaces normally.
+function installLockTimeoutRejectionFilter() {
+  if (typeof window === "undefined") return;
+  window.addEventListener("unhandledrejection", (event) => {
+    if (event.reason instanceof Error && event.reason.message === LOCK_TIMEOUT_MESSAGE) {
+      event.preventDefault();
+      console.warn("Supabase background session refresh timed out; reload the page if data stops loading.");
+    }
+  });
+}
+
 export function createClient() {
   if (!_client) {
+    installLockTimeoutRejectionFilter();
     _client = createBrowserClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,

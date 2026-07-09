@@ -136,65 +136,6 @@
 }
 
 /* ============================================
-   COLOR SYSTEM — DARK MODE
-   ============================================ */
-.dark {
-  /* Backgrounds — logo black with a violet undertone, matches the marketing site's dark theme */
-  --bg-base:      #101418;   /* logo black (brand) */
-  --bg-surface:   #181320;   /* near-black, violet undertone — cards, panels */
-  --bg-muted:     #221a33;   /* subtle violet fill */
-  --bg-hover:     #2c2240;
-  --bg-active:    #382c52;
-
-  /* Borders */
-  --border:         #2a2240;
-  --border-subtle:  #1f1928;
-  --border-strong:  #3d324f;
-
-  /* Text */
-  --text-primary:   #ffffff;
-  --text-secondary: #9aa1aa;   /* lightened cool gray for dark-bg contrast */
-  --text-muted:     #6b7280;
-  --text-disabled:  #3d3f52;
-  --text-inverse:   #101418;
-
-  /* Accent — brightened Intelligent Purple for contrast on dark surfaces */
-  --accent:           #8b7cf8;
-  --accent-hover:     #6d5df6;   /* brand purple */
-  --accent-active:    #5b4ce0;
-  --accent-subtle:    #2c2240;
-  --accent-muted:     #3b2a78;   /* deep violet (brand) */
-
-  /* Success */
-  --success:          #34d399;   /* emerald-400 */
-  --success-subtle:   #022c22;   /* emerald-950 */
-  --success-muted:    #064e3b;   /* emerald-900 */
-  --success-foreground: #d1fae5;
-
-  /* Warning */
-  --warning:          #fbbf24;   /* amber-400 */
-  --warning-subtle:   #1c1400;
-  --warning-muted:    #451a03;   /* amber-950 */
-  --warning-foreground: #fef3c7;
-
-  /* Danger — brightened Pronunciation Red for contrast on dark surfaces */
-  --danger:           #ff6b6b;
-  --danger-hover:     #d63a3a;   /* brand red */
-  --danger-subtle:    #2a1414;
-  --danger-muted:     #3d1a1a;
-  --danger-foreground: #ffd9d9;
-
-  /* Sidebar — dark neutral shell, brighter purple for active/hover accents */
-  --sidebar-bg:         #111113;
-  --sidebar-border:     #27272a;
-  --sidebar-item-hover: #1f1f22;
-  --sidebar-item-active:#2c2240;
-  --sidebar-item-active-border: #8b7cf8;
-  --sidebar-text:       #a1a1aa;
-  --sidebar-text-active:#c4b5fd;
-}
-
-/* ============================================
    BASE STYLES
    ============================================ */
 *, *::before, *::after {
@@ -215,13 +156,6 @@ body {
   font-size: var(--text-sm);
   line-height: 1.5;
   min-height: 100vh;
-}
-
-/* Logo PNG has black wordmark text — invert it for dark backgrounds while
-   keeping the red brand color (invert + hue-rotate cancels out on the
-   saturated red pixels but flips the black pixels to white). */
-.dark .auth-logo {
-  filter: invert(1) hue-rotate(180deg);
 }
 
 h1, h2, h3, h4, h5, h6 {

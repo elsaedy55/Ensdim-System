@@ -20,6 +20,7 @@ import { Plus, Users, UserPlus, Mail, Building2, Kanban, List, ArrowRight, Ban }
 import { toast } from "sonner";
 import { useAdminClients, useAdminDeleteClient } from "@/hooks/useAdmin";
 import { useUrlState } from "@/hooks/useUrlState";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 import type { ProfileRow } from "@/lib/supabase/types";
 
 // ─── Add Client Modal ─────────────────────────────────────────────
@@ -136,7 +137,7 @@ function ClientTableRow({ client, onDelete }: { client: ProfileRow; onDelete: (i
 
 export default function AdminClientsPage() {
   const t = useTranslations("admin.clients");
-  const { data: clients, isLoading } = useAdminClients();
+  const { data: clients, isLoading, error } = useAdminClients();
   const deleteClient = useAdminDeleteClient();
 
   const [search, setSearch]  = useUrlState("q");
@@ -212,9 +213,11 @@ export default function AdminClientsPage() {
       </div>
 
       {/* Content */}
+      {error && <QueryErrorState title="Could not load clients" error={error} />}
+
       {isLoading ? (
         <div className="space-y-3">{Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}</div>
-      ) : filtered.length === 0 ? (
+      ) : error ? null : filtered.length === 0 ? (
         <div className="surface flex flex-col items-center justify-center py-16 text-center">
           <Users className="h-10 w-10 text-(--text-muted) mb-3" />
           <p className="text-sm font-medium text-(--text-primary)">{t("list.emptyState.title")}</p>

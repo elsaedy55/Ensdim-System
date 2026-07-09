@@ -11,11 +11,34 @@ interface SearchInputProps {
   placeholder?: string;
   className?: string;
   size?: "sm" | "md";
+  /** Delay before `onChange` fires after typing stops. Most callers sync this to the URL, so debouncing keeps fast typing from firing a navigation per keystroke. */
+  debounceMs?: number;
 }
 
-export function SearchInput({ value, onChange, placeholder, className, size = "md" }: SearchInputProps) {
+const DEFAULT_DEBOUNCE_MS = 300;
+
+export function SearchInput({ value, onChange, placeholder, className, size = "md", debounceMs = DEFAULT_DEBOUNCE_MS }: SearchInputProps) {
   const t = useTranslations("tables.aria");
   const resolvedPlaceholder = placeholder ?? "Search...";
+
+  const [draft, setDraft] = React.useState(value);
+
+  // Stay in sync when the value changes from outside (e.g. a "clear filters" action)
+  React.useEffect(() => {
+    setDraft(value);
+  }, [value]);
+
+  React.useEffect(() => {
+    if (draft === value) return;
+    const id = setTimeout(() => onChange(draft), debounceMs);
+    return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only re-run when the draft itself changes
+  }, [draft]);
+
+  const clear = () => {
+    setDraft("");
+    onChange("");
+  };
 
   return (
     <div className={cn("relative", className)}>
@@ -25,8 +48,8 @@ export function SearchInput({ value, onChange, placeholder, className, size = "m
       )} />
       <input
         type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
         placeholder={resolvedPlaceholder}
         className={cn(
           "w-full rounded-md border border-(--border) bg-(--bg-surface)",
@@ -36,10 +59,10 @@ export function SearchInput({ value, onChange, placeholder, className, size = "m
           size === "sm" ? "ps-8 pe-7 py-1.5 text-xs" : "ps-9 pe-8 py-2 text-sm",
         )}
       />
-      {value && (
+      {draft && (
         <button
           type="button"
-          onClick={() => onChange("")}
+          onClick={clear}
           className={cn(
             "absolute top-1/2 -translate-y-1/2 text-(--text-muted) hover:text-(--text-primary) transition-colors",
             size === "sm" ? "inset-e-2" : "inset-e-2.5"

@@ -13,6 +13,7 @@ import { formatCurrency, formatDate, cn } from "@/lib/utils";
 import { AlertTriangle, ArrowRight, Receipt } from "lucide-react";
 import { useMyInvoices, useFinancialSummary } from "@/hooks/useInvoices";
 import { isInvoiceOverdue, effectiveInvoiceStatus } from "@/lib/invoice-status";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 import type { InvoiceRow } from "@/lib/supabase/types";
 
 type Invoice = InvoiceRow;
@@ -53,11 +54,12 @@ function InvoiceCard({ invoice }: { invoice: Invoice }) {
 
 export default function PaymentsPage() {
   const t = useTranslations("payments");
-  const { data: invoices, isLoading: invoicesLoading } = useMyInvoices();
-  const { data: financial, isLoading: financialLoading } = useFinancialSummary();
+  const { data: invoices, isLoading: invoicesLoading, error: invoicesError } = useMyInvoices();
+  const { data: financial, isLoading: financialLoading, error: financialError } = useFinancialSummary();
 
   const list    = invoices ?? [];
   const isLoading = invoicesLoading || financialLoading;
+  const error     = invoicesError ?? financialError;
 
   const paidPct   = financial && financial.total > 0 ? Math.round((financial.paid / financial.total) * 100) : 0;
   const nextDue   = list.find((i) => i.status === "sent" || i.status === "viewed");
@@ -80,8 +82,10 @@ export default function PaymentsPage() {
     <div className="space-y-6">
       <PageHeader title={t("page.title")} subtitle={t("page.subtitle")} />
 
+      {error && <QueryErrorState title="Could not load payments" error={error} />}
+
       {/* Financial Summary */}
-      <div className="surface p-5">
+      {!error && <div className="surface p-5">
         {isLoading ? (
           <div className="h-20 flex items-center justify-center"><div className="h-4 w-48 bg-(--bg-muted) rounded animate-pulse" /></div>
         ) : (
@@ -104,10 +108,10 @@ export default function PaymentsPage() {
             <p className="mt-1.5 text-xs text-(--text-muted)">{t("summary.paidPercent", { pct: paidPct })}</p>
           </>
         )}
-      </div>
+      </div>}
 
       {/* Next Due Alert */}
-      {nextDue && (
+      {!error && nextDue && (
         <div className={cn("flex items-center gap-3 rounded-xl border px-4 py-3", isInvoiceOverdue(nextDue) ? "border-(--danger-muted) bg-(--danger-subtle)" : "border-(--warning-muted) bg-(--warning-subtle)")}>
           <AlertTriangle className={cn("h-4 w-4 shrink-0", isInvoiceOverdue(nextDue) ? "text-(--danger)" : "text-(--warning)")} />
           <div className="flex-1 min-w-0">
@@ -123,7 +127,7 @@ export default function PaymentsPage() {
       {/* Invoice List */}
       {isLoading ? (
         <div className="space-y-3">{Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)}</div>
-      ) : (
+      ) : error ? null : (
         <Tabs defaultValue="all">
           <TabsList variant="underline" className="w-full">
             <TabsTrigger value="all"     variant="underline" count={counts.all}>{t("filters.all")}</TabsTrigger>

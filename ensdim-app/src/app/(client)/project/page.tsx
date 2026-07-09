@@ -17,6 +17,7 @@ import { useMilestones } from "@/hooks/useMilestones";
 import { MilestonesPanel } from "@/components/client/MilestonesPanel";
 import { RevisionsPanel } from "@/components/client/RevisionsPanel";
 import { FilesPanel } from "@/components/client/FilesPanel";
+import { QueryErrorState } from "@/components/common/QueryErrorState";
 import type { MilestoneRow, ProfileRow } from "@/lib/supabase/types";
 
 // ─── Helpers ──────────────────────────────────────────────────────
@@ -214,11 +215,12 @@ export default function ProjectOverviewPage() {
   const tDashboard = useTranslations("dashboard");
   const tNav       = useTranslations("common.nav");
 
-  const { data: project,    isLoading: projectLoading }    = useMyProject();
-  const { data: milestones, isLoading: milestonesLoading } = useMilestones(project?.id);
+  const { data: project,    isLoading: projectLoading,    error: projectError }    = useMyProject();
+  const { data: milestones, isLoading: milestonesLoading, error: milestonesError } = useMilestones(project?.id);
   const { data: members }                                  = useProjectMembers(project?.id);
 
   const isLoading = projectLoading || milestonesLoading;
+  const error     = projectError ?? milestonesError;
 
   if (isLoading) {
     return (
@@ -231,6 +233,14 @@ export default function ProjectOverviewPage() {
           <Skeleton className="h-6 w-24 rounded-full" />
         </div>
         <Skeleton className="h-60 w-full" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-3xl mx-auto">
+        <QueryErrorState title="Could not load your project" error={error} />
       </div>
     );
   }

@@ -20,7 +20,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   LayoutDashboard, Folder, UserCheck, CheckSquare,
   Users, CreditCard, Bell, ShieldCheck, Settings,
-  LogOut, ChevronLeft, ChevronDown, BookOpen, MessageSquare, FileText, Briefcase, UserPlus,
+  LogOut, ChevronLeft, ChevronDown, BookOpen, MessageSquare, FileText, Briefcase, UserPlus, Loader2,
 } from "@/components/ui/icons";
 import type { LucideIcon } from "@/components/ui/icons";
 import {
@@ -131,11 +131,27 @@ function NavItem({
   onPrefetch?: () => void;
   onNavigate?: () => void;
 }) {
+  // Hover-intent delay: only prefetch once the pointer lingers on this item,
+  // so sweeping the mouse across the sidebar toward a target doesn't fire a
+  // Supabase query (and an auth lock acquisition) for every item passed over.
+  const hoverTimeout = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const handleMouseEnter = onPrefetch
+    ? () => {
+        hoverTimeout.current = setTimeout(onPrefetch, 150);
+      }
+    : undefined;
+  const handleMouseLeave = onPrefetch
+    ? () => clearTimeout(hoverTimeout.current)
+    : undefined;
+
+  React.useEffect(() => () => clearTimeout(hoverTimeout.current), []);
+
   const item = (
     <Link
       href={href}
       aria-current={isActive ? "page" : undefined}
-      onMouseEnter={onPrefetch}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onFocus={onPrefetch}
       onClick={onNavigate}
       className={cn(
@@ -213,10 +229,18 @@ export function AdminSidebar({
   const isCollapsed = forceExpanded ? false : collapsed;
 
   const clearAuth = useAuthStore((s) => s.clearAuth);
+  const [signingOut, setSigningOut] = React.useState(false);
 
   const handleLogout = React.useCallback(async () => {
+    setSigningOut(true);
     try {
       await signOut();
+    } catch (err) {
+      // Local state is cleared and we navigate to /login regardless (below) —
+      // this only prevents a failed/stalled signOut() (e.g. the Supabase
+      // client's internal auth lock timing out after the tab was idle, see
+      // client.ts's lockWithTimeout) from surfacing as an unhandled rejection.
+      console.warn("Sign-out request failed, continuing with local sign-out:", err);
     } finally {
       clearAuth();
       window.location.href = ROUTES.LOGIN;
@@ -384,10 +408,13 @@ export function AdminSidebar({
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 destructive
+                disabled={signingOut}
                 onClick={onLogout ?? handleLogout}
                 className="flex items-center gap-2.5"
               >
-                <LogOut className="size-4" strokeWidth={1.75} />
+                {signingOut
+                  ? <Loader2 className="size-4 animate-spin" strokeWidth={1.75} />
+                  : <LogOut className="size-4" strokeWidth={1.75} />}
                 {ta("signOut")}
               </DropdownMenuItem>
             </DropdownMenuContent>
