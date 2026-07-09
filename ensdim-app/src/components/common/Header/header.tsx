@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
-import { signOut } from "@/lib/auth.service";
+import { clearLocalSession } from "@/lib/auth.service";
 import { useAuthStore } from "@/store/auth.store";
 import {
   useNotifications, useUnreadCount, useMarkNotificationRead,
@@ -61,20 +61,14 @@ export function Header({
   const clearAuth = useAuthStore((s) => s.clearAuth);
   const [signingOut, setSigningOut] = React.useState(false);
 
-  const handleLogout = React.useCallback(async () => {
+  const handleLogout = React.useCallback(() => {
     setSigningOut(true);
-    try {
-      await signOut();
-    } catch (err) {
-      // Local state is cleared and we navigate to /login regardless (below) —
-      // this only prevents a failed/stalled signOut() (e.g. the Supabase
-      // client's internal auth lock timing out after the tab was idle, see
-      // client.ts's lockWithTimeout) from surfacing as an unhandled rejection.
-      console.warn("Sign-out request failed, continuing with local sign-out:", err);
-    } finally {
-      clearAuth();
-      window.location.href = ROUTES.LOGIN;
-    }
+    // Clears local cookies synchronously and revokes server-side in the
+    // background — doesn't wait on the network, so a slow/cold-started auth
+    // endpoint can't leave this button stuck spinning. See clearLocalSession.
+    clearLocalSession();
+    clearAuth();
+    window.location.href = ROUTES.LOGIN;
   }, [clearAuth]);
 
   // Keep the bell badge + dropdown in sync with new notifications in real time.

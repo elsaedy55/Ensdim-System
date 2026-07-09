@@ -50,15 +50,32 @@ export async function signUp(params: {
 
 // ─── Sign Out ─────────────────────────────────────────────────────
 
-export async function signOut() {
+// supabase-js's signOut() always attempts a network call to revoke the
+// refresh token server-side — even with `scope: "local"` — and only clears
+// the local session/cookies *after* that call settles (see GoTrueClient's
+// _signOut). If that project's auth endpoint is slow (e.g. a cold-started
+// free-tier Supabase project, see client.ts's lockWithTimeout comment), the
+// button waits on it too, and if the redirect below fires before the local
+// cookies are actually cleared, the middleware still sees a valid session
+// and bounces the user straight back into the dashboard — looking like sign
+// out "never finishes".
+//
+// So the local cookie clear here is done directly and synchronously,
+// independent of the network call, which is fired off in the background
+// purely as a best-effort server-side revoke.
+export function clearLocalSession() {
   const supabase = createClient();
-  // Local scope only — clears the session on this device without waiting on
-  // a network round trip to revoke the refresh token server-side. Avoids
-  // depending on the auth fetch/lock chain (see client.ts's lockWithTimeout
-  // comment) that can stall for several seconds after the tab has been
-  // idle/backgrounded, which made the sign-out button look unresponsive.
-  const { error } = await supabase.auth.signOut({ scope: "local" });
-  if (error) throw new Error(error.message);
+  void supabase.auth.signOut({ scope: "local" }).catch((err: unknown) => {
+    console.warn("Background session revoke failed (already signed out locally):", err);
+  });
+
+  if (typeof document === "undefined") return;
+  document.cookie.split(";").forEach((cookie) => {
+    const name = cookie.split("=")[0]?.trim();
+    if (name && /^sb-.*-auth-token/.test(name)) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+    }
+  });
 }
 
 // ─── Forgot Password ──────────────────────────────────────────────
