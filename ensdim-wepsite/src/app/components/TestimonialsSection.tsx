@@ -12,6 +12,7 @@ const testimonialsEn = [
     company: "CEO · Bustan Amari, Kuwait",
     result: "Professionalism & fast delivery",
     caseStudy: "/case-studies/bustan-amari-operations-system",
+    avatar: "/testimonials/haitham.png",
   },
   {
     quote: "Before ENSDIM, bookings and follow-ups were taking a lot of our team's time, and some details could get lost between calls and WhatsApp. What I appreciated most was that they understood how our clinic works and created an easier experience for us and for our visitors from the first contact. After adding website booking, the chatbot, and the AI-supported dashboard, follow-up became clearer, files were more organized, and WhatsApp communication became calmer and easier.",
@@ -19,6 +20,7 @@ const testimonialsEn = [
     company: "Founder & Medical Director · Limera Aesthetic Clinic, UAE",
     result: "Easier booking & happier visitors",
     caseStudy: "/case-studies/lemera-clinic-booking-crm",
+    avatar: "/testimonials/shamma.png",
   },
   {
     quote: "They were partners in shaping the idea from the beginning, not just a technical execution team. They helped us study the concept, organize the user journey, and build a dashboard and booking app until we reached our first market-ready trial version. Having them with us from early thinking to the trial launch gave us more clarity and confidence in the project direction.",
@@ -26,6 +28,7 @@ const testimonialsEn = [
     company: "CEO · Triboo, Egypt",
     result: "From idea to first market trial",
     caseStudy: "/case-studies/triboo-travel-mvp",
+    avatar: "/testimonials/ahmed.png",
   },
 ];
 
@@ -36,6 +39,7 @@ const testimonialsAr = [
     company: "المدير التنفيذي · شركة بستان أماري، الكويت",
     result: "احترافية وسرعة إنجاز",
     caseStudy: "/case-studies/bustan-amari-operations-system",
+    avatar: "/testimonials/haitham.png",
   },
   {
     quote: "قبل إنسديم، كان الحجز والمتابعة ياخذون وقت كبير من الفريق، وبعض التفاصيل كانت تضيع بين المكالمات والواتساب. أكثر شيء عجبني أنهم فهموا طبيعة شغل العيادة، وسوّوا لنا تجربة أسهل لنا وللزائرات من أول تواصل. بعد ما أضفنا الحجز من الموقع والتشات بوت، والداشبورد المدعوم بالذكاء الاصطناعي، صارت المتابعة أوضح، والملفات أكثر ترتيبًا، والتواصل على الواتساب أهدأ وأسهل.",
@@ -43,6 +47,7 @@ const testimonialsAr = [
     company: "المؤسسة والمديرة الطبية · عيادة ليميرا للتجميل، الإمارات",
     result: "حجز أسهل وزوار أكثر رضا",
     caseStudy: "/case-studies/lemera-clinic-booking-crm",
+    avatar: "/testimonials/shamma.png",
   },
   {
     quote: "كانوا شركاء في بناء الفكرة من البداية، وليس مجرد فريق تنفيذ تقني. ساعدونا في دراسة الفكرة، ترتيب رحلة المستخدم، وبناء داشبورد وتطبيق حجز حتى وصلنا لأول نسخة تجريبية جاهزة للسوق. وجودهم معنا من مرحلة التفكير حتى الإطلاق التجريبي أعطانا وضوحًا وثقة أكبر في اتجاه المشروع.",
@@ -50,6 +55,7 @@ const testimonialsAr = [
     company: "المدير التنفيذي · ترايبوو، مصر",
     result: "من الفكرة إلى أول نسخة تجريبية",
     caseStudy: "/case-studies/triboo-travel-mvp",
+    avatar: "/testimonials/ahmed.png",
   },
 ];
 
@@ -101,9 +107,11 @@ export function TestimonialsSection() {
                 </p>
                 <div className="relative flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#F0F0F0]">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-[#6D5DF6] flex items-center justify-center flex-shrink-0 ring-2 ring-[#EEEAFE] text-white text-base font-semibold">
-                      {current.name.trim().charAt(0)}
-                    </div>
+                    <img
+                      src={current.avatar}
+                      alt={current.name}
+                      className="w-11 h-11 rounded-full object-cover flex-shrink-0 ring-2 ring-[#EEEAFE]"
+                    />
                     <div>
                       <p className="text-sm font-semibold text-[#101418]">{current.name}</p>
                       <p className="text-xs text-[#4F555E]">{current.company}</p>
@@ -161,9 +169,11 @@ export function TestimonialsSection() {
               </p>
               <div className="relative flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#F0F0F0]">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-[#6D5DF6] flex items-center justify-center flex-shrink-0 ring-2 ring-[#EEEAFE] text-white text-base font-semibold">
-                    {item.name.trim().charAt(0)}
-                  </div>
+                  <img
+                    src={item.avatar}
+                    alt={item.name}
+                    className="w-11 h-11 rounded-full object-cover flex-shrink-0 ring-2 ring-[#EEEAFE]"
+                  />
                   <div>
                     <p className="text-sm font-semibold text-[#101418]">{item.name}</p>
                     <p className="text-xs text-[#4F555E]">{item.company}</p>
