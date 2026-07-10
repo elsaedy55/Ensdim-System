@@ -66,7 +66,7 @@ export function HomePage() {
     <>
       <SEO
         title="Ensdim | Human-Centered Digital Solutions"
-        description="Human-centered digital solutions built around customer behavior, customer journeys, and real business challenges."
+        description="We build intelligent digital solutions that understand customer behavior and solve real business challenges. ENSDIM helps businesses improve conversion, customer experience, and operational clarity through intelligent digital solutions built around customer behavior and real business challenges."
         keywords="AI automation agency Egypt, AI agents Saudi Arabia, SaaS development UAE, CRM development Middle East, digital transformation, AI agency Cairo, automation agency Dubai, وكالة ذكاء اصطناعي مصر, أتمتة الأعمال"
         canonical="/"
         jsonLd={homeFaqSchema}
