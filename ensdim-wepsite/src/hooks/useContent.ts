@@ -1,23 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import {
-  getPublishedCaseStudies,
-  getCaseStudyBySlug,
   getPublishedBlogPosts,
   getBlogPostBySlug,
   getPublishedResearchArticles,
   getResearchArticleBySlug,
 } from "../lib/supabase";
+import { getPublishedCaseStudiesLocal, getCaseStudyBySlugLocal } from "../data/caseStudies";
 
-// ─── Case studies ───────────────────────────────────────────────────
+// ─── Case studies (static content, see src/data/caseStudies.ts) ─────
 
 export function useCaseStudies() {
-  return useQuery({ queryKey: ["case-studies"], queryFn: getPublishedCaseStudies });
+  return useQuery({ queryKey: ["case-studies"], queryFn: async () => getPublishedCaseStudiesLocal() });
 }
 
 export function useCaseStudy(slug: string | undefined) {
   return useQuery({
     queryKey: ["case-study", slug],
-    queryFn: () => getCaseStudyBySlug(slug!),
+    queryFn: async () => getCaseStudyBySlugLocal(slug!),
     enabled: !!slug,
   });
 }

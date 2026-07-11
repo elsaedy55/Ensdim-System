@@ -5,19 +5,9 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
-import { type CaseStudy } from '../../lib/supabase';
+import { type CaseStudy } from '../../data/caseStudies';
+import { parseSector } from '../../lib/caseStudySector';
 import { useCaseStudies } from '../../hooks/useContent';
-
-/**
- * sector_en / sector_ar store three "|"-delimited segments authored together
- * in the admin: "<breadcrumb tags>|<case type badge>|<challenge filter category>".
- * This avoids a schema migration while still supporting two distinct badges
- * per card and a challenge-type filter independent from the breadcrumb tags.
- */
-function parseSector(raw: string) {
-  const [tags, caseType, filterCategory] = raw.split('|');
-  return { tags: tags ?? raw, caseType: caseType ?? '', filterCategory: filterCategory ?? tags ?? raw };
-}
 
 const resultsStrip = [
   { en: { stat: '+6,000 contracts', desc: 'Moved from manual tracking into a clearer digital operations system.' }, ar: { stat: '+6,000 عقد', desc: 'تحولت من متابعة يدوية إلى منظومة تشغيل رقمية أوضح.' } },

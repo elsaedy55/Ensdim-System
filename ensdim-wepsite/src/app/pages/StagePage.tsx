@@ -4,6 +4,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
+import { parseSector } from '../../lib/caseStudySector';
 import { useCaseStudies } from '../../hooks/useContent';
 
 /**
@@ -343,7 +344,7 @@ function RelatedCaseStudies({ solutionSlugs, ar }: { solutionSlugs: string[]; ar
             className="block border border-white/10 rounded-2xl p-5 hover:border-[#6D5DF6]/50 hover:bg-white/5 active:scale-[0.99] transition-all duration-200"
           >
             <span className="text-[10px] px-2.5 py-1 bg-[#6D5DF6]/15 text-[#EEEAFE] rounded-full font-semibold mb-3 inline-block">
-              {ar ? s.sector_ar : s.sector_en}
+              {parseSector(ar ? s.sector_ar : s.sector_en).tags}
             </span>
             <h3 className="text-sm font-bold text-white mb-2 leading-snug">{ar ? s.title_ar : s.title_en}</h3>
             <span className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium">

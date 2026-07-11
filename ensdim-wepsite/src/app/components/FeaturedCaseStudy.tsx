@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
+import { parseSector } from '../../lib/caseStudySector';
 import { useCaseStudies } from '../../hooks/useContent';
 
 export function FeaturedCaseStudy() {
@@ -45,7 +46,7 @@ export function FeaturedCaseStudy() {
                 <>
                   <div className="mb-4">
                     <span className="px-2 py-1 bg-[#EEEAFE] rounded text-[#6D5DF6] text-xs font-semibold">
-                      {ar ? study.sector_ar : study.sector_en}
+                      {parseSector(ar ? study.sector_ar : study.sector_en).tags}
                     </span>
                   </div>
 

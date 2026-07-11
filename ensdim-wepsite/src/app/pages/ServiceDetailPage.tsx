@@ -5,6 +5,7 @@ import { ScrollReveal } from '../components/ScrollReveal';
 import { ServiceRequestForm } from '../components/ServiceRequestForm';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
+import { parseSector } from '../../lib/caseStudySector';
 import { useCaseStudies } from '../../hooks/useContent';
 
 interface ServiceDetail {
@@ -893,7 +894,7 @@ function RelatedCaseStudies({ solutionSlugs, ar }: { solutionSlugs: string[]; ar
             className="group block border border-[#E5E5E5] rounded-2xl p-5 bg-[#FAFAFA] hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
           >
             <span className="text-[10px] px-2.5 py-1 bg-[#EEEAFE] text-[#6D5DF6] rounded-full font-semibold mb-3 inline-block">
-              {ar ? s.sector_ar : s.sector_en}
+              {parseSector(ar ? s.sector_ar : s.sector_en).tags}
             </span>
             <h3 className="text-sm font-bold text-[#101418] mb-2">{ar ? s.title_ar : s.title_en}</h3>
             <span className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium group-hover:gap-2.5 transition-all">

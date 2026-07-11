@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { caseStudies } from '../src/data/caseStudies.ts';
 
 const SITE_URL = 'https://ensdim.com';
 
@@ -7,8 +8,9 @@ const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_A
 
 // Every static (non-CMS) page on the site, keyed by its English path.
 // Each entry is expanded into an English (`/path`) and Arabic (`/ar/path`)
-// pair with reciprocal hreflang alternates. Dynamic content (blog posts,
-// research articles, case studies) is appended below from Supabase.
+// pair with reciprocal hreflang alternates. Dynamic content is appended
+// below: case studies from src/data/caseStudies.ts, blog posts and
+// research articles from Supabase.
 const STATIC_PAGES = [
   {
     path: '/',
@@ -150,18 +152,27 @@ function urlToXml(url) {
 }
 
 export default async function handler(req, res) {
-  let dynamicPages = [];
+  // Case studies are static content shipped with the site (src/data/caseStudies.ts),
+  // not Supabase-backed, so they don't need credentials to appear in the sitemap.
+  let dynamicPages = caseStudies
+    .filter((study) => study.is_published)
+    .map((study) => ({
+      path: `/case-studies/${study.slug}`,
+      lastmod: formatDate(study.updated_at || study.published_at),
+      changefreq: 'monthly',
+      priority: '0.6',
+    }));
 
   if (supabaseUrl && supabaseKey) {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const [blogPosts, researchArticles, caseStudies] = await Promise.all([
+    const [blogPosts, researchArticles] = await Promise.all([
       fetchPublishedSlugs(supabase, 'blog_posts'),
       fetchPublishedSlugs(supabase, 'research_articles'),
-      fetchPublishedSlugs(supabase, 'case_studies'),
     ]);
 
     dynamicPages = [
+      ...dynamicPages,
       ...blogPosts.map((post) => ({
         path: `/blog/${post.slug}`,
         lastmod: formatDate(post.updated_at || post.published_at),
@@ -171,12 +182,6 @@ export default async function handler(req, res) {
       ...researchArticles.map((article) => ({
         path: `/research/${article.slug}`,
         lastmod: formatDate(article.updated_at || article.published_at),
-        changefreq: 'monthly',
-        priority: '0.6',
-      })),
-      ...caseStudies.map((study) => ({
-        path: `/case-studies/${study.slug}`,
-        lastmod: formatDate(study.updated_at || study.published_at),
         changefreq: 'monthly',
         priority: '0.6',
       })),

@@ -85,65 +85,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   return data;
 }
 
-export interface CaseStudy {
-  id: string;
-  slug: string;
-  title_en: string;
-  title_ar: string;
-  sector_en: string;
-  sector_ar: string;
-  card_problem_en: string;
-  card_problem_ar: string;
-  card_solution_en: string;
-  card_solution_ar: string;
-  card_impact_en: string;
-  card_impact_ar: string;
-  outcome_en: string;
-  outcome_ar: string;
-  situation_en: string;
-  situation_ar: string;
-  problem_en: string;
-  problem_ar: string;
-  built_en: string[];
-  built_ar: string[];
-  outcomes_en: string[];
-  outcomes_ar: string[];
-  solution_title_en: string;
-  solution_title_ar: string;
-  solution_slug: string;
-  problem_page_title_en: string;
-  problem_page_title_ar: string;
-  problem_page_slug: string;
-  image_url: string | null;
-  gallery_images: string[];
-  demo_url: string | null;
-  sort_order: number;
-  is_published: boolean;
-  published_at: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
-export async function getPublishedCaseStudies(): Promise<CaseStudy[]> {
-  const { data, error } = await supabase
-    .from("case_studies")
-    .select("*")
-    .eq("is_published", true)
-    .order("sort_order", { ascending: true });
-  if (error) throw new Error(error.message);
-  return data ?? [];
-}
-
-export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
-  const { data, error } = await supabase
-    .from("case_studies")
-    .select("*")
-    .eq("slug", slug)
-    .eq("is_published", true)
-    .single();
-  if (error) return null;
-  return data;
-}
+// Case study content is static (see the CaseStudy type and data in
+// src/data/caseStudies.ts), not read from Supabase.
 
 // ─── Inquiries (consultation bookings + contact messages) ─────────
 

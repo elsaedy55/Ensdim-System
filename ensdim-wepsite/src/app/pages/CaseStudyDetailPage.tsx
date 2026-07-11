@@ -5,6 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SEO } from '../components/SEO';
+import { parseSector } from '../../lib/caseStudySector';
 import { useCaseStudy } from '../../hooks/useContent';
 
 export function CaseStudyDetailPage() {
@@ -124,16 +125,17 @@ export function CaseStudyDetailPage() {
     );
   }
 
-  const title         = ar ? study.title_ar : study.title_en;
-  const outcome       = ar ? study.outcome_ar : study.outcome_en;
-  const situation     = ar ? study.situation_ar : study.situation_en;
-  const problem       = ar ? study.problem_ar : study.problem_en;
-  const built         = ar ? study.built_ar : study.built_en;
-  const outcomes      = ar ? study.outcomes_ar : study.outcomes_en;
-  const sector        = ar ? study.sector_ar : study.sector_en;
-  const solutionTitle = ar ? study.solution_title_ar : study.solution_title_en;
-  const problemTitle  = ar ? study.problem_page_title_ar : study.problem_page_title_en;
-  const mediaItems    = [study.image_url, ...(study.gallery_images || [])].filter((src): src is string => Boolean(src));
+  const title           = ar ? study.title_ar : study.title_en;
+  const outcome         = ar ? study.outcome_ar : study.outcome_en;
+  const situation       = ar ? study.situation_ar : study.situation_en;
+  const challengeIntro  = ar ? study.challengeIntro_ar : study.challengeIntro_en;
+  const challengeItems  = ar ? study.challengeItems_ar : study.challengeItems_en;
+  const builtIntro      = ar ? study.builtIntro_ar : study.builtIntro_en;
+  const impactIntro     = ar ? study.impactIntro_ar : study.impactIntro_en;
+  const impactItems     = ar ? study.impactItems_ar : study.impactItems_en;
+  const whyMatters      = ar ? study.whyMatters_ar : study.whyMatters_en;
+  const sector          = parseSector(ar ? study.sector_ar : study.sector_en).tags;
+  const mediaItems      = [study.image_url, ...(study.gallery_images || [])].filter((src): src is string => Boolean(src));
 
   return (
     <>
@@ -159,7 +161,7 @@ export function CaseStudyDetailPage() {
             <span className="text-white/70 font-medium">{title}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'دراسة حالة' : 'Case Study'}
+            {(ar ? study.badge_ar : study.badge_en) || (ar ? 'دراسة حالة' : 'Case Study')}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">{title}</h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-8 text-[#EEEAFE]/75">{outcome}</p>
@@ -186,6 +188,24 @@ export function CaseStudyDetailPage() {
           <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider">{sector}</p>
         </div>
       </div>
+
+      {study.snapshot.length > 0 && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
+          <ScrollReveal>
+            <div className="border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 bg-[#FAFAFA]">
+              <h2 className="text-sm font-bold text-[#101418] mb-5">{ar ? 'نظرة سريعة على المشروع' : 'Project Snapshot'}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                {study.snapshot.map((item, i) => (
+                  <div key={i} className="flex justify-between gap-4 sm:block">
+                    <p className="text-xs text-[#4F555E] uppercase tracking-wide mb-0 sm:mb-1">{ar ? item.label_ar : item.label_en}</p>
+                    <p className="text-sm font-semibold text-[#101418] text-end sm:text-start">{ar ? item.value_ar : item.value_en}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      )}
 
       {mediaItems.length > 0 && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
@@ -284,25 +304,50 @@ export function CaseStudyDetailPage() {
 
           <ScrollReveal delay={0.06}>
             <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'التحدي الحقيقي' : 'Challenge'}</h2>
-            <p className="text-sm text-[#4F555E] leading-relaxed">{problem}</p>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-4">{challengeIntro}</p>
+            <ul className="space-y-2">
+              {challengeItems.map((item, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-[#4F555E] leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D63A3A]/60 flex-shrink-0 mt-1.5" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="text-xl font-bold text-[#101418] mb-5">{ar ? 'ماذا بنت إنسديم' : 'What ENSDIM Built'}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {built.map((b, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 bg-[#FAFAFA] border border-[#E5E5E5] rounded-xl">
-                  <CheckCircle2 size={15} className="text-[#6D5DF6] flex-shrink-0" />
-                  <span className="text-sm text-[#101418]">{b}</span>
-                </div>
-              ))}
+            <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'ماذا بنت إنسديم' : 'What ENSDIM Built'}</h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-6">{builtIntro}</p>
+            <div className="space-y-6">
+              {study.builtSections.map((section, i) => {
+                const items = ar ? section.items_ar : section.items_en;
+                const closing = ar ? section.closing_ar : section.closing_en;
+                return (
+                  <div key={i} className="border border-[#E5E5E5] rounded-2xl p-5 sm:p-6 bg-[#FAFAFA]">
+                    <h3 className="text-base font-bold text-[#101418] mb-2">{ar ? section.title_ar : section.title_en}</h3>
+                    <p className="text-sm text-[#4F555E] leading-relaxed mb-4">{ar ? section.lead_ar : section.lead_en}</p>
+                    {items.length > 0 && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
+                        {items.map((item, j) => (
+                          <div key={j} className="flex items-start gap-2.5 p-3 bg-white border border-[#E5E5E5] rounded-lg">
+                            <CheckCircle2 size={14} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
+                            <span className="text-xs text-[#101418] leading-relaxed">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {closing && <p className="text-sm text-[#4F555E] leading-relaxed italic">{closing}</p>}
+                  </div>
+                );
+              })}
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.14}>
-            <h2 className="text-xl font-bold text-[#101418] mb-5">{ar ? 'الأثر على العمل' : 'Business Impact'}</h2>
+            <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'الأثر على العمل' : 'Business Impact'}</h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed mb-5">{impactIntro}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {outcomes.map((o, i) => (
+              {impactItems.map((o, i) => (
                 <div key={i} className="p-4 bg-[#EEEAFE] rounded-xl">
                   <p className="text-sm font-medium text-[#101418]">{o}</p>
                 </div>
@@ -311,7 +356,7 @@ export function CaseStudyDetailPage() {
           </ScrollReveal>
 
           {study.demo_url && (
-            <ScrollReveal delay={0.18}>
+            <ScrollReveal delay={0.16}>
               <a
                 href={study.demo_url}
                 target="_blank"
@@ -323,28 +368,43 @@ export function CaseStudyDetailPage() {
             </ScrollReveal>
           )}
 
-          {(study.solution_slug || study.problem_page_slug) && (
+          <ScrollReveal delay={0.18}>
+            <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'لماذا كانت هذه الدراسة مهمة؟' : 'Why This Case Matters'}</h2>
+            <p className="text-sm text-[#4F555E] leading-relaxed">{whyMatters}</p>
+          </ScrollReveal>
+
+          {study.relatedSolutions.length > 0 && (
             <ScrollReveal delay={0.22}>
               <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'الحلول المرتبطة' : 'Related Solutions'}</h2>
               <div className="grid sm:grid-cols-2 gap-3">
-                {study.solution_slug && (
-                  <Link
-                    to={`/solutions/${study.solution_slug}`}
-                    className="group flex items-center justify-between gap-3 px-5 py-4 bg-white border border-[#E5E5E5] rounded-xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
-                  >
-                    <span className="text-sm font-semibold text-[#101418]">{solutionTitle}</span>
-                    <ArrowRight size={14} className="text-[#6D5DF6] flex-shrink-0 group-hover:translate-x-0.5 group-active:translate-x-0.5 transition-transform" />
-                  </Link>
-                )}
-                {study.problem_page_slug && (
-                  <Link
-                    to={`/problems/${study.problem_page_slug}`}
-                    className="group flex items-center justify-between gap-3 px-5 py-4 bg-white border border-[#E5E5E5] rounded-xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
-                  >
-                    <span className="text-sm font-semibold text-[#101418]">{problemTitle}</span>
-                    <ArrowRight size={14} className="text-[#6D5DF6] flex-shrink-0 group-hover:translate-x-0.5 group-active:translate-x-0.5 transition-transform" />
-                  </Link>
-                )}
+                {study.relatedSolutions.map((solution, i) => {
+                  const solutionTitle = ar ? solution.title_ar : solution.title_en;
+                  const solutionDesc = ar ? solution.desc_ar : solution.desc_en;
+                  const content = (
+                    <>
+                      <div>
+                        <span className="text-sm font-semibold text-[#101418] block mb-1">{solutionTitle}</span>
+                        <span className="text-xs text-[#4F555E] leading-relaxed">{solutionDesc}</span>
+                      </div>
+                      {solution.href && (
+                        <ArrowRight size={14} className="text-[#6D5DF6] flex-shrink-0 group-hover:translate-x-0.5 group-active:translate-x-0.5 transition-transform mt-1" />
+                      )}
+                    </>
+                  );
+                  return solution.href ? (
+                    <Link
+                      key={i}
+                      to={solution.href}
+                      className="group flex items-start justify-between gap-3 px-5 py-4 bg-white border border-[#E5E5E5] rounded-xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
+                    >
+                      {content}
+                    </Link>
+                  ) : (
+                    <div key={i} className="flex items-start justify-between gap-3 px-5 py-4 bg-white border border-[#E5E5E5] rounded-xl">
+                      {content}
+                    </div>
+                  );
+                })}
               </div>
             </ScrollReveal>
           )}
@@ -372,8 +432,11 @@ export function CaseStudyDetailPage() {
       <section id="case-study-form" className="py-16 bg-[#FAFAFA] scroll-mt-20">
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
+            <p className="text-sm text-[#4F555E] leading-relaxed text-center mb-6">
+              {ar ? study.cta.desc_ar : study.cta.desc_en}
+            </p>
             <ConsultationForm
-              title={ar ? 'هل تريد نتيجة مشابهة؟' : 'Want a similar result?'}
+              title={ar ? study.cta.title_ar : study.cta.title_en}
               hiddenFields={{
                 source_page: `/case-studies/${slug}`,
                 clicked_case_study: title,
