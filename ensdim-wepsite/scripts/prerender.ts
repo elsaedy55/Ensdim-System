@@ -83,23 +83,25 @@ async function main() {
   let page = await browser.newPage();
 
   // Headless Chromium's memory grows across many sequential navigations
-  // (animations, canvases, etc.) and can crash the renderer/browser process
-  // outright. Recreate the page periodically and transparently relaunch the
-  // browser whenever it (or the page) has died, so one crash doesn't take
-  // down every remaining route.
-  const RECYCLE_EVERY = 15;
+  // (animations, canvases, etc.) and can crash the browser process outright.
+  // On Vercel, @sparticuz/chromium forces `--single-process`, so there's no
+  // separate renderer to isolate a leak — closing just the page doesn't
+  // reclaim memory the way it does with regular multi-process Chromium.
+  // Always fully relaunch the browser on recycle/recovery, and do it more
+  // often in that constrained single-process mode.
+  const RECYCLE_EVERY = process.env.VERCEL ? 5 : 15;
   let routesSinceRecycle = 0;
 
+  async function recycleBrowser() {
+    await browser.close().catch(() => {});
+    browser = await launchBrowser();
+    page = await browser.newPage();
+    routesSinceRecycle = 0;
+  }
+
   async function ensureLivePage() {
-    if (!browser.isConnected()) {
-      browser = await launchBrowser();
-      page = await browser.newPage();
-      routesSinceRecycle = 0;
-      return;
-    }
-    if (page.isClosed()) {
-      page = await browser.newPage();
-      routesSinceRecycle = 0;
+    if (!browser.isConnected() || page.isClosed()) {
+      await recycleBrowser();
     }
   }
 
@@ -108,9 +110,7 @@ async function main() {
 
   for (const route of routes) {
     if (routesSinceRecycle >= RECYCLE_EVERY) {
-      await page.close().catch(() => {});
-      page = await browser.newPage();
-      routesSinceRecycle = 0;
+      await recycleBrowser();
     }
 
     const url = new URL(route, base).toString();
@@ -135,8 +135,10 @@ async function main() {
         break;
       } catch (err) {
         lastErr = err as Error;
-        // Force a relaunch/new page before the retry attempt.
-        await ensureLivePage().catch(() => {});
+        // Any failure gets a full relaunch before the retry attempt — cheap
+        // insurance since we can't cheaply tell a benign timeout apart from
+        // a browser crash.
+        await recycleBrowser().catch(() => {});
       }
     }
 
