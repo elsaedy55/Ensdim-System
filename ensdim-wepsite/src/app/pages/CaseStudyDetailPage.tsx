@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
-import { ArrowRight, ArrowLeft, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ExternalLink, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
@@ -18,6 +18,7 @@ export function CaseStudyDetailPage() {
   const [mediaIndex, setMediaIndex] = useState(0);
   const [dragPx, setDragPx] = useState(0);
   const [animateTrack, setAnimateTrack] = useState(false);
+  const [openBuiltIndex, setOpenBuiltIndex] = useState<number | null>(null);
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -322,21 +323,36 @@ export function CaseStudyDetailPage() {
               {study.builtSections.map((section, i) => {
                 const items = ar ? section.items_ar : section.items_en;
                 const closing = ar ? section.closing_ar : section.closing_en;
+                const isOpen = openBuiltIndex === i;
                 return (
-                  <div key={i} className="border border-[#E5E5E5] rounded-2xl p-5 sm:p-6 bg-[#FAFAFA]">
-                    <h3 className="text-base font-bold text-[#101418] mb-2">{ar ? section.title_ar : section.title_en}</h3>
-                    <p className="text-sm text-[#4F555E] leading-relaxed mb-4">{ar ? section.lead_ar : section.lead_en}</p>
-                    {items.length > 0 && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
-                        {items.map((item, j) => (
-                          <div key={j} className="flex items-start gap-2.5 p-3 bg-white border border-[#E5E5E5] rounded-lg">
-                            <CheckCircle2 size={14} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
-                            <span className="text-xs text-[#101418] leading-relaxed">{item}</span>
-                          </div>
-                        ))}
+                  <div key={i} className="border border-[#E5E5E5] rounded-2xl bg-[#FAFAFA] overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => setOpenBuiltIndex(isOpen ? null : i)}
+                      className="w-full flex items-start gap-3 p-5 sm:p-6 text-start lg:pointer-events-none"
+                    >
+                      <div className="flex-1">
+                        <h3 className="text-base font-bold text-[#101418] mb-2">{ar ? section.title_ar : section.title_en}</h3>
+                        <p className="text-sm text-[#4F555E] leading-relaxed">{ar ? section.lead_ar : section.lead_en}</p>
                       </div>
-                    )}
-                    {closing && <p className="text-sm text-[#4F555E] leading-relaxed italic">{closing}</p>}
+                      <ChevronDown
+                        size={18}
+                        className={`lg:hidden text-[#6D5DF6] flex-shrink-0 mt-1 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    <div className={`${isOpen ? 'block' : 'hidden'} lg:block px-5 sm:px-6 pb-5 sm:pb-6`}>
+                      {items.length > 0 && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
+                          {items.map((item, j) => (
+                            <div key={j} className="flex items-start gap-2.5 p-3 bg-white border border-[#E5E5E5] rounded-lg">
+                              <CheckCircle2 size={14} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
+                              <span className="text-xs text-[#101418] leading-relaxed">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {closing && <p className="text-sm text-[#4F555E] leading-relaxed italic">{closing}</p>}
+                    </div>
                   </div>
                 );
               })}

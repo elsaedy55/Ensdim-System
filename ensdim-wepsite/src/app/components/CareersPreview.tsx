@@ -24,7 +24,7 @@ export function CareersPreview() {
             </div>
             <Link
               to="/careers"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl hover:bg-[#1e232b] active:scale-[0.97] transition-all duration-200 text-sm font-medium flex-shrink-0 self-start sm:self-auto"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#2f2160] active:scale-[0.97] transition-all duration-200 text-sm font-medium flex-shrink-0 self-start sm:self-auto"
             >
               {ar ? 'استعرض الوظائف المتاحة' : 'View Open Roles'}
               <ArrowRight size={15} />
