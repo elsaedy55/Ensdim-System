@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import sparticuzChromium from '@sparticuz/chromium';
 import { preview } from 'vite';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -64,7 +65,19 @@ async function main() {
   const server = await preview({ root: ROOT, preview: { port: PORT, strictPort: true } });
   const base = server.resolvedUrls?.local?.[0] ?? `http://localhost:${PORT}/`;
 
-  const launchBrowser = () => chromium.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  // Vercel's build container is missing the shared libs (libnspr4.so etc.)
+  // that Playwright's downloaded Chromium needs, and there's no apt/yum
+  // access to install them. @sparticuz/chromium ships a statically-linked
+  // build made for exactly this environment, so use it there and fall back
+  // to Playwright's own browser (installed via postinstall) everywhere else.
+  const launchBrowser = async () =>
+    process.env.VERCEL
+      ? chromium.launch({
+          args: sparticuzChromium.args,
+          executablePath: await sparticuzChromium.executablePath(),
+          headless: true,
+        })
+      : chromium.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 
   let browser = await launchBrowser();
   let page = await browser.newPage();
