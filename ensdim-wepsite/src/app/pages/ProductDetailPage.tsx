@@ -116,13 +116,13 @@ export function ProductDetailPage() {
   return (
     <>
       <SEO
-        title={`${data.title} | ENSDIM Products`}
+        title={`${data.title} | Ensdim Products`}
         description={`${data.for}. ${data.outcome} Built for businesses in Egypt, Saudi Arabia, and UAE.`}
         keywords={`${data.title} Egypt, ${data.for.toLowerCase()}, business management software Middle East`}
         canonical={`/products/${slug}`}
       />
       <PageHero
-        eyebrow={ar ? 'منتجات إنسديم' : 'ENSDIM Products'}
+        eyebrow={ar ? 'منتجات إنسديم' : 'Ensdim Products'}
         title={data.title}
         subtitle={`${data.for}. ${data.outcome}`}
         primaryCTA={{ label: ar ? 'اعرف المنتج الأنسب لتشغيل شركتك' : 'Find the best product for your operations', href: `/products/find-fit?product=${slug}` }}
@@ -152,7 +152,7 @@ export function ProductDetailPage() {
 
             {/* Modules */}
             <ScrollReveal delay={0.1}>
-              <h2 className="text-xl font-bold text-[#101418] mb-5">{ar ? 'ما تنظمه إنسديم' : 'What ENSDIM organizes'}</h2>
+              <h2 className="text-xl font-bold text-[#101418] mb-5">{ar ? 'ما تنظمه إنسديم' : 'What Ensdim organizes'}</h2>
               <ul className="space-y-2">
                 {data.modules.map((m, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm text-[#4F555E]">

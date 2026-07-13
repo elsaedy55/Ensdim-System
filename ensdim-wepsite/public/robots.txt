@@ -1,4 +1,4 @@
-# robots.txt for ENSDIM (https://ensdim.com)
+# robots.txt for Ensdim (https://ensdim.com)
 # Last updated: June 2026
 
 # ==========================================

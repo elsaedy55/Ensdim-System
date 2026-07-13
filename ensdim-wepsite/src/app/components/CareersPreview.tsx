@@ -19,7 +19,7 @@ export function CareersPreview() {
               <p className="text-sm text-[#4F555E] max-w-2xl">
                 {ar
                   ? 'في إنسديم، لا نبحث عن منفذين فقط. نبحث عن أشخاص لديهم فضول، تفكير عميق، ورغبة حقيقية في التطور من خلال العمل على مشاريع تجمع بين التقنية، السلوك، التصميم، والنمو.'
-                  : 'At ENSDIM, we are not looking for executors only. We look for curious people with deep thinking and a real desire to grow through projects that connect technology, behavior, design, and business growth.'}
+                  : 'At Ensdim, we are not looking for executors only. We look for curious people with deep thinking and a real desire to grow through projects that connect technology, behavior, design, and business growth.'}
               </p>
             </div>
             <Link

@@ -63,16 +63,16 @@ export function TeamPage() {
   return (
     <>
       <SEO
-        title={ar ? 'فريق إنسديم | الفريق الذي يحوّل الفهم إلى تكنولوجيا' : 'ENSDIM Team | The Team That Turns Understanding Into Technology'}
+        title={ar ? 'فريق إنسديم | الفريق الذي يحوّل الفهم إلى تكنولوجيا' : 'Ensdim Team | The Team That Turns Understanding Into Technology'}
         description={ar
           ? 'وراء إنسديم فريق يعمل على فهم التحدي قبل بناء الحل. نجمع بين التفكير في البزنس، تجربة المستخدم، الهندسة، البيانات، الأمان، والذكاء الاصطناعي.'
-          : 'Behind ENSDIM is a team that works to understand the challenge before building the solution. We bring together business thinking, user experience, engineering, data, security, and AI.'}
+          : 'Behind Ensdim is a team that works to understand the challenge before building the solution. We bring together business thinking, user experience, engineering, data, security, and AI.'}
         canonical="/team"
         lang={ar ? 'ar' : 'en'}
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -86,7 +86,7 @@ export function TeamPage() {
             <span className="text-white/70 font-medium">{ar ? 'الفريق' : 'Team'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'فريق إنسديم' : 'ENSDIM Team'}
+            {ar ? 'فريق إنسديم' : 'Ensdim Team'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'الفريق الذي يحوّل الفهم إلى تكنولوجيا قابلة للاستخدام.' : 'The team that turns understanding into usable technology.'}
@@ -94,7 +94,7 @@ export function TeamPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'وراء إنسديم فريق يعمل على فهم التحدي قبل بناء الحل. نجمع بين التفكير في البزنس، تجربة المستخدم، الهندسة، البيانات، الأمان، والذكاء الاصطناعي لتحويل المشكلات التشغيلية والأفكار الرقمية إلى حلول واضحة قابلة للاستخدام والقياس.'
-              : 'Behind ENSDIM is a team that works to understand the challenge before building the solution. We bring together business thinking, user experience, engineering, data, security, and artificial intelligence to turn operational problems and digital ideas into clear, usable, and measurable solutions.'}
+              : 'Behind Ensdim is a team that works to understand the challenge before building the solution. We bring together business thinking, user experience, engineering, data, security, and artificial intelligence to turn operational problems and digital ideas into clear, usable, and measurable solutions.'}
           </p>
           <div className="flex flex-wrap gap-2">
             {(ar ? 'فهم أعمق. تنفيذ منظم. تكنولوجيا تخدم العائد.' : 'Deeper understanding. Organized delivery. Technology built for return.')
@@ -124,7 +124,7 @@ export function TeamPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
                 ? 'كل مشروع في إنسديم يبدأ من فهم الواقع: ما الذي يحدث داخل العمل؟ أين يتردد العميل؟ أين تضيع المتابعة؟ وما الذي تحتاجه الإدارة لتتخذ قرارًا أوضح؟'
-                : 'Every ENSDIM project starts by understanding what is really happening inside the business: where customers hesitate, where follow-up gets lost, and what leadership needs to make clearer decisions.'}
+                : 'Every Ensdim project starts by understanding what is really happening inside the business: where customers hesitate, where follow-up gets lost, and what leadership needs to make clearer decisions.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
@@ -166,7 +166,7 @@ export function TeamPage() {
             <p className="text-xs text-[#4F555E]/80 max-w-2xl mx-auto text-center leading-relaxed">
               {ar
                 ? 'لا نعرض كل الخبرات المرتبطة بكل مشروع داخل هذه الصفحة. حسب طبيعة المشروع، نستعين بخبرات واستشارات متخصصة في مجالات مثل علم السلوك، تجربة المستخدم، الأمن السيبراني، البنية التقنية، البيانات، أو النمو؛ عندما يكون وجودها مؤثرًا في جودة القرار ونتيجة التنفيذ.'
-                : 'This page does not show every expertise involved in every project. Depending on the project, ENSDIM may involve specialized advisory expertise in areas such as behavioral science, user experience, cybersecurity, technical architecture, data, or growth when that expertise improves decision quality and execution outcomes.'}
+                : 'This page does not show every expertise involved in every project. Depending on the project, Ensdim may involve specialized advisory expertise in areas such as behavioral science, user experience, cybersecurity, technical architecture, data, or growth when that expertise improves decision quality and execution outcomes.'}
             </p>
           </ScrollReveal>
         </div>
@@ -216,7 +216,7 @@ export function TeamPage() {
         </div>
       </section>
 
-      {/* Join ENSDIM */}
+      {/* Join Ensdim */}
       <section className="py-16 bg-white">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <ScrollReveal>
@@ -226,7 +226,7 @@ export function TeamPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
                 ? 'نرحب بالمواهب التي تجمع بين الجدية، التعلم، الفضول، والقدرة على بناء حلول مفيدة فعلًا. إذا كنت ترى التكنولوجيا كطريقة لفهم البشر وتحسين العمل، فقد تكون إنسديم المكان المناسب لك.'
-                : 'We welcome talent with seriousness, learning ability, curiosity, and the ability to build useful solutions. If you see technology as a way to understand people and improve work, ENSDIM may be the right place for you.'}
+                : 'We welcome talent with seriousness, learning ability, curiosity, and the ability to build useful solutions. If you see technology as a way to understand people and improve work, Ensdim may be the right place for you.'}
             </p>
             <Link to="/careers" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
               {ar ? 'استكشف فرص العمل' : 'Explore Careers'} <ArrowRight size={15} />
@@ -240,7 +240,7 @@ export function TeamPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
           <h2 className="text-2xl font-bold text-[#101418] mb-3">
-            {ar ? 'تعرّف على طريقة إنسديم في بناء الحلول.' : 'Discover how ENSDIM builds solutions.'}
+            {ar ? 'تعرّف على طريقة إنسديم في بناء الحلول.' : 'Discover how Ensdim builds solutions.'}
           </h2>
           <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar

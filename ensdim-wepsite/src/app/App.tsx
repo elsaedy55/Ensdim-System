@@ -44,8 +44,8 @@ import { SaaSSaudiPage } from './pages/local/SaaSSaudiPage';
 import { SaaSUAEPage } from './pages/local/SaaSUAEPage';
 
 const basename =
-  window.location.pathname === '/ar' || window.location.pathname.startsWith('/ar/')
-    ? '/ar'
+  window.location.pathname === '/en' || window.location.pathname.startsWith('/en/')
+    ? '/en'
     : '/';
 
 export default function App() {

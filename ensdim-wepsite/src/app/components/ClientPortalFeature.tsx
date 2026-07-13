@@ -155,7 +155,7 @@ export function ClientPortalFeature() {
                     <span className="text-[8px] font-bold text-[#6D5DF6]">E</span>
                   </div>
                   <p className="text-[10px] text-[#4F555E]">
-                    <span className="text-[#101418] font-semibold">ENSDIM Team: </span>
+                    <span className="text-[#101418] font-semibold">Ensdim Team: </span>
                     Phase 3 build started — tracker updated.
                   </p>
                 </div>

@@ -111,7 +111,7 @@ export function ServicesPage() {
   return (
     <>
       <SEO
-        title={ar ? 'خدمات إنسديم | مواقع، تطبيقات، CRM، أتمتة وبيانات' : 'ENSDIM Services | Websites, Apps, CRM, Automation & Data'}
+        title={ar ? 'خدمات إنسديم | مواقع، تطبيقات، CRM، أتمتة وبيانات' : 'Ensdim Services | Websites, Apps, CRM, Automation & Data'}
         description={ar
           ? 'خدمات رقمية تجعل البيع أوضح، والتشغيل أذكى، والنمو أسهل: مواقع، تطبيقات، CRM، أنظمة داخلية، لوحات متابعة، أتمتة، وتسويق.'
           : 'Digital services that make sales clearer, operations smarter, and growth easier: websites, apps, CRM, internal systems, dashboards, automation, and marketing.'}
@@ -121,7 +121,7 @@ export function ServicesPage() {
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -133,7 +133,7 @@ export function ServicesPage() {
             <span className="text-white/70 font-medium">{ar ? 'الخدمات' : 'Services'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'خدمات إنسديم' : 'ENSDIM Services'}
+            {ar ? 'خدمات إنسديم' : 'Ensdim Services'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'خدمات رقمية تجعل البيع أوضح، والتشغيل أذكى، والنمو أسهل.' : 'Digital services that make sales clearer, operations smarter, and growth easier.'}
@@ -141,7 +141,7 @@ export function ServicesPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'في إنسديم، لا نتعامل مع الموقع أو التطبيق أو الـ CRM كمنتج منفصل. نربط كل خدمة برحلة العميل، طريقة عمل الفريق، البيانات، والمتابعة؛ حتى تتحول الخدمة من واجهة أو أداة إلى جزء فعلي يساعد شركتك على جذب فرص أفضل، تنظيم العمل، واتخاذ قرارات أوضح.'
-              : 'At ENSDIM, we do not treat a website, application, or CRM as a separate product. We connect every service to the customer journey, the team workflow, data, and follow-up, so it becomes more than an interface or tool: it becomes a real part of how your company attracts better opportunities, organizes work, and makes clearer decisions.'}
+              : 'At Ensdim, we do not treat a website, application, or CRM as a separate product. We connect every service to the customer journey, the team workflow, data, and follow-up, so it becomes more than an interface or tool: it becomes a real part of how your company attracts better opportunities, organizes work, and makes clearer decisions.'}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
             {(ar ? 'تجربة عميل أوضح. تشغيل أذكى. نمو قابل للقياس.' : 'Clearer customer experience. Smarter operations. Measurable growth.')
@@ -189,7 +189,7 @@ export function ServicesPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
                 ? 'قد تجد كثيرًا من الشركات تقدم مواقع، تطبيقات، CRM، أنظمة داخلية للتشغيل، أو أتمتة. الفرق الحقيقي ليس في اسم الخدمة، بل في طريقة بنائها: هل تفهم رحلة العميل؟ هل تتصل بالتشغيل؟ هل تقلل العمل اليدوي؟ هل تعطي الإدارة رؤية أوضح؟ وهل يمكن قياس أثرها بعد الإطلاق؟ خدمات إنسديم تُبنى لتحقق عائدًا واضحًا وملموسًا.'
-                : 'Many companies can offer websites, apps, CRM systems, internal operational systems, or automation. The real difference is not in the service name, but in how it is built: does it understand the customer journey, connect with operations, reduce manual work, give management clearer visibility, and create measurable impact after launch? ENSDIM services are built to create a clear, tangible return.'}
+                : 'Many companies can offer websites, apps, CRM systems, internal operational systems, or automation. The real difference is not in the service name, but in how it is built: does it understand the customer journey, connect with operations, reduce manual work, give management clearer visibility, and create measurable impact after launch? Ensdim services are built to create a clear, tangible return.'}
             </p>
           </ScrollReveal>
         </div>
@@ -240,12 +240,12 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* How ENSDIM delivers its services */}
+      {/* How Ensdim delivers its services */}
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">
-              {ar ? 'كيف تنفذ إنسديم خدماتها؟' : 'How ENSDIM Delivers Its Services'}
+              {ar ? 'كيف تنفذ إنسديم خدماتها؟' : 'How Ensdim Delivers Its Services'}
             </h2>
             <p className="text-sm text-[#4F555E] max-w-2xl mx-auto">
               {ar
@@ -267,7 +267,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* ENSDIM's way of building services */}
+      {/* Ensdim's way of building services */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="text-center mb-12">
@@ -277,7 +277,7 @@ export function ServicesPage() {
             <p className="text-sm text-[#4F555E] max-w-2xl mx-auto">
               {ar
                 ? 'الفرق لا يظهر في اسم الخدمة، بل في ما يحدث بعدها. هل أصبح العميل أقرب للطلب؟ هل أصبح الفريق أكثر تنظيمًا؟ هل أصبحت الإدارة ترى الأرقام أسرع؟ وهل يمكن تطوير الخدمة مع نمو العمل؟ هذه هي الأسئلة التي تحدد طريقة بناء كل خدمة داخل إنسديم.'
-                : 'The difference does not appear in the service name, but in what happens after it is launched. Is the customer closer to making a request? Is the team more organized? Can management see the numbers faster? Can the service evolve as the business grows? These are the questions that shape how every ENSDIM service is built.'}
+                : 'The difference does not appear in the service name, but in what happens after it is launched. Is the customer closer to making a request? Is the team more organized? Can management see the numbers faster? Can the service evolve as the business grows? These are the questions that shape how every Ensdim service is built.'}
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -294,7 +294,7 @@ export function ServicesPage() {
       </section>
 
       {/* Client Workspace */}
-      <section id="client-workspace" className="py-16 bg-[#0f0d19] text-white">
+      <section id="client-workspace" className="py-16 bg-logo-black text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold mb-3">
@@ -359,7 +359,7 @@ export function ServicesPage() {
       </section>
 
       <FAQSection
-        title={ar ? 'الأسئلة الشائعة حول خدمات إنسديم' : 'Frequently Asked Questions About ENSDIM Services'}
+        title={ar ? 'الأسئلة الشائعة حول خدمات إنسديم' : 'Frequently Asked Questions About Ensdim Services'}
         faqs={ar ? [
           { question: 'ما الفرق بين الموقع وتجربة المستخدم؟', answer: 'الموقع هو ما يراه العميل ويتفاعل معه. تجربة المستخدم هي طريقة تنظيم هذا التفاعل: ماذا يرى أولًا؟ أين يضغط؟ متى يثق؟ ومتى يترك بياناته أو يطلب الخدمة؟' },
           { question: 'ما الفرق بين CRM والنظام الداخلي؟', answer: 'CRM يركز على العملاء، الفرص، المبيعات، والمتابعة. النظام الداخلي يركز على تشغيل الشركة من الداخل مثل المهام، الطلبات، الموافقات، الموظفين، المخزون، الفروع، وتدفقات العمل.' },

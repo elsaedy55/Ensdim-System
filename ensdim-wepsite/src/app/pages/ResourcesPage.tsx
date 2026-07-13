@@ -146,7 +146,7 @@ export function ResourcesPage() {
   return (
     <>
       <SEO
-        title={ar ? 'موارد إنسديم | رؤى عملية في ذكاء الأعمال والنمو وتجربة المستخدم' : 'ENSDIM Resources | Practical Insights into Business Intelligence, Growth & UX'}
+        title={ar ? 'موارد إنسديم | رؤى عملية في ذكاء الأعمال والنمو وتجربة المستخدم' : 'Ensdim Resources | Practical Insights into Business Intelligence, Growth & UX'}
         description={ar
           ? 'مساحة معرفية نشارك فيها أبحاثًا، تحليلات، ودراسات حالة تربط بين سلوك العملاء، ذكاء الأعمال، تحديات النمو، وتجربة المستخدم.'
           : 'A knowledge space where we share research, analysis, and case studies that connect customer behavior, business intelligence, growth challenges, and user experience with business performance.'}
@@ -155,7 +155,7 @@ export function ResourcesPage() {
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -167,7 +167,7 @@ export function ResourcesPage() {
             <span className="text-white/70 font-medium">{ar ? 'الموارد' : 'Resources'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            ENSDIM Knowledge Hub
+            Ensdim Knowledge Hub
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'رؤى عملية في ذكاء الأعمال، النمو، وتجربة المستخدم.' : 'Practical insights into business intelligence, growth, and user experience.'}
@@ -175,7 +175,7 @@ export function ResourcesPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'موارد إنسديم ليست محتوى عامًا عن التقنية. هي مساحة معرفية نشارك فيها أبحاثًا، تحليلات، مقالات، ودراسات حالة تربط بين سلوك العملاء، ذكاء الأعمال، تحديات النمو، تجربة المستخدم، والأفكار التقنية الحديثة التي تنعكس على الأداء والعائد.'
-              : 'ENSDIM Resources is not generic technology content. It is a knowledge space where we share research, analysis, insights, and case studies that connect customer behavior, business intelligence, growth challenges, user experience, and modern technologies with measurable business performance and return.'}
+              : 'Ensdim Resources is not generic technology content. It is a knowledge space where we share research, analysis, insights, and case studies that connect customer behavior, business intelligence, growth challenges, user experience, and modern technologies with measurable business performance and return.'}
           </p>
           <div className="flex flex-wrap gap-2">
             {'Business Intelligence. Growth Systems. User Experience. Business Impact.'
@@ -210,7 +210,7 @@ export function ResourcesPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
                 ? 'في موارد إنسديم، نحلل هذه الأسئلة من زاوية عملية تجمع بين ذكاء الأعمال، النمو، تجربة المستخدم، التشغيل، البيانات، والتقنيات الحديثة؛ حتى يتحول المحتوى إلى معرفة تساعد أصحاب الأعمال على اتخاذ قرارات أوضح قبل الاستثمار في أي حل رقمي.'
-                : 'Through ENSDIM Resources, we analyze these questions from a practical angle that combines business intelligence, growth, user experience, operations, data, and modern technology. The goal is to turn content into knowledge that helps business leaders make clearer digital decisions before investing in any solution.'}
+                : 'Through Ensdim Resources, we analyze these questions from a practical angle that combines business intelligence, growth, user experience, operations, data, and modern technology. The goal is to turn content into knowledge that helps business leaders make clearer digital decisions before investing in any solution.'}
             </p>
           </ScrollReveal>
         </div>
@@ -344,7 +344,7 @@ export function ResourcesPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <ScrollReveal className="mb-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#101418]">
-                {ar ? 'مختارات من إنسديم' : 'Selected by ENSDIM'}
+                {ar ? 'مختارات من إنسديم' : 'Selected by Ensdim'}
               </h2>
             </ScrollReveal>
             <div className="grid sm:grid-cols-2 gap-5">
@@ -387,7 +387,7 @@ export function ResourcesPage() {
 
       {/* FAQ */}
       <FAQSection
-        title={ar ? 'أسئلة شائعة حول موارد إنسديم' : 'Frequently Asked Questions About ENSDIM Resources'}
+        title={ar ? 'أسئلة شائعة حول موارد إنسديم' : 'Frequently Asked Questions About Ensdim Resources'}
         faqs={ar ? [
           { question: 'ما نوع الموارد التي تقدمها إنسديم؟', answer: 'نقدم أبحاثًا، مقالات تحليلية، ودراسات حالة تركز على ذكاء الأعمال، النمو، تجربة المستخدم، البيانات، الأتمتة، والأنظمة الرقمية المؤثرة في أداء الشركات.' },
           { question: 'هل موارد إنسديم تقنية فقط؟', answer: 'لا. نحن نكتب عن التقنية من زاوية تأثيرها على البزنس: القرار، التشغيل، تجربة العميل، المبيعات، التكلفة، النمو، والعائد.' },
@@ -395,11 +395,11 @@ export function ResourcesPage() {
           { question: 'هل المحتوى متاح بالعربية والإنجليزية؟', answer: 'نهدف إلى تقديم الموارد الأساسية باللغتين العربية والإنجليزية، خصوصًا الموضوعات المرتبطة بخدمات إنسديم وحلولها ودراسات الحالة.' },
           { question: 'كيف تختلف موارد إنسديم عن المحتوى العام عن الذكاء الاصطناعي أو التقنية؟', answer: 'نحن لا نكتب عن التقنية كاتجاه عام فقط. نربط كل فكرة بسؤال عملي: كيف تؤثر على العميل، الفريق، التشغيل، القرار، الربحية، أو العائد؟' },
         ] : [
-          { question: 'What type of resources does ENSDIM provide?', answer: 'We provide research, analytical insights, and case studies focused on business intelligence, growth, user experience, data, automation, and digital systems that affect company performance.' },
-          { question: 'Are ENSDIM Resources only technical?', answer: 'No. We write about technology through its impact on business: decision-making, operations, customer experience, sales, cost, growth, and return.' },
+          { question: 'What type of resources does Ensdim provide?', answer: 'We provide research, analytical insights, and case studies focused on business intelligence, growth, user experience, data, automation, and digital systems that affect company performance.' },
+          { question: 'Are Ensdim Resources only technical?', answer: 'No. We write about technology through its impact on business: decision-making, operations, customer experience, sales, cost, growth, and return.' },
           { question: 'Is the content suitable for non-technical business owners?', answer: 'Yes. We explain concepts in practical language that helps owners and managers understand the impact before going into technical detail.' },
-          { question: 'Is the content available in Arabic and English?', answer: 'We aim to provide core resources in both Arabic and English, especially topics related to ENSDIM services, solutions, and case studies.' },
-          { question: 'How are ENSDIM Resources different from general AI or technology content?', answer: 'We do not write about technology as a trend only. We connect every idea to a practical question: how does it affect the customer, team, operations, decision-making, profitability, or return?' },
+          { question: 'Is the content available in Arabic and English?', answer: 'We aim to provide core resources in both Arabic and English, especially topics related to Ensdim services, solutions, and case studies.' },
+          { question: 'How are Ensdim Resources different from general AI or technology content?', answer: 'We do not write about technology as a trend only. We connect every idea to a practical question: how does it affect the customer, team, operations, decision-making, profitability, or return?' },
         ]}
       />
 

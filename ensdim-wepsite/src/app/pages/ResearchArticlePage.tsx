@@ -105,9 +105,9 @@ export function ResearchArticlePage() {
   return (
     <>
       <SEO
-        title={`${title} | ENSDIM Research`}
+        title={`${title} | Ensdim Research`}
         description={desc}
-        keywords={`ENSDIM research, ${cat.toLowerCase()}, ${article.slug.replace(/-/g, ' ')}`}
+        keywords={`Ensdim research, ${cat.toLowerCase()}, ${article.slug.replace(/-/g, ' ')}`}
         canonical={`/research/${article.slug}`}
       />
 

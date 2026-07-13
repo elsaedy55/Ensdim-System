@@ -93,7 +93,7 @@ export function ProductFindFitPage() {
   return (
     <>
       <SEO
-        title={ar ? 'دعنا نرشح لك المنتج الأقرب لاحتياج شركتك | إنسديم' : 'Let Us Recommend the Closest Product to Your Needs | ENSDIM'}
+        title={ar ? 'دعنا نرشح لك المنتج الأقرب لاحتياج شركتك | إنسديم' : 'Let Us Recommend the Closest Product to Your Needs | Ensdim'}
         description={ar
           ? 'شاركنا بيانات بسيطة عن شركتك ومجال عملك، وسنراجع احتياجك لنقترح المنتج الأقرب لطريقة تشغيلك.'
           : 'Share a few simple details about your company and business field. We will review your need and recommend the closest product to your operations.'}
@@ -102,7 +102,7 @@ export function ProductFindFitPage() {
         noIndex
       />
 
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}

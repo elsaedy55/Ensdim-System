@@ -33,13 +33,13 @@ function pathToUrl(prefix, path) {
 // Expands a single page definition into an English + Arabic URL pair with
 // reciprocal hreflang alternates.
 function urlPairsForPage(page) {
-  const enLoc = pathToUrl('', page.path);
-  const arLoc = pathToUrl('/ar', page.path);
+  const enLoc = pathToUrl('/en', page.path);
+  const arLoc = pathToUrl('', page.path);
 
   const hreflang = [
     { lang: 'en', href: enLoc },
     { lang: 'ar', href: arLoc },
-    { lang: 'x-default', href: enLoc },
+    { lang: 'x-default', href: arLoc },
   ];
 
   const common = {

@@ -29,6 +29,15 @@
   border-color: #D63A3A;
 }
 
+.ensdim-phone-input--dark.PhoneInput {
+  background: #101418;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ensdim-phone-input--dark.PhoneInput:focus-within {
+  border-color: #6D5DF6;
+}
+
 .ensdim-phone-input .PhoneInputInput {
   flex: 1;
   min-width: 0;
@@ -37,6 +46,14 @@
   background: transparent;
   font-size: inherit;
   color: #101418;
+}
+
+.ensdim-phone-input--dark .PhoneInputInput {
+  color: #fff;
+}
+
+.ensdim-phone-input--dark .PhoneInputInput::placeholder {
+  color: #6B7280;
 }
 
 .ensdim-phone-input .PhoneInputCountry {

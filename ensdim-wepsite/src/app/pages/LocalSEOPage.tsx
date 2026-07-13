@@ -35,7 +35,7 @@ const localBusinessSchema = (config: LocalPageConfig) => ({
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `https://ensdim.com/${config.slug}#localbusiness`,
-  name: `ENSDIM - ${config.service} ${config.country}`,
+  name: `Ensdim - ${config.service} ${config.country}`,
   description: config.seoDescription,
   url: `https://ensdim.com/${config.slug}`,
   telephone: config.phoneLocal || '+201000000000',
@@ -91,7 +91,7 @@ export function LocalSEOPage({ config }: { config: LocalPageConfig }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-[#101418] mb-8">
-              Why Choose ENSDIM for {config.service} in {config.country}?
+              Why Choose Ensdim for {config.service} in {config.country}?
             </h2>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 gap-4">

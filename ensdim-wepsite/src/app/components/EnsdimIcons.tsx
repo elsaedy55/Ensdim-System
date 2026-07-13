@@ -1,4 +1,4 @@
-// Custom ENSDIM brand icon system
+// Custom Ensdim brand icon system
 // Stroke-based, rounded, 24x24 viewport, consistent 1.5px stroke weight
 
 interface IconProps {

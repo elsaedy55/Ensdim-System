@@ -424,7 +424,7 @@ export function Hero() {
       className="relative flex items-center overflow-hidden min-h-screen md:min-h-0"
     >
       {/* Base dark layer */}
-      <div className="absolute inset-0 bg-[#0a0c12]" />
+      <div className="absolute inset-0 bg-logo-black" />
 
       {/* Subtle ambient glow — bottom center (from CTA button area) */}
       <div
@@ -503,7 +503,7 @@ export function Hero() {
             <div className="flex items-center gap-3 mt-10 mb-5">
               <div className="flex -space-x-1.5">
                 {['#3B2A78','#6D5DF6','#4a3a8a'].map((c, i) => (
-                  <div key={i} className="w-7 h-7 rounded-full border border-[#0a0c12]" style={{ background: c, opacity: 0.7 }} />
+                  <div key={i} className="w-7 h-7 rounded-full border border-logo-black" style={{ background: c, opacity: 0.7 }} />
                 ))}
               </div>
               <div className="w-px h-3.5 bg-white/15" />

@@ -292,7 +292,7 @@ export const caseStudies: CaseStudy[] = [
     updated_at: '2026-07-07T00:00:00.000Z',
 
     title_en: 'Lemera Clinic: Smarter booking and clearer follow-up for a better visitor experience',
-    title_ar: 'عيادة ليميرا: حجز أذكى ومتابعة أوضح لتجربة زائر أفضل',
+    title_ar: 'عياده تجميل الامارات حجز أذكى ومتابعة أوضح لتجربة زائر أفضل',
     sector_en: 'UAE, Aesthetic Clinic|Booking Chatbot + CRM Dashboard|Customer Experience',
     sector_ar: 'الإمارات، عيادات التجميل|تشات بوت حجز + CRM|تجربة العميل',
     card_problem_en: 'WhatsApp & phone booking',
@@ -308,7 +308,7 @@ export const caseStudies: CaseStudy[] = [
     demo_url: null,
 
     snapshot: [
-      { label_en: 'Client', label_ar: 'العميل', value_en: 'Limera Aesthetic Clinic', value_ar: 'عيادة ليميرا للتجميل' },
+      { label_en: 'Client', label_ar: 'العميل', value_en: 'Limera Aesthetic Clinic', value_ar: 'عياده تجميل الامارات' },
       { label_en: 'Country', label_ar: 'الدولة', value_en: 'UAE', value_ar: 'الإمارات' },
       { label_en: 'Industry', label_ar: 'القطاع', value_en: 'Aesthetic Clinic', value_ar: 'عيادات التجميل' },
       { label_en: 'Solution Type', label_ar: 'نوع الحل', value_en: 'Website + Booking Chatbot + CRM Dashboard + AI Follow-up Layer', value_ar: 'موقع + تشات بوت حجز + CRM + طبقة متابعة ذكية' },
@@ -316,7 +316,7 @@ export const caseStudies: CaseStudy[] = [
     ],
 
     situation_en: 'Limera Clinic relied heavily on WhatsApp and phone calls to receive bookings and inquiries. As demand increased, the front desk team spent a large amount of time replying, coordinating appointments, confirming attendance, and following up after the first session. Some visitors arrived too early, some appointments were canceled or delayed without proper follow-up, and this created pressure on the clinic schedule, longer waiting times, and a direct impact on visitor satisfaction and revenue. The clinic also did not have a clear visitor file that allowed the team and doctor to track cases, previous visits, notes, and follow-up plans.',
-    situation_ar: 'كانت عيادة ليميرا تعتمد بشكل أساسي على الواتساب والمكالمات الهاتفية لاستقبال الحجوزات والاستفسارات. ومع زيادة الطلب، أصبح فريق الاستقبال يستهلك وقتًا كبيرًا في الرد، تنسيق المواعيد، تأكيد الحضور، والمتابعة بعد الجلسة الأولى. بعض الزائرات كنّ يصلن قبل الموعد بوقت طويل، وبعض الحجوزات يتم إلغاؤها أو تأجيلها دون متابعة كافية، مما كان يسبب ضغطًا على جدول العيادة ووقت انتظار أطول. كما لم يكن لدى العيادة ملف واضح لكل زائرة يساعد الفريق والطبيب على تتبع الحالة والزيارات السابقة والمتابعة.',
+    situation_ar: 'كانت عيادة تجميل الامارات تعتمد بشكل أساسي على الواتساب والمكالمات الهاتفية لاستقبال الحجوزات والاستفسارات. ومع زيادة الطلب، أصبح فريق الاستقبال يستهلك وقتًا كبيرًا في الرد، تنسيق المواعيد، تأكيد الحضور، والمتابعة بعد الجلسة الأولى. بعض الزائرات كنّ يصلن قبل الموعد بوقت طويل، وبعض الحجوزات يتم إلغاؤها أو تأجيلها دون متابعة كافية، مما كان يسبب ضغطًا على جدول العيادة ووقت انتظار أطول. كما لم يكن لدى العيادة ملف واضح لكل زائرة يساعد الفريق والطبيب على تتبع الحالة والزيارات السابقة والمتابعة.',
 
     challengeIntro_en: 'The clinic needed a clearer way to manage booking, follow-up, and visitor experience without increasing pressure on the front desk team.',
     challengeIntro_ar: 'كانت العيادة بحاجة إلى طريقة أوضح لإدارة الحجز والمتابعة وتجربة الزائرة، دون زيادة الضغط على فريق الاستقبال.',
@@ -421,7 +421,7 @@ export const caseStudies: CaseStudy[] = [
     ],
 
     impactIntro_en: 'The solution helped Limera Clinic move from scattered manual follow-up to a clearer and more organized booking and operating experience.',
-    impactIntro_ar: 'ساعد الحل عيادة ليميرا على الانتقال من متابعة يدوية متفرقة إلى تجربة حجز وتشغيل أكثر وضوحًا وتنظيمًا.',
+    impactIntro_ar: 'ساعد الحل عيادة تجميل الامارات على الانتقال من متابعة يدوية متفرقة إلى تجربة حجز وتشغيل أكثر وضوحًا وتنظيمًا.',
     impactItems_en: [
       'Easier booking through the website and chatbot.',
       'Less pressure on the front desk team.',
@@ -448,7 +448,7 @@ export const caseStudies: CaseStudy[] = [
     ],
 
     whyMatters_en: 'Limera Clinic did not only need a chatbot. It needed a complete operating experience that starts from the first visitor interaction, continues through booking and visit management, and extends into follow-up and retention. This case shows how an aesthetic clinic can move from scattered conversations and daily team pressure to a system that organizes visits, improves satisfaction, and increases capacity without operational chaos. In this case, technology was not just an automated reply tool. It became part of the visitor experience and the clinic\'s growth system.',
-    whyMatters_ar: 'عيادة ليميرا لم تكن بحاجة إلى تشات بوت فقط، بل إلى تجربة تشغيل كاملة تبدأ من أول تواصل مع الزائرة، مرورًا بالحجز، الزيارة، المتابعة، ثم الاحتفاظ بها على المدى الطويل. أهمية هذه الدراسة أنها توضّح كيف يمكن لعيادة تجميل أن تحوّل الحجز والمتابعة من محادثات متفرقة وضغط يومي على الفريق إلى نظام يساعد على تنظيم الزيارات، تحسين الرضا، وزيادة القدرة على استقبال عدد أكبر من الزائرات دون فوضى تشغيلية.',
+    whyMatters_ar: 'عيادة تجميل الامارات لم تكن بحاجة إلى تشات بوت فقط، بل إلى تجربة تشغيل كاملة تبدأ من أول تواصل مع الزائرة، مرورًا بالحجز، الزيارة، المتابعة، ثم الاحتفاظ بها على المدى الطويل. أهمية هذه الدراسة أنها توضّح كيف يمكن لعيادة تجميل أن تحوّل الحجز والمتابعة من محادثات متفرقة وضغط يومي على الفريق إلى نظام يساعد على تنظيم الزيارات، تحسين الرضا، وزيادة القدرة على استقبال عدد أكبر من الزائرات دون فوضى تشغيلية.',
 
     relatedSolutions: [
       { title_en: 'Visits Turned into Trackable Requests', title_ar: 'زيارات تتحول إلى طلبات', desc_en: 'Improving the website and booking experience so digital visits turn into clear requests that can be followed up.', desc_ar: 'تحسين الموقع وتجربة الحجز حتى تتحول الزيارات الرقمية إلى طلبات واضحة قابلة للمتابعة.', href: '/solutions/digital-experiences' },
@@ -599,7 +599,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
 
-    impactIntro_en: 'ENSDIM helped Triboo move from startup idea to a clear MVP that can be tested in the market.',
+    impactIntro_en: 'Ensdim helped Triboo move from startup idea to a clear MVP that can be tested in the market.',
     impactIntro_ar: 'ساعدت إنسديم ترايبوو على الانتقال من فكرة ناشئة إلى منتج أولي واضح يمكن اختباره في السوق.',
     impactItems_en: [
       'Turning the idea into an executable roadmap.',
@@ -622,7 +622,7 @@ export const caseStudies: CaseStudy[] = [
       'تجهيز المشروع لمرحلة التطوير التالية بناءً على نتائج التجربة الأولى.',
     ],
 
-    whyMatters_en: 'Triboo is a clear example of a startup that did not only need technical execution. It needed a partner to help turn an idea into a testable product. This case shows how an early-stage team can start from a real market problem, then move through understanding, analysis, business model structuring, and MVP development instead of jumping directly into a full product build. In this case, ENSDIM\'s role was not only to build a website or application. It was to help shape the idea from the beginning and turn it into a measurable, testable digital experience.',
+    whyMatters_en: 'Triboo is a clear example of a startup that did not only need technical execution. It needed a partner to help turn an idea into a testable product. This case shows how an early-stage team can start from a real market problem, then move through understanding, analysis, business model structuring, and MVP development instead of jumping directly into a full product build. In this case, Ensdim\'s role was not only to build a website or application. It was to help shape the idea from the beginning and turn it into a measurable, testable digital experience.',
     whyMatters_ar: 'ترايبوو كانت مثالًا واضحًا على شركة ناشئة لا تحتاج إلى تنفيذ تقني فقط، بل تحتاج إلى شريك يساعدها على تحويل الفكرة إلى منتج قابل للاختبار. أهمية هذه الدراسة أنها توضّح كيف يمكن لفريق ناشئ أن يبدأ من مشكلة حقيقية في السوق، ثم يمر بمرحلة فهم، تحليل، ترتيب نموذج العمل، وبناء MVP بدل القفز مباشرة إلى تنفيذ منتج كامل. بهذا الشكل، لم يكن دور إنسديم هو بناء موقع أو تطبيق فقط، بل المشاركة في بناء الفكرة من البداية وتحويلها إلى تجربة رقمية قابلة للقياس والتطوير.',
 
     relatedSolutions: [

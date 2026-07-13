@@ -45,7 +45,7 @@ export function ProblemsLibraryPage() {
   return (
     <>
       <SEO
-        title={ar ? 'مشكلات نحلها | إنسديم' : 'Problems we solve | ENSDIM'}
+        title={ar ? 'مشكلات نحلها | إنسديم' : 'Problems we solve | Ensdim'}
         description={ar ? 'مشكلات تشغيلية حقيقية تجعل الأعمال تخسر عملاء محتملين، وقتًا، وضوحًا، وفرص نمو.' : 'Real operating problems that make businesses lose leads, time, visibility, and growth.'}
         canonical="/solutions/problems"
         lang={ar ? 'ar' : 'en'}

@@ -637,13 +637,13 @@ export function SolutionDetailPage() {
   return (
     <>
       <SEO
-        title={`${d.title} | ENSDIM`}
+        title={`${d.title} | Ensdim`}
         description={d.shortDesc}
         canonical={`/solutions/${slug}`}
         lang={ar ? 'ar' : 'en'}
       />
       <PageHero
-        eyebrow={ar ? 'حلول إنسديم' : 'ENSDIM Solutions'}
+        eyebrow={ar ? 'حلول إنسديم' : 'Ensdim Solutions'}
         title={d.title}
         subtitle={d.shortDesc}
         primaryCTA={{ label: ar ? 'احجز استشارة' : 'Book a consultation', href: '/book-consultation' }}

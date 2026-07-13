@@ -5,27 +5,27 @@ import { SEO } from '../components/SEO';
 const sectionsEn = [
   {
     title: 'Use of website',
-    content: 'By accessing and using the ENSDIM website, you agree to use it for lawful purposes only. You may not use the site in any way that disrupts its operation or infringes on the rights of others.',
+    content: 'By accessing and using the Ensdim website, you agree to use it for lawful purposes only. You may not use the site in any way that disrupts its operation or infringes on the rights of others.',
   },
   {
     title: 'Consultation requests',
-    content: 'Submitting a consultation request does not constitute a formal agreement or commitment from either party. ENSDIM will review your request and follow up within a reasonable timeframe.',
+    content: 'Submitting a consultation request does not constitute a formal agreement or commitment from either party. Ensdim will review your request and follow up within a reasonable timeframe.',
   },
   {
     title: 'Client workspace access',
-    content: 'Access to the ENSDIM client workspace is granted only to approved clients. Creating an account does not guarantee immediate access. Accounts are activated after client approval or project confirmation.',
+    content: 'Access to the Ensdim client workspace is granted only to approved clients. Creating an account does not guarantee immediate access. Accounts are activated after client approval or project confirmation.',
   },
   {
     title: 'Project communication',
-    content: 'All official project communication is conducted through the client workspace or designated channels. ENSDIM is not responsible for decisions made based on informal communications outside these channels.',
+    content: 'All official project communication is conducted through the client workspace or designated channels. Ensdim is not responsible for decisions made based on informal communications outside these channels.',
   },
   {
     title: 'Intellectual property',
-    content: 'All content, designs, systems, and materials developed by ENSDIM remain the intellectual property of ENSDIM until full payment is received and ownership is formally transferred as specified in the project agreement.',
+    content: 'All content, designs, systems, and materials developed by Ensdim remain the intellectual property of Ensdim until full payment is received and ownership is formally transferred as specified in the project agreement.',
   },
   {
     title: 'Limitation of liability',
-    content: 'ENSDIM is not liable for indirect or consequential damages arising from the use of our services or systems. Our liability is limited to the amount paid for the specific service in question.',
+    content: 'Ensdim is not liable for indirect or consequential damages arising from the use of our services or systems. Our liability is limited to the amount paid for the specific service in question.',
   },
   {
     title: 'Contact',
@@ -72,9 +72,9 @@ export function TermsPage() {
   return (
     <>
       <SEO
-        title="Terms of Service | ENSDIM"
-        description="ENSDIM Terms of Service: governing use of our website, consultation requests, project communication, intellectual property, and service delivery."
-        keywords="ENSDIM terms of service, terms and conditions"
+        title="Terms of Service | Ensdim"
+        description="Ensdim Terms of Service: governing use of our website, consultation requests, project communication, intellectual property, and service delivery."
+        keywords="Ensdim terms of service, terms and conditions"
         canonical="/terms-of-service"
         noIndex={false}
       />
@@ -83,7 +83,7 @@ export function TermsPage() {
         title={ar ? 'شروط الخدمة' : 'Terms of Service'}
         subtitle={ar
           ? 'الشروط الأساسية لاستخدام موقع وخدمات إنسديم.'
-          : 'The basic terms for using ENSDIM website and services.'}
+          : 'The basic terms for using Ensdim website and services.'}
       />
 
       <section className="py-16 bg-white">

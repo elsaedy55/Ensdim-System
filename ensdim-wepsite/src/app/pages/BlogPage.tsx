@@ -35,9 +35,9 @@ const categoryFilters = [
 const nextSteps = [
   { href: '/research', en: { title: 'Understand the problem more deeply', desc: 'If the article opened a bigger question about growth, customer behavior, follow-up, operations, or data, move to Research for a deeper and more structured analysis.', cta: 'Research' }, ar: { title: 'افهم المشكلة بشكل أعمق', desc: 'إذا كان المقال فتح أمامك سؤالًا أكبر حول النمو، سلوك العميل، المتابعة، التشغيل، أو البيانات، انتقل إلى الأبحاث لقراءة تحليل أعمق ومنظم.', cta: 'الأبحاث' } },
   { href: '/case-studies', en: { title: 'See how an idea becomes a result', desc: 'If you want to see real examples from projects and implementation experiences, visit Case Studies to see how challenges become measurable digital solutions.', cta: 'Case Studies' }, ar: { title: 'شاهد كيف تتحول الفكرة إلى نتيجة', desc: 'إذا كنت تريد رؤية أمثلة من مشاريع وتجارب واقعية، انتقل إلى دراسات الحالة لمعرفة كيف تتحول التحديات إلى حلول قابلة للقياس.', cta: 'دراسات الحالة' } },
-  { href: '/solutions', en: { title: 'Explore the right solution for your business stage', desc: 'If you know there is a challenge but do not know where to start, explore ENSDIM solutions by business stage: Build, Start, or Grow.', cta: 'Solutions' }, ar: { title: 'استكشف الحل المناسب لمرحلة عملك', desc: 'إذا كنت تعرف أن لديك تحديًا لكنك لا تعرف من أين تبدأ، استكشف حلول إنسديم حسب مرحلة العمل: بناء، انطلاق، أو نمو.', cta: 'الحلول' } },
+  { href: '/solutions', en: { title: 'Explore the right solution for your business stage', desc: 'If you know there is a challenge but do not know where to start, explore Ensdim solutions by business stage: Build, Start, or Grow.', cta: 'Solutions' }, ar: { title: 'استكشف الحل المناسب لمرحلة عملك', desc: 'إذا كنت تعرف أن لديك تحديًا لكنك لا تعرف من أين تبدأ، استكشف حلول إنسديم حسب مرحلة العمل: بناء، انطلاق، أو نمو.', cta: 'الحلول' } },
   { href: '/services', en: { title: 'Find the service closest to execution', desc: 'If the problem is clearer and you want to know which service fits it, explore services such as UX, websites, applications, follow-up systems, data, automation, and internal systems.', cta: 'Services' }, ar: { title: 'اعرف الخدمة الأقرب للتنفيذ', desc: 'إذا أصبحت المشكلة أوضح وتريد معرفة نوع الخدمة المناسبة لها، انتقل إلى الخدمات: تجربة المستخدم، المواقع، التطبيقات، أنظمة المتابعة، البيانات، الأتمتة، أو الأنظمة الداخلية.', cta: 'الخدمات' } },
-  { href: '/contact', en: { title: 'Share your challenge with ENSDIM', desc: 'If the challenge already exists inside your business and you need help identifying the first step, share what is happening and we will help you understand the path closest to return.', cta: 'Contact' }, ar: { title: 'شارك تحديك مع إنسديم', desc: 'إذا كان التحدي موجودًا بالفعل داخل عملك وتحتاج من يساعدك على تحديد أول خطوة، شاركنا ما يحدث وسنساعدك على فهم المسار الأقرب للعائد.', cta: 'تواصل معنا' } },
+  { href: '/contact', en: { title: 'Share your challenge with Ensdim', desc: 'If the challenge already exists inside your business and you need help identifying the first step, share what is happening and we will help you understand the path closest to return.', cta: 'Contact' }, ar: { title: 'شارك تحديك مع إنسديم', desc: 'إذا كان التحدي موجودًا بالفعل داخل عملك وتحتاج من يساعدك على تحديد أول خطوة، شاركنا ما يحدث وسنساعدك على فهم المسار الأقرب للعائد.', cta: 'تواصل معنا' } },
 ];
 
 function BlogCard({ post, ar, featured }: { post: BlogPost; ar: boolean; featured?: boolean }) {
@@ -101,7 +101,7 @@ export function BlogPage() {
   return (
     <>
       <SEO
-        title={ar ? 'رؤى عملية من إنسديم | مركز معلومات لفهم تحديات الأعمال' : 'ENSDIM Practical Insights | A Knowledge Hub for Business Challenges'}
+        title={ar ? 'رؤى عملية من إنسديم | مركز معلومات لفهم تحديات الأعمال' : 'Ensdim Practical Insights | A Knowledge Hub for Business Challenges'}
         description={ar
           ? 'محتوى مختصر وعملي يساعد أصحاب الأعمال والفرق على فهم ما يحدث داخل العمل: المتابعة، تجربة العميل، الأتمتة، البيانات، والنمو الرقمي.'
           : 'Concise, practical content that helps business owners and teams understand what is happening inside their operations: follow-up, customer experience, automation, data, and digital growth.'}
@@ -110,7 +110,7 @@ export function BlogPage() {
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -124,7 +124,7 @@ export function BlogPage() {
             <span className="text-white/70 font-medium">{ar ? 'مركز المعلومات' : 'Practical Insights'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'رؤى عملية من إنسديم' : 'ENSDIM Practical Insights'}
+            {ar ? 'رؤى عملية من إنسديم' : 'Ensdim Practical Insights'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'مركز معلومات عملي لفهم تحديات الأعمال والحلول الرقمية القابلة للتطبيق.' : 'A practical knowledge hub for understanding business challenges and digital solutions.'}

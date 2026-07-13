@@ -11,9 +11,9 @@ export function BookConsultationPage() {
   return (
     <>
       <SEO
-        title="Book a Consultation | ENSDIM - AI & Automation Strategy Session"
-        description="Book a free strategy consultation with ENSDIM. We'll analyze your business operations, customer journey, and identify where AI automation, CRM, or digital systems can drive real results."
-        keywords="book AI consultation Egypt, automation strategy session, free business consultation Middle East, ENSDIM consultation"
+        title="Book a Consultation | Ensdim - AI & Automation Strategy Session"
+        description="Book a free strategy consultation with Ensdim. We'll analyze your business operations, customer journey, and identify where AI automation, CRM, or digital systems can drive real results."
+        keywords="book AI consultation Egypt, automation strategy session, free business consultation Middle East, Ensdim consultation"
         canonical="/book-consultation"
       />
       <PageHero

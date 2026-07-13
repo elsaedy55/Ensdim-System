@@ -51,38 +51,47 @@ export function FinalCTA() {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#FAFAFA] relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#101418] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#6D5DF6] rounded-full blur-[120px] opacity-[0.07]" />
-        <div className="absolute bottom-0 right-1/3 w-[400px] h-[250px] bg-[#3B2A78] rounded-full blur-[100px] opacity-[0.06]" />
+        <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#6D5DF6] rounded-full blur-[120px] opacity-[0.18]" />
+        <div className="absolute bottom-0 right-1/3 w-[400px] h-[250px] bg-[#3B2A78] rounded-full blur-[100px] opacity-[0.16]" />
       </div>
 
       <ScrollReveal className="relative max-w-xl mx-auto px-4 sm:px-6 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#6D5DF6]/10 border border-[#6D5DF6]/20 rounded-full text-[#3B2A78] text-xs mb-7">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#6D5DF6]/15 border border-[#6D5DF6]/30 rounded-full text-[#B3A8FB] text-xs mb-7">
           <div className="w-1.5 h-1.5 bg-[#6D5DF6] rounded-full animate-pulse" />
           <span>{t('finalCTA.badge')}</span>
         </div>
 
-        <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-snug text-[#101418]">
+        <h2 className="text-2xl sm:text-4xl font-bold mb-4 leading-snug text-white">
           {t('finalCTA.title')}
         </h2>
 
-        <p className="text-sm sm:text-[15px] text-[#4F555E] mb-9 max-w-xl mx-auto leading-[1.75]">
+        <p className="text-sm sm:text-[15px] text-[#A4ABB5] mb-9 max-w-xl mx-auto leading-[1.75]">
           {t('finalCTA.subtitle')}
         </p>
 
-        <div className="bg-white border border-[#E5E5E5] rounded-2xl p-6 sm:p-7 text-start shadow-[0_8px_32px_rgba(109,93,246,0.08)]">
+        <div className="bg-[#181D24] border border-white/10 rounded-2xl p-6 sm:p-7 text-start shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
           <SuccessModal
             open={submitted}
             onClose={() => setSubmitted(false)}
             title={ar ? 'تم إرسال طلبك' : 'Request sent'}
             message={ar ? 'سنتواصل معك قريباً.' : 'We will be in touch soon.'}
           >
-            <div className="flex items-center justify-center gap-4 text-sm font-medium mt-5">
-              <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
-              <span className="text-[#E5E5E5]">•</span>
-              <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
+            <div className="flex flex-col gap-3 mt-6">
+              <Link
+                to="/case-studies"
+                className="inline-flex items-center justify-center px-4 py-2.5 bg-[#6D5DF6] text-white rounded-xl text-sm font-semibold hover:bg-[#5b4dd6] active:scale-[0.98] transition-all duration-200"
+              >
+                {ar ? 'استكشف قصص نجاح عملائنا' : 'See customer success stories'}
+              </Link>
+              <Link
+                to="/research"
+                className="inline-flex items-center justify-center px-4 py-2.5 border border-white/15 text-white rounded-xl text-sm font-semibold hover:bg-white/5 active:scale-[0.98] transition-all duration-200"
+              >
+                {ar ? 'اطّلع على أبحاثنا' : 'Explore our research'}
+              </Link>
             </div>
           </SuccessModal>
 
@@ -90,7 +99,7 @@ export function FinalCTA() {
               <div className="grid sm:grid-cols-2 gap-3.5">
                 <input
                   type="text" name="name" required placeholder={ar ? 'الاسم' : 'Name'}
-                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
+                  className="w-full px-4 py-2.5 bg-[#101418] border border-white/10 rounded-xl text-sm text-white placeholder:text-[#6B7280] focus:outline-none focus:border-[#6D5DF6] transition-colors"
                 />
                 <PhoneNumberField
                   name="phone"
@@ -101,15 +110,16 @@ export function FinalCTA() {
                   value={phone}
                   onChange={(v) => { setPhone(v); if (phoneError) setPhoneError(false); }}
                   error={phoneError}
+                  variant="dark"
                 />
               </div>
               <input
                 type="text" name="company" placeholder={ar ? 'اسم الشركة' : 'Company name'}
-                className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
+                className="w-full px-4 py-2.5 bg-[#101418] border border-white/10 rounded-xl text-sm text-white placeholder:text-[#6B7280] focus:outline-none focus:border-[#6D5DF6] transition-colors"
               />
               <select
                 name="challenge" defaultValue=""
-                className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors bg-white"
+                className="w-full px-4 py-2.5 bg-[#101418] border border-white/10 rounded-xl text-sm text-white focus:outline-none focus:border-[#6D5DF6] transition-colors"
               >
                 <option value="">{ar ? 'ما هو التحدي الذي تواجهه؟ (اختياري)' : 'What challenge are you facing? (optional)'}</option>
                 {challenges.map((c) => (
@@ -132,7 +142,7 @@ export function FinalCTA() {
             </form>
         </div>
 
-        <Link to="/contact" className="inline-block mt-5 text-sm font-medium text-[#6D5DF6] hover:text-[#3B2A78] active:scale-95 transition-all">
+        <Link to="/contact" className="inline-block mt-5 text-sm font-medium text-[#B3A8FB] hover:text-white active:scale-95 transition-all">
           {t('finalCTA.secondaryCTA')}
         </Link>
       </ScrollReveal>

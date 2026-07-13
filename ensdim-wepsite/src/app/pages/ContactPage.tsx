@@ -74,7 +74,7 @@ export function ContactPage() {
   return (
     <>
       <SEO
-        title={ar ? 'تواصل مع إنسديم' : 'Contact ENSDIM'}
+        title={ar ? 'تواصل مع إنسديم' : 'Contact Ensdim'}
         description={ar
           ? 'شاركنا فكرتك أو التحدي الذي تواجهه الآن داخل عملك، وسنساعدك على فهم أول خطوة واضحة.'
           : 'Share the idea or challenge your business is facing now, and we’ll help you identify the first clear digital step.'}
@@ -83,7 +83,7 @@ export function ContactPage() {
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -95,7 +95,7 @@ export function ContactPage() {
             <span className="text-white/70 font-medium">{ar ? 'تواصل معنا' : 'Contact'}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
-            {ar ? 'تواصل مع إنسديم.' : 'Talk to ENSDIM.'}
+            {ar ? 'تواصل مع إنسديم.' : 'Talk to Ensdim.'}
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
@@ -150,15 +150,15 @@ export function ContactPage() {
               <div className="space-y-6">
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'البريد الإلكتروني' : 'Email'}</h3>
-                  <a href="mailto:info@ensdim.com" className="text-sm text-[#6D5DF6] hover:underline">info@ensdim.com</a>
+                  <a href="mailto:contact@ensdim.com" className="text-sm text-[#6D5DF6] hover:underline">contact@ensdim.com</a>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'واتساب' : 'WhatsApp'}</h3>
-                  <p className="text-sm text-[#4F555E]">{ar ? 'متاح للاستفسارات الجادة والمشاريع المناسبة' : 'Available for serious business inquiries and suitable projects'}</p>
+                  <a href="https://wa.me/201060162694" target="_blank" rel="noopener noreferrer" className="text-sm text-[#6D5DF6] hover:underline" dir="ltr">+20 106 016 2694</a>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'الموقع' : 'Location'}</h3>
-                  <p className="text-sm text-[#4F555E]">{ar ? 'نعمل من مصر ونخدم عملاء في الخليج ومنطقة الشرق الأوسط وشمال أفريقيا' : 'Based in Egypt, serving clients across the Gulf, Middle East, and North Africa'}</p>
+                  <p className="text-sm text-[#4F555E]">{ar ? 'نخدم عملاء في الخليج ومنطقة الشرق الأوسط وشمال أفريقيا' : 'Serving clients across the Gulf, Middle East, and North Africa'}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-[#101418] mb-1">{ar ? 'وقت الرد' : 'Response Time'}</h3>
@@ -181,13 +181,13 @@ export function ContactPage() {
                     <p className="text-sm text-[#4F555E] mb-5 max-w-xs mx-auto leading-relaxed">
                       {ar
                         ? 'شكرًا لتواصلك مع إنسديم. سنراجع التحدي الذي أرسلته ونعود إليك بالخطوة الأنسب.'
-                        : 'Thank you for contacting ENSDIM. We will review the challenge you shared and get back to you with the most suitable next step.'}
+                        : 'Thank you for contacting Ensdim. We will review the challenge you shared and get back to you with the most suitable next step.'}
                     </p>
                     <p className="text-xs font-semibold text-[#101418] mb-3">
-                      {ar ? 'يمكنك التعرف على إنسديم أكثر من خلال الروابط التالية:' : 'You can learn more about ENSDIM through the following links:'}
+                      {ar ? 'يمكنك التعرف على إنسديم أكثر من خلال الروابط التالية:' : 'You can learn more about Ensdim through the following links:'}
                     </p>
                     <div className="flex flex-col items-center gap-2 text-sm font-medium">
-                      <Link to="/about" className="text-[#6D5DF6] hover:underline">{ar ? 'تعرّف على إنسديم ←' : 'Learn About ENSDIM →'}</Link>
+                      <Link to="/about" className="text-[#6D5DF6] hover:underline">{ar ? 'تعرّف على إنسديم ←' : 'Learn About Ensdim →'}</Link>
                       <Link to="/solutions" className="text-[#6D5DF6] hover:underline">{ar ? 'استكشف الحلول ←' : 'Explore Solutions →'}</Link>
                       <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'شاهد مشاريعنا ←' : 'View Case Studies →'}</Link>
                       <Link to="/services" className="text-[#6D5DF6] hover:underline">{ar ? 'استكشف خدماتنا ←' : 'Explore Services →'}</Link>

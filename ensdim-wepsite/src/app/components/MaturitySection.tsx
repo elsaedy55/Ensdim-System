@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from './ScrollReveal';
 
-/* ─── Custom ENSDIM icons for each maturity stage ─────────────────────────
+/* ─── Custom Ensdim icons for each maturity stage ─────────────────────────
    Build  → Layered foundation blocks with first signal rising
    Start  → Nodes connecting into an active workflow path
    Growth → Expanding data network with controlled scale structure

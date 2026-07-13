@@ -41,25 +41,28 @@ export function WhatsAppFloat() {
 
   return (
     <a
-      href="https://wa.me/"
+      href="https://wa.me/201060162694"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 sm:bottom-9 sm:right-9 z-50 w-12 h-12 md:w-14 md:h-14 bg-[#101418] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 group"
       style={{
         boxShadow: '0 0 0 4px rgba(109, 93, 246, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3)'
       }}
-      aria-label="Talk to ENSDIM"
+      aria-label="Talk to Ensdim"
     >
       <div className="absolute inset-0 rounded-full bg-[#6D5DF6] opacity-0 group-hover:opacity-20 transition-opacity"></div>
       <MessageCircle className="text-white w-6 h-6 md:w-7 md:h-7" />
 
       {/* Tooltip on hover (desktop only) */}
       <span className="hidden lg:block absolute bottom-full mb-2 right-0 bg-[#101418] text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-        Talk to ENSDIM
+        Talk to Ensdim
       </span>
 
       {/* Pulse animation */}
-      <span className="absolute inset-0 rounded-full animate-ping bg-[#6D5DF6] opacity-20"></span>
+      <span
+        className="absolute inset-0 rounded-full animate-ping bg-[#6D5DF6] opacity-20"
+        style={{ animationDuration: '2s' }}
+      ></span>
     </a>
   );
 }

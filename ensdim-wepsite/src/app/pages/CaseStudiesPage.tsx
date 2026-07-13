@@ -102,14 +102,14 @@ export function CaseStudiesPage() {
   return (
     <>
       <SEO
-        title="Case Studies | ENSDIM - Real Business Transformations in Egypt & Gulf"
-        description="See how ENSDIM helped businesses turn business problems into measurable return across operations, growth, sales, data, security, and customer experience."
+        title="Case Studies | Ensdim - Real Business Transformations in Egypt & Gulf"
+        description="See how Ensdim helped businesses turn business problems into measurable return across operations, growth, sales, data, security, and customer experience."
         keywords="AI automation case studies Egypt, CRM case study Saudi Arabia, business automation results UAE, digital transformation examples Middle East"
         canonical="/case-studies"
       />
 
       {/* 1. Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -121,7 +121,7 @@ export function CaseStudiesPage() {
             <span className="text-white/70 font-medium">{ar ? 'دراسات الحالة' : 'Case Studies'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'دراسات حالة إنسديم' : 'ENSDIM Case Studies'}
+            {ar ? 'دراسات حالة إنسديم' : 'Ensdim Case Studies'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar
@@ -131,7 +131,7 @@ export function CaseStudiesPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'نعرض هنا كيف ساعدت إنسديم شركات في التشغيل، النمو، المبيعات، البيانات، الأمان، وتجربة العميل على تحويل التحديات اليومية إلى حلول رقمية أوضح، قرارات أسرع، ومكاسب عملية يمكن قياسها.'
-              : 'Explore how ENSDIM helped companies across operations, growth, sales, data, security, and customer experience turn daily business challenges into clearer digital systems, faster decisions, and measurable business gains.'}
+              : 'Explore how Ensdim helped companies across operations, growth, sales, data, security, and customer experience turn daily business challenges into clearer digital systems, faster decisions, and measurable business gains.'}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
             {(ar ? 'مشاكل أوضح. حلول أذكى. عائد أقرب.' : 'Clearer problems. Smarter solutions. Closer return.')
@@ -292,17 +292,17 @@ export function CaseStudiesPage() {
         </div>
       </section>
 
-      {/* 7. What do these cases prove about ENSDIM */}
+      {/* 7. What do these cases prove about Ensdim */}
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3 max-w-3xl mx-auto">
-              {ar ? 'ما الذي تثبته هذه الحالات عن إنسديم؟' : 'What do these cases prove about ENSDIM?'}
+              {ar ? 'ما الذي تثبته هذه الحالات عن إنسديم؟' : 'What do these cases prove about Ensdim?'}
             </h2>
             <p className="text-sm text-[#4F555E] max-w-2xl mx-auto leading-relaxed">
               {ar
                 ? 'هذه الحالات لا تعرض مشاريع منفذة فقط، بل تكشف طريقة إنسديم في التفكير: نبدأ من فهم المشكلة، نقرأ سلوك العميل أو التشغيل، نحدد أين يضيع العائد، ثم نبني حلًا رقميًا يخدم قرارًا أوضح، متابعة أفضل، وتجربة أكثر قابلية للنمو.'
-                : 'These cases do not only show delivered projects. They reveal ENSDIM’s way of thinking: we start by understanding the problem, reading customer behavior or operations, identifying where return is lost, then building a digital solution that supports clearer decisions, better follow-up, and more scalable experiences.'}
+                : 'These cases do not only show delivered projects. They reveal Ensdim’s way of thinking: we start by understanding the problem, reading customer behavior or operations, identifying where return is lost, then building a digital solution that supports clearer decisions, better follow-up, and more scalable experiences.'}
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -325,10 +325,10 @@ export function CaseStudiesPage() {
           { question: 'ما القطاعات التي تخدمها إنسديم؟', answer: 'تخدم إنسديم العيادات والرعاية الصحية، العقارات، الأعمال الخدمية، التعليم والتدريب، والمقاولات والعمليات — بشكل رئيسي في مصر والسعودية والإمارات.' },
           { question: 'ما النتائج الشائعة لمشاريع إنسديم؟', answer: 'تشمل النتائج الشائعة: استجابة أسرع للعملاء المحتملين، رؤية تشغيلية أوضح، تقليل العمل اليدوي، متابعة عملاء محسّنة، وتحويل أعلى من نقاط التواصل الرقمية.' },
         ] : [
-          { question: 'Are ENSDIM case studies based on real projects?', answer: 'Yes. Every case study is built on a real project we delivered. We maintain client confidentiality unless explicit permission is given for disclosure.' },
-          { question: 'What sectors does ENSDIM serve?', answer: 'ENSDIM serves clinics and healthcare, real estate agencies, service businesses, education and training, and construction and operations — primarily in Egypt, Saudi Arabia, and UAE.' },
-          { question: 'What are common outcomes from ENSDIM projects?', answer: 'Common outcomes include: faster lead response, clearer operational visibility through dashboards, reduced manual work, improved customer follow-up, and higher conversion from digital touchpoints.' },
-          { question: 'How long do ENSDIM projects typically take?', answer: 'Project timelines vary by scope. A focused automation or follow-up system takes 2-4 weeks. A full CRM and operational platform typically takes 6-12 weeks, including the Diagnose and Map phases before any build begins.' },
+          { question: 'Are Ensdim case studies based on real projects?', answer: 'Yes. Every case study is built on a real project we delivered. We maintain client confidentiality unless explicit permission is given for disclosure.' },
+          { question: 'What sectors does Ensdim serve?', answer: 'Ensdim serves clinics and healthcare, real estate agencies, service businesses, education and training, and construction and operations — primarily in Egypt, Saudi Arabia, and UAE.' },
+          { question: 'What are common outcomes from Ensdim projects?', answer: 'Common outcomes include: faster lead response, clearer operational visibility through dashboards, reduced manual work, improved customer follow-up, and higher conversion from digital touchpoints.' },
+          { question: 'How long do Ensdim projects typically take?', answer: 'Project timelines vary by scope. A focused automation or follow-up system takes 2-4 weeks. A full CRM and operational platform typically takes 6-12 weeks, including the Diagnose and Map phases before any build begins.' },
         ]}
       />
 

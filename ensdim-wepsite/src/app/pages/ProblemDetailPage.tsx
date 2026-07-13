@@ -227,7 +227,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       whatWeOfferIntro: 'لا نحتاج دائمًا إلى استبدال الفريق. أحيانًا المطلوب هو تنظيم الرد الأول، ترتيب الأولويات، وتوفير مسار واضح لكل استفسار.',
       whatWeOfferPoints: ['تجميع الاستفسارات من القنوات المهمة.', 'رد أولي منظم حسب نوع الطلب.', 'تنبيه الفريق بالفرص العاجلة أو الجاهزة.', 'قوالب ردود واضحة ومتناسقة مع نبرة الشركة.', 'تذكيرات متابعة بعد الرد الأول.', 'تسجيل حالة العميل بعد كل تواصل.', 'تقارير عن وقت الرد والتحويل.', 'إمكانية إضافة مساعد ذكي عند الحاجة للرد على الأسئلة المتكررة.'],
       expectedReturn: ['تحسين وقت الرد الأول.', 'زيادة ثقة العميل من أول تواصل.', 'رفع فرص الحجز أو الطلب.', 'تقليل الرسائل المتراكمة على الفريق.', 'تحسين الاستفادة من الحملات الإعلانية.', 'تجربة عميل أكثر احترافية.'],
-      caseStudy: { title: 'ليميرا: من حجز يدوي إلى تجربة حجز ومتابعة أوضح', desc: 'كيف ربطنا الموقع والمساعد الذكي ولوحة الاستقبال في عيادة تجميل، بحيث يتم تسجيل بيانات العميل، عرض المواعيد، إرسال التذكيرات، ومتابعة الحالة بعد الزيارة.', slug: 'lemera-clinic-booking-crm' },
+      caseStudy: { title: 'تجميل الامارات: من حجز يدوي إلى تجربة حجز ومتابعة أوضح', desc: 'كيف ربطنا الموقع والمساعد الذكي ولوحة الاستقبال في عيادة تجميل، بحيث يتم تسجيل بيانات العميل، عرض المواعيد، إرسال التذكيرات، ومتابعة الحالة بعد الزيارة.', slug: 'lemera-clinic-booking-crm' },
       ctaHeading: 'هل يصل العميل إليك ثم ينتظر؟',
       ctaBody: 'شاركنا قنوات التواصل وعدد الاستفسارات اليومية، وسنقترح لك طريقة لتنظيم الرد والمتابعة بدون تحميل الفريق ضغطًا إضافيًا.',
       ctaButton: 'احجز استشارة لنشاطك',
@@ -360,13 +360,13 @@ export function ProblemDetailPage() {
   return (
     <>
       <SEO
-        title={`${d.title} | ENSDIM`}
+        title={`${d.title} | Ensdim`}
         description={d.intro}
         canonical={`/problems/${slug}`}
         lang={ar ? 'ar' : 'en'}
       />
 
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -442,7 +442,7 @@ export function ProblemDetailPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.14}>
-            <div className="bg-[#0f0d19] rounded-2xl p-6 sm:p-8 text-white">
+            <div className="bg-logo-black rounded-2xl p-6 sm:p-8 text-white">
               <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">{ar ? 'السؤال الأهم' : 'The key question'}</p>
               <h3 className="text-lg font-bold mb-2 leading-snug">{d.keyQuestion}</h3>
               <p className="text-sm text-[#EEEAFE]/75 leading-relaxed">{d.keyQuestionFollowup}</p>

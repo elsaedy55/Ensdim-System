@@ -2,29 +2,12 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 
 type Language = 'en' | 'ar';
 
-interface Country {
-  name: string;
-  nameAr: string;
-  flag: string;
-}
-
 interface LanguageContextType {
   language: Language;
   country: string;
   setLanguage: (lang: Language) => void;
-  setCountry: (country: string) => void;
   t: (key: string) => string;
 }
-
-const countries: Record<string, Country> = {
-  SA: { name: 'Saudi Arabia', nameAr: 'السعودية', flag: '🇸🇦' },
-  AE: { name: 'United Arab Emirates', nameAr: 'الإمارات', flag: '🇦🇪' },
-  KW: { name: 'Kuwait', nameAr: 'الكويت', flag: '🇰🇼' },
-  QA: { name: 'Qatar', nameAr: 'قطر', flag: '🇶🇦' },
-  BH: { name: 'Bahrain', nameAr: 'البحرين', flag: '🇧🇭' },
-  OM: { name: 'Oman', nameAr: 'عمان', flag: '🇴🇲' },
-  EG: { name: 'Egypt', nameAr: 'مصر', flag: '🇪🇬' },
-};
 
 const translations: Record<Language, any> = {
   en: {
@@ -39,17 +22,10 @@ const translations: Record<Language, any> = {
       bookConsultation: 'Book Consultation',
       clientLogin: 'Client Login',
     },
-    countries: {
-      SA: 'Saudi Arabia',
-      AE: 'United Arab Emirates',
-      KW: 'Kuwait',
-      QA: 'Qatar',
-      BH: 'Bahrain',
-      OM: 'Oman',
-      EG: 'Egypt',
+    languageSwitch: {
       arabic: 'Arabic',
       english: 'English',
-      selectCountry: 'Select Country & Language',
+      selectLanguage: 'Select Language',
     },
     hero: {
       tag1: 'Behavior-Led Business Solutions',
@@ -57,7 +33,7 @@ const translations: Record<Language, any> = {
       tag3: 'Digital Experiences',
       headline: 'We build intelligent digital solutions that understand customer behavior and solve real business challenges.',
       shortHeadline: 'We build digital solutions around customer behavior.',
-      subheadline: 'ENSDIM helps businesses improve conversion, customer experience, and operational clarity through intelligent digital solutions built around customer behavior and real business challenges.',
+      subheadline: 'Ensdim helps businesses improve conversion, customer experience, and operational clarity through intelligent digital solutions built around customer behavior and real business challenges.',
       primaryCTA: 'Book a Business Consultation',
       secondaryCTA: 'Explore Solutions',
       trustLine: 'Strategy first. Technology around people.',
@@ -66,10 +42,10 @@ const translations: Record<Language, any> = {
       card3: 'Conversion Improved',
     },
     who: {
-      label: 'Why ENSDIM?',
+      label: 'Why Ensdim?',
       title: 'We start by understanding people, then build what the business really needs.',
-      description: 'At ENSDIM, we do not start with tools or code. We start by understanding how customers think, where they hesitate, how teams actually work, and where opportunities and costs leak inside daily operations. Then we turn that understanding into digital solutions that are clearer, easier to use, and built to support growth.',
-      cta: 'Learn how ENSDIM works',
+      description: 'At Ensdim, we do not start with tools or code. We start by understanding how customers think, where they hesitate, how teams actually work, and where opportunities and costs leak inside daily operations. Then we turn that understanding into digital solutions that are clearer, easier to use, and built to support growth.',
+      cta: 'Learn how Ensdim works',
       card1Title: 'Higher Conversions',
       card1Desc: 'Reduce friction in the customer journey and help more leads take the next step.',
       card2Title: 'Better Customer Satisfaction',
@@ -94,7 +70,7 @@ const translations: Record<Language, any> = {
       problem5Desc: 'Customer information and tasks are duplicated across people and tools.',
       problem6Title: 'The data exists, but it is not helping you make decisions',
       problem6Desc: 'Numbers are collected, but management still decides on instinct.',
-      cta: 'See how ENSDIM solves it',
+      cta: 'See how Ensdim solves it',
     },
     solutions: {
       title: 'Solutions that make operations clearer, follow-up faster, and growth less costly.',
@@ -203,7 +179,7 @@ const translations: Record<Language, any> = {
     },
     methodology: {
       title: 'We listen before we build.',
-      subtitle: 'At ENSDIM, we start by listening to what happens inside your business: where follow-up breaks, how customers behave, and what consumes your team’s time — then turn it into a clear map, thoughtful design, and a digital solution that supports growth.',
+      subtitle: 'At Ensdim, we start by listening to what happens inside your business: where follow-up breaks, how customers behave, and what consumes your team’s time — then turn it into a clear map, thoughtful design, and a digital solution that supports growth.',
       step1Title: 'Listen & Understand',
       step1Desc: 'We listen to the problem and understand how requests, follow-up, teams, and customers work inside daily operations.',
       step2Title: 'Research & Plan',
@@ -244,7 +220,7 @@ const translations: Record<Language, any> = {
     },
     careers: {
       sectionLabel: 'Careers',
-      sectionSubtitle: 'Join ENSDIM and help build smarter business systems.',
+      sectionSubtitle: 'Join Ensdim and help build smarter business systems.',
       title: 'Build intelligent business systems with us.',
       subtitle: 'We are building a flexible team across product, engineering, design, data, and growth.',
       availableRoles: 'Available roles:',
@@ -266,7 +242,7 @@ const translations: Record<Language, any> = {
       services: 'Services',
       resources: 'Resources',
       careers: 'Careers',
-      copyright: '© 2026 ENSDIM. All rights reserved.',
+      copyright: '© 2026 Ensdim. All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
       aboutUs: 'About Us',
@@ -297,17 +273,10 @@ const translations: Record<Language, any> = {
       bookConsultation: 'احجز استشارة',
       clientLogin: 'دخول العملاء',
     },
-    countries: {
-      SA: 'السعودية',
-      AE: 'الإمارات',
-      KW: 'الكويت',
-      QA: 'قطر',
-      BH: 'البحرين',
-      OM: 'عُمان',
-      EG: 'مصر',
+    languageSwitch: {
       arabic: 'العربية',
       english: 'English',
-      selectCountry: 'اختر الدولة واللغة',
+      selectLanguage: 'اختر اللغة',
     },
     hero: {
       tag1: 'حلول أعمال مبنية على فهم السلوك',
@@ -476,7 +445,7 @@ const translations: Record<Language, any> = {
       step6Desc: 'نقيس الأداء بعد الإطلاق، ثم نحسن التجربة والمتابعة بناءً على البيانات.',
     },
     research: {
-      sectionTitle: 'Research',
+      sectionTitle: 'الأبحاث',
       sectionSubtitle: 'نحلّل سلوك العميل ونقاط التعطل داخل رحلة الشراء والتشغيل، لنفهم أين تتباطأ القرارات، ولماذا تضيع الفرص، وكيف يمكن تحويل البيانات والملاحظة إلى حلول أكثر دقة.',
       badge: 'بحث',
       readTime: 'دقيقة قراءة',
@@ -486,7 +455,7 @@ const translations: Record<Language, any> = {
       ctaAll: 'عرض جميع الأبحاث',
     },
     caseStudy: {
-      sectionTitle: 'Case Study',
+      sectionTitle: 'دراسة حالة',
       sectionSubtitle: 'نماذج عملية توضّح كيف نبدأ من مشكلة تشغيل حقيقية، ثم نعيد تنظيم المتابعة والبيانات وتجربة العميل للوصول إلى نتائج واضحة وعائد مربح.',
       badge: 'دراسة حالة',
       title: 'من متابعة مشتتة إلى نظام تشغيل واضح',
@@ -524,7 +493,7 @@ const translations: Record<Language, any> = {
       services: 'الخدمات',
       resources: 'الموارد',
       careers: 'الوظائف',
-      copyright: '© 2026 ENSDIM. جميع الحقوق محفوظة.',
+      copyright: '© 2026 Ensdim. جميع الحقوق محفوظة.',
       privacy: 'سياسة الخصوصية',
       terms: 'شروط الخدمة',
       aboutUs: 'من نحن',
@@ -547,49 +516,45 @@ const translations: Record<Language, any> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-function isArabicPath(pathname: string): boolean {
-  return pathname === '/ar' || pathname.startsWith('/ar/');
+function isEnglishPath(pathname: string): boolean {
+  return pathname === '/en' || pathname.startsWith('/en/');
 }
 
 function detectInitialLanguage(): Language {
-  return isArabicPath(window.location.pathname) ? 'ar' : 'en';
+  return isEnglishPath(window.location.pathname) ? 'en' : 'ar';
 }
 
-const DEFAULT_COUNTRY = 'AE';
-
-function detectInitialCountry(): string {
-  return localStorage.getItem('ensdim_country') || DEFAULT_COUNTRY;
-}
+const FALLBACK_COUNTRY: Record<Language, string> = { ar: 'EG', en: 'US' };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(detectInitialLanguage);
-  const [country, setCountryState] = useState<string>(detectInitialCountry);
+  const [language] = useState<Language>(detectInitialLanguage);
+  const [country, setCountry] = useState<string>(
+    () => localStorage.getItem('ensdim_country') || FALLBACK_COUNTRY[language]
+  );
 
   useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }, [language]);
 
-  // Geo-detect the visitor's country on first visit only (no saved preference
-  // yet), so the flag/country shown matches where they are browsing from.
-  // Language always stays English by default — only the country flag changes.
-  // Falls back to UAE if detection fails or the country isn't one we serve.
+  // Auto-detect the visitor's country from their IP so the flag shown next
+  // to the language toggle matches where they are browsing from — this is
+  // purely decorative and does not affect which language is shown. Runs on
+  // every load (not just once) so the flag self-corrects if the visitor's
+  // location changes or an earlier lookup was wrong, instead of sticking
+  // forever to a stale cached value.
   useEffect(() => {
-    if (localStorage.getItem('ensdim_country')) return;
-
     let cancelled = false;
     fetch('https://get.geojs.io/v1/ip/country.json')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (cancelled || !data?.country) return;
         const code = String(data.country).toUpperCase();
-        if (code in countries) {
-          setCountryState(code);
-          localStorage.setItem('ensdim_country', code);
-        }
+        setCountry(code);
+        localStorage.setItem('ensdim_country', code);
       })
       .catch(() => {
-        // Network/geo-IP failure: silently keep the UAE default.
+        // Network/geo-IP failure: silently keep the language-based fallback flag.
       });
 
     return () => {
@@ -601,23 +566,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (lang === language) return;
 
     const path = window.location.pathname;
-    const isAr = isArabicPath(path);
+    const isEn = isEnglishPath(path);
     let newPath: string;
 
-    if (lang === 'ar' && !isAr) {
-      newPath = path === '/' ? '/ar' : `/ar${path}`;
-    } else if (lang === 'en' && isAr) {
-      newPath = path === '/ar' ? '/' : path.slice('/ar'.length);
+    if (lang === 'en' && !isEn) {
+      newPath = path === '/' ? '/en' : `/en${path}`;
+    } else if (lang === 'ar' && isEn) {
+      newPath = path === '/en' ? '/' : path.slice('/en'.length);
     } else {
       return;
     }
 
     window.location.href = `${newPath}${window.location.search}${window.location.hash}`;
-  };
-
-  const setCountry = (countryCode: string) => {
-    setCountryState(countryCode);
-    localStorage.setItem('ensdim_country', countryCode);
   };
 
   const t = (key: string): string => {
@@ -632,7 +592,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, country, setLanguage, setCountry, t }}>
+    <LanguageContext.Provider value={{ language, country, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -645,5 +605,3 @@ export function useLanguage() {
   }
   return context;
 }
-
-export { countries };

@@ -20,15 +20,15 @@ export function CareerApplyPage() {
   return (
     <>
       <SEO
-        title={roleTitle ? `${roleTitle} | ${ar ? 'التقديم على وظيفة في إنسديم' : 'Apply at ENSDIM'}` : (ar ? 'أرسل بياناتك | إنسديم' : 'Send Your Profile | ENSDIM')}
+        title={roleTitle ? `${roleTitle} | ${ar ? 'التقديم على وظيفة في إنسديم' : 'Apply at Ensdim'}` : (ar ? 'أرسل بياناتك | إنسديم' : 'Send Your Profile | Ensdim')}
         description={ar
           ? 'قدّم على دور مفتوح في إنسديم أو أرسل بياناتك العامة.'
-          : 'Apply for an open role at ENSDIM or send us your general profile.'}
+          : 'Apply for an open role at Ensdim or send us your general profile.'}
         canonical="/careers/apply"
         lang={ar ? 'ar' : 'en'}
       />
 
-      <section className="pt-24 pb-10 sm:pt-32 sm:pb-14 bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-10 sm:pt-32 sm:pb-14 bg-logo-black text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="mb-6 text-xs text-white/50 flex items-center gap-1">
             <Link to="/" className="hover:text-white/80 transition-colors">{ar ? 'الرئيسية' : 'Home'}</Link>
@@ -48,7 +48,7 @@ export function CareerApplyPage() {
               ? (ar ? `قدّم على دور ${roleTitle} من خلال النموذج أدناه.` : `Apply for the ${roleTitle} role using the form below.`)
               : (ar
                 ? 'إذا كنت ترى أن مهاراتك يمكن أن تساعد إنسديم، أرسل ملفك التعريفي وأخبرنا أين يمكنك المساهمة.'
-                : 'If you believe your skills can help ENSDIM, send your profile and tell us where you can contribute.')}
+                : 'If you believe your skills can help Ensdim, send your profile and tell us where you can contribute.')}
           </p>
         </div>
       </section>

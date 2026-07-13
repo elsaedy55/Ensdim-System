@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Early lang/dir detection for /ar/* routes (avoids RTL flash) -->
+    <!-- Early lang/dir detection for /en/* routes (avoids LTR flash) -->
     <script>
       (function () {
-        if (location.pathname === '/ar' || location.pathname.indexOf('/ar/') === 0) {
-          document.documentElement.lang = 'ar';
-          document.documentElement.dir = 'rtl';
+        if (location.pathname === '/en' || location.pathname.indexOf('/en/') === 0) {
+          document.documentElement.lang = 'en';
+          document.documentElement.dir = 'ltr';
         }
       })();
     </script>
@@ -25,8 +25,8 @@
       Only this generic title is kept, as a pre-hydration fallback for the
       rare route build-time prerender doesn't cover yet.
     -->
-    <title>ENSDIM | Human-Centered Digital Solutions</title>
-    <meta name="author" content="ENSDIM" />
+    <title>Ensdim | Human-Centered Digital Solutions</title>
+    <meta name="author" content="Ensdim" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/ensdim_icon.png" />

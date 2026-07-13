@@ -105,7 +105,7 @@ export function BlogArticlePage() {
   return (
     <>
       <SEO
-        title={`${title} | ENSDIM Blog`}
+        title={`${title} | Ensdim Blog`}
         description={desc}
         keywords={`AI automation blog Egypt, ${cat.toLowerCase()}, ${post.slug.replace(/-/g, ' ')}`}
         canonical={`/blog/${post.slug}`}
@@ -115,8 +115,8 @@ export function BlogArticlePage() {
           '@type': 'BlogPosting',
           headline: title,
           description: desc,
-          author: { '@type': 'Organization', name: 'ENSDIM' },
-          publisher: { '@type': 'Organization', name: 'ENSDIM', logo: { '@type': 'ImageObject', url: 'https://ensdim.com/ensdim-logo.png' } },
+          author: { '@type': 'Organization', name: 'Ensdim' },
+          publisher: { '@type': 'Organization', name: 'Ensdim', logo: { '@type': 'ImageObject', url: 'https://ensdim.com/ensdim-logo.png' } },
           url: `https://ensdim.com/blog/${post.slug}`,
           inLanguage: ar ? 'ar' : 'en',
         }}

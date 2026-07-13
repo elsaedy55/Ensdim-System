@@ -56,10 +56,10 @@ function outputPathFor(route: string): string {
 async function main() {
   const staticPaths = STATIC_PAGES.map((p) => p.path);
   const dynamicPaths = await getDynamicPaths();
-  const enPaths = [...staticPaths, ...dynamicPaths];
-  const routes = enPaths.flatMap((p) => [p, p === '/' ? '/ar' : `/ar${p}`]);
+  const arPaths = [...staticPaths, ...dynamicPaths];
+  const routes = arPaths.flatMap((p) => [p, p === '/' ? '/en' : `/en${p}`]);
 
-  console.log(`[prerender] Prerendering ${routes.length} routes (${enPaths.length} pages x en/ar)...`);
+  console.log(`[prerender] Prerendering ${routes.length} routes (${arPaths.length} pages x ar/en)...`);
 
   const server = await preview({ root: ROOT, preview: { port: PORT, strictPort: true } });
   const base = server.resolvedUrls?.local?.[0] ?? `http://localhost:${PORT}/`;

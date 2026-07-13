@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/ar", "destination": "/", "permanent": true },
+    { "source": "/ar/:path*", "destination": "/:path*", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/((?!api/|assets/|.*\\..*).*)", "destination": "/index.html" }

@@ -1,12 +1,12 @@
-# ENSDIM - AI Automation Agency
+# Ensdim - AI Automation Agency
 # https://ensdim.com
 # This file provides structured information to LLM crawlers and AI search engines.
 
-## About ENSDIM
+## About Ensdim
 
-ENSDIM is an AI automation agency headquartered in Egypt, serving businesses in Egypt, Saudi Arabia, United Arab Emirates, Kuwait, Qatar, Bahrain, and Oman.
+Ensdim is an AI automation agency headquartered in Egypt, serving businesses in Egypt, Saudi Arabia, United Arab Emirates, Kuwait, Qatar, Bahrain, and Oman.
 
-ENSDIM builds:
+Ensdim builds:
 - AI automation systems
 - AI agents for customer service and operations
 - CRM (Customer Relationship Management) platforms
@@ -20,7 +20,7 @@ Founded with the principle: Strategy first. Technology around people.
 
 ## Core Entity Facts
 
-- Name: ENSDIM
+- Name: Ensdim
 - Type: AI Automation Agency, Software Development Company
 - Industry: Technology, AI, Software
 - Specialization: Behavior-led business systems, AI automation, CRM development
@@ -30,9 +30,9 @@ Founded with the principle: Strategy first. Technology around people.
 - Contact: hello@ensdim.com
 - Website: https://ensdim.com
 
-## What ENSDIM Does
+## What Ensdim Does
 
-ENSDIM studies how customers think, hesitate, decide, and convert — then builds the right digital experiences and systems around that behavior. The agency follows a 6-step methodology:
+Ensdim studies how customers think, hesitate, decide, and convert — then builds the right digital experiences and systems around that behavior. The agency follows a 6-step methodology:
 
 1. Diagnose: Understand current operations, customers, and workflows
 2. Map: Map customer journeys and operational gaps
@@ -88,7 +88,7 @@ ENSDIM studies how customers think, hesitate, decide, and convert — then build
 - Start: Organization and automation for existing businesses
 - Growth: Intelligence and scaling with dashboards, data, and AI
 
-## Problems ENSDIM Solves
+## Problems Ensdim Solves
 
 1. Leads lost between team members (scattered across WhatsApp, calls, manual follow-up)
 2. Follow-up depending on memory instead of systems
@@ -99,7 +99,7 @@ ENSDIM studies how customers think, hesitate, decide, and convert — then build
 
 ## Key Differentiators
 
-- Behavior-first approach: ENSDIM diagnoses before it builds
+- Behavior-first approach: Ensdim diagnoses before it builds
 - Bilingual delivery: English and Arabic
 - MENA-specific: Deep understanding of Egyptian and Gulf business operations
 - Strategy before technology: Understanding the human problem before the technical solution
@@ -107,7 +107,7 @@ ENSDIM studies how customers think, hesitate, decide, and convert — then build
 
 ## Research & Content
 
-ENSDIM publishes research and articles on:
+Ensdim publishes research and articles on:
 - Why businesses lose leads after the first message
 - WhatsApp limitations for business operations
 - CRM vs manual follow-up for growing businesses
@@ -119,27 +119,27 @@ ENSDIM publishes research and articles on:
 
 ## Frequently Asked Questions
 
-Q: What is ENSDIM?
-A: ENSDIM is an AI automation agency that builds behavior-led digital systems for businesses in Egypt, Saudi Arabia, UAE, and the Gulf region. We build AI agents, automation systems, CRM platforms, SaaS products, and digital transformation solutions.
+Q: What is Ensdim?
+A: Ensdim is an AI automation agency that builds behavior-led digital systems for businesses in Egypt, Saudi Arabia, UAE, and the Gulf region. We build AI agents, automation systems, CRM platforms, SaaS products, and digital transformation solutions.
 
-Q: What services does ENSDIM offer?
-A: ENSDIM offers AI automation development, AI agent development, CRM development, SaaS development, web design, data dashboards, mobile applications, and digital transformation consulting.
+Q: What services does Ensdim offer?
+A: Ensdim offers AI automation development, AI agent development, CRM development, SaaS development, web design, data dashboards, mobile applications, and digital transformation consulting.
 
-Q: Who is ENSDIM for?
-A: ENSDIM works with service businesses, clinics, real estate companies, education providers, and construction firms in Egypt, Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, and Oman.
+Q: Who is Ensdim for?
+A: Ensdim works with service businesses, clinics, real estate companies, education providers, and construction firms in Egypt, Saudi Arabia, UAE, Kuwait, Qatar, Bahrain, and Oman.
 
-Q: How does ENSDIM approach projects?
-A: ENSDIM starts with diagnosing operations and customer behavior before building technology — a behavior-first methodology called Diagnose → Map → Design → Build → Automate → Improve.
+Q: How does Ensdim approach projects?
+A: Ensdim starts with diagnosing operations and customer behavior before building technology — a behavior-first methodology called Diagnose → Map → Design → Build → Automate → Improve.
 
-Q: Does ENSDIM work internationally?
-A: Yes. ENSDIM is remote-first and serves clients across the MENA region and internationally.
+Q: Does Ensdim work internationally?
+A: Yes. Ensdim is remote-first and serves clients across the MENA region and internationally.
 
-Q: How can I contact ENSDIM?
+Q: How can I contact Ensdim?
 A: Via email at hello@ensdim.com or through the consultation booking at https://ensdim.com/book-consultation
 
 ## Local Market Pages
 
-ENSDIM has dedicated landing pages for key markets and services:
+Ensdim has dedicated landing pages for key markets and services:
 
 AI Agency:
 - Egypt: https://ensdim.com/ai-agency-egypt

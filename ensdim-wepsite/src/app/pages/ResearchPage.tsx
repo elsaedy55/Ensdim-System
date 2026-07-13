@@ -95,7 +95,7 @@ export function ResearchPage() {
   return (
     <>
       <SEO
-        title={ar ? 'أبحاث إنسديم | فهم الأعمال، سلوك العميل، والنمو' : 'ENSDIM Research | Understanding Business, Customer Behavior & Growth'}
+        title={ar ? 'أبحاث إنسديم | فهم الأعمال، سلوك العميل، والنمو' : 'Ensdim Research | Understanding Business, Customer Behavior & Growth'}
         description={ar
           ? 'نحلل التحديات التي تؤثر على أداء الشركات: سلوك العميل، المتابعة، التحويل، البيانات، والتشغيل، لنقدم رؤى عملية تساعدك على اتخاذ قرارات أوضح.'
           : 'We analyze the challenges that affect business performance: customer behavior, follow-up, conversion, data, and operations, to deliver practical insight for clearer decisions.'}
@@ -104,7 +104,7 @@ export function ResearchPage() {
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -118,7 +118,7 @@ export function ResearchPage() {
             <span className="text-white/70 font-medium">{ar ? 'الأبحاث' : 'Research'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'أبحاث إنسديم' : 'ENSDIM Research'}
+            {ar ? 'أبحاث إنسديم' : 'Ensdim Research'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'أبحاث تساعدك على فهم الأعمال، سلوك العميل، ومسارات الربح والنمو.' : 'Research that helps you understand business, customer behavior, and the paths to profit and growth.'}
@@ -161,7 +161,7 @@ export function ResearchPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
                 ? 'أبحاث إنسديم تساعد أصحاب الأعمال والفرق على قراءة التحدي قبل الاستثمار في الحل. نربط بين سلوك العميل، الربحية، النمو، التشغيل، البيانات، وتجربة المستخدم؛ حتى يتحول البحث إلى خطوة عملية تساعد على فهم المشكلة، لا مجرد مقال معلوماتي.'
-                : 'ENSDIM Research helps business owners and teams examine the challenge before investing in a solution. We connect customer behavior, profitability, growth, operations, data, and user experience so that research becomes a practical step toward understanding the problem, not just another article.'}
+                : 'Ensdim Research helps business owners and teams examine the challenge before investing in a solution. We connect customer behavior, profitability, growth, operations, data, and user experience so that research becomes a practical step toward understanding the problem, not just another article.'}
             </p>
           </ScrollReveal>
         </div>
@@ -177,7 +177,7 @@ export function ResearchPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-7">
               {ar
                 ? 'البحث داخل إنسديم لا يبدأ من التقنية، بل من أثرها على العمل. نبدأ بتحديد سؤال واقعي مثل: لماذا تضيع الفرص؟ لماذا لا يتحول الزائر إلى طلب؟ لماذا يزداد الضغط مع النمو؟ ثم نقرأ السؤال من زاوية العميل، التشغيل، البيانات، وتجربة الاستخدام.'
-                : 'Research at ENSDIM does not begin with technology. It begins with the effect technology should have on the business. We define a real question, such as: why are opportunities being lost? Why do visitors not turn into inquiries? Why does growth create operational pressure? Then we study the question through customer behavior, operations, data, and user experience.'}
+                : 'Research at Ensdim does not begin with technology. It begins with the effect technology should have on the business. We define a real question, such as: why are opportunities being lost? Why do visitors not turn into inquiries? Why does growth create operational pressure? Then we study the question through customer behavior, operations, data, and user experience.'}
             </p>
             <ul className="space-y-2.5">
               {methodPoints.map((p, i) => (
@@ -292,7 +292,7 @@ export function ResearchPage() {
         </div>
       </section>
 
-      {/* How to use ENSDIM research */}
+      {/* How to use Ensdim research */}
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
@@ -302,7 +302,7 @@ export function ResearchPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
                 ? 'كل بحث في إنسديم مصمم ليساعدك على فهم تحدٍ محدد داخل العمل، ثم يوجهك إلى خطوة منطقية بعده: استكشاف حل مناسب، قراءة دراسة حالة قريبة، أو التواصل معنا إذا كان التحدي موجودًا داخل شركتك.'
-                : 'Each ENSDIM research piece is designed to help readers understand a specific business challenge, then move to a logical next step: explore a related solution, read a relevant case study, or contact us if the challenge exists inside their company.'}
+                : 'Each Ensdim research piece is designed to help readers understand a specific business challenge, then move to a logical next step: explore a related solution, read a relevant case study, or contact us if the challenge exists inside their company.'}
             </p>
             <ul className="space-y-2.5">
               {nextSteps.map((s, i) => (

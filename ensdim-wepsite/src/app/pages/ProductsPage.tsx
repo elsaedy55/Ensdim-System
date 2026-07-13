@@ -169,17 +169,17 @@ export function ProductsPage() {
   return (
     <>
       <SEO
-        title={ar ? 'منتجات إنسديم | منتجات رقمية جاهزة لمشاكل تشغيل ونمو متكررة' : 'Products | ENSDIM - Digital Products for Recurring Operations & Growth Challenges'}
+        title={ar ? 'منتجات إنسديم | منتجات رقمية جاهزة لمشاكل تشغيل ونمو متكررة' : 'Products | Ensdim - Digital Products for Recurring Operations & Growth Challenges'}
         description={ar
           ? 'منتجات رقمية قابلة للتخصيص تحل مشاكل المتابعة، التشغيل، البيانات، وخدمة العملاء المتكررة في الشركات.'
           : 'Customizable digital products that solve recurring follow-up, operations, data, and customer experience challenges inside companies.'}
-        keywords="ENSDIM products, business automation products Middle East, operations workspace Egypt, real estate AI Saudi Arabia, clinic management UAE"
+        keywords="Ensdim products, business automation products Middle East, operations workspace Egypt, real estate AI Saudi Arabia, clinic management UAE"
         canonical="/products"
         lang={ar ? 'ar' : 'en'}
       />
 
       {/* 1. Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -191,7 +191,7 @@ export function ProductsPage() {
             <span className="text-white/70 font-medium">{ar ? 'المنتجات' : 'Products'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'منتجات إنسديم' : 'ENSDIM Products'}
+            {ar ? 'منتجات إنسديم' : 'Ensdim Products'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'منتجات رقمية جاهزة لمشاكل تشغيل ونمو متكررة.' : 'Digital products built for recurring operations and growth challenges.'}
@@ -227,7 +227,7 @@ export function ProductsPage() {
         </div>
       </section>
 
-      {/* 2. How ENSDIM thinks about products */}
+      {/* 2. How Ensdim thinks about products */}
       <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
@@ -256,11 +256,11 @@ export function ProductsPage() {
         </div>
       </section>
 
-      {/* 3. ENSDIM products library */}
+      {/* 3. Ensdim products library */}
       <section id="products-library" className="py-16 sm:py-20 bg-[#FAFAFA] border-t border-[#E5E5E5]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-4">{ar ? 'منتجات إنسديم' : 'ENSDIM Products'}</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-4">{ar ? 'منتجات إنسديم' : 'Ensdim Products'}</h2>
             <p className="text-sm sm:text-base text-[#4F555E] leading-relaxed">
               {ar
                 ? 'منتجات إنسديم مبنية حول مشاكل تشغيل ونمو تتكرر داخل الشركات: متابعة العملاء، تنظيم الفريق، وضوح البيانات، تقليل العمل اليدوي، وتحسين تجربة العميل. كل منتج يبدأ من منطق جاهز قابل للتطبيق، ثم يتم تهيئته حسب واقع الشركة وطريقة تشغيلها.'

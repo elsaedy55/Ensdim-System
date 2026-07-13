@@ -369,12 +369,12 @@ export function StagePage({ stage }: StagePageProps) {
   return (
     <>
       <SEO
-        title={`${d.title} | ENSDIM`}
+        title={`${d.title} | Ensdim`}
         description={d.subtitle}
         canonical={`/solutions/${stage}`}
         lang={ar ? 'ar' : 'en'}
       />
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -505,7 +505,7 @@ export function StagePage({ stage }: StagePageProps) {
         </div>
       </section>
 
-      <section className="py-16 bg-[#0f0d19]">
+      <section className="py-16 bg-logo-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <RelatedCaseStudies solutionSlugs={d.solutions.map((s) => s.slug)} ar={ar} />
 

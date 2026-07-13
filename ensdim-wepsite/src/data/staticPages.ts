@@ -24,7 +24,7 @@ export const STATIC_PAGES: StaticPage[] = [
     lastmod: '2026-06-01',
     changefreq: 'weekly',
     priority: '1.0',
-    image: { loc: `${SITE_URL}/og-image.png`, title: 'ENSDIM - AI Automation Agency' },
+    image: { loc: `${SITE_URL}/og-image.png`, title: 'Ensdim - AI Automation Agency' },
   },
   { path: '/about', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.8' },
   { path: '/company', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.7' },

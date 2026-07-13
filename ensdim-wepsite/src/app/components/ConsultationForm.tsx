@@ -92,10 +92,19 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
         title={ar ? 'تم إرسال طلبك' : 'Request sent'}
         message={ar ? 'سنتواصل معك خلال يوم عمل.' : 'We will be in touch within one business day.'}
       >
-        <div className="flex items-center justify-center gap-4 text-sm font-medium mt-5">
-          <Link to="/case-studies" className="text-[#6D5DF6] hover:underline">{ar ? 'دراسات الحالة' : 'Case studies'}</Link>
-          <span className="text-[#E5E5E5]">•</span>
-          <Link to="/research" className="text-[#6D5DF6] hover:underline">{ar ? 'الأبحاث' : 'Research'}</Link>
+        <div className="flex flex-col gap-3 mt-6">
+          <Link
+            to="/case-studies"
+            className="inline-flex items-center justify-center px-4 py-2.5 bg-[#6D5DF6] text-white rounded-xl text-sm font-semibold hover:bg-[#5b4dd6] active:scale-[0.98] transition-all duration-200"
+          >
+            {ar ? 'استكشف قصص نجاح عملائنا' : 'See customer success stories'}
+          </Link>
+          <Link
+            to="/research"
+            className="inline-flex items-center justify-center px-4 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl text-sm font-semibold hover:bg-[#FAFAFA] active:scale-[0.98] transition-all duration-200"
+          >
+            {ar ? 'اطّلع على أبحاثنا' : 'Explore our research'}
+          </Link>
         </div>
       </SuccessModal>
 

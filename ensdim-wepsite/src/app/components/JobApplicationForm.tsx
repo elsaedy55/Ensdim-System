@@ -413,7 +413,7 @@ export function JobApplicationForm({
 
           <div>
             <label className="block text-sm font-medium text-[#101418] mb-2">
-              {ar ? 'لماذا ترغب في العمل مع إنسديم؟' : 'Why do you want to work with ENSDIM?'} <span className="text-[#D63A3A]">*</span>
+              {ar ? 'لماذا ترغب في العمل مع إنسديم؟' : 'Why do you want to work with Ensdim?'} <span className="text-[#D63A3A]">*</span>
             </label>
             <textarea
               name="why_ensdim"

@@ -68,7 +68,7 @@ export function Footer() {
           {/* Desktop: Logo and tagline side by side */}
           <div className="hidden sm:flex items-center gap-4 no-mirror">
             <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:opacity-80 active:scale-95 transition-all flex-shrink-0">
-              <img src="/ensdim-logo-light.png" alt="ENSDIM" className="h-7 w-auto" />
+              <img src="/ensdim-logo-light.png" alt="Ensdim" className="h-7 w-auto" />
             </Link>
             <button
               type="button"
@@ -79,7 +79,7 @@ export function Footer() {
               <ArrowUp className="w-4 h-4" />
             </button>
             <div className="w-px h-10 bg-white/15" />
-            <p className="text-[#EEEAFE]/65 text-sm leading-relaxed max-w-md">
+            <p className="text-[#EEEAFE]/65 text-sm leading-relaxed whitespace-nowrap">
               {t('footer.tagline')}
             </p>
           </div>
@@ -88,7 +88,7 @@ export function Footer() {
           <div className="sm:hidden flex items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2 no-mirror">
               <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:opacity-80 active:scale-95 transition-all flex-shrink-0">
-                <img src="/ensdim-logo-light.png" alt="ENSDIM" className="h-6 w-auto" />
+                <img src="/ensdim-logo-light.png" alt="Ensdim" className="h-6 w-auto" />
               </Link>
               <button
                 type="button"
@@ -105,7 +105,7 @@ export function Footer() {
           </div>
 
           {/* Mobile: Tagline below */}
-          <p className="sm:hidden text-[#EEEAFE]/65 text-xs leading-relaxed max-w-[220px] no-mirror">
+          <p className="sm:hidden text-[#EEEAFE]/65 text-[11px] leading-relaxed whitespace-nowrap no-mirror">
             {t('footer.tagline')}
           </p>
         </div>

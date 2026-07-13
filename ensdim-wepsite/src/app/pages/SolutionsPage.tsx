@@ -95,7 +95,7 @@ export function SolutionsPage() {
   return (
     <>
       <SEO
-        title={ar ? 'حلول تشغيل ونمو ذكية | إنسديم' : 'Smart operations and growth solutions | ENSDIM'}
+        title={ar ? 'حلول تشغيل ونمو ذكية | إنسديم' : 'Smart operations and growth solutions | Ensdim'}
         description={ar
           ? 'نربط رحلة العميل، المتابعة، التشغيل، البيانات، والأتمتة داخل حلول تساعدك على تقليل ضياع الفرص، رفع التحويل، وتسهيل إدارة العمل.'
           : 'We connect the customer journey, follow-up, operations, data, and automation inside solutions that help you reduce lost opportunities and improve conversion.'}
@@ -113,7 +113,7 @@ export function SolutionsPage() {
       />
 
       {/* Secondary hero CTA scrolls within this page */}
-      <div className="bg-[#0f0d19] pt-2 pb-10 sm:pb-14">
+      <div className="bg-logo-black pt-2 pb-10 sm:pb-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-wrap gap-3">
           <button
             type="button"

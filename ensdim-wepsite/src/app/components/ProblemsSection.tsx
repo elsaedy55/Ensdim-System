@@ -126,7 +126,7 @@ export function ProblemsSection() {
 
         <ScrollReveal className="text-center mt-10">
           <Link
-            to="/solutions/problems"
+            to="/solutions"
             className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#E5E5E5] text-[#4F555E] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-all duration-200 text-sm font-medium"
           >
             {t('problems.cta')}

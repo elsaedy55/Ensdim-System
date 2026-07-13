@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { useLanguage, countries } from '../../contexts/LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 import ensdimLogo from '../../imports/Asset_6__1_.png';
 
 type Language = 'en' | 'ar';
@@ -77,7 +77,7 @@ export function Header() {
   const langDesktopRef = useRef<HTMLDivElement>(null);
   const langMobileRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { language, country, setLanguage, setCountry, t } = useLanguage();
+  const { language, country, setLanguage, t } = useLanguage();
   const ar = language === 'ar';
 
 
@@ -122,8 +122,7 @@ export function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleLanguageChange = (countryCode: string, lang: Language) => {
-    setCountry(countryCode);
+  const handleLanguageChange = (lang: Language) => {
     setLanguage(lang);
     setIsLangDropdownOpen(false);
     setIsMobileLangOpen(false);
@@ -148,7 +147,7 @@ export function Header() {
 
           {/* Logo: forced to the left on mobile even in Arabic (RTL flips flex order otherwise) */}
           <Link to="/" onClick={closeAll} className="cursor-pointer hover:opacity-80 active:scale-95 transition-all flex-shrink-0 no-mirror">
-            <img src={ensdimLogo} alt="ENSDIM" className="w-auto object-contain h-[22px] sm:h-[28px]" />
+            <img src={ensdimLogo} alt="Ensdim" className="w-auto object-contain h-[22px] sm:h-[28px]" />
           </Link>
 
           {/* Desktop nav */}
@@ -216,25 +215,14 @@ export function Header() {
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className="flex items-center gap-2 px-3 py-2 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] active:scale-[0.96] transition-all"
               >
-                <Globe size={16} className="text-[#4F555E]" />
-                <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt={countries[country].name} className="w-5 h-auto" />
+                <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt="" className="w-5 h-auto flex-shrink-0" />
                 <span className="text-sm text-[#101418]">{ar ? 'AR' : 'EN'}</span>
                 <ChevronDown size={14} className="text-[#4F555E]" />
               </button>
               {isLangDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-60 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-2 z-50 max-h-80 overflow-y-auto">
-                  {Object.entries(countries).map(([code, countryData]) => (
-                    <div key={code} className="px-4 py-2.5 hover:bg-[#F8F8FF]">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <img src={`https://flagcdn.com/24x18/${code.toLowerCase()}.png`} alt={countryData.name} className="w-5 h-auto flex-shrink-0" />
-                        <span className="text-sm font-semibold text-[#101418]">{ar ? countryData.nameAr : countryData.name}</span>
-                      </div>
-                      <div className="flex gap-2 ps-7">
-                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-3 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.arabic')}</button>
-                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-3 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>{t('countries.english')}</button>
-                      </div>
-                    </div>
-                  ))}
+                <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-1.5 z-50">
+                  <button onClick={() => handleLanguageChange('ar')} className={`block w-full text-start px-4 py-2 text-sm transition-all active:scale-[0.98] ${ar ? 'text-[#6D5DF6] font-semibold' : 'text-[#101418] hover:bg-[#F8F8FF]'}`}>{t('languageSwitch.arabic')}</button>
+                  <button onClick={() => handleLanguageChange('en')} className={`block w-full text-start px-4 py-2 text-sm transition-all active:scale-[0.98] ${!ar ? 'text-[#6D5DF6] font-semibold' : 'text-[#101418] hover:bg-[#F8F8FF]'}`}>{t('languageSwitch.english')}</button>
                 </div>
               )}
             </div>
@@ -257,26 +245,16 @@ export function Header() {
             <div className="relative" ref={langMobileRef}>
               <button
                 onClick={() => { setIsMobileLangOpen(!isMobileLangOpen); setIsMenuOpen(false); }}
-                className="flex items-center gap-1 px-2 py-1.5 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] active:scale-95 transition-all"
+                className="flex items-center gap-1.5 px-2 py-1.5 border border-[#E5E5E5] rounded-lg hover:border-[#6D5DF6] active:scale-95 transition-all"
               >
-                <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt={countries[country].name} className="w-5 h-auto" />
+                <img src={`https://flagcdn.com/24x18/${country.toLowerCase()}.png`} alt="" className="w-5 h-auto flex-shrink-0" />
                 <span className="text-xs font-semibold text-[#101418]">{ar ? 'AR' : 'EN'}</span>
                 <ChevronDown size={12} className="text-[#4F555E]" />
               </button>
               {isMobileLangOpen && (
-                <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-2 z-50 max-h-72 overflow-y-auto">
-                  {Object.entries(countries).map(([code, countryData]) => (
-                    <div key={code} className="px-3 py-2 hover:bg-[#F8F8FF]">
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <img src={`https://flagcdn.com/24x18/${code.toLowerCase()}.png`} alt={countryData.name} className="w-5 h-auto flex-shrink-0" />
-                        <span className="text-xs font-semibold text-[#101418]">{ar ? countryData.nameAr : countryData.name}</span>
-                      </div>
-                      <div className="flex gap-1.5 ps-7">
-                        <button onClick={() => handleLanguageChange(code, 'ar')} className={`text-xs px-2 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>AR</button>
-                        <button onClick={() => handleLanguageChange(code, 'en')} className={`text-xs px-2 py-1 rounded transition-all active:scale-95 flex-1 ${country === code && !ar ? 'bg-[#6D5DF6] text-white' : 'text-[#4F555E] hover:bg-[#EEEAFE]'}`}>EN</button>
-                      </div>
-                    </div>
-                  ))}
+                <div className="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-1.5 z-50">
+                  <button onClick={() => handleLanguageChange('ar')} className={`block w-full text-start px-3 py-2 text-xs transition-all active:scale-[0.98] ${ar ? 'text-[#6D5DF6] font-semibold' : 'text-[#101418] hover:bg-[#F8F8FF]'}`}>{t('languageSwitch.arabic')}</button>
+                  <button onClick={() => handleLanguageChange('en')} className={`block w-full text-start px-3 py-2 text-xs transition-all active:scale-[0.98] ${!ar ? 'text-[#6D5DF6] font-semibold' : 'text-[#101418] hover:bg-[#F8F8FF]'}`}>{t('languageSwitch.english')}</button>
                 </div>
               )}
             </div>
@@ -306,6 +284,7 @@ export function Header() {
                         className="flex-1 py-3 text-sm font-medium text-[#101418] hover:text-[#6D5DF6] active:opacity-60 transition-all text-start flex items-center justify-between gap-2"
                       >
                         <span>{ar ? item.labelAr : item.label}</span>
+                        <ChevronRight size={14} className="text-[#4F555E]" />
                       </Link>
                     )}
                   </div>

@@ -14,7 +14,7 @@ export function WhoIsSection() {
   const { t, language } = useLanguage();
 
   return (
-    <section className="py-20 sm:py-24 bg-[#0f0d19] text-white relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-logo-black text-white relative overflow-hidden">
       {/* Very subtle violet glow behind content */}
       <div
         className="absolute inset-0 pointer-events-none"

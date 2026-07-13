@@ -140,14 +140,14 @@ export function CaseStudyDetailPage() {
   return (
     <>
       <SEO
-        title={`${title} | ENSDIM Case Study`}
+        title={`${title} | Ensdim Case Study`}
         description={`${outcome} ${situation}`}
         keywords="AI automation case study Egypt, business transformation Middle East, CRM implementation results"
         canonical={`/case-studies/${slug}`}
         ogType="article"
       />
 
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -316,7 +316,7 @@ export function CaseStudyDetailPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'ماذا بنت إنسديم' : 'What ENSDIM Built'}</h2>
+            <h2 className="text-xl font-bold text-[#101418] mb-3">{ar ? 'ماذا بنت إنسديم' : 'What Ensdim Built'}</h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">{builtIntro}</p>
             <div className="space-y-6">
               {study.builtSections.map((section, i) => {
@@ -410,7 +410,7 @@ export function CaseStudyDetailPage() {
           )}
 
           <ScrollReveal delay={0.26}>
-            <div className="bg-[#0f0d19] rounded-2xl p-8 text-white">
+            <div className="bg-logo-black rounded-2xl p-8 text-white">
               <h2 className="text-lg font-bold mb-2">{ar ? 'مساحة العميل' : 'Client Workspace'}</h2>
               <p className="text-sm text-[#EEEAFE]/75 leading-relaxed mb-5">
                 {ar

@@ -40,7 +40,7 @@ export function ManagementChatbotPage() {
   return (
     <>
       <SEO
-        title={ar ? 'تشات بوت بيانات الإدارة | إنسديم' : 'Management Data Chatbot | ENSDIM'}
+        title={ar ? 'تشات بوت بيانات الإدارة | إنسديم' : 'Management Data Chatbot | Ensdim'}
         description={ar
           ? 'تشات بوت إداري مرتبط ببيانات شركتك يساعد أصحاب القرار على معرفة المبيعات، العملاء المحتملين، التشغيل، المدفوعات، والأداء بسرعة.'
           : 'A management chatbot connected to your company data, helping decision-makers get quick answers about sales, leads, operations, payments, and performance.'}
@@ -83,7 +83,7 @@ export function ManagementChatbotPage() {
                 <MessageSquare size={16} className="text-white" />
               </div>
               <div>
-                <p className="text-white text-sm font-medium">ENSDIM Management Bot</p>
+                <p className="text-white text-sm font-medium">Ensdim Management Bot</p>
                 <p className="text-[#EEEAFE]/55 text-xs">{ar ? 'متصل ببيانات الشركة' : 'Connected to company data'}</p>
               </div>
             </div>
@@ -168,7 +168,7 @@ export function ManagementChatbotPage() {
           <p className="text-[#4F555E] mb-6">
             {ar
               ? 'تحدث مع إنسديم لنرى كيف يمكن ربط التشات بوت ببيانات شركتك.'
-              : 'Talk to ENSDIM and see how we can connect the chatbot to your company data.'}
+              : 'Talk to Ensdim and see how we can connect the chatbot to your company data.'}
           </p>
           <Link
             to="/book-consultation"

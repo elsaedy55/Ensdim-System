@@ -17,7 +17,7 @@ export function ClientWorkspacePage() {
   return (
     <>
       <SEO
-        title={ar ? 'مساحة العميل | إنسديم' : 'Client Workspace | ENSDIM'}
+        title={ar ? 'مساحة العميل | إنسديم' : 'Client Workspace | Ensdim'}
         description={ar
           ? 'مساحة عميل واضحة لمتابعة تقدم المشروع، الملفات، الملاحظات، المدفوعات، العقود، وطلبات التعديل.'
           : 'A clear client workspace to track project progress, files, notes, payments, contracts, and change requests.'}
@@ -29,9 +29,9 @@ export function ClientWorkspacePage() {
         title={ar ? 'نؤمن أن الوضوح أثناء المشروع جزء من جودة الحل نفسه.' : 'We believe project clarity is part of the quality of the solution itself.'}
         subtitle={ar
           ? 'نوفر لعملائنا مساحة متابعة واضحة تساعدهم على رؤية تقدم المشروع، المراحل، الملفات، الملاحظات، المدفوعات، العقود، ونسبة الإنجاز. هذه ليست ميزة شكلية، بل جزء من فلسفة إنسديم: الوضوح يبني الثقة، ويقلل القلق، ويسرّع القرار.'
-          : 'We provide clients with a clear workspace to track project progress, stages, files, notes, payments, contracts, and completion percentage. This is not a cosmetic feature. It reflects ENSDIM’s belief that clarity builds trust, reduces anxiety, and speeds up decisions.'}
+          : 'We provide clients with a clear workspace to track project progress, stages, files, notes, payments, contracts, and completion percentage. This is not a cosmetic feature. It reflects Ensdim’s belief that clarity builds trust, reduces anxiety, and speeds up decisions.'}
         primaryCTA={{ label: ar ? 'دخول مساحة العميل' : 'Client Workspace Login', href: 'https://app.ensdim.com/login' }}
-        secondaryCTA={{ label: ar ? 'تواصل معنا' : 'Contact ENSDIM', href: '/contact' }}
+        secondaryCTA={{ label: ar ? 'تواصل معنا' : 'Contact Ensdim', href: '/contact' }}
         breadcrumbs={[{ label: 'Client Workspace', labelAr: 'مساحة العميل', href: '/client-workspace' }]}
         lang={ar ? 'ar' : 'en'}
       />

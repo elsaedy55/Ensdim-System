@@ -11,9 +11,9 @@ export function PartnersPage() {
   return (
     <>
       <SEO
-        title="Technology Partners | ENSDIM - Trusted Global Tech Stack"
-        description="ENSDIM uses trusted global technologies to build reliable, scalable digital systems. Our technology ecosystem supports AI automation, CRM, SaaS, and digital transformation projects."
-        keywords="ENSDIM technology partners, AI tech stack, automation tools Egypt, SaaS technologies Middle East"
+        title="Technology Partners | Ensdim - Trusted Global Tech Stack"
+        description="Ensdim uses trusted global technologies to build reliable, scalable digital systems. Our technology ecosystem supports AI automation, CRM, SaaS, and digital transformation projects."
+        keywords="Ensdim technology partners, AI tech stack, automation tools Egypt, SaaS technologies Middle East"
         canonical="/partners"
       />
       <PageHero

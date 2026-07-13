@@ -13,14 +13,14 @@ interface PhoneNumberFieldProps {
   value: string | undefined;
   onChange: (value: string | undefined) => void;
   error?: boolean;
-  variant?: 'default' | 'job';
+  variant?: 'default' | 'job' | 'dark';
 }
 
 export function PhoneNumberField({ name, label, showLabel = true, required, ar, value, onChange, error, variant = 'default' }: PhoneNumberFieldProps) {
   return (
     <div>
       {showLabel && (
-        <label className={variant === 'job' ? 'block text-sm font-medium text-[#101418] mb-2' : 'block text-xs font-semibold text-[#101418] mb-1.5'}>
+        <label className={variant === 'job' ? 'block text-sm font-medium text-[#101418] mb-2' : `block text-xs font-semibold mb-1.5 ${variant === 'dark' ? 'text-white' : 'text-[#101418]'}`}>
           {label}{required && <span className="text-[#D63A3A]"> *</span>}
         </label>
       )}
@@ -30,7 +30,7 @@ export function PhoneNumberField({ name, label, showLabel = true, required, ar, 
         value={value}
         onChange={onChange}
         placeholder={label}
-        className={`ensdim-phone-input${variant === 'job' ? ' ensdim-phone-input--job' : ''}${error ? ' ensdim-phone-input--error' : ''}`}
+        className={`ensdim-phone-input${variant === 'job' ? ' ensdim-phone-input--job' : ''}${variant === 'dark' ? ' ensdim-phone-input--dark' : ''}${error ? ' ensdim-phone-input--error' : ''}`}
       />
       <input type="hidden" name={name} value={value ?? ''} />
       {error && (

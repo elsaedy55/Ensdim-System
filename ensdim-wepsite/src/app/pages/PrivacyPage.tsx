@@ -28,9 +28,9 @@ export function PrivacyPage() {
   return (
     <>
       <SEO
-        title="Privacy Policy | ENSDIM"
-        description="ENSDIM Privacy Policy: how we collect, use, and protect your data. We do not sell data to third parties. Client project data is stored securely."
-        keywords="ENSDIM privacy policy, data protection"
+        title="Privacy Policy | Ensdim"
+        description="Ensdim Privacy Policy: how we collect, use, and protect your data. We do not sell data to third parties. Client project data is stored securely."
+        keywords="Ensdim privacy policy, data protection"
         canonical="/privacy"
         noIndex={false}
       />
@@ -38,7 +38,7 @@ export function PrivacyPage() {
         title={ar ? 'سياسة الخصوصية' : 'Privacy Policy'}
         subtitle={ar
           ? 'كيف تتعامل إنسديم مع البيانات والتواصل ومعلومات العملاء.'
-          : 'How ENSDIM handles data, communication, and client information.'}
+          : 'How Ensdim handles data, communication, and client information.'}
         variant="light"
       />
 

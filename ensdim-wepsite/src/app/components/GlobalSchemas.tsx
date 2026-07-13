@@ -6,8 +6,8 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
-  name: 'ENSDIM',
-  alternateName: ['إنسديم', 'ENSDIM Agency'],
+  name: 'Ensdim',
+  alternateName: ['إنسديم', 'Ensdim Agency'],
   url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
@@ -16,9 +16,9 @@ const organizationSchema = {
     height: 60,
   },
   description:
-    'ENSDIM is an AI automation agency that builds AI agents, automation systems, CRM platforms, SaaS products, and digital transformation solutions for businesses in Egypt, Saudi Arabia, UAE, and the Gulf region.',
+    'Ensdim is an AI automation agency that builds AI agents, automation systems, CRM platforms, SaaS products, and digital transformation solutions for businesses in Egypt, Saudi Arabia, UAE, and the Gulf region.',
   foundingDate: '2026',
-  founders: [{ '@type': 'Person', name: 'ENSDIM Team' }],
+  founders: [{ '@type': 'Person', name: 'Ensdim Team' }],
   areaServed: [
     { '@type': 'Country', name: 'Egypt' },
     { '@type': 'Country', name: 'Saudi Arabia' },
@@ -70,7 +70,7 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#localbusiness`,
-  name: 'ENSDIM',
+  name: 'Ensdim',
   description:
     'AI automation agency specializing in AI agents, CRM systems, SaaS platforms, and business automation for companies in Egypt, Saudi Arabia, and UAE.',
   url: SITE_URL,
@@ -143,10 +143,10 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
-  name: 'ENSDIM',
+  name: 'Ensdim',
   url: SITE_URL,
   description:
-    'ENSDIM - AI Automation Agency helping businesses in Egypt, Saudi Arabia, and UAE build AI agents, automation systems, CRM platforms, and digital transformation solutions.',
+    'Ensdim - AI Automation Agency helping businesses in Egypt, Saudi Arabia, and UAE build AI agents, automation systems, CRM platforms, and digital transformation solutions.',
   inLanguage: ['en', 'ar'],
   publisher: { '@id': `${SITE_URL}/#organization` },
   potentialAction: {

@@ -3,7 +3,7 @@
 :root {
   --font-size: 16px;
 
-  /* ENSDIM Official Brand Colors */
+  /* Ensdim Official Brand Colors */
   --intelligent-purple: #6D5DF6;
   --deep-violet: #3B2A78;
   --soft-lavender: #EEEAFE;
@@ -89,6 +89,7 @@
 }
 
 @theme inline {
+  --color-logo-black: var(--logo-black);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -60,16 +60,16 @@ export function CompanyPage() {
   return (
     <>
       <SEO
-        title={ar ? 'شركة إنسديم | تكنولوجيا تفهم الإنسان وتخدم نمو الأعمال' : 'ENSDIM Company | Technology Built Around People and Business Growth'}
+        title={ar ? 'شركة إنسديم | تكنولوجيا تفهم الإنسان وتخدم نمو الأعمال' : 'Ensdim Company | Technology Built Around People and Business Growth'}
         description={ar
           ? 'إنسديم تساعد الشركات على تحويل التحديات اليومية في جذب العملاء، المتابعة، التشغيل، البيانات، والنمو إلى حلول تكنولوجية أوضح.'
-          : 'ENSDIM helps businesses turn everyday challenges in customer acquisition, follow-up, operations, data, and growth into clearer technology solutions.'}
+          : 'Ensdim helps businesses turn everyday challenges in customer acquisition, follow-up, operations, data, and growth into clearer technology solutions.'}
         canonical="/company"
         lang={ar ? 'ar' : 'en'}
       />
 
       {/* 1. Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -81,7 +81,7 @@ export function CompanyPage() {
             <span className="text-white/70 font-medium">{ar ? 'الشركة' : 'Company'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'شركة إنسديم' : 'ENSDIM Company'}
+            {ar ? 'شركة إنسديم' : 'Ensdim Company'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'نبني تكنولوجيا تفهم الإنسان وتخدم نمو الأعمال.' : 'Technology built around people, operations, and business growth.'}
@@ -89,7 +89,7 @@ export function CompanyPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'إنسديم تساعد الشركات على تحويل التحديات اليومية في جذب العملاء، المتابعة، التشغيل، البيانات، والنمو إلى حلول تكنولوجية أوضح. لا نبدأ من الكود أو اسم الخدمة، بل من فهم كيف يعمل البزنس فعليًا: كيف يفكر العميل، أين تتعطل المتابعة، ما الذي يستهلك وقت الفريق، وما الذي تحتاجه الإدارة لاتخاذ قرار أفضل.'
-              : 'ENSDIM helps businesses turn everyday challenges in customer acquisition, follow-up, operations, data, and growth into clearer technology solutions. We do not start with code or a service name. We start by understanding how the business actually works: how customers think, where follow-up breaks, what consumes the team’s time, and what management needs to see in order to make better decisions.'}
+              : 'Ensdim helps businesses turn everyday challenges in customer acquisition, follow-up, operations, data, and growth into clearer technology solutions. We do not start with code or a service name. We start by understanding how the business actually works: how customers think, where follow-up breaks, what consumes the team’s time, and what management needs to see in order to make better decisions.'}
           </p>
           <p className="text-sm text-[#EEEAFE]/55 mb-8">
             {ar ? 'نفهم السلوك. ننظم التشغيل. نبني تكنولوجيا قابلة للقياس.' : 'Understand behavior. Organize operations. Build measurable technology.'}
@@ -99,7 +99,7 @@ export function CompanyPage() {
               to="/about"
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
-              {ar ? 'تعرّف على إنسديم' : 'Learn About ENSDIM'} <ArrowRight size={15} />
+              {ar ? 'تعرّف على إنسديم' : 'Learn About Ensdim'} <ArrowRight size={15} />
             </Link>
             <Link
               to="/case-studies"
@@ -117,7 +117,7 @@ export function CompanyPage() {
         </div>
       </section>
 
-      {/* 2. What makes ENSDIM different */}
+      {/* 2. What makes Ensdim different */}
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
@@ -127,7 +127,7 @@ export function CompanyPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
                 ? 'إنسديم وُجدت لأن كثيرًا من الشركات لا ينقصها موقع آخر أو أداة جديدة فقط، بل ينقصها نظام يفهم كيف يعمل البزنس فعليًا: كيف يصل العميل، أين يتردد، أين تضيع المتابعة، ما الذي يضغط الفريق، وما البيانات التي تحتاجها الإدارة لاتخاذ قرار أوضح.'
-                : 'ENSDIM exists because many companies do not simply need another website or another tool. They need a system that understands how the business actually works: how customers arrive, where they hesitate, where follow-up gets lost, what pressures the team, and what management needs to see to make clearer decisions.'}
+                : 'Ensdim exists because many companies do not simply need another website or another tool. They need a system that understands how the business actually works: how customers arrive, where they hesitate, where follow-up gets lost, what pressures the team, and what management needs to see to make clearer decisions.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
@@ -154,7 +154,7 @@ export function CompanyPage() {
             </ul>
             <div className="flex flex-wrap gap-3">
               <Link to="/solutions" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
-                {ar ? 'استكشف حلول إنسديم' : 'Explore ENSDIM Solutions'} <ArrowRight size={14} />
+                {ar ? 'استكشف حلول إنسديم' : 'Explore Ensdim Solutions'} <ArrowRight size={14} />
               </Link>
               <Link to="/case-studies" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors text-sm font-semibold">
                 {ar ? 'شاهد مشاريعنا' : 'View Our Work'}
@@ -175,7 +175,7 @@ export function CompanyPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
                 ? 'نؤمن في إنسديم أن البزنس في جوهره علاقات: علاقة بين الشركة وعملائها، بين الإدارة والفريق، وبين الإنسان والنظام الذي يستخدمه كل يوم.'
-                : 'At ENSDIM, we believe business is built on relationships: between companies and customers, between management and teams, and between people and the systems they use every day.'}
+                : 'At Ensdim, we believe business is built on relationships: between companies and customers, between management and teams, and between people and the systems they use every day.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
@@ -190,16 +190,16 @@ export function CompanyPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
                 ? 'في إنسديم، التكنولوجيا ليست الهدف. الهدف هو عمل أوضح، تجربة أفضل، وعائد قابل للتحسين.'
-                : 'For ENSDIM, technology is not the goal. The goal is clearer work, better experience, and a return that can be improved.'}
+                : 'For Ensdim, technology is not the goal. The goal is clearer work, better experience, and a return that can be improved.'}
             </p>
             <Link to="/about" className="inline-flex items-center gap-2 text-[#6D5DF6] text-sm font-semibold hover:underline">
-              {ar ? 'اقرأ قصة إنسديم كاملة' : 'Read the ENSDIM Story'} <ArrowRight size={14} />
+              {ar ? 'اقرأ قصة إنسديم كاملة' : 'Read the Ensdim Story'} <ArrowRight size={14} />
             </Link>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* 4. How ENSDIM thinks about solutions */}
+      {/* 4. How Ensdim thinks about solutions */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
@@ -278,11 +278,11 @@ export function CompanyPage() {
         </div>
       </section>
 
-      {/* 6. How ENSDIM works */}
+      {/* 6. How Ensdim works */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">{ar ? 'كيف تعمل إنسديم؟' : 'How ENSDIM Works'}</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">{ar ? 'كيف تعمل إنسديم؟' : 'How Ensdim Works'}</h2>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
                 ? 'من فهم الواقع إلى بناء تكنولوجيا قابلة للاستخدام والتطوير. طريقة عملنا ليست قائمة مهام تقنية فقط. هي مسار واضح يبدأ بفهم الواقع، ثم تحديد الأولوية، ثم تصميم التجربة والتدفق، ثم البناء، ثم القياس والتحسين.'
@@ -343,7 +343,7 @@ export function CompanyPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
                 ? 'تعمل إنسديم من مصر، مع فريق وخبرات تمتد عبر تخصصات وأسواق مختلفة، وتجارب مع عملاء في أكثر من دولة. هذا يمنح العملاء توازنًا مهمًا: فهم قريب للسوق، تكلفة أذكى، تنوعًا في الخبرات، وتنفيذًا منظمًا لا يعتمد على العشوائية أو التواصل المتفرق.'
-                : 'ENSDIM operates from Egypt, with expertise across disciplines, markets, and client contexts in more than one country. This gives clients an important balance: practical market understanding, smarter cost, diverse expertise, and organized execution that does not depend on scattered communication.'}
+                : 'Ensdim operates from Egypt, with expertise across disciplines, markets, and client contexts in more than one country. This gives clients an important balance: practical market understanding, smarter cost, diverse expertise, and organized execution that does not depend on scattered communication.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
@@ -383,7 +383,7 @@ export function CompanyPage() {
       </section>
 
       {/* 9. Client Workspace */}
-      <section className="py-16 bg-[#0f0d19] text-white">
+      <section className="py-16 bg-logo-black text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold mb-3">{ar ? 'مساحة العميل' : 'Client Workspace'}</h2>
@@ -393,7 +393,7 @@ export function CompanyPage() {
             <p className="text-sm text-[#EEEAFE]/75 leading-relaxed mb-6 max-w-2xl">
               {ar
                 ? 'نوفر لعملائنا مساحة متابعة واضحة تساعدهم على رؤية تقدم المشروع، المراحل، الملفات، الملاحظات، المدفوعات، العقود، ونسبة الإنجاز. هذه ليست ميزة شكلية، بل جزء من فلسفة إنسديم: الوضوح يبني الثقة، ويقلل القلق، ويسرّع القرار.'
-                : 'We provide clients with a clear workspace to track project progress, stages, files, notes, payments, contracts, and completion percentage. This is not a cosmetic feature. It reflects ENSDIM’s belief that clarity builds trust, reduces anxiety, and speeds up decisions.'}
+                : 'We provide clients with a clear workspace to track project progress, stages, files, notes, payments, contracts, and completion percentage. This is not a cosmetic feature. It reflects Ensdim’s belief that clarity builds trust, reduces anxiety, and speeds up decisions.'}
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {(ar
@@ -410,12 +410,12 @@ export function CompanyPage() {
         </div>
       </section>
 
-      {/* 10. Explore ENSDIM from the inside */}
+      {/* 10. Explore Ensdim from the inside */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10 max-w-2xl">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">
-              {ar ? 'تعرّف على إنسديم من الداخل' : 'Explore ENSDIM from the Inside'}
+              {ar ? 'تعرّف على إنسديم من الداخل' : 'Explore Ensdim from the Inside'}
             </h2>
             <p className="text-sm text-[#4F555E]">
               {ar ? 'من الرؤية إلى الفريق… اختر الخطوة التالية للتعرّف علينا.' : 'From vision to team, choose the next step to know us better.'}
@@ -423,10 +423,10 @@ export function CompanyPage() {
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { href: '/about', en: { title: 'About ENSDIM', desc: 'Read the ENSDIM story, the meaning behind the name, the vision, and the philosophy behind building technology that listens to people and business reality.', cta: 'Go to About ENSDIM' }, ar: { title: 'About ENSDIM', desc: 'تعرّف على قصة إنسديم، معنى الاسم، الرؤية، والفلسفة التي تقف خلف بناء تكنولوجيا تستمع للإنسان والعمل.', cta: 'انتقل إلى About' } },
+              { href: '/about', en: { title: 'About Ensdim', desc: 'Read the Ensdim story, the meaning behind the name, the vision, and the philosophy behind building technology that listens to people and business reality.', cta: 'Go to About Ensdim' }, ar: { title: 'About Ensdim', desc: 'تعرّف على قصة إنسديم، معنى الاسم، الرؤية، والفلسفة التي تقف خلف بناء تكنولوجيا تستمع للإنسان والعمل.', cta: 'انتقل إلى About' } },
               { href: '/team', en: { title: 'Our Team', desc: 'Meet the team and expertise behind strategy, user experience, engineering, data, and execution.', cta: 'Meet the Team' }, ar: { title: 'Our Team', desc: 'تعرّف على الفريق والخبرات التي تجمع بين التفكير الاستراتيجي، تجربة المستخدم، الهندسة، البيانات، والتنفيذ.', cta: 'تعرّف على الفريق' } },
-              { href: '/downloads/ensdim-company-profile.pdf', en: { title: 'Company Profile', desc: 'Download the company profile for a concise view of ENSDIM, its vision, services, working model, and selected projects.', cta: 'Download Company Profile' }, ar: { title: 'Company Profile', desc: 'حمّل بروفايل الشركة لعرض مختصر ومنظم عن إنسديم، رؤيتها، خدماتها، طريقة عملها، ومشاريعها المختارة.', cta: 'تحميل بروفايل الشركة' } },
-              { href: '/contact', en: { title: 'Contact ENSDIM', desc: 'Share the challenge happening inside your business, and we will help identify the closest path forward.', cta: 'Contact ENSDIM' }, ar: { title: 'Contact ENSDIM', desc: 'شاركنا التحدي الذي يحدث داخل عملك الآن، وسنساعدك على تحديد المسار الأقرب للحل.', cta: 'تواصل معنا' } },
+              { href: '/downloads/ensdim-company-profile.pdf', en: { title: 'Company Profile', desc: 'Download the company profile for a concise view of Ensdim, its vision, services, working model, and selected projects.', cta: 'Download Company Profile' }, ar: { title: 'Company Profile', desc: 'حمّل بروفايل الشركة لعرض مختصر ومنظم عن إنسديم، رؤيتها، خدماتها، طريقة عملها، ومشاريعها المختارة.', cta: 'تحميل بروفايل الشركة' } },
+              { href: '/contact', en: { title: 'Contact Ensdim', desc: 'Share the challenge happening inside your business, and we will help identify the closest path forward.', cta: 'Contact Ensdim' }, ar: { title: 'Contact Ensdim', desc: 'شاركنا التحدي الذي يحدث داخل عملك الآن، وسنساعدك على تحديد المسار الأقرب للحل.', cta: 'تواصل معنا' } },
             ].map((card, i) => {
               const d = ar ? card.ar : card.en;
               return (
@@ -450,7 +450,7 @@ export function CompanyPage() {
 
       {/* 11. FAQ */}
       <FAQSection
-        title={ar ? 'أسئلة شائعة عن إنسديم' : 'Frequently Asked Questions About ENSDIM'}
+        title={ar ? 'أسئلة شائعة عن إنسديم' : 'Frequently Asked Questions About Ensdim'}
         faqs={ar ? [
           { question: 'ما هي إنسديم؟', answer: 'إنسديم شركة تكنولوجيا وحلول تشغيل ذكي تبني مواقع، تطبيقات، أنظمة، لوحات بيانات، أتمتة، وطبقات ذكاء حول سلوك العميل ومشاكل البزنس الحقيقية.' },
           { question: 'هل إنسديم شركة برمجة فقط؟', answer: 'لا. البرمجة جزء من التنفيذ، لكن العمل يبدأ قبل ذلك بفهم رحلة العميل، التشغيل، البيانات، ونقطة الأثر التي يجب تحسينها.' },
@@ -458,11 +458,11 @@ export function CompanyPage() {
           { question: 'هل تعمل إنسديم مع شركات خارج مصر؟', answer: 'نعم. تعمل إنسديم من مصر وتخدم عملاء في أسواق مختلفة، مع نموذج تعاون واضح يعتمد على مراحل تنفيذ، تواصل منظم، ومساحة متابعة للعميل.' },
           { question: 'كيف أبدأ مع إنسديم؟', answer: 'ابدأ بمشاركة التحدي الحالي داخل عملك، وسنساعدك على تحديد ما إذا كنت تحتاج تحسين تجربة العميل، تنظيم التشغيل، بناء منتج رقمي، أتمتة، أو رؤية أوضح للبيانات.' },
         ] : [
-          { question: 'What is ENSDIM?', answer: 'ENSDIM is a technology and intelligent operations company that builds websites, applications, systems, dashboards, automation, and intelligence layers around customer behavior and real business challenges.' },
-          { question: 'Is ENSDIM only a software company?', answer: 'No. Software development is part of execution, but the work begins earlier with understanding customer journeys, operations, data, and the impact point that needs improvement.' },
-          { question: 'What makes ENSDIM different?', answer: 'ENSDIM does not start from a service name. It starts from how your business works: how customers enter, where follow-up breaks, what pressures the team, and what management needs to see.' },
-          { question: 'Does ENSDIM work with companies outside Egypt?', answer: 'Yes. ENSDIM operates from Egypt and serves clients in different markets through a clear collaboration model built around implementation stages, organized communication, and a visible client workspace.' },
-          { question: 'How do we start with ENSDIM?', answer: 'Start by sharing the current business challenge. We will help identify whether the right path is improving customer experience, organizing operations, building a digital product, adding automation, or gaining clearer visibility from data.' },
+          { question: 'What is Ensdim?', answer: 'Ensdim is a technology and intelligent operations company that builds websites, applications, systems, dashboards, automation, and intelligence layers around customer behavior and real business challenges.' },
+          { question: 'Is Ensdim only a software company?', answer: 'No. Software development is part of execution, but the work begins earlier with understanding customer journeys, operations, data, and the impact point that needs improvement.' },
+          { question: 'What makes Ensdim different?', answer: 'Ensdim does not start from a service name. It starts from how your business works: how customers enter, where follow-up breaks, what pressures the team, and what management needs to see.' },
+          { question: 'Does Ensdim work with companies outside Egypt?', answer: 'Yes. Ensdim operates from Egypt and serves clients in different markets through a clear collaboration model built around implementation stages, organized communication, and a visible client workspace.' },
+          { question: 'How do we start with Ensdim?', answer: 'Start by sharing the current business challenge. We will help identify whether the right path is improving customer experience, organizing operations, building a digital product, adding automation, or gaining clearer visibility from data.' },
         ]}
       />
 

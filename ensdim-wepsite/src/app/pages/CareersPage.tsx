@@ -32,8 +32,8 @@ const tracks: Track[] = [
     en: 'Strategy, Growth & Relationships', ar: 'الاستراتيجية، النمو، والعلاقات',
     roles: [
       { en: { title: 'Sales Specialist', desc: 'Engages potential clients, understands their needs, and connects them with the most relevant solution or service.', mode: 'Flexible by role' }, ar: { title: 'متخصص مبيعات', desc: 'يتعامل مع العملاء المحتملين ويفهم احتياجاتهم لربطهم بالحل أو الخدمة الأنسب.', mode: 'مرن حسب الدور' } },
-      { en: { title: 'Business Developer', desc: 'Builds relationships, partnerships, and collaboration opportunities that help ENSDIM reach suitable markets and clients.', mode: 'Flexible by role' }, ar: { title: 'مطور أعمال', desc: 'يبني علاقات وشراكات وفرص تعاون تساعد إنسديم على الوصول لأسواق وعملاء مناسبين.', mode: 'مرن حسب الدور' } },
-      { en: { title: 'Public Relations Specialist', desc: 'Helps build ENSDIM’s presence inside professional communities, events, and strategic relationships.', mode: 'Partial presence when needed' }, ar: { title: 'متخصص علاقات عامة', desc: 'يساعد في بناء حضور إنسديم داخل المجتمعات المهنية والفعاليات والعلاقات المؤثرة.', mode: 'حضور جزئي عند الحاجة' } },
+      { en: { title: 'Business Developer', desc: 'Builds relationships, partnerships, and collaboration opportunities that help Ensdim reach suitable markets and clients.', mode: 'Flexible by role' }, ar: { title: 'مطور أعمال', desc: 'يبني علاقات وشراكات وفرص تعاون تساعد إنسديم على الوصول لأسواق وعملاء مناسبين.', mode: 'مرن حسب الدور' } },
+      { en: { title: 'Public Relations Specialist', desc: 'Helps build Ensdim’s presence inside professional communities, events, and strategic relationships.', mode: 'Partial presence when needed' }, ar: { title: 'متخصص علاقات عامة', desc: 'يساعد في بناء حضور إنسديم داخل المجتمعات المهنية والفعاليات والعلاقات المؤثرة.', mode: 'حضور جزئي عند الحاجة' } },
       { en: { title: 'Marketing Strategist', desc: 'Develops ideas and plans that improve visibility, messaging, and acquisition of suitable clients.', mode: 'Remote or flexible by project' }, ar: { title: 'استراتيجي تسويق', desc: 'يطوّر أفكارًا وخططًا تساعد على تحسين الظهور، الرسائل، وجذب العملاء المناسبين.', mode: 'عن بُعد أو مرن حسب المشروع' } },
     ],
   },
@@ -85,16 +85,16 @@ export function CareersPage() {
   return (
     <>
       <SEO
-        title={ar ? 'الوظائف | انضم إلى إنسديم' : 'Careers | Join ENSDIM'}
+        title={ar ? 'الوظائف | انضم إلى إنسديم' : 'Careers | Join Ensdim'}
         description={ar
           ? 'نبحث عن عقول تفهم المشكلة قبل أن تبني الحل. استعرض الفرص المتاحة في إنسديم.'
-          : 'We look for minds that understand the problem before building the solution. Explore open roles at ENSDIM.'}
+          : 'We look for minds that understand the problem before building the solution. Explore open roles at Ensdim.'}
         canonical="/careers"
         lang={ar ? 'ar' : 'en'}
       />
 
       {/* Hero */}
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -106,7 +106,7 @@ export function CareersPage() {
             <span className="text-white/70 font-medium">{ar ? 'الوظائف' : 'Careers'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'انضم إلى إنسديم' : 'Join ENSDIM'}
+            {ar ? 'انضم إلى إنسديم' : 'Join Ensdim'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">
             {ar ? 'نبحث عن عقول تفهم المشكلة قبل أن تبني الحل.' : 'We look for minds that understand the problem before building the solution.'}
@@ -114,7 +114,7 @@ export function CareersPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'في إنسديم، لا نبحث عن مهارات تقنية فقط. نبحث عن أشخاص يفهمون سياق العمل، يهتمون بسلوك العميل، يحترمون البيانات، ويستطيعون تحويل الأفكار والتحديات إلى عمل منظم له أثر واضح على البزنس.'
-              : 'At ENSDIM, we do not look for technical skills alone. We look for people who understand business context, care about customer behavior, respect data, and can turn ideas and challenges into organized work with a clear business impact.'}
+              : 'At Ensdim, we do not look for technical skills alone. We look for people who understand business context, care about customer behavior, respect data, and can turn ideas and challenges into organized work with a clear business impact.'}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
             {(ar ? 'تفكير عملي. تعلم مستمر. تنفيذ مسؤول.' : 'Practical thinking. Continuous learning. Responsible execution.')
@@ -142,7 +142,7 @@ export function CareersPage() {
               to="/about"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
-              {ar ? 'تعرّف على إنسديم' : 'Learn About ENSDIM'}
+              {ar ? 'تعرّف على إنسديم' : 'Learn About Ensdim'}
             </Link>
           </div>
         </div>
@@ -158,7 +158,7 @@ export function CareersPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
                 ? 'كل دور داخل إنسديم مرتبط بفكرة أكبر من مجرد تسليم مهمة. سواء كنت تعمل في الهندسة، التصميم، البيانات، البحث، المبيعات، أو النمو، فالمطلوب هو فهم السياق: ما المشكلة؟ من المستخدم؟ ما أثر الحل؟ وكيف يمكن أن تصبح التكنولوجيا أوضح وأسهل وأكثر ارتباطًا بالعائد؟'
-                : 'Every role at ENSDIM connects to something larger than task delivery. Whether you work in engineering, design, data, research, sales, or growth, the goal is to understand context: What is the problem? Who is the user? What impact should the solution create? And how can technology become clearer, easier, and more connected to return?'}
+                : 'Every role at Ensdim connects to something larger than task delivery. Whether you work in engineering, design, data, research, sales, or growth, the goal is to understand context: What is the problem? Who is the user? What impact should the solution create? And how can technology become clearer, easier, and more connected to return?'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
@@ -255,7 +255,7 @@ export function CareersPage() {
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
                 ? 'إذا كنت ترى أن لديك مهارة يمكن أن تضيف لإنسديم في البحث، التصميم، التطوير، البيانات، الذكاء الاصطناعي، المبيعات، العلاقات، أو إدارة المشاريع، يمكنك إرسال بياناتك حتى لو لم تكن هناك وظيفة مناسبة منشورة حاليًا.'
-                : 'If you believe your skill can add value to ENSDIM in research, design, development, data, AI, sales, relationships, or project management, you can send your profile even if there is no matching role currently listed.'}
+                : 'If you believe your skill can add value to Ensdim in research, design, development, data, AI, sales, relationships, or project management, you can send your profile even if there is no matching role currently listed.'}
             </p>
             <Link to="/careers/apply" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
               {ar ? 'أرسل بياناتك' : 'Send Your Profile'} <ArrowRight size={15} />
@@ -303,13 +303,13 @@ export function CareersPage() {
           { question: 'هل الخبرة في سوق الخليج مطلوبة؟', answer: 'ليست شرطًا في كل الأدوار، لكنها ميزة مهمة في أدوار المبيعات، تطوير الأعمال، العلاقات العامة، البحث السوقي، وبعض أدوار الاستراتيجية والنمو.' },
           { question: 'هل يمكن التعاون بنظام جزئي أو حسب المشروع؟', answer: 'نعم، بعض الأدوار يمكن أن تكون بدوام جزئي أو حسب المشروع، خصوصًا في الأدوار البحثية، الاستشارية، العلاقات، الأمن، وبعض التخصصات التقنية.' },
         ] : [
-          { question: 'Are all ENSDIM jobs remote?', answer: 'Not necessarily. The work model depends on the role and project. Some roles can be fully remote, while others may require direct collaboration, meetings, or partial presence when needed.' },
-          { question: 'What skills does ENSDIM look for?', answer: 'We look for skills in research, design, engineering, data, AI, security, project management, sales, business development, and public relations. We also care about mindset, commitment, learning ability, and understanding the problem before executing the solution.' },
-          { question: 'Does ENSDIM hire fresh graduates or junior candidates?', answer: 'Yes, depending on the role. Some opportunities are suitable for interns or junior candidates if they show seriousness, learning ability, commitment, and the ability to execute clear tasks. Specialized or advisory roles may require deeper experience.' },
-          { question: 'How do I apply for a role at ENSDIM?', answer: 'You can click the relevant role card or the arrow inside the card to go to the fixed application form. If you do not see a matching role, you can still send your profile through the same application page.' },
-          { question: 'What is the hiring process at ENSDIM?', answer: 'The process usually starts with profile review, followed by an initial conversation, then a short task or practical discussion depending on the role, and finally an agreement on responsibilities, collaboration model, and duration.' },
+          { question: 'Are all Ensdim jobs remote?', answer: 'Not necessarily. The work model depends on the role and project. Some roles can be fully remote, while others may require direct collaboration, meetings, or partial presence when needed.' },
+          { question: 'What skills does Ensdim look for?', answer: 'We look for skills in research, design, engineering, data, AI, security, project management, sales, business development, and public relations. We also care about mindset, commitment, learning ability, and understanding the problem before executing the solution.' },
+          { question: 'Does Ensdim hire fresh graduates or junior candidates?', answer: 'Yes, depending on the role. Some opportunities are suitable for interns or junior candidates if they show seriousness, learning ability, commitment, and the ability to execute clear tasks. Specialized or advisory roles may require deeper experience.' },
+          { question: 'How do I apply for a role at Ensdim?', answer: 'You can click the relevant role card or the arrow inside the card to go to the fixed application form. If you do not see a matching role, you can still send your profile through the same application page.' },
+          { question: 'What is the hiring process at Ensdim?', answer: 'The process usually starts with profile review, followed by an initial conversation, then a short task or practical discussion depending on the role, and finally an agreement on responsibilities, collaboration model, and duration.' },
           { question: 'Is Gulf market experience required?', answer: 'It is not required for every role, but it is a strong advantage in sales, business development, public relations, market research, and some strategy and growth roles.' },
-          { question: 'Can I work part-time or project-based with ENSDIM?', answer: 'Yes. Some roles can be part-time or project-based, especially research, advisory, relationships, security, and some technical specializations.' },
+          { question: 'Can I work part-time or project-based with Ensdim?', answer: 'Yes. Some roles can be part-time or project-based, especially research, advisory, relationships, security, and some technical specializations.' },
         ]}
       />
 
@@ -318,7 +318,7 @@ export function CareersPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
           <h2 className="text-2xl font-bold text-[#101418] mb-3">
-            {ar ? 'هل ترى نفسك مناسبًا لطريقة إنسديم في التفكير والعمل؟' : 'Do you see yourself as a fit for how ENSDIM thinks and works?'}
+            {ar ? 'هل ترى نفسك مناسبًا لطريقة إنسديم في التفكير والعمل؟' : 'Do you see yourself as a fit for how Ensdim thinks and works?'}
           </h2>
           <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar
@@ -330,7 +330,7 @@ export function CareersPage() {
               {ar ? 'أرسل بياناتك' : 'Send Your Profile'} <ArrowRight size={15} />
             </Link>
             <Link to="/about" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
-              {ar ? 'تعرّف على إنسديم' : 'Learn About ENSDIM'}
+              {ar ? 'تعرّف على إنسديم' : 'Learn About Ensdim'}
             </Link>
           </div>
         </div>

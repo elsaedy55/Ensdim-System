@@ -17,7 +17,7 @@ interface SEOProps {
 }
 
 const SITE_URL = 'https://ensdim.com';
-const SITE_NAME = 'ENSDIM';
+const SITE_NAME = 'Ensdim';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 const TWITTER_HANDLE = '@ensdim';
 
@@ -45,9 +45,9 @@ export function SEO({
   const path = canonical || '/';
 
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const resolvedCanonical = buildUrl(resolvedLang === 'ar' ? '/ar' : '', path);
-  const enUrl = buildUrl('', path);
-  const arUrl = buildUrl('/ar', path);
+  const resolvedCanonical = buildUrl(resolvedLang === 'en' ? '/en' : '', path);
+  const enUrl = buildUrl('/en', path);
+  const arUrl = buildUrl('', path);
   const resolvedOgTitle = ogTitle || title;
   const resolvedOgDescription = ogDescription || description;
 
@@ -78,7 +78,7 @@ export function SEO({
       {/* hreflang */}
       <link rel="alternate" hreflang="en" href={enUrl} />
       <link rel="alternate" hreflang="ar" href={arUrl} />
-      <link rel="alternate" hreflang="x-default" href={enUrl} />
+      <link rel="alternate" hreflang="x-default" href={arUrl} />
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />

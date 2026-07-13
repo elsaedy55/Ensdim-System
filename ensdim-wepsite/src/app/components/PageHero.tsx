@@ -34,7 +34,7 @@ export function PageHero({
   return (
     <section
       className={`pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden ${
-        isDark ? 'bg-[#0f0d19] text-white' : 'bg-[#FAFAFA] text-[#101418]'
+        isDark ? 'bg-logo-black text-white' : 'bg-[#FAFAFA] text-[#101418]'
       }`}
     >
       {isDark && (

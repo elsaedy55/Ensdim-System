@@ -932,9 +932,9 @@ export function ServiceDetailPage() {
   return (
     <>
       <SEO
-        title={`${d.title} | ENSDIM Services`}
+        title={`${d.title} | Ensdim Services`}
         description={d.heroDesc}
-        keywords={`${d.title} Egypt, ${d.title} Saudi Arabia, ${d.title} UAE, ENSDIM services`}
+        keywords={`${d.title} Egypt, ${d.title} Saudi Arabia, ${d.title} UAE, Ensdim services`}
         canonical={`/services/${slug}`}
         lang={ar ? 'ar' : 'en'}
         jsonLd={{
@@ -942,12 +942,12 @@ export function ServiceDetailPage() {
           '@type': 'Service',
           name: d.title,
           description: d.heroDesc,
-          provider: { '@type': 'Organization', name: 'ENSDIM', url: 'https://ensdim.com' },
+          provider: { '@type': 'Organization', name: 'Ensdim', url: 'https://ensdim.com' },
           areaServed: ['Egypt', 'Saudi Arabia', 'United Arab Emirates'],
           url: `https://ensdim.com/services/${slug}`,
         }}
       />
-      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-[#0f0d19] text-white">
+      <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
@@ -961,7 +961,7 @@ export function ServiceDetailPage() {
             <span className="text-white/70 font-medium">{d.title}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
-            {ar ? 'خدمات إنسديم' : 'ENSDIM Services'}
+            {ar ? 'خدمات إنسديم' : 'Ensdim Services'}
           </span>
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">{d.title}</h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-6 text-[#EEEAFE]/75">{d.heroDesc}</p>
@@ -1034,7 +1034,7 @@ export function ServiceDetailPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.14}>
-            <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'كيف تنفذها إنسديم؟' : 'How ENSDIM Executes It'}</h2>
+            <h2 className="text-xl font-bold text-[#101418] mb-4">{ar ? 'كيف تنفذها إنسديم؟' : 'How Ensdim Executes It'}</h2>
             <ul className="space-y-2.5">
               {d.howWeExecute.map((h, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-[#4F555E]">
@@ -1076,7 +1076,7 @@ export function ServiceDetailPage() {
           <RelatedCaseStudies solutionSlugs={d.relatedSolutions.map((s) => s.slug)} ar={ar} />
 
           <ScrollReveal delay={0.3}>
-            <div id="client-workspace" className="scroll-mt-24 bg-[#0f0d19] rounded-2xl p-8 text-white">
+            <div id="client-workspace" className="scroll-mt-24 bg-logo-black rounded-2xl p-8 text-white">
               <h2 className="text-lg font-bold mb-2">
                 {ar ? 'مساحة العميل' : 'Client Workspace'}
               </h2>
