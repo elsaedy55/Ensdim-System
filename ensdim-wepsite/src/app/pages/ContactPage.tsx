@@ -5,6 +5,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { submitInquiry } from '../../lib/supabase';
+import { PhoneNumberField, isValidPhoneNumber } from '../components/PhoneNumberField';
 
 /**
  * "/company/about" in the approved content brief doesn't exist as a route —
@@ -33,10 +34,18 @@ export function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>();
+  const [phoneError, setPhoneError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
+
+    if (!phone || !isValidPhoneNumber(phone)) {
+      setPhoneError(true);
+      return;
+    }
+    setPhoneError(false);
     setSubmitting(true);
 
     const data = new FormData(e.currentTarget);
@@ -44,7 +53,7 @@ export function ContactPage() {
       await submitInquiry({
         type: 'contact',
         name: String(data.get('name') ?? ''),
-        whatsapp: String(data.get('whatsapp') ?? ''),
+        whatsapp: phone,
         email: String(data.get('email') ?? '') || undefined,
         company: String(data.get('company') ?? '') || undefined,
         country: String(data.get('country') ?? '') || undefined,
@@ -54,6 +63,7 @@ export function ContactPage() {
         language,
       });
       setSubmitted(true);
+      setPhone(undefined);
     } catch {
       setError(true);
     } finally {
@@ -195,7 +205,6 @@ export function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     {[
                       { name: 'name', label: ar ? 'الاسم' : 'Name', placeholder: ar ? 'اكتب اسمك' : 'Your name', type: 'text', required: true },
-                      { name: 'whatsapp', label: ar ? 'واتساب' : 'WhatsApp', placeholder: ar ? 'رقم واتساب' : 'WhatsApp number', type: 'tel', required: true },
                       { name: 'company', label: ar ? 'الشركة' : 'Company', placeholder: ar ? 'اسم الشركة' : 'Company name', type: 'text' },
                       { name: 'email', label: ar ? 'البريد الإلكتروني' : 'Email', placeholder: ar ? 'البريد الإلكتروني للعمل' : 'Business email', type: 'email' },
                       { name: 'country', label: ar ? 'الدولة' : 'Country', placeholder: ar ? 'الدولة' : 'Country', type: 'text' },
@@ -213,6 +222,16 @@ export function ContactPage() {
                         />
                       </div>
                     ))}
+
+                    <PhoneNumberField
+                      name="whatsapp"
+                      label={ar ? 'واتساب' : 'WhatsApp'}
+                      required
+                      ar={ar}
+                      value={phone}
+                      onChange={(v) => { setPhone(v); if (phoneError) setPhoneError(false); }}
+                      error={phoneError}
+                    />
 
                     <div>
                       <label className="block text-xs font-semibold text-[#101418] mb-1.5">

@@ -421,7 +421,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex items-center overflow-hidden min-h-screen"
+      className="relative flex items-center overflow-hidden min-h-screen md:min-h-0"
     >
       {/* Base dark layer */}
       <div className="absolute inset-0 bg-[#0a0c12]" />
@@ -461,7 +461,7 @@ export function Hero() {
       />
 
       {/* ── Main content grid ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-14 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10">
 
           {/* ── LEFT: Text content ── */}

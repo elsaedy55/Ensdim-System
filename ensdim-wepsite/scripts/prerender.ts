@@ -1,0 +1,118 @@
+import { chromium } from 'playwright';
+import { preview } from 'vite';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createClient } from '@supabase/supabase-js';
+import { caseStudies } from '../src/data/caseStudies';
+import { STATIC_PAGES } from '../src/data/staticPages';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, '..');
+const DIST = path.join(ROOT, 'dist');
+const PORT = 4173;
+
+// Renders every route with a real browser after `vite build` and writes the
+// resulting DOM (title, meta tags, JSON-LD, visible content — all injected
+// client-side by react-helmet-async) to a static index.html per route.
+// Vercel serves a matching static file before falling back to the SPA
+// rewrite in vercel.json, so crawlers that don't execute JS (many AI bots,
+// social preview scrapers) get real per-page content instead of the generic
+// homepage shell.
+
+async function getDynamicPaths(): Promise<string[]> {
+  const paths = caseStudies
+    .filter((study) => study.is_published)
+    .map((study) => `/case-studies/${study.slug}`);
+
+  const supabaseUrl = process.env.VITE_SUPABASE_URL;
+  const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    console.warn('[prerender] Missing Supabase credentials — skipping blog/research slugs');
+    return paths;
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseKey);
+  const [blogPosts, researchArticles] = await Promise.all([
+    supabase.from('blog_posts').select('slug').eq('is_published', true),
+    supabase.from('research_articles').select('slug').eq('is_published', true),
+  ]);
+
+  if (blogPosts.error) console.error('[prerender] Failed to fetch blog_posts:', blogPosts.error.message);
+  if (researchArticles.error) console.error('[prerender] Failed to fetch research_articles:', researchArticles.error.message);
+
+  for (const post of blogPosts.data ?? []) paths.push(`/blog/${post.slug}`);
+  for (const article of researchArticles.data ?? []) paths.push(`/research/${article.slug}`);
+
+  return paths;
+}
+
+function outputPathFor(route: string): string {
+  if (route === '/') return path.join(DIST, 'index.html');
+  return path.join(DIST, route.replace(/^\//, ''), 'index.html');
+}
+
+async function main() {
+  const staticPaths = STATIC_PAGES.map((p) => p.path);
+  const dynamicPaths = await getDynamicPaths();
+  const enPaths = [...staticPaths, ...dynamicPaths];
+  const routes = enPaths.flatMap((p) => [p, p === '/' ? '/ar' : `/ar${p}`]);
+
+  console.log(`[prerender] Prerendering ${routes.length} routes (${enPaths.length} pages x en/ar)...`);
+
+  const server = await preview({ root: ROOT, preview: { port: PORT, strictPort: true } });
+  const base = server.resolvedUrls?.local?.[0] ?? `http://localhost:${PORT}/`;
+
+  const browser = await chromium.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const page = await browser.newPage();
+
+  let ok = 0;
+  const failed: string[] = [];
+
+  for (const route of routes) {
+    const url = new URL(route, base).toString();
+    const attempts = 2;
+    let lastErr: Error | undefined;
+
+    for (let attempt = 1; attempt <= attempts; attempt++) {
+      try {
+        await page.goto(url, { waitUntil: 'load', timeout: 30000 });
+        await page.waitForSelector('footer', { timeout: 15000 });
+        // Let react-helmet-async's effect flush title/meta/JSON-LD into <head>.
+        await page.waitForTimeout(150);
+
+        const html = await page.content();
+        const outPath = outputPathFor(route);
+        await fs.mkdir(path.dirname(outPath), { recursive: true });
+        await fs.writeFile(outPath, `<!doctype html>\n${html}`);
+        ok++;
+        lastErr = undefined;
+        break;
+      } catch (err) {
+        lastErr = err as Error;
+      }
+    }
+
+    if (lastErr) {
+      failed.push(route);
+      console.error(`[prerender] Failed: ${route} — ${lastErr.message}`);
+    }
+  }
+
+  await browser.close();
+  await new Promise<void>((resolve, reject) => {
+    server.httpServer.close((err) => (err ? reject(err) : resolve()));
+  });
+
+  console.log(`[prerender] Done. ${ok}/${routes.length} pages prerendered.`);
+  if (failed.length) {
+    console.error(`[prerender] ${failed.length} route(s) failed:\n${failed.join('\n')}`);
+    process.exitCode = 1;
+  }
+}
+
+main().catch((err) => {
+  console.error('[prerender] Fatal error:', err);
+  process.exitCode = 1;
+});

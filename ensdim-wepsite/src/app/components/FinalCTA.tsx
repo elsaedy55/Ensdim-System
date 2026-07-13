@@ -6,6 +6,7 @@ import { ScrollReveal } from './ScrollReveal';
 import { submitInquiry } from '../../lib/supabase';
 import { challenges } from './ConsultationForm';
 import { SuccessModal } from './SuccessModal';
+import { PhoneNumberField, isValidPhoneNumber } from './PhoneNumberField';
 
 export function FinalCTA() {
   const { t, language } = useLanguage();
@@ -13,10 +14,18 @@ export function FinalCTA() {
   const [submitted, setSubmitted]   = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError]           = useState(false);
+  const [phone, setPhone]           = useState<string | undefined>();
+  const [phoneError, setPhoneError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
+
+    if (!phone || !isValidPhoneNumber(phone)) {
+      setPhoneError(true);
+      return;
+    }
+    setPhoneError(false);
     setSubmitting(true);
 
     const form = e.currentTarget;
@@ -25,7 +34,7 @@ export function FinalCTA() {
       await submitInquiry({
         type:        'contact',
         name:        String(data.get('name') ?? ''),
-        whatsapp:    String(data.get('phone') ?? ''),
+        whatsapp:    phone,
         company:     String(data.get('company') ?? '') || undefined,
         challenge:   String(data.get('challenge') ?? '') || undefined,
         source_page: 'home',
@@ -33,6 +42,7 @@ export function FinalCTA() {
       });
       setSubmitted(true);
       form.reset();
+      setPhone(undefined);
     } catch {
       setError(true);
     } finally {
@@ -82,9 +92,15 @@ export function FinalCTA() {
                   type="text" name="name" required placeholder={ar ? 'الاسم' : 'Name'}
                   className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
                 />
-                <input
-                  type="tel" name="phone" required placeholder={ar ? 'رقم الهاتف' : 'Phone number'}
-                  className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors"
+                <PhoneNumberField
+                  name="phone"
+                  label={ar ? 'رقم الهاتف' : 'Phone number'}
+                  showLabel={false}
+                  required
+                  ar={ar}
+                  value={phone}
+                  onChange={(v) => { setPhone(v); if (phoneError) setPhoneError(false); }}
+                  error={phoneError}
                 />
               </div>
               <input

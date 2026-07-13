@@ -144,9 +144,9 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between gap-2">
+        <div className={`flex items-center justify-between gap-2 ${ar ? 'max-lg:flex-row-reverse' : ''}`}>
 
-          {/* Logo */}
+          {/* Logo: forced to the left on mobile even in Arabic (RTL flips flex order otherwise) */}
           <Link to="/" onClick={closeAll} className="cursor-pointer hover:opacity-80 active:scale-95 transition-all flex-shrink-0 no-mirror">
             <img src={ensdimLogo} alt="ENSDIM" className="w-auto object-contain h-[22px] sm:h-[28px]" />
           </Link>
@@ -244,8 +244,16 @@ export function Header() {
             </a>
           </div>
 
-          {/* Mobile right: lang + hamburger */}
+          {/* Mobile right: hamburger + lang */}
           <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
+            <button
+              className="text-[#101418] p-1.5 active:scale-90 transition-transform"
+              onClick={() => { setIsMenuOpen(!isMenuOpen); setIsMobileLangOpen(false); }}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+
             <div className="relative" ref={langMobileRef}>
               <button
                 onClick={() => { setIsMobileLangOpen(!isMobileLangOpen); setIsMenuOpen(false); }}
@@ -256,7 +264,7 @@ export function Header() {
                 <ChevronDown size={12} className="text-[#4F555E]" />
               </button>
               {isMobileLangOpen && (
-                <div className="absolute mt-2 w-52 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-2 z-50 max-h-72 overflow-y-auto" style={{ [ar ? 'left' : 'right']: 0 }}>
+                <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-[#E5E5E5] py-2 z-50 max-h-72 overflow-y-auto">
                   {Object.entries(countries).map(([code, countryData]) => (
                     <div key={code} className="px-3 py-2 hover:bg-[#F8F8FF]">
                       <div className="flex items-center gap-2 mb-1.5">
@@ -272,14 +280,6 @@ export function Header() {
                 </div>
               )}
             </div>
-
-            <button
-              className="text-[#101418] p-1.5 active:scale-90 transition-transform"
-              onClick={() => { setIsMenuOpen(!isMenuOpen); setIsMobileLangOpen(false); }}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
           </div>
         </div>
 

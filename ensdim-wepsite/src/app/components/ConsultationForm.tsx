@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { submitInquiry } from '../../lib/supabase';
 import { SuccessModal } from './SuccessModal';
+import { PhoneNumberField, isValidPhoneNumber } from './PhoneNumberField';
 
 export const challenges = [
   { en: 'Losing leads', ar: 'ضياع العملاء المحتملين' },
@@ -36,10 +37,18 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>();
+  const [phoneError, setPhoneError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
+
+    if (!phone || !isValidPhoneNumber(phone)) {
+      setPhoneError(true);
+      return;
+    }
+    setPhoneError(false);
     setSubmitting(true);
 
     const form = e.currentTarget;
@@ -48,7 +57,7 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
       await submitInquiry({
         type:          'consultation',
         name:          String(data.get('name') ?? ''),
-        whatsapp:      String(data.get('whatsapp') ?? ''),
+        whatsapp:      phone,
         email:         String(data.get('email') ?? '') || undefined,
         company:       String(data.get('company') ?? '') || undefined,
         role:          String(data.get('role') ?? '') || undefined,
@@ -65,6 +74,7 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
       form.reset();
       setSelectedChallenge('');
       setSelectedBudget('');
+      setPhone(undefined);
     } catch {
       setError(true);
     } finally {
@@ -101,7 +111,6 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
             <div className="grid sm:grid-cols-2 gap-4">
               {[
                 { name: 'name', label: ar ? 'الاسم' : 'Name', required: true },
-                { name: 'whatsapp', label: ar ? 'واتساب' : 'WhatsApp', type: 'tel', required: true },
                 { name: 'company', label: ar ? 'الشركة' : 'Company' },
                 { name: 'role', label: ar ? 'المسمى الوظيفي' : 'Role' },
                 { name: 'email', label: ar ? 'البريد الإلكتروني' : 'Email', type: 'email' },
@@ -120,6 +129,15 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
                   />
                 </div>
               ))}
+              <PhoneNumberField
+                name="whatsapp"
+                label={ar ? 'واتساب' : 'WhatsApp'}
+                required
+                ar={ar}
+                value={phone}
+                onChange={(v) => { setPhone(v); if (phoneError) setPhoneError(false); }}
+                error={phoneError}
+              />
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">

@@ -160,17 +160,26 @@ Each page contains:
 
 ---
 
-## What Still Has Room to Improve (6/100 gap)
+## What Still Has Room to Improve (~3/100 gap)
 
-| Item | Impact | Effort | Priority |
-|---|---|---|---|
-| SSR/Pre-rendering (vite-plugin-prerender) | +3 | High | High |
-| Verified Google Search Console + Bing Webmaster | +1 | Low | Immediate |
-| Real author bylines on blog posts (E-E-A-T) | +1 | Medium | High |
-| Core Web Vitals optimization (LCP, CLS, FID) | +1 | Medium | Medium |
+| Item | Impact | Effort | Priority | Status |
+|---|---|---|---|---|
+| SSR/Pre-rendering | +3 | High | High | ✅ Done (2026-07-13) — see below |
+| Verified Google Search Console + Bing Webmaster | +1 | Low | Immediate | Manual step, not yet done |
+| Real author bylines on blog posts (E-E-A-T) | +1 | Medium | High | Pending |
+| Core Web Vitals optimization (LCP, CLS, FID) | +1 | Medium | Medium | Pending |
 
-### Why the 6-point gap exists
-The biggest remaining gap is **SSR**. As a React SPA, all meta tags are injected client-side by react-helmet-async. Googlebot can crawl and execute JavaScript, but many AI crawlers and social preview tools cannot. `vite-plugin-prerender` or migrating to Next.js App Router would resolve this and push the score to ~98-100.
+### Phase 13: Build-Time Prerendering (2026-07-13)
+**Status:** ✅ Complete
+**Files:** `scripts/prerender.ts`, `src/data/staticPages.ts`, `package.json`, `index.html`, `api/sitemap.js`
+
+`pnpm build` now runs `vite build` followed by a Playwright-driven prerender pass (`scripts/prerender.ts`) that visits every route (all `STATIC_PAGES` entries, published case studies, and published Supabase `blog_posts`/`research_articles` slugs — each in both `en` and `/ar`) against a local `vite preview` server and writes the fully rendered DOM — title, per-route meta/OG/Twitter tags, JSON-LD, and visible content, all normally injected client-side by `react-helmet-async` — to a static `dist/<route>/index.html`. Vercel serves a matching static file before the SPA rewrite in `vercel.json` (filesystem takes precedence over rewrites), so crawlers that don't execute JavaScript — many AI bots, social preview scrapers — now get real per-page HTML instead of the generic homepage shell.
+
+`STATIC_PAGES` was extracted from `api/sitemap.js` into `src/data/staticPages.ts` so the sitemap and the prerender route list can't drift apart.
+
+**Bug found and fixed in the same pass:** `index.html` hardcoded a static `<meta name="description">`, `<link rel="canonical" href=".../">`, OG, and Twitter tags. `react-helmet-async` only manages tags it renders itself and cannot remove pre-existing ones, so every non-home route was shipping **two** conflicting `<link rel="canonical">` tags — the correct per-page one from `SEO.tsx`, and a second one hardcoded to the homepage URL on literally every page. A duplicate/conflicting canonical is exactly the kind of signal that makes Google index the wrong URL for a page, working directly against ranking for page-specific and brand queries. Removed the static duplicates from `index.html`, keeping only a generic `<title>` as a pre-hydration fallback for any route not yet covered by prerendering.
+
+**Known limitation:** `scripts/prerender.ts` needs `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` at build time to include blog/research slugs (same credentials `api/sitemap.js` already needs) — confirm these are set in the Vercel project's environment variables. Also confirm the Vercel build environment can download and run Playwright's Chromium (`postinstall: playwright install chromium`) — this was only verified locally on this machine, not yet on an actual Vercel deploy.
 
 ---
 

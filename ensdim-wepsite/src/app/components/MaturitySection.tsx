@@ -181,17 +181,19 @@ export function MaturitySection() {
               to={item.href}
               className="group bg-white rounded-2xl p-7 border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 transition-all duration-200 flex flex-col h-full"
             >
-              <div
-                className="w-13 h-13 min-w-[52px] min-h-[52px] rounded-xl flex items-center justify-center mb-5 flex-shrink-0 transition-colors duration-300"
-                style={{ backgroundColor: `${item.accent}1A` }}
-              >
-                <div className="w-7 h-7" style={{ color: item.accent }}>
-                  <item.Icon />
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="w-13 h-13 min-w-[52px] min-h-[52px] rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
+                  style={{ backgroundColor: `${item.accent}1A` }}
+                >
+                  <div className="w-7 h-7" style={{ color: item.accent }}>
+                    <item.Icon />
+                  </div>
                 </div>
+                <span className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide leading-none text-[#3B1F8C]">
+                  {item.stage}
+                </span>
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider mb-1.5" style={{ color: item.accent }}>
-                {item.stage}
-              </span>
               <h3 className="text-base font-bold text-[#101418] mb-2.5 leading-snug">{item.title}</h3>
               <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{item.description}</p>
 

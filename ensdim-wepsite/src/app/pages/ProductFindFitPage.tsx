@@ -6,6 +6,7 @@ import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
 import { SuccessModal } from '../components/SuccessModal';
 import { submitInquiry } from '../../lib/supabase';
+import { PhoneNumberField, isValidPhoneNumber } from '../components/PhoneNumberField';
 
 const businessFields = [
   { en: 'Maintenance / Field Services', ar: 'صيانة / خدمات ميدانية' },
@@ -39,6 +40,8 @@ export function ProductFindFitPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [phone, setPhone] = useState<string | undefined>();
+  const [phoneError, setPhoneError] = useState(false);
 
   const toggleChallenge = (label: string) => {
     setSelectedChallenges((prev) =>
@@ -49,6 +52,12 @@ export function ProductFindFitPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
+
+    if (!phone || !isValidPhoneNumber(phone)) {
+      setPhoneError(true);
+      return;
+    }
+    setPhoneError(false);
     setSubmitting(true);
 
     const form = e.currentTarget;
@@ -57,7 +66,7 @@ export function ProductFindFitPage() {
       await submitInquiry({
         type: 'consultation',
         name: String(data.get('name') ?? ''),
-        whatsapp: String(data.get('whatsapp') ?? ''),
+        whatsapp: phone,
         email: String(data.get('email') ?? '') || undefined,
         company: String(data.get('company') ?? '') || undefined,
         country: String(data.get('country') ?? '') || undefined,
@@ -73,6 +82,7 @@ export function ProductFindFitPage() {
       form.reset();
       setSelectedField('');
       setSelectedChallenges([]);
+      setPhone(undefined);
     } catch {
       setError(true);
     } finally {
@@ -136,7 +146,6 @@ export function ProductFindFitPage() {
                   {[
                     { name: 'name', label: ar ? 'الاسم' : 'Name', required: true },
                     { name: 'company', label: ar ? 'اسم الشركة' : 'Company Name', required: true },
-                    { name: 'whatsapp', label: ar ? 'رقم واتساب' : 'WhatsApp Number', type: 'tel', required: true },
                     { name: 'email', label: ar ? 'البريد الإلكتروني' : 'Email', type: 'email' },
                   ].map((f) => (
                     <div key={f.name}>
@@ -152,6 +161,15 @@ export function ProductFindFitPage() {
                       />
                     </div>
                   ))}
+                  <PhoneNumberField
+                    name="whatsapp"
+                    label={ar ? 'رقم واتساب' : 'WhatsApp Number'}
+                    required
+                    ar={ar}
+                    value={phone}
+                    onChange={(v) => { setPhone(v); if (phoneError) setPhoneError(false); }}
+                    error={phoneError}
+                  />
                 </div>
 
                 <div>

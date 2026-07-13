@@ -3,6 +3,7 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { Upload } from 'lucide-react';
 import { uploadJobApplicationFiles, submitJobApplication } from '../../lib/supabase';
 import { SuccessModal } from './SuccessModal';
+import { PhoneNumberField, isValidPhoneNumber } from './PhoneNumberField';
 
 interface JobApplicationFormProps {
   roleTitle?: string;
@@ -23,6 +24,8 @@ export function JobApplicationForm({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [phone, setPhone] = useState<string | undefined>();
+  const [phoneError, setPhoneError] = useState(false);
 
   const defaultFormTitle = ar ? 'قدّم على هذه الوظيفة' : 'Apply for this role';
   const displayFormTitle = formTitle || defaultFormTitle;
@@ -33,6 +36,12 @@ export function JobApplicationForm({
       setError(ar ? 'يرجى رفع السيرة الذاتية.' : 'Please upload your CV.');
       return;
     }
+    if (!phone || !isValidPhoneNumber(phone)) {
+      setPhoneError(true);
+      setError(null);
+      return;
+    }
+    setPhoneError(false);
     setError(null);
     setSubmitting(true);
 
@@ -44,7 +53,7 @@ export function JobApplicationForm({
       await submitJobApplication({
         full_name: String(data.get('full_name') ?? ''),
         email: String(data.get('email') ?? ''),
-        whatsapp: String(data.get('whatsapp') ?? ''),
+        whatsapp: phone,
         country: String(data.get('country') ?? ''),
         city: String(data.get('city') ?? '') || undefined,
         position: String(data.get('position') ?? ''),
@@ -73,6 +82,7 @@ export function JobApplicationForm({
       form.reset();
       setCvFile(null);
       setPortfolioFile(null);
+      setPhone(undefined);
     } catch (err) {
       setError(err instanceof Error ? err.message : (ar ? 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.' : 'Something went wrong while sending. Please try again.'));
     } finally {
@@ -127,17 +137,16 @@ export function JobApplicationForm({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-[#101418] mb-2">
-                {ar ? 'رقم الهاتف / واتساب' : 'Phone / WhatsApp'} <span className="text-[#D63A3A]">*</span>
-              </label>
-              <input
-                type="tel"
-                name="whatsapp"
-                required
-                className="w-full px-4 py-2.5 bg-[#F8F8FF] border border-[#E5E5E5] rounded-xl focus:outline-none focus:border-[#6D5DF6] focus:ring-2 focus:ring-[#6D5DF6]/20 transition-all"
-              />
-            </div>
+            <PhoneNumberField
+              name="whatsapp"
+              label={ar ? 'رقم الهاتف / واتساب' : 'Phone / WhatsApp'}
+              required
+              ar={ar}
+              variant="job"
+              value={phone}
+              onChange={(v) => { setPhone(v); if (phoneError) setPhoneError(false); }}
+              error={phoneError}
+            />
 
             <div>
               <label className="block text-sm font-medium text-[#101418] mb-2">
