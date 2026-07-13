@@ -44,7 +44,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       keyQuestionFollowup: 'Without it, you are not fully managing sales; part of it is left to memory, speed, and chance.',
       solution: { title: 'Follow-up that prevents lost opportunities', desc: 'A system that gathers leads from different channels into a clear pipeline with organized follow-ups, reminders, lead statuses, and visibility across marketing, sales, and management.', slug: 'follow-up-systems' },
       whatWeOfferIntro: 'Instead of having opportunities scattered across WhatsApp, calls, forms, and employee memory, we help you build a clear follow-up system that connects marketing, sales, and management.',
-      whatWeOfferPoints: ['Collect potential customers in one place.', 'Record the source of every opportunity: ad, WhatsApp, website, call, or referral.', 'Define each customer status: new, replied, needs follow-up, interested, closed, or lost.', 'Automatic follow-up reminders so opportunities are not forgotten.', 'Structured first response when needed.', 'Alerts for opportunities that have not been followed up.', 'Classify customers by readiness or level of interest.', 'A management view for opportunities and conversion rates.', 'Connect the system with your website, forms, WhatsApp, or ad campaigns.', 'Reports that show which channels bring real customers and which ones consume budget.'],
+      whatWeOfferPoints: ['Collect potential customers in one place.', 'Record the source of every opportunity, whether an ad, WhatsApp, website, call, or referral.', 'Define each customer status, from new and replied to needs follow-up, interested, closed, or lost.', 'Automatic follow-up reminders so opportunities are not forgotten.', 'Structured first response when needed.', 'Alerts for opportunities that have not been followed up.', 'Classify customers by readiness or level of interest.', 'A management view for opportunities and conversion rates.', 'Connect the system with your website, forms, WhatsApp, or ad campaigns.', 'Reports that show which channels bring real customers and which ones consume budget.'],
       expectedReturn: ['Fewer lost opportunities.', 'Faster response and follow-up.', 'Higher conversion from inquiry to booking or request.', 'Clearer understanding of the best customer sources.', 'Less dependence on memory and manual follow-up.', 'Less pressure on the team.', 'A better customer experience from the first touchpoint.', 'Clearer sales visibility for management.', 'Higher return from marketing spend.'],
       caseStudy: { title: 'From scattered opportunities to a clear sales pipeline', desc: 'How we helped a Saudi contracting and real estate development company organize lead intake, track each opportunity, and connect the website, replies, dashboard, sales team, and management.', slug: 'real-estate-sales-crm-saudi' },
       ctaHeading: 'Are you losing opportunities before they reach the sales stage?',
@@ -55,7 +55,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       title: 'العملاء والفرص تضيع قبل ما تتحول لمبيعات',
       badge: 'مشكلة شائعة في الأعمال الخدمية',
       intro: 'قد تكون المشكلة ليست في قلة الطلبات، بل في أن العملاء الذين يصلون إليك لا يمرّون برحلة متابعة واضحة. رسالة على واتساب، مكالمة لم تُسجل، نموذج لم يُراجع، أو عميل مهتم لم يتابعه أحد في الوقت المناسب — وكل فرصة ضائعة تعني تكلفة تسويق بلا عائد.',
-      whatHappeningIntro: 'تصل الاستفسارات من أكثر من قناة: واتساب، مكالمات، إنستغرام، نماذج الموقع، إعلانات، أو ترشيحات مباشرة. لكن بدون نظام واضح، يبدأ جزء من المبيعات في الضياع قبل أن يبدأ البيع الحقيقي.',
+      whatHappeningIntro: 'تصل الاستفسارات من أكثر من قناة، سواء واتساب، مكالمات، إنستغرام، نماذج الموقع، إعلانات، أو ترشيحات مباشرة. لكن بدون نظام واضح، يبدأ جزء من المبيعات في الضياع قبل أن يبدأ البيع الحقيقي.',
       whatHappeningPoints: ['العميل يسأل ولا يتم تسجيله.', 'موظف يرد ولا أحد يعرف ماذا حدث بعد ذلك.', 'عميل مهتم ينتظر متابعة ولا تصله.', 'فرصة ساخنة تتحول إلى "هنرجعلك" ثم تختفي.', 'الإدارة لا تعرف كم فرصة دخلت، من تابعها، ومن ضاعت.'],
       whyMatters: ['تكلفة إعلانات تزيد بدون زيادة حقيقية في المبيعات.', 'فريق يرد كثيرًا لكن بدون نتائج واضحة.', 'عملاء مهتمون لا يتحولون إلى حجوزات أو طلبات.', 'اعتماد زائد على ذاكرة الموظفين.', 'صعوبة معرفة مصدر كل فرصة.', 'فقدان فرص كان يمكن إغلاقها بتواصل منظم.'],
       impactAreas: [
@@ -69,7 +69,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       keyQuestionFollowup: 'إذا لم يكن لديك ذلك، فأنت لا تدير المبيعات بالكامل؛ أنت تترك جزءًا منها للذاكرة، السرعة، والصدفة.',
       solution: { title: 'متابعة تمنع ضياع الفرص', desc: 'نظام يساعدك على جمع العملاء المحتملين من القنوات المختلفة داخل مسار واضح، مع متابعة منظمة، تذكيرات، حالات لكل عميل، وربط بين التسويق والمبيعات والإدارة.', slug: 'follow-up-systems' },
       whatWeOfferIntro: 'بدل ما تظل الفرص موزعة بين واتساب، مكالمات، نماذج، وذاكرة الموظفين، نساعدك على بناء نظام متابعة واضح يربط بين التسويق، المبيعات، والإدارة.',
-      whatWeOfferPoints: ['جمع العملاء المحتملين في مكان واحد.', 'تسجيل مصدر كل فرصة: إعلان، واتساب، موقع، مكالمة، أو ترشيح.', 'تحديد حالة كل عميل: جديد، تم الرد، يحتاج متابعة، مهتم، تم الإغلاق، أو ضاع.', 'تذكيرات تلقائية للمتابعة حتى لا تُنسى الفرص.', 'رد أولي منظم للعميل عند الحاجة.', 'تنبيهات للفرص التي لم يتابعها الفريق.', 'تصنيف العملاء حسب الجاهزية أو درجة الاهتمام.', 'لوحة متابعة للإدارة لمعرفة عدد الفرص ونسبة التحويل.', 'ربط النظام مع الموقع، النماذج، واتساب، أو الحملات الإعلانية.', 'تقارير تساعدك تعرف أي قناة تجلب عملاء حقيقيين وأي قناة تستهلك الميزانية.'],
+      whatWeOfferPoints: ['جمع العملاء المحتملين في مكان واحد.', 'تسجيل مصدر كل فرصة، سواء إعلان، واتساب، موقع، مكالمة، أو ترشيح.', 'تحديد حالة كل عميل، من جديد وتم الرد إلى يحتاج متابعة، مهتم، تم الإغلاق، أو ضاع.', 'تذكيرات تلقائية للمتابعة حتى لا تُنسى الفرص.', 'رد أولي منظم للعميل عند الحاجة.', 'تنبيهات للفرص التي لم يتابعها الفريق.', 'تصنيف العملاء حسب الجاهزية أو درجة الاهتمام.', 'لوحة متابعة للإدارة لمعرفة عدد الفرص ونسبة التحويل.', 'ربط النظام مع الموقع، النماذج، واتساب، أو الحملات الإعلانية.', 'تقارير تساعدك تعرف أي قناة تجلب عملاء حقيقيين وأي قناة تستهلك الميزانية.'],
       expectedReturn: ['تقليل فرص العملاء الضائعة.', 'تحسين سرعة الرد والمتابعة.', 'زيادة التحويل من الاستفسار إلى الحجز أو الطلب.', 'فهم أوضح لمصادر العملاء الأفضل.', 'تقليل الاعتماد على الذاكرة والمتابعة اليدوية.', 'تخفيف الضغط على الفريق.', 'تحسين تجربة العميل من أول تواصل.', 'رؤية أوضح للإدارة حول أداء المبيعات.', 'زيادة العائد من ميزانية التسويق.'],
       caseStudy: { title: 'من فرص مشتتة إلى مسار مبيعات واضح', desc: 'كيف ساعدنا شركة في قطاع المقاولات والتطوير العقاري في السعودية على تنظيم استقبال العملاء المحتملين، متابعة كل فرصة، وربط الموقع والردود ولوحة التحكم بفريق المبيعات والإدارة.', slug: 'real-estate-sales-crm-saudi' },
       ctaHeading: 'هل تضيع منك فرص قبل أن تصل لمرحلة البيع؟',
@@ -134,7 +134,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       title: 'Manual operations drain the team and increase costs',
       badge: 'A cost and efficiency problem',
       intro: 'Every repeated manual task consumes team time and adds hidden cost. Over time, growth starts to mean more hiring, more pressure, and more mistakes instead of better efficiency.',
-      whatHappeningIntro: 'Many tasks are done the same way every day: entering data, following up messages, reminding customers, moving information between tools, preparing reports, or checking statuses. These tasks look simple, but repetition makes them expensive.',
+      whatHappeningIntro: 'Many tasks are done the same way every day, from entering data and following up messages to reminding customers, moving information between tools, preparing reports, or checking statuses. These tasks look simple, but repetition makes them expensive.',
       whatHappeningPoints: ['Employees repeat the same tasks every day.', 'Information moves manually between tools.', 'Mistakes happen because of copying or forgetting.', 'Management needs more staff as pressure increases.', 'Team time goes into operations instead of customer service or sales.'],
       whyMatters: ['Manual tasks grow as the business grows.', 'The cost is often hidden inside wasted time.', 'Small errors accumulate and affect the customer.', 'Repetitive work drains team energy and productivity.', 'Without automation, growth becomes slower and more expensive.'],
       impactAreas: [
@@ -159,7 +159,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       title: 'التشغيل اليدوي يستهلك الفريق ويرفع التكلفة',
       badge: 'مشكلة تكلفة وكفاءة',
       intro: 'كل مهمة يدوية تتكرر تستهلك وقت الفريق وتضيف تكلفة خفية. مع الوقت، يبدأ النمو يعني توظيفًا أكثر، وضغطًا أكبر، وأخطاء أكثر بدل كفاءة أفضل.',
-      whatHappeningIntro: 'يتم تنفيذ كثير من الأعمال يوميًا بنفس الطريقة: إدخال بيانات، متابعة رسائل، تذكير عملاء، نقل معلومات من مكان لآخر، إعداد تقارير، أو مراجعة حالات. هذه الأعمال قد تبدو بسيطة، لكنها تصبح مكلفة مع التكرار.',
+      whatHappeningIntro: 'يتم تنفيذ كثير من الأعمال يوميًا بنفس الطريقة، من إدخال البيانات ومتابعة الرسائل إلى تذكير العملاء، نقل المعلومات من مكان لآخر، إعداد التقارير، أو مراجعة الحالات. هذه الأعمال قد تبدو بسيطة، لكنها تصبح مكلفة مع التكرار.',
       whatHappeningPoints: ['الموظفون يكررون نفس المهام يوميًا.', 'المعلومات تنتقل يدويًا بين أدوات مختلفة.', 'الأخطاء تحدث بسبب النسخ أو النسيان.', 'الإدارة تحتاج موظفين أكثر مع زيادة الضغط.', 'وقت الفريق يضيع في التشغيل بدل خدمة العميل أو البيع.'],
       whyMatters: ['المهام اليدوية تكبر مع نمو العمل.', 'التكلفة لا تظهر دائمًا كبند واضح لكنها تظهر في الوقت الضائع.', 'الأخطاء الصغيرة تتراكم وتؤثر على العميل.', 'تكرار العمل يقلل طاقة الفريق وإنتاجيته.', 'غياب الأتمتة يجعل التوسع مكلفًا وبطيئًا.'],
       impactAreas: [
@@ -263,7 +263,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       title: 'الإدارة لا ترى الصورة كاملة في الوقت المناسب',
       badge: 'مشكلة إدارة وقرار',
       intro: 'الإدارة لا تحتاج أرقامًا كثيرة فقط؛ تحتاج صورة واضحة في الوقت المناسب. عندما تصل التقارير متأخرة أو متفرقة، يصبح القرار مبنيًا على الإحساس بدل الحقيقة.',
-      whatHappeningIntro: 'توجد بيانات في أكثر من مكان: مبيعات، واتساب، موقع، إعلانات، فروع، موظفين، ملفات إكسيل، أو أنظمة منفصلة. لكن لا توجد لوحة واحدة توضح ما يحدث الآن.',
+      whatHappeningIntro: 'توجد بيانات في أكثر من مكان، سواء مبيعات، واتساب، موقع، إعلانات، فروع، موظفين، ملفات إكسيل، أو أنظمة منفصلة. لكن لا توجد لوحة واحدة توضح ما يحدث الآن.',
       whatHappeningPoints: ['الإدارة تنتظر تقارير يدوية.', 'الأرقام تصل متأخرة أو ناقصة.', 'كل فريق لديه نسخة مختلفة من الحقيقة.', 'لا يوجد وضوح حول الأداء اليومي أو الشهري.', 'يصعب معرفة سبب الانخفاض أو الفرصة في الوقت المناسب.'],
       whyMatters: ['القرار المتأخر قد يكلف فرصًا ومبيعات.', 'عدم وضوح الأرقام يضعف المحاسبة الداخلية.', 'الفريق يضيع وقتًا في إعداد التقارير بدل تحسين الأداء.', 'المدير يحتاج أن يسأل كثيرًا ليصل لرقم واحد.', 'البيانات المتفرقة تمنع رؤية الصورة الكاملة.'],
       impactAreas: [
@@ -290,7 +290,7 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       title: 'The data exists, but it is not helping you make decisions',
       badge: 'A data and decision problem',
       intro: 'Having data is not enough. You may have sales, orders, customers, campaigns, and branches, but without a clear way to read the data, numbers exist without helping decisions.',
-      whatHappeningIntro: 'Data exists in separate systems or files, but it does not turn into easy answers: What is working? What dropped? Which product performs best? Which channel brings higher-quality customers?',
+      whatHappeningIntro: 'Data exists in separate systems or files, but it does not turn into easy answers. What is working? What dropped? Which product performs best? Which channel brings higher-quality customers?',
       whatHappeningPoints: ['Many numbers but no clear meaning.', 'Reports are collected manually after the right decision time has passed.', 'It is difficult to compare branches, campaigns, or products.', 'There are no early signals for drops or opportunities.', 'Management asks the team instead of asking the system.'],
       whyMatters: ['Unstructured data does not create decisions.', 'Too many numbers can increase confusion instead of clarity.', 'Disconnected data hides the real reason behind performance changes.', 'Opportunities do not appear early without continuous reading.', 'Smart decisions need clear indicators, not just tables.'],
       impactAreas: [
@@ -312,10 +312,10 @@ const problemData: Record<string, { en: ProblemContent; ar: ProblemContent }> = 
       ctaButton: 'Book a consultation',
     },
     ar: {
-      title: 'البيانات موجودة… لكنها لا تساعدك على القرار',
+      title: 'البيانات موجودة، لكنها لا تساعدك على القرار',
       badge: 'مشكلة بيانات وقرار',
       intro: 'وجود البيانات لا يكفي. قد تكون لديك مبيعات، طلبات، عملاء، حملات، وفروع، لكن بدون طريقة واضحة لقراءة هذه البيانات ستبقى الأرقام موجودة دون أن تساعدك على القرار.',
-      whatHappeningIntro: 'البيانات موجودة في أنظمة مختلفة أو ملفات متفرقة، لكنها لا تتحول إلى إجابات سهلة: ما الذي يعمل؟ ما الذي انخفض؟ أي منتج أفضل؟ أي قناة تجلب عملاء أعلى جودة؟',
+      whatHappeningIntro: 'البيانات موجودة في أنظمة مختلفة أو ملفات متفرقة، لكنها لا تتحول إلى إجابات سهلة. ما الذي يعمل؟ ما الذي انخفض؟ أي منتج أفضل؟ أي قناة تجلب عملاء أعلى جودة؟',
       whatHappeningPoints: ['أرقام كثيرة لكن بدون معنى واضح.', 'تقارير تُجمع يدويًا بعد انتهاء الوقت المناسب للقرار.', 'صعوبة مقارنة الفروع أو الحملات أو المنتجات.', 'لا توجد إشارات مبكرة للهبوط أو الفرص.', 'الإدارة تسأل الفريق بدل أن تسأل النظام.'],
       whyMatters: ['البيانات غير المرتبة لا تصنع قرارًا.', 'كثرة الأرقام قد تزيد التشتت بدل الوضوح.', 'غياب الربط بين البيانات يمنع معرفة السبب الحقيقي.', 'الفرص لا تظهر مبكرًا إذا لم تكن هناك قراءة مستمرة.', 'القرار الذكي يحتاج مؤشرات واضحة لا جداول فقط.'],
       impactAreas: [

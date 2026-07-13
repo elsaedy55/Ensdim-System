@@ -87,7 +87,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     ar: {
       title: 'متابعة تمنع ضياع الفرص',
       shortDesc: 'نساعدك على تحويل العملاء المحتملين من رسائل ومكالمات ونماذج متفرقة إلى مسار متابعة واضح، بحيث يعرف فريقك من تواصل، من رد، من يحتاج متابعة، ومن اقترب من قرار الشراء.',
-      whatItSolves: 'الأعمال لا تخسر العملاء دائمًا بسبب ضعف الخدمة أو قلة الطلبات. أحيانًا تخسرهم لأن المتابعة غير منظمة: عميل يرسل على واتساب ولا يتم تسجيله، مكالمة لا يعرف أحد نتيجتها، نموذج يصل من الموقع ولا تتم مراجعته في الوقت المناسب، أو فرصة مهتمة تُنسى وسط ضغط اليوم. هذا الحل يحول المتابعة من مجهود يدوي يعتمد على ذاكرة الفريق إلى نظام واضح يربط بين العميل، الموظف، المرحلة، والخطوة التالية.',
+      whatItSolves: 'الأعمال لا تخسر العملاء دائمًا بسبب ضعف الخدمة أو قلة الطلبات. أحيانًا تخسرهم لأن المتابعة غير منظمة، فعميل يرسل على واتساب ولا يتم تسجيله، مكالمة لا يعرف أحد نتيجتها، نموذج يصل من الموقع ولا تتم مراجعته في الوقت المناسب، أو فرصة مهتمة تُنسى وسط ضغط اليوم. هذا الحل يحول المتابعة من مجهود يدوي يعتمد على ذاكرة الفريق إلى نظام واضح يربط بين العميل، الموظف، المرحلة، والخطوة التالية.',
       whenNeeded: [
         'ما زلت تعتمد على واتساب أو Excel أو ذاكرة الموظفين في تسجيل العملاء ومتابعة الفرص.',
         'العملاء يصلون من أكثر من قناة ولا يتم جمعهم في مكان واحد.',
@@ -100,7 +100,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
       whatWeBuild: [
         'صندوق موحد لاستقبال العملاء المحتملين من الموقع، واتساب، النماذج، أو الحملات.',
         'تسجيل مصدر كل فرصة لمعرفة القنوات الأكثر فاعلية.',
-        'مراحل واضحة لحالة العميل: جديد، تم الرد، يحتاج متابعة، مهتم، تم الإغلاق، أو لم يكتمل.',
+        'مراحل واضحة لحالة العميل مثل جديد، تم الرد، يحتاج متابعة، مهتم، تم الإغلاق، أو لم يكتمل.',
         'تذكيرات وتنبيهات حتى لا تُنسى الفرص.',
         'قوالب ردود ومتابعة تساعد الفريق على التواصل بشكل أسرع وأكثر تنظيمًا.',
         'تصنيف العملاء حسب درجة الاهتمام أو الجاهزية.',
@@ -135,7 +135,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     en: {
       title: 'Visits that turn into clear requests',
       shortDesc: 'We help turn website visits, landing pages, and paid campaigns into clear requests, bookings, inquiries, or opportunities that can be measured and followed up.',
-      whatItSolves: 'You may have a good website or campaigns that bring traffic, but visitors leave before taking action. The issue is not always traffic volume; it may be an unclear conversion journey: weak messaging, long forms, unclear buttons, or an experience that does not build trust quickly.',
+      whatItSolves: 'You may have a good website or campaigns that bring traffic, but visitors leave before taking action. The issue is not always traffic volume; it may be an unclear conversion journey, with weak messaging, long forms, unclear buttons, or an experience that does not build trust quickly.',
       whenNeeded: [
         'Your website gets visits but few requests.',
         'You spend on ads but do not know why visitors are not converting.',
@@ -180,7 +180,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     ar: {
       title: 'زيارات تتحول إلى طلبات',
       shortDesc: 'نساعدك على تحويل الموقع أو صفحات الهبوط أو حملاتك الإعلانية من مجرد زيارات ومشاهدات إلى طلبات واضحة يمكن قياسها ومتابعتها وتحسينها.',
-      whatItSolves: 'قد يكون لديك موقع جيد أو حملات تجلب زيارات، لكن الزائر لا يعرف الخطوة التالية أو يخرج قبل أن يترك بياناته. المشكلة ليست دائمًا في عدد الزوار، بل في أن رحلة التحويل غير واضحة: رسالة غير دقيقة، نموذج طويل، زر غير مقنع، أو تجربة لا تبني الثقة بسرعة.',
+      whatItSolves: 'قد يكون لديك موقع جيد أو حملات تجلب زيارات، لكن الزائر لا يعرف الخطوة التالية أو يخرج قبل أن يترك بياناته. المشكلة ليست دائمًا في عدد الزوار، بل في أن رحلة التحويل غير واضحة، برسالة غير دقيقة، نموذج طويل، زر غير مقنع، أو تجربة لا تبني الثقة بسرعة.',
       whenNeeded: [
         'لديك زيارات على الموقع لكن الطلبات قليلة.',
         'تنفق على الإعلانات ولا تعرف لماذا لا يتحول الزائر إلى عميل.',
@@ -227,7 +227,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     en: {
       title: 'Faster decisions instead of guessing',
       shortDesc: 'We help management see business numbers clearly instead of waiting for delayed reports or relying on gut feeling across marketing, sales, operations, and branches.',
-      whatItSolves: 'When numbers are scattered across Excel, WhatsApp, separate systems, and team conversations, management decisions become slow and uncertain. You may know there is a problem, but not where: marketing channel, sales team, branch, service, or product. This solution collects the important data and presents it in a way that supports faster decisions.',
+      whatItSolves: "When numbers are scattered across Excel, WhatsApp, separate systems, and team conversations, management decisions become slow and uncertain. You may know there is a problem, but not whether it's the marketing channel, sales team, branch, service, or product. This solution collects the important data and presents it in a way that supports faster decisions.",
       whenNeeded: [
         'Reports take too long to prepare.',
         'You do not know which marketing channel delivers the best return.',
@@ -271,7 +271,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     ar: {
       title: 'قرار أسرع بدل التخمين',
       shortDesc: 'نساعد الإدارة على رؤية أرقام العمل بوضوح بدل انتظار التقارير المتأخرة أو الاعتماد على الإحساس الشخصي في قرارات التسويق، المبيعات، التشغيل، والفروع.',
-      whatItSolves: 'عندما تكون الأرقام موزعة بين Excel، واتساب، أنظمة مختلفة، ومحادثات الفريق، تصبح قرارات الإدارة بطيئة وغير دقيقة. قد تعرف أن هناك مشكلة، لكن لا تعرف أين بالضبط: هل في قناة التسويق؟ فريق المبيعات؟ فرع معين؟ خدمة معينة؟ هذا الحل يجمع البيانات المهمة ويعرضها بطريقة تساعدك على اتخاذ قرار أسرع وأكثر ثقة.',
+      whatItSolves: 'عندما تكون الأرقام موزعة بين Excel، واتساب، أنظمة مختلفة، ومحادثات الفريق، تصبح قرارات الإدارة بطيئة وغير دقيقة. قد تعرف أن هناك مشكلة، لكن لا تعرف بالضبط إن كانت في قناة التسويق، فريق المبيعات، فرع معين، أو خدمة معينة. هذا الحل يجمع البيانات المهمة ويعرضها بطريقة تساعدك على اتخاذ قرار أسرع وأكثر ثقة.',
       whenNeeded: [
         'تحتاج تقارير يومية أو شهرية لكن إعدادها يأخذ وقتًا.',
         'لا تعرف بدقة أي قناة تسويقية تحقق أفضل عائد.',
@@ -317,7 +317,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     en: {
       title: 'Lower cost and less operational pressure',
       shortDesc: 'We help reduce repetitive manual tasks that drain the team and increase costs by organizing workflows and automating steps that do not require human input every time.',
-      whatItSolves: 'As the business grows without operational structure, the team spends long hours on repetitive work: reminders, data entry, status follow-up, moving information between files, or answering the same questions. These small daily tasks become fixed cost and pressure.',
+      whatItSolves: 'As the business grows without operational structure, the team spends long hours on repetitive work, from reminders and data entry to status follow-up, moving information between files, or answering the same questions. These small daily tasks become fixed cost and pressure.',
       whenNeeded: [
         'Your team repeats the same tasks every day.',
         'You need more hiring with every increase in customers.',
@@ -362,7 +362,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
     ar: {
       title: 'تكلفة أقل وضغط أقل',
       shortDesc: 'نساعدك على تقليل المهام اليدوية المتكررة التي تستهلك وقت الفريق وترفع التكلفة، من خلال تنظيم العمل وأتمتة الخطوات التي لا تحتاج تدخلًا بشريًا كل مرة.',
-      whatItSolves: 'عندما يكبر النشاط بدون تنظيم، يبدأ الفريق في قضاء وقت طويل على أعمال متكررة: إرسال تذكيرات، تسجيل بيانات، متابعة حالات، نقل معلومات بين ملفات، أو الرد على نفس الأسئلة. هذه الأعمال تبدو صغيرة يوميًا، لكنها تتحول إلى تكلفة ثابتة وضغط على الفريق.',
+      whatItSolves: 'عندما يكبر النشاط بدون تنظيم، يبدأ الفريق في قضاء وقت طويل على أعمال متكررة، من إرسال التذكيرات وتسجيل البيانات إلى متابعة الحالات، نقل المعلومات بين الملفات، أو الرد على نفس الأسئلة. هذه الأعمال تبدو صغيرة يوميًا، لكنها تتحول إلى تكلفة ثابتة وضغط على الفريق.',
       whenNeeded: [
         'الفريق يكرر نفس المهام يوميًا.',
         'تحتاج توظيفًا إضافيًا مع كل زيادة في العملاء.',
@@ -371,7 +371,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         'تريد تقليل الضغط بدون التأثير على جودة الخدمة.',
         'بعض العمليات يمكن تنفيذها تلقائيًا لكن لا يوجد نظام يربطها.',
       ],
-      howItWorks: 'نحلل خطوات العمل المتكررة ونحدد ما يجب تنظيمه وما يمكن أتمتته. ثم نبني تدفقات عمل واضحة: بيانات تدخل مرة واحدة، إشعارات وتذكيرات تعمل تلقائيًا، حالات تتحدث، وفريق يركز على القرارات والتواصل المهم بدل الأعمال الإدارية المتكررة.',
+      howItWorks: 'نحلل خطوات العمل المتكررة ونحدد ما يجب تنظيمه وما يمكن أتمتته. ثم نبني تدفقات عمل واضحة، حيث تدخل البيانات مرة واحدة، تعمل الإشعارات والتذكيرات تلقائيًا، تتحدث الحالات، ويركز الفريق على القرارات والتواصل المهم بدل الأعمال الإدارية المتكررة.',
       whatWeBuild: [
         'تحليل العمليات اليدوية المتكررة داخل نشاطك.',
         'بناء تدفقات عمل واضحة للفريق.',
@@ -418,7 +418,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         'Errors increase as the business grows.',
         'You want to expand without losing control or service quality.',
       ],
-      howItWorks: 'We map how your business operates from customer intake to service delivery and follow-up. Then we turn it into an operating system: roles, statuses, tasks, responsibilities, follow-up, reports, and connections between management, team, and customer.',
+      howItWorks: 'We map how your business operates from customer intake to service delivery and follow-up. Then we turn it into an operating system with clear roles, statuses, tasks, responsibilities, follow-up, reports, and connections between management, team, and customer.',
       whatWeBuild: [
         'Analyze your current operations and pressure points.',
         'Design clear workflows for teams and tasks.',
@@ -463,7 +463,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         'الأخطاء تزيد مع زيادة الحجم.',
         'تريد التوسع بدون أن تفقد السيطرة أو جودة الخدمة.',
       ],
-      howItWorks: 'نرسم طريقة عمل النشاط من استقبال العميل حتى تقديم الخدمة وما بعدها. ثم نحولها إلى نظام تشغيل: أدوار واضحة، حالات، مهام، مسؤوليات، متابعة، تقارير، وربط بين الإدارة والفريق والعميل. الهدف أن يصبح النمو مدعومًا بنظام، لا فقط بمجهود إضافي من الأشخاص.',
+      howItWorks: 'نرسم طريقة عمل النشاط من استقبال العميل حتى تقديم الخدمة وما بعدها. ثم نحولها إلى نظام تشغيل بأدوار واضحة، حالات، مهام، مسؤوليات، متابعة، تقارير، وربط بين الإدارة والفريق والعميل. الهدف أن يصبح النمو مدعومًا بنظام، لا فقط بمجهود إضافي من الأشخاص.',
       whatWeBuild: [
         'تحليل رحلة التشغيل الحالية واكتشاف نقاط الضغط.',
         'تصميم Workflow واضح للفرق والمهام.',
@@ -510,7 +510,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         'You want a practical AI layer without complexity.',
         'You want to understand customer or performance patterns over time.',
       ],
-      howItWorks: 'We identify the important signals in your data: lead sources, conversion, sales, repeat behavior, branches, services, or user behavior. Then we design how to display, analyze, and translate them into actionable notes through alerts, intelligent summaries, and management-facing insights.',
+      howItWorks: 'We identify the important signals in your data, such as lead sources, conversion, sales, repeat behavior, branches, services, or user behavior. Then we design how to display, analyze, and translate them into actionable notes through alerts, intelligent summaries, and management-facing insights.',
       whatWeBuild: [
         'Analyze current data sources and key signals.',
         'Visibility dashboard showing trends, drops, and opportunities.',
@@ -554,7 +554,7 @@ const solutionData: Record<string, { en: SolutionDetail; ar: SolutionDetail }> =
         'تريد طبقة AI عملية تساعد الإدارة دون تعقيد.',
         'تريد فهم أنماط العملاء أو الأداء عبر الوقت.',
       ],
-      howItWorks: 'نحدد الإشارات المهمة داخل بياناتك: مصادر العملاء، التحويل، المبيعات، التكرار، الفروع، الخدمات، أو سلوك المستخدمين. ثم نبني طريقة لعرضها وتحليلها واستخراج ملاحظات قابلة للتصرف. يمكن إضافة مساعد ذكي أو تنبيهات أو ملخصات دورية تساعد الإدارة على معرفة ما يستحق الانتباه الآن.',
+      howItWorks: 'نحدد الإشارات المهمة داخل بياناتك، مثل مصادر العملاء، التحويل، المبيعات، التكرار، الفروع، الخدمات، أو سلوك المستخدمين. ثم نبني طريقة لعرضها وتحليلها واستخراج ملاحظات قابلة للتصرف. يمكن إضافة مساعد ذكي أو تنبيهات أو ملخصات دورية تساعد الإدارة على معرفة ما يستحق الانتباه الآن.',
       whatWeBuild: [
         'تحليل مصادر البيانات الحالية وتحديد الإشارات المهمة.',
         'لوحة رؤية تعرض الاتجاهات والانخفاضات والفرص.',

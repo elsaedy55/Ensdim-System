@@ -14,7 +14,7 @@ const servicesFaqSchema = {
       name: 'What is the difference between a website and user experience?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A website is what the customer sees and interacts with. User experience is how that interaction is structured: what they see first, where they click, when they trust, and when they submit a request or take action.',
+        text: 'A website is what the customer sees and interacts with. User experience is how that interaction is structured. What do they see first? Where do they click? When do they trust the offer? And when do they submit a request or take action?',
       },
     },
     {
@@ -49,8 +49,8 @@ const services = [
   },
   {
     slug: 'mobile-web-applications',
-    en: { title: 'Mobile Applications', tags: 'Continuous Experience · Easier Access · Closer Service', desc: 'We develop mobile applications that help customers or teams complete key tasks: booking, ordering, follow-up, field operations, service management, or ongoing access from the phone.' },
-    ar: { title: 'تطبيقات الموبايل', tags: 'تجربة مستمرة · وصول أسهل · خدمة أقرب', desc: 'نطوّر تطبيقات موبايل تساعد العملاء أو فرق العمل على تنفيذ المهام بسهولة: حجز، طلب، متابعة، تشغيل ميداني، إدارة خدمة، أو تجربة مستمرة من الهاتف.' },
+    en: { title: 'Mobile Applications', tags: 'Continuous Experience · Easier Access · Closer Service', desc: 'We develop mobile applications that help customers or teams complete key tasks, from booking and ordering to follow-up, field operations, service management, or ongoing access from the phone.' },
+    ar: { title: 'تطبيقات الموبايل', tags: 'تجربة مستمرة · وصول أسهل · خدمة أقرب', desc: 'نطوّر تطبيقات موبايل تساعد العملاء أو فرق العمل على تنفيذ المهام بسهولة، من الحجز والطلب إلى المتابعة، التشغيل الميداني، إدارة الخدمة، أو تجربة مستمرة من الهاتف.' },
   },
   {
     slug: 'crm-internal-systems',
@@ -82,13 +82,13 @@ const services = [
 const deliverySteps = [
   { en: { title: 'Understand the business', desc: 'We review your workflow, audience, communication channels, team, and the result you want to improve.' }, ar: { title: 'نفهم العمل', desc: 'نراجع طريقة عملك، جمهورك، قنوات التواصل، الفريق، والنتيجة التي تريد تحسينها.' } },
   { en: { title: 'Design the logic and experience', desc: 'We define pages, screens, flows, permissions, and business rules before full execution.' }, ar: { title: 'نصمم المنطق والتجربة', desc: 'نحدد الصفحات، الشاشات، التدفقات، الصلاحيات، وقواعد العمل قبل التنفيذ الكامل.' } },
-  { en: { title: 'Build and connect', desc: 'We develop the service and connect it with what it needs: website, WhatsApp, forms, CRM, databases, payment gateways, or dashboards.' }, ar: { title: 'نبني ونربط', desc: 'ننفذ الخدمة ونربطها بما تحتاجه: موقع، واتساب، نماذج، CRM، قواعد بيانات، بوابات دفع، أو لوحات متابعة.' } },
+  { en: { title: 'Build and connect', desc: 'We develop the service and connect it with what it needs, whether a website, WhatsApp, forms, CRM, databases, payment gateways, or dashboards.' }, ar: { title: 'نبني ونربط', desc: 'ننفذ الخدمة ونربطها بما تحتاجه، سواء موقعًا، واتساب، نماذج، CRM، قواعد بيانات، بوابات دفع، أو لوحات متابعة.' } },
   { en: { title: 'Launch and improve', desc: 'After launch, we review performance, usage, and feedback, then improve the service based on reality, not assumptions.' }, ar: { title: 'نطلق ونحسن', desc: 'نراجع الأداء والاستخدام والملاحظات بعد الإطلاق، ثم نطور الخدمة حسب الواقع لا الافتراضات.' } },
 ];
 
 const traits = [
   { en: { title: 'Built around real usage', desc: 'We do not build beautiful screens only; we build experiences customers can understand and teams can use clearly.' }, ar: { title: 'مبنية حول الاستخدام الحقيقي', desc: 'لا نبني شاشات جميلة فقط؛ نبني تجربة يستطيع العميل فهمها، ويستطيع الفريق استخدامها بوضوح.' } },
-  { en: { title: 'Connected to operations', desc: 'We connect the service with what happens inside the company every day: requests, follow-ups, tasks, data, and permissions.' }, ar: { title: 'متصلة بالتشغيل', desc: 'نربط الخدمة بما يحدث داخل الشركة يوميًا: الطلبات، المتابعة، المهام، البيانات، والصلاحيات.' } },
+  { en: { title: 'Connected to operations', desc: 'We connect the service with what happens inside the company every day, from requests and follow-ups to tasks, data, and permissions.' }, ar: { title: 'متصلة بالتشغيل', desc: 'نربط الخدمة بما يحدث داخل الشركة يوميًا، من الطلبات والمتابعة إلى المهام، البيانات، والصلاحيات.' } },
   { en: { title: 'Built to scale', desc: 'We design the service to support larger stages later, whether the number of customers, team members, branches, or data increases.' }, ar: { title: 'قابلة للتوسع', desc: 'نصمم الخدمة لتتحمل مراحل أكبر لاحقًا، سواء زاد عدد العملاء أو الفريق أو الفروع أو البيانات.' } },
   { en: { title: 'Built to be measured', desc: 'We define clear indicators that help you know whether the service improved conversion, follow-up, operations, or decision-making.' }, ar: { title: 'قابلة للقياس', desc: 'نضع مؤشرات واضحة تساعدك على معرفة هل الخدمة حسّنت التحويل، المتابعة، التشغيل، أو القرار.' } },
 ];
@@ -113,8 +113,8 @@ export function ServicesPage() {
       <SEO
         title={ar ? 'خدمات إنسديم | مواقع، تطبيقات، CRM، أتمتة وبيانات' : 'Ensdim Services | Websites, Apps, CRM, Automation & Data'}
         description={ar
-          ? 'خدمات رقمية تجعل البيع أوضح، والتشغيل أذكى، والنمو أسهل: مواقع، تطبيقات، CRM، أنظمة داخلية، لوحات متابعة، أتمتة، وتسويق.'
-          : 'Digital services that make sales clearer, operations smarter, and growth easier: websites, apps, CRM, internal systems, dashboards, automation, and marketing.'}
+          ? 'خدمات رقمية تجعل البيع أوضح، والتشغيل أذكى، والنمو أسهل، من المواقع والتطبيقات إلى CRM، الأنظمة الداخلية، لوحات المتابعة، الأتمتة، والتسويق.'
+          : 'Digital services that make sales clearer, operations smarter, and growth easier, from websites and apps to CRM, internal systems, dashboards, automation, and marketing.'}
         canonical="/services"
         lang={ar ? 'ar' : 'en'}
         jsonLd={servicesFaqSchema}
@@ -141,7 +141,7 @@ export function ServicesPage() {
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
               ? 'في إنسديم، لا نتعامل مع الموقع أو التطبيق أو الـ CRM كمنتج منفصل. نربط كل خدمة برحلة العميل، طريقة عمل الفريق، البيانات، والمتابعة؛ حتى تتحول الخدمة من واجهة أو أداة إلى جزء فعلي يساعد شركتك على جذب فرص أفضل، تنظيم العمل، واتخاذ قرارات أوضح.'
-              : 'At Ensdim, we do not treat a website, application, or CRM as a separate product. We connect every service to the customer journey, the team workflow, data, and follow-up, so it becomes more than an interface or tool: it becomes a real part of how your company attracts better opportunities, organizes work, and makes clearer decisions.'}
+              : 'At Ensdim, we do not treat a website, application, or CRM as a separate product. We connect every service to the customer journey, the team workflow, data, and follow-up, so it becomes more than an interface or tool — a real part of how your company attracts better opportunities, organizes work, and makes clearer decisions.'}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
             {(ar ? 'تجربة عميل أوضح. تشغيل أذكى. نمو قابل للقياس.' : 'Clearer customer experience. Smarter operations. Measurable growth.')
@@ -188,8 +188,8 @@ export function ServicesPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
-                ? 'قد تجد كثيرًا من الشركات تقدم مواقع، تطبيقات، CRM، أنظمة داخلية للتشغيل، أو أتمتة. الفرق الحقيقي ليس في اسم الخدمة، بل في طريقة بنائها: هل تفهم رحلة العميل؟ هل تتصل بالتشغيل؟ هل تقلل العمل اليدوي؟ هل تعطي الإدارة رؤية أوضح؟ وهل يمكن قياس أثرها بعد الإطلاق؟ خدمات إنسديم تُبنى لتحقق عائدًا واضحًا وملموسًا.'
-                : 'Many companies can offer websites, apps, CRM systems, internal operational systems, or automation. The real difference is not in the service name, but in how it is built: does it understand the customer journey, connect with operations, reduce manual work, give management clearer visibility, and create measurable impact after launch? Ensdim services are built to create a clear, tangible return.'}
+                ? 'قد تجد كثيرًا من الشركات تقدم مواقع، تطبيقات، CRM، أنظمة داخلية للتشغيل، أو أتمتة. الفرق الحقيقي ليس في اسم الخدمة، بل في طريقة بنائها. هل تفهم رحلة العميل؟ هل تتصل بالتشغيل؟ هل تقلل العمل اليدوي؟ هل تعطي الإدارة رؤية أوضح؟ وهل يمكن قياس أثرها بعد الإطلاق؟ خدمات إنسديم تُبنى لتحقق عائدًا واضحًا وملموسًا.'
+                : 'Many companies can offer websites, apps, CRM systems, internal operational systems, or automation. The real difference is not in the service name, but in how it is built. Does it understand the customer journey, connect with operations, reduce manual work, give management clearer visibility, and create measurable impact after launch? Ensdim services are built to create a clear, tangible return.'}
             </p>
           </ScrollReveal>
         </div>
@@ -249,8 +249,8 @@ export function ServicesPage() {
             </h2>
             <p className="text-sm text-[#4F555E] max-w-2xl mx-auto">
               {ar
-                ? 'نحوّل الخدمة من فكرة إلى منتج رقمي قابل للاستخدام والتطوير. قوة الخدمة لا تظهر في شكلها النهائي فقط، بل في طريقة بنائها: كيف تم فهم الاحتياج، كيف تم تصميم التجربة، كيف تم بناء النظام، وكيف سيتم قياسه وتحسينه بعد الإطلاق.'
-                : 'We turn the service from an idea into a digital product that can be used, improved, and scaled. The strength of a digital service is not only in its final appearance — it is in how the need is understood, how the experience is designed, how the system is built, and how it will be measured and improved after launch.'}
+                ? 'نحوّل الخدمة من فكرة إلى منتج رقمي قابل للاستخدام والتطوير. قوة الخدمة لا تظهر في شكلها النهائي فقط، بل في طريقة فهم الاحتياج، تصميم التجربة، بناء النظام، وكيفية قياسه وتحسينه بعد الإطلاق.'
+                : 'We turn the service from an idea into a digital product that can be used, improved, and scaled. The strength of a digital service is not only in its final appearance, but in how well the need is understood, the experience is designed, the system is built, and how it will be measured and improved after launch.'}
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -361,13 +361,13 @@ export function ServicesPage() {
       <FAQSection
         title={ar ? 'الأسئلة الشائعة حول خدمات إنسديم' : 'Frequently Asked Questions About Ensdim Services'}
         faqs={ar ? [
-          { question: 'ما الفرق بين الموقع وتجربة المستخدم؟', answer: 'الموقع هو ما يراه العميل ويتفاعل معه. تجربة المستخدم هي طريقة تنظيم هذا التفاعل: ماذا يرى أولًا؟ أين يضغط؟ متى يثق؟ ومتى يترك بياناته أو يطلب الخدمة؟' },
+          { question: 'ما الفرق بين الموقع وتجربة المستخدم؟', answer: 'الموقع هو ما يراه العميل ويتفاعل معه. تجربة المستخدم هي طريقة تنظيم هذا التفاعل. ماذا يرى أولًا؟ أين يضغط؟ متى يثق؟ ومتى يترك بياناته أو يطلب الخدمة؟' },
           { question: 'ما الفرق بين CRM والنظام الداخلي؟', answer: 'CRM يركز على العملاء، الفرص، المبيعات، والمتابعة. النظام الداخلي يركز على تشغيل الشركة من الداخل مثل المهام، الطلبات، الموافقات، الموظفين، المخزون، الفروع، وتدفقات العمل.' },
           { question: 'كم يستغرق تنفيذ خدمة مثل موقع أو CRM أو أتمتة؟', answer: 'يعتمد على حجم الخدمة ونطاقها. موقع بسيط أو صفحة هبوط يختلف عن CRM مخصص أو نظام داخلي متكامل. لذلك نحدد المدة بعد فهم المطلوب، الخصائص الأساسية، وما إذا كان المشروع يحتاج ربطًا بأنظمة أو أدوات أخرى.' },
           { question: 'هل تستخدمون الذكاء الاصطناعي في كل مشروع؟', answer: 'لا. نستخدم الذكاء الاصطناعي عندما يضيف قيمة واضحة، مثل تلخيص المحادثات، تصنيف العملاء، الردود الذكية، استخراج مؤشرات من البيانات، أو تقليل المهام المتكررة. لا نضيفه كاستعراض فقط.' },
           { question: 'ماذا يحدث بعد إطلاق الخدمة؟', answer: 'يمكن أن يشمل ما بعد الإطلاق دعمًا تقنيًا، تحسينات، إصلاحات، تطوير خصائص جديدة، أو متابعة أداء حسب نطاق المشروع وخطة الدعم المتفق عليها.' },
         ] : [
-          { question: 'What is the difference between a website and user experience?', answer: 'A website is what the customer sees and interacts with. User experience is how that interaction is structured: what they see first, where they click, when they trust, and when they submit a request or take action.' },
+          { question: 'What is the difference between a website and user experience?', answer: 'A website is what the customer sees and interacts with. User experience is how that interaction is structured. What do they see first? Where do they click? When do they trust the offer? And when do they submit a request or take action?' },
           { question: 'What is the difference between CRM and an internal system?', answer: 'CRM focuses on customers, opportunities, sales, and follow-up. Internal systems focus on how the company operates internally, such as tasks, requests, approvals, employees, inventory, branches, and workflows.' },
           { question: 'How long does it take to build a website, CRM, or automation service?', answer: 'It depends on scope. A simple landing page is different from a custom CRM or a full internal system. We define the timeline after understanding the required features, priority, and whether integrations are needed.' },
           { question: 'Do you use AI in every project?', answer: 'No. We use AI when it creates clear value, such as summarizing conversations, classifying customers, supporting smart replies, extracting indicators from data, or reducing repetitive tasks. We do not add AI for show.' },
@@ -384,8 +384,8 @@ export function ServicesPage() {
           </h2>
           <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar
-              ? 'ليس المطلوب أن تبدأ بمشروع كبير، بل أن تختار أول خطوة ذكية: خدمة تحسّن البيع، تنظّم المتابعة، تقلل الضغط التشغيلي، أو تجعل القرار أوضح. احجز استشارة مجانية، وسنراجع وضعك الحالي ونحدد معك الخدمة الأنسب ونطاق التنفيذ الأقرب للعائد.'
-              : 'You do not need to begin with a large project. You need to choose the smartest first step: a service that improves sales, organizes follow-up, reduces operational pressure, or makes decisions clearer. Book a free consultation, and we will review your current situation, identify the most relevant service, and define the execution scope closest to return.'}
+              ? 'ليس المطلوب أن تبدأ بمشروع كبير، بل أن تختار أول خطوة ذكية تحسّن البيع، تنظّم المتابعة، تقلل الضغط التشغيلي، أو تجعل القرار أوضح. احجز استشارة مجانية، وسنراجع وضعك الحالي ونحدد معك الخدمة الأنسب ونطاق التنفيذ الأقرب للعائد.'
+              : 'You do not need to begin with a large project. You need to choose the smartest first step, one that improves sales, organizes follow-up, reduces operational pressure, or makes decisions clearer. Book a free consultation, and we will review your current situation, identify the most relevant service, and define the execution scope closest to return.'}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link

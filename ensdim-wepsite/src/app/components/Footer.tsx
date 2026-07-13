@@ -31,7 +31,7 @@ export function Footer() {
         { label: ar ? 'الأبحاث' : 'Research', href: '/research' },
         { label: ar ? 'دراسات الحالة' : 'Case Studies', href: '/case-studies' },
         { label: ar ? 'الوظائف' : 'Careers', href: '/careers' },
-        { label: ar ? 'المدونة' : 'Blog', href: '/blog' },
+        { label: ar ? 'مركز المعلومات' : 'Knowledge Hub', href: '/blog' },
       ],
     },
     {

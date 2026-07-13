@@ -34,7 +34,7 @@ const problems = [
   {
     slug: 'data-not-helping-decisions',
     en: { title: 'The data exists, but it is not helping you make decisions', desc: 'Numbers are collected, but management still decides on instinct rather than evidence.' },
-    ar: { title: 'البيانات موجودة… لكنها لا تساعدك على القرار', desc: 'الأرقام موجودة، لكن الإدارة ما زالت تقرر بالحدس لا بالدليل.' },
+    ar: { title: 'البيانات موجودة، لكنها لا تساعدك على القرار', desc: 'الأرقام موجودة، لكن الإدارة ما زالت تقرر بالحدس لا بالدليل.' },
   },
 ];
 

@@ -153,12 +153,12 @@ export function CareersPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
-              {ar ? 'لسنا مجرد فريق ينفذ مهام… نحن نبني حلولًا تفهم العمل والناس.' : 'We are not just a team that completes tasks. We build solutions that understand work and people.'}
+              {ar ? 'لسنا مجرد فريق ينفذ مهام. نحن نبني حلولًا تفهم العمل والناس.' : 'We are not just a team that completes tasks. We build solutions that understand work and people.'}
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'كل دور داخل إنسديم مرتبط بفكرة أكبر من مجرد تسليم مهمة. سواء كنت تعمل في الهندسة، التصميم، البيانات، البحث، المبيعات، أو النمو، فالمطلوب هو فهم السياق: ما المشكلة؟ من المستخدم؟ ما أثر الحل؟ وكيف يمكن أن تصبح التكنولوجيا أوضح وأسهل وأكثر ارتباطًا بالعائد؟'
-                : 'Every role at Ensdim connects to something larger than task delivery. Whether you work in engineering, design, data, research, sales, or growth, the goal is to understand context: What is the problem? Who is the user? What impact should the solution create? And how can technology become clearer, easier, and more connected to return?'}
+                ? 'كل دور داخل إنسديم مرتبط بفكرة أكبر من مجرد تسليم مهمة. سواء كنت تعمل في الهندسة، التصميم، البيانات، البحث، المبيعات، أو النمو، فالمطلوب هو فهم السياق، أي ما المشكلة، من المستخدم، ما أثر الحل، وكيف يمكن أن تصبح التكنولوجيا أوضح وأسهل وأكثر ارتباطًا بالعائد.'
+                : 'Every role at Ensdim connects to something larger than task delivery. Whether you work in engineering, design, data, research, sales, or growth, the goal is to understand context, what the problem is, who the user is, what impact the solution should create, and how technology can become clearer, easier, and more connected to return.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar

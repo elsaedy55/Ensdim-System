@@ -15,7 +15,7 @@ import { useBlogPosts } from '../../hooks/useContent';
 const contentAreas = [
   { en: { title: 'Operations & Follow-up', desc: 'Content that explains how follow-up, task distribution, workflow clarity, and customer systems reduce operational noise and improve sales opportunities and customer service.' }, ar: { title: 'التشغيل والمتابعة', desc: 'محتوى يشرح كيف تؤثر المتابعة، توزيع المهام، وضوح سير العمل، وأنظمة العملاء على تقليل الفوضى وتحسين فرص البيع وخدمة العميل.' } },
   { en: { title: 'Customer Experience & Conversion', desc: 'Articles that explain how customers see your website or service, where they hesitate, and why they may leave before contacting you or submitting a request.' }, ar: { title: 'تجربة العميل والتحويل', desc: 'مقالات تشرح كيف يرى العميل موقعك أو خدمتك، أين يتردد، ولماذا قد يغادر قبل أن يتواصل أو يطلب.' } },
-  { en: { title: 'Practical Automation & AI', desc: 'Simple explanations of how automation and AI can be used inside the business: summarizing conversations, classifying requests, reducing manual work, and connecting tools with systems.' }, ar: { title: 'الأتمتة والذكاء الاصطناعي العملي', desc: 'شرح مبسط لكيفية استخدام الأتمتة والذكاء الاصطناعي داخل العمل: تلخيص المحادثات، تصنيف الطلبات، تقليل العمل اليدوي، وربط الأدوات بالأنظمة.' } },
+  { en: { title: 'Practical Automation & AI', desc: 'Simple explanations of how automation and AI can be used inside the business, from summarizing conversations and classifying requests to reducing manual work and connecting tools with systems.' }, ar: { title: 'الأتمتة والذكاء الاصطناعي العملي', desc: 'شرح مبسط لكيفية استخدام الأتمتة والذكاء الاصطناعي داخل العمل، من تلخيص المحادثات وتصنيف الطلبات إلى تقليل العمل اليدوي وربط الأدوات بالأنظمة.' } },
   { en: { title: 'Data & Business Intelligence', desc: 'Content that helps you understand metrics, reports, dashboards, and how daily data can become clearer insight for management decisions.' }, ar: { title: 'البيانات وذكاء الأعمال', desc: 'محتوى يساعدك على فهم المؤشرات، التقارير، ولوحات المتابعة، وكيف تتحول البيانات اليومية إلى رؤية تساعد الإدارة على القرار.' } },
   { en: { title: 'Growth & Digital Solutions', desc: 'Practical thinking around growth, scaling, choosing the first digital step, and avoiding tools that teams do not use or that do not serve the business goal.' }, ar: { title: 'النمو والحلول الرقمية', desc: 'أفكار عملية حول النمو، التوسع، اختيار أول خطوة رقمية، وتجنب بناء أدوات لا يستخدمها الفريق أو لا تخدم الهدف التجاري.' } },
 ];
@@ -35,8 +35,8 @@ const categoryFilters = [
 const nextSteps = [
   { href: '/research', en: { title: 'Understand the problem more deeply', desc: 'If the article opened a bigger question about growth, customer behavior, follow-up, operations, or data, move to Research for a deeper and more structured analysis.', cta: 'Research' }, ar: { title: 'افهم المشكلة بشكل أعمق', desc: 'إذا كان المقال فتح أمامك سؤالًا أكبر حول النمو، سلوك العميل، المتابعة، التشغيل، أو البيانات، انتقل إلى الأبحاث لقراءة تحليل أعمق ومنظم.', cta: 'الأبحاث' } },
   { href: '/case-studies', en: { title: 'See how an idea becomes a result', desc: 'If you want to see real examples from projects and implementation experiences, visit Case Studies to see how challenges become measurable digital solutions.', cta: 'Case Studies' }, ar: { title: 'شاهد كيف تتحول الفكرة إلى نتيجة', desc: 'إذا كنت تريد رؤية أمثلة من مشاريع وتجارب واقعية، انتقل إلى دراسات الحالة لمعرفة كيف تتحول التحديات إلى حلول قابلة للقياس.', cta: 'دراسات الحالة' } },
-  { href: '/solutions', en: { title: 'Explore the right solution for your business stage', desc: 'If you know there is a challenge but do not know where to start, explore Ensdim solutions by business stage: Build, Start, or Grow.', cta: 'Solutions' }, ar: { title: 'استكشف الحل المناسب لمرحلة عملك', desc: 'إذا كنت تعرف أن لديك تحديًا لكنك لا تعرف من أين تبدأ، استكشف حلول إنسديم حسب مرحلة العمل: بناء، انطلاق، أو نمو.', cta: 'الحلول' } },
-  { href: '/services', en: { title: 'Find the service closest to execution', desc: 'If the problem is clearer and you want to know which service fits it, explore services such as UX, websites, applications, follow-up systems, data, automation, and internal systems.', cta: 'Services' }, ar: { title: 'اعرف الخدمة الأقرب للتنفيذ', desc: 'إذا أصبحت المشكلة أوضح وتريد معرفة نوع الخدمة المناسبة لها، انتقل إلى الخدمات: تجربة المستخدم، المواقع، التطبيقات، أنظمة المتابعة، البيانات، الأتمتة، أو الأنظمة الداخلية.', cta: 'الخدمات' } },
+  { href: '/solutions', en: { title: 'Explore the right solution for your business stage', desc: 'If you know there is a challenge but do not know where to start, explore Ensdim solutions across every stage, whether Build, Start, or Grow.', cta: 'Solutions' }, ar: { title: 'استكشف الحل المناسب لمرحلة عملك', desc: 'إذا كنت تعرف أن لديك تحديًا لكنك لا تعرف من أين تبدأ، استكشف حلول إنسديم حسب مرحلة العمل، سواء كانت بناء، انطلاق، أو نمو.', cta: 'الحلول' } },
+  { href: '/services', en: { title: 'Find the service closest to execution', desc: 'If the problem is clearer and you want to know which service fits it, explore services such as UX, websites, applications, follow-up systems, data, automation, and internal systems.', cta: 'Services' }, ar: { title: 'اعرف الخدمة الأقرب للتنفيذ', desc: 'إذا أصبحت المشكلة أوضح وتريد معرفة نوع الخدمة المناسبة لها، انتقل إلى الخدمات، سواء كانت تجربة المستخدم، المواقع، التطبيقات، أنظمة المتابعة، البيانات، الأتمتة، أو الأنظمة الداخلية.', cta: 'الخدمات' } },
   { href: '/contact', en: { title: 'Share your challenge with Ensdim', desc: 'If the challenge already exists inside your business and you need help identifying the first step, share what is happening and we will help you understand the path closest to return.', cta: 'Contact' }, ar: { title: 'شارك تحديك مع إنسديم', desc: 'إذا كان التحدي موجودًا بالفعل داخل عملك وتحتاج من يساعدك على تحديد أول خطوة، شاركنا ما يحدث وسنساعدك على فهم المسار الأقرب للعائد.', cta: 'تواصل معنا' } },
 ];
 
@@ -103,8 +103,8 @@ export function BlogPage() {
       <SEO
         title={ar ? 'رؤى عملية من إنسديم | مركز معلومات لفهم تحديات الأعمال' : 'Ensdim Practical Insights | A Knowledge Hub for Business Challenges'}
         description={ar
-          ? 'محتوى مختصر وعملي يساعد أصحاب الأعمال والفرق على فهم ما يحدث داخل العمل: المتابعة، تجربة العميل، الأتمتة، البيانات، والنمو الرقمي.'
-          : 'Concise, practical content that helps business owners and teams understand what is happening inside their operations: follow-up, customer experience, automation, data, and digital growth.'}
+          ? 'محتوى مختصر وعملي يساعد أصحاب الأعمال والفرق على فهم ما يحدث داخل العمل، من المتابعة وتجربة العميل إلى الأتمتة، البيانات، والنمو الرقمي.'
+          : 'Concise, practical content that helps business owners and teams understand what is happening inside their operations, from follow-up and customer experience to automation, data, and digital growth.'}
         canonical="/blog"
         lang={ar ? 'ar' : 'en'}
       />
@@ -121,7 +121,7 @@ export function BlogPage() {
             <span className="opacity-40">/</span>
             <Link to="/resources" className="hover:text-white/80 transition-colors">{ar ? 'الموارد' : 'Resources'}</Link>
             <span className="opacity-40">/</span>
-            <span className="text-white/70 font-medium">{ar ? 'مركز المعلومات' : 'Practical Insights'}</span>
+            <span className="text-white/70 font-medium">{ar ? 'مركز المعلومات' : 'Knowledge Hub'}</span>
           </div>
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-5 uppercase tracking-wider bg-[#6D5DF6]/15 border border-[#6D5DF6]/20 text-[#EEEAFE]/80">
             {ar ? 'رؤى عملية من إنسديم' : 'Ensdim Practical Insights'}
@@ -131,8 +131,8 @@ export function BlogPage() {
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
-              ? 'هنا ننشر محتوى مختصرًا وعمليًا يساعد أصحاب الأعمال والفرق على فهم ما يحدث داخل العمل: لماذا تضيع الفرص؟ كيف تتعطل المتابعة؟ متى تحتاج إلى أتمتة؟ كيف تؤثر تجربة العميل على التحويل؟ وكيف يمكن للتكنولوجيا أن تتحول من أداة إضافية إلى جزء يخدم التشغيل والنمو والعائد.'
-              : 'Here, we publish concise and practical content that helps business owners and teams understand what is happening inside their operations: why opportunities are lost, why follow-up breaks down, when automation is useful, how customer experience affects conversion, and how technology can become part of operations, growth, and return.'}
+              ? 'هنا ننشر محتوى مختصرًا وعمليًا يساعد أصحاب الأعمال والفرق على فهم ما يحدث داخل العمل. لماذا تضيع الفرص؟ كيف تتعطل المتابعة؟ متى تحتاج إلى أتمتة؟ كيف تؤثر تجربة العميل على التحويل؟ وكيف يمكن للتكنولوجيا أن تتحول من أداة إضافية إلى جزء يخدم التشغيل والنمو والعائد؟'
+              : 'Here, we publish concise and practical content that helps business owners and teams understand what is happening inside their operations. Why are opportunities lost? Why does follow-up break down? When is automation useful? How does customer experience affect conversion? And how can technology become part of operations, growth, and return?'}
           </p>
           <div className="flex flex-wrap gap-2">
             {(ar ? 'أفكار واضحة. تطبيق عملي. ربط مباشر بنتائج الأعمال.' : 'Clear ideas. Practical application. Direct connection to business results.')
@@ -161,8 +161,8 @@ export function BlogPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'لا نكتب عن الأدوات والاتجاهات كعناوين منفصلة عن الواقع. كل مقال يحاول الإجابة عن سؤال عملي: كيف تؤثر هذه الفكرة على المتابعة؟ على تجربة العميل؟ على التشغيل؟ على القرار؟ أو على العائد؟'
-                : 'We do not write about tools and trends as separate topics detached from reality. Every article aims to answer a practical question: how does this idea affect follow-up, customer experience, operations, decision-making, or return?'}
+                ? 'لا نكتب عن الأدوات والاتجاهات كعناوين منفصلة عن الواقع. كل مقال يحاول الإجابة عن سؤال عملي، فيوضح كيف تؤثر هذه الفكرة على المتابعة، تجربة العميل، التشغيل، القرار، أو العائد.'
+                : 'We do not write about tools and trends as separate topics detached from reality. Every article aims to answer a practical question, exploring how the idea affects follow-up, customer experience, operations, decision-making, or return.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
@@ -304,8 +304,8 @@ export function BlogPage() {
             </h2>
             <p className="text-sm text-[#4F555E]">
               {ar
-                ? 'المقال يساعدك على فهم فكرة أو مشكلة، لكن الخطوة التالية تعتمد على ما تحتاجه الآن: هل تريد فهم المشكلة بعمق؟ رؤية أمثلة واقعية؟ استكشاف نوع الحل المناسب؟ أم مشاركة تحديك معنا؟'
-                : 'An article helps you understand an idea or a problem, but the next step depends on what you need now: do you want to understand the issue more deeply, see real examples, explore the right solution type, or share your challenge with us?'}
+                ? 'المقال يساعدك على فهم فكرة أو مشكلة، لكن الخطوة التالية تعتمد على ما تحتاجه الآن، سواء كنت تريد فهم المشكلة بعمق، رؤية أمثلة واقعية، استكشاف نوع الحل المناسب، أو مشاركة تحديك معنا.'
+                : 'An article helps you understand an idea or a problem, but the next step depends on what you need now, whether you want to understand the issue more deeply, see real examples, explore the right solution type, or share your challenge with us.'}
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">

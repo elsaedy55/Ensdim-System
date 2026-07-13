@@ -232,12 +232,12 @@ export function ProductsPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <h2 className="text-xl sm:text-2xl font-bold text-[#101418] mb-5 leading-snug">
-              {ar ? 'ليست قوالب جاهزة… وليست بناءً من الصفر في كل مرة.' : 'Not fixed templates... and not built from scratch every time.'}
+              {ar ? 'ليست قوالب جاهزة، وليست بناءً من الصفر في كل مرة.' : 'Not fixed templates, and not built from scratch every time.'}
             </h2>
             <p className="text-sm sm:text-base text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'بعض مشاكل البزنس تتكرر بين شركات كثيرة: متابعة تضيع، بيانات غير واضحة، فريق يعمل يدويًا، عملاء لا يتم التواصل معهم في الوقت المناسب، أو إدارة لا ترى الصورة كاملة.'
-                : 'Some business problems repeat across many companies: lost follow-ups, unclear data, manual work, customers not being contacted at the right time, or management teams unable to see the full picture.'}
+                ? 'بعض مشاكل البزنس تتكرر بين شركات كثيرة، من متابعة تضيع وبيانات غير واضحة إلى فريق يعمل يدويًا، عملاء لا يتم التواصل معهم في الوقت المناسب، أو إدارة لا ترى الصورة كاملة.'
+                : 'Some business problems repeat across many companies, from lost follow-ups and unclear data to manual work, customers not being contacted at the right time, or management teams unable to see the full picture.'}
             </p>
             <p className="text-sm sm:text-base text-[#4F555E] leading-relaxed mb-8">
               {ar
@@ -263,8 +263,8 @@ export function ProductsPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-4">{ar ? 'منتجات إنسديم' : 'Ensdim Products'}</h2>
             <p className="text-sm sm:text-base text-[#4F555E] leading-relaxed">
               {ar
-                ? 'منتجات إنسديم مبنية حول مشاكل تشغيل ونمو تتكرر داخل الشركات: متابعة العملاء، تنظيم الفريق، وضوح البيانات، تقليل العمل اليدوي، وتحسين تجربة العميل. كل منتج يبدأ من منطق جاهز قابل للتطبيق، ثم يتم تهيئته حسب واقع الشركة وطريقة تشغيلها.'
-                : 'Ensdim products are built around recurring operations and growth problems inside companies: customer follow-up, team organization, data clarity, reducing manual work, and improving customer experience. Each product starts from a practical ready logic, then gets configured around the company’s real operations.'}
+                ? 'منتجات إنسديم مبنية حول مشاكل تشغيل ونمو تتكرر داخل الشركات، من متابعة العملاء وتنظيم الفريق إلى وضوح البيانات، تقليل العمل اليدوي، وتحسين تجربة العميل. كل منتج يبدأ من منطق جاهز قابل للتطبيق، ثم يتم تهيئته حسب واقع الشركة وطريقة تشغيلها.'
+                : 'Ensdim products are built around recurring operations and growth problems inside companies, from customer follow-up and team organization to data clarity, reducing manual work, and improving customer experience. Each product starts from a practical ready logic, then gets configured around the company’s real operations.'}
             </p>
           </ScrollReveal>
 
@@ -340,8 +340,8 @@ export function ProductsPage() {
             </h2>
             <p className="text-sm sm:text-base text-[#4F555E] leading-relaxed mb-8">
               {ar
-                ? 'المنتج المناسب لا يُقاس بعدد المزايا، بل بقدرته على حل نقطة ضغط حقيقية داخل التشغيل. لذلك قبل اختيار المنتج، انظر إلى طريقة عمل شركتك: أين تضيع المتابعة؟ أين يتكرر العمل اليدوي؟ وأين تحتاج الإدارة إلى رؤية أوضح؟'
-                : 'The right product is not measured by the number of features it has, but by its ability to solve a real operational pressure point. Before choosing a product, look at how your company works: where follow-up gets lost, where manual work keeps repeating, and where management needs clearer visibility.'}
+                ? 'المنتج المناسب لا يُقاس بعدد المزايا، بل بقدرته على حل نقطة ضغط حقيقية داخل التشغيل. لذلك قبل اختيار المنتج، انظر إلى طريقة عمل شركتك. أين تضيع المتابعة؟ أين يتكرر العمل اليدوي؟ وأين تحتاج الإدارة إلى رؤية أوضح؟'
+                : 'The right product is not measured by the number of features it has, but by its ability to solve a real operational pressure point. Before choosing a product, look at how your company works. Where does follow-up get lost? Where does manual work keep repeating? And where does management need clearer visibility?'}
             </p>
             <p className="text-sm font-semibold text-[#101418] mb-4">
               {ar ? 'قد يكون المنتج مناسبًا لك إذا كان لديك:' : 'A product may fit your company if you have:'}
@@ -477,8 +477,8 @@ export function ProductsPage() {
             </h2>
             <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
               {ar
-                ? 'إذا كانت لديك مشكلة واضحة في التشغيل، المتابعة، البيانات، أو تجربة العميل، تواصل معنا وسنساعدك على فهم المسار الأقرب: منتج قابل للتخصيص أم حل مخصص بالكامل.'
-                : 'If you have a clear problem in operations, follow-up, data, or customer experience, contact us and we will help you understand the closest path: a customizable product or a fully custom solution.'}
+                ? 'إذا كانت لديك مشكلة واضحة في التشغيل، المتابعة، البيانات، أو تجربة العميل، تواصل معنا وسنساعدك على فهم هل الأقرب لك منتج قابل للتخصيص أم حل مخصص بالكامل.'
+                : 'If you have a clear problem in operations, follow-up, data, or customer experience, contact us and we will help you understand whether the closest path is a customizable product or a fully custom solution.'}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link

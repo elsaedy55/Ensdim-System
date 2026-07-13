@@ -35,7 +35,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for websites, platforms, or systems that have users but do not produce enough action.',
         'We deliver journey maps, UX improvements, clearer forms, and conversion priorities.',
-        'Business value: better understanding of user behavior, stronger design decisions, and fewer drop-off points before action.',
+        'The business value comes from better understanding of user behavior, stronger design decisions, and fewer drop-off points before action.',
       ],
       whenNeeded: [
         'Your website or platform works technically, but users do not complete the request.',
@@ -87,7 +87,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للمواقع أو المنصات التي لديها زيارات أو مستخدمون لكن النتائج أقل من المتوقع.',
         'نبني خرائط رحلة، تحسينات تجربة، نماذج أوضح، وأولويات لتحسين التحويل.',
-        'القيمة: فهم أفضل لسلوك العميل، قرارات تصميم أقوى، وتجربة تقلل الاحتكاك قبل الطلب.',
+        'وتظهر القيمة في فهم أفضل لسلوك العميل، قرارات تصميم أقوى، وتجربة تقلل الاحتكاك قبل الطلب.',
       ],
       whenNeeded: [
         'لديك موقع أو نظام يعمل، لكن المستخدمين لا يكملون الطلب أو الحجز.',
@@ -141,7 +141,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for businesses that need a new website or an existing website that does not generate clear requests.',
         'We build service pages, landing pages, forms, client portals, and analytics setup.',
-        'Business value: stronger digital presence, faster trust, and requests that can be tracked instead of traffic without action.',
+        'The business value comes from a stronger digital presence, faster trust, and requests that can be tracked instead of traffic without action.',
       ],
       whenNeeded: [
         'You need a website that explains your B2B service clearly.',
@@ -193,7 +193,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للشركات التي تحتاج موقعًا جديدًا أو تطوير موقع حالي لا يحقق طلبات واضحة.',
         'نبني صفحات تعريف، صفحات خدمات، صفحات هبوط، نماذج، وربط تحليلات.',
-        'القيمة: حضور رقمي أوضح، ثقة أسرع، وطلبات يمكن تتبعها بدل زيارات بلا نتيجة.',
+        'وتظهر القيمة في حضور رقمي أوضح، ثقة أسرع، وطلبات يمكن تتبعها بدل زيارات بلا نتيجة.',
       ],
       whenNeeded: [
         'تحتاج إطلاق موقع يشرح خدمتك بوضوح أمام عملاء B2B.',
@@ -247,7 +247,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for businesses that need an ongoing digital channel for customers or teams.',
         'We build customer apps, supervisor apps, operational apps, or MVPs ready for iteration.',
-        'Business value: easier access, recurring use, and less dependence on scattered conversations.',
+        'The business value comes from easier access, recurring use, and less dependence on scattered conversations.',
       ],
       whenNeeded: [
         'The service continues after the first contact.',
@@ -299,7 +299,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للأعمال التي تحتاج قناة مستمرة مع العملاء أو فرق العمل.',
         'نبني تطبيقات للعميل، المشرفين، فرق التشغيل، أو نماذج MVP قابلة للتطوير.',
-        'القيمة: وصول أسهل، استخدام متكرر، وتقليل الاعتماد على المحادثات المتفرقة.',
+        'وتظهر القيمة في وصول أسهل، استخدام متكرر، وتقليل الاعتماد على المحادثات المتفرقة.',
       ],
       whenNeeded: [
         'الخدمة تحتاج متابعة مستمرة بعد أول تواصل.',
@@ -353,7 +353,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for companies that receive leads from multiple channels but cannot clearly see each opportunity status.',
         'We build lead stages, reminders, assignments, sales reports, and lead source tracking.',
-        'Business value: faster follow-up, fewer lost opportunities, and clearer visibility for sales and management.',
+        'The business value comes from faster follow-up, fewer lost opportunities, and clearer visibility for sales and management.',
       ],
       whenNeeded: [
         'Leads come from several channels and are not collected in one place.',
@@ -405,7 +405,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للشركات التي تستقبل عملاء من قنوات متعددة ولا ترى حالة كل فرصة بوضوح.',
         'نبني مراحل العميل، التذكيرات، توزيع المهام، تقارير المبيعات، ومصادر العملاء.',
-        'القيمة: متابعة أسرع، فرص أقل ضياعًا، ورؤية أوضح لفريق الإدارة والمبيعات.',
+        'وتظهر القيمة في متابعة أسرع، فرص أقل ضياعًا، ورؤية أوضح لفريق الإدارة والمبيعات.',
       ],
       whenNeeded: [
         'العملاء يصلون من أكثر من قناة ولا يتم جمعهم في مكان واحد.',
@@ -459,7 +459,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for businesses that have grown beyond scattered messages, files, and team memory.',
         'We build admin panels, permissions, operating stages, logs, and status tracking.',
-        'Business value: fewer errors, clearer responsibilities, and stronger ability to scale without chaos.',
+        'The business value comes from fewer errors, clearer responsibilities, and a stronger ability to scale without chaos.',
       ],
       whenNeeded: [
         'The same tasks repeat every day and are hard to track.',
@@ -511,7 +511,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للأعمال التي كبرت وأصبحت العمليات اليومية تتوزع بين رسائل وملفات وذاكرة فريق.',
         'نبني لوحات إدارة، صلاحيات، مراحل تشغيل، سجلات، ومتابعة حالات.',
-        'القيمة: تقليل الأخطاء، وضوح المسؤوليات، وقدرة أعلى على التوسع بدون فوضى.',
+        'وتظهر القيمة في تقليل الأخطاء، وضوح المسؤوليات، وقدرة أعلى على التوسع بدون فوضى.',
       ],
       whenNeeded: [
         'تتكرر نفس المهام يوميًا ويصعب متابعتها.',
@@ -565,7 +565,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for companies that have data but receive it late, scattered, or without clear meaning.',
         'We build KPIs, filters, reports, comparisons, and alerts based on available data sources.',
-        'Business value: less reporting time, faster performance visibility, and clearer decisions.',
+        'The business value comes from less reporting time, faster performance visibility, and clearer decisions.',
       ],
       whenNeeded: [
         'Recurring reports take too much time to prepare.',
@@ -617,7 +617,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للشركات التي لديها بيانات لكنها تصل متأخرة أو متفرقة أو غير مفهومة.',
         'نبني KPIs، فلاتر، تقارير، مقارنات، وتنبيهات حسب مصادر البيانات المتاحة.',
-        'القيمة: تقليل وقت التقارير، رؤية الأداء بسرعة، وتحسين القرار بناءً على أرقام واضحة.',
+        'وتظهر القيمة في تقليل وقت التقارير، رؤية الأداء بسرعة، وتحسين القرار بناءً على أرقام واضحة.',
       ],
       whenNeeded: [
         'تحتاج تقارير متكررة تستغرق وقتًا كبيرًا.',
@@ -671,7 +671,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for businesses with repeated inquiries, high follow-up volume, or fast request classification needs.',
         'We build chatbots, follow-up messages, alerts, workflows, and CRM/Dashboard connections.',
-        'Business value: shorter response time, less team pressure, and a more consistent customer experience.',
+        'The business value comes from shorter response time, less team pressure, and a more consistent customer experience.',
       ],
       whenNeeded: [
         'Customers wait for replies to repeated questions.',
@@ -723,7 +723,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للأعمال التي تستقبل أسئلة متكررة أو تحتاج متابعة كثيرة أو تصنيف طلبات بسرعة.',
         'نبني Chatbots، رسائل متابعة، تنبيهات، تدفقات عمل، وربط CRM أو Dashboard.',
-        'القيمة: وقت رد أقل، ضغط أقل على الفريق، وتجربة أكثر انتظامًا للعميل.',
+        'وتظهر القيمة في وقت رد أقل، ضغط أقل على الفريق، وتجربة أكثر انتظامًا للعميل.',
       ],
       whenNeeded: [
         'العملاء ينتظرون الرد على أسئلة متكررة.',
@@ -777,7 +777,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'Best for businesses that want better opportunities, not just more visibility.',
         'We build research, messaging, content direction, campaign paths, and conversion measurement.',
-        'Business value: clearer targeting, decision-focused content, and campaigns connected to follow-up and outcomes.',
+        'The business value comes from clearer targeting, decision-focused content, and campaigns connected to follow-up and outcomes.',
       ],
       whenNeeded: [
         'You spend on marketing but cannot see which efforts create real opportunities.',
@@ -820,7 +820,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       needsOptions: ['Market research', 'Target audience analysis', 'Marketing plan', 'Messaging and content direction', 'Advertising campaign planning', 'Landing page improvement', 'Connecting marketing with CRM and follow-up', 'Measurement and performance analysis', 'Launching a new service or product', 'Not sure yet'],
       stageLabel: 'Do you have existing marketing channels or campaigns?',
       stageOptions: ['Yes', 'No', 'Starting from zero', 'We have channels but they are not organized'],
-      freeTextPrompt: 'Describe your current marketing situation and the closest goal: more requests, better lead quality, launching a service, or organizing growth.',
+      freeTextPrompt: 'Describe your current marketing situation and the closest goal, whether more requests, better lead quality, launching a service, or organizing growth.',
     },
     ar: {
       title: 'استراتيجيات التسويق والنمو',
@@ -829,7 +829,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       snapshot: [
         'مناسبة للأعمال التي تريد جذب فرص أفضل وليس مجرد ظهور أكثر.',
         'نبني بحثًا، رسائل، خطة محتوى، مسارات حملات، وقياسًا مرتبطًا بالتحويل.',
-        'القيمة: وضوح في الاستهداف، محتوى أقرب للقرار، وحملات مرتبطة بمتابعة ونتائج.',
+        'وتظهر القيمة في وضوح الاستهداف، محتوى أقرب للقرار، وحملات مرتبطة بمتابعة ونتائج.',
       ],
       whenNeeded: [
         'تنفق على التسويق لكن لا تعرف ما الذي يحقق فرصًا حقيقية.',
@@ -872,7 +872,7 @@ export const serviceData: Record<string, { en: ServiceDetail; ar: ServiceDetail 
       needsOptions: ['أبحاث سوق', 'تحليل الجمهور المستهدف', 'خطة تسويقية', 'تطوير الرسائل والمحتوى', 'تخطيط حملات إعلانية', 'تحسين صفحات الهبوط', 'ربط التسويق بالمتابعة وCRM', 'قياس وتحليل النتائج', 'إطلاق خدمة أو منتج جديد', 'غير متأكد بعد'],
       stageLabel: 'هل لديك حملات أو قنوات تسويق قائمة؟',
       stageOptions: ['نعم', 'لا', 'نبدأ من الصفر', 'لدينا قنوات لكنها غير منظمة'],
-      freeTextPrompt: 'صف لنا وضع التسويق الحالي، وما الهدف الأقرب: زيادة الطلبات، تحسين جودة العملاء، إطلاق خدمة، أو تنظيم النمو؟',
+      freeTextPrompt: 'صف لنا وضع التسويق الحالي، وما الهدف الأقرب، سواء زيادة الطلبات، تحسين جودة العملاء، إطلاق خدمة، أو تنظيم النمو؟',
     },
   },
 };

@@ -131,8 +131,8 @@ export function ContactPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-3">
               {ar
-                ? 'أخبرنا أين يحتاج عملك إلى وضوح أكبر: تجربة العميل، المتابعة، التشغيل، البيانات، الأتمتة، أو النمو. سنراجع رسالتك ونساعدك على تحديد ما إذا كانت الخطوة الأقرب هي خدمة محددة، حل متكامل، استشارة أولية، أو جلسة اكتشاف أعمق.'
-                : 'Tell us where your business needs more clarity: customer experience, follow-up, operations, data, automation, or growth. We’ll review your message and help you understand whether the next step is a specific service, a broader solution, an initial consultation, or a deeper discovery call.'}
+                ? 'أخبرنا أين يحتاج عملك إلى وضوح أكبر، تجربة العميل، المتابعة، التشغيل، البيانات، الأتمتة، أو النمو. سنراجع رسالتك ونساعدك على تحديد ما إذا كانت الخطوة الأقرب هي خدمة محددة، حل متكامل، استشارة أولية، أو جلسة اكتشاف أعمق.'
+                : 'Tell us where your business needs more clarity, customer experience, follow-up, operations, data, automation, or growth. We’ll review your message and help you understand whether the next step is a specific service, a broader solution, an initial consultation, or a deeper discovery call.'}
             </p>
             <p className="text-sm text-[#4F555E]/70 italic">
               {ar ? 'كل ما نحتاجه في البداية هو وصف صادق لما يحدث داخل العمل الآن.' : 'At the beginning, all we need is an honest description of what is happening inside the business.'}
@@ -242,7 +242,7 @@ export function ContactPage() {
                         required
                         rows={3}
                         className="w-full px-4 py-2.5 border border-[#E5E5E5] rounded-xl text-sm text-[#101418] focus:outline-none focus:border-[#6D5DF6] transition-colors resize-none"
-                        placeholder={ar ? 'صف لنا التحدي الحالي باختصار…' : 'Briefly describe your current challenge…'}
+                        placeholder={ar ? 'صف لنا التحدي الحالي باختصار' : 'Briefly describe your current challenge'}
                       />
                     </div>
 

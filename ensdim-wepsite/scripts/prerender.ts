@@ -64,19 +64,49 @@ async function main() {
   const server = await preview({ root: ROOT, preview: { port: PORT, strictPort: true } });
   const base = server.resolvedUrls?.local?.[0] ?? `http://localhost:${PORT}/`;
 
-  const browser = await chromium.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-  const page = await browser.newPage();
+  const launchBrowser = () => chromium.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+
+  let browser = await launchBrowser();
+  let page = await browser.newPage();
+
+  // Headless Chromium's memory grows across many sequential navigations
+  // (animations, canvases, etc.) and can crash the renderer/browser process
+  // outright. Recreate the page periodically and transparently relaunch the
+  // browser whenever it (or the page) has died, so one crash doesn't take
+  // down every remaining route.
+  const RECYCLE_EVERY = 15;
+  let routesSinceRecycle = 0;
+
+  async function ensureLivePage() {
+    if (!browser.isConnected()) {
+      browser = await launchBrowser();
+      page = await browser.newPage();
+      routesSinceRecycle = 0;
+      return;
+    }
+    if (page.isClosed()) {
+      page = await browser.newPage();
+      routesSinceRecycle = 0;
+    }
+  }
 
   let ok = 0;
   const failed: string[] = [];
 
   for (const route of routes) {
+    if (routesSinceRecycle >= RECYCLE_EVERY) {
+      await page.close().catch(() => {});
+      page = await browser.newPage();
+      routesSinceRecycle = 0;
+    }
+
     const url = new URL(route, base).toString();
     const attempts = 2;
     let lastErr: Error | undefined;
 
     for (let attempt = 1; attempt <= attempts; attempt++) {
       try {
+        await ensureLivePage();
         await page.goto(url, { waitUntil: 'load', timeout: 30000 });
         await page.waitForSelector('footer', { timeout: 15000 });
         // Let react-helmet-async's effect flush title/meta/JSON-LD into <head>.
@@ -87,10 +117,13 @@ async function main() {
         await fs.mkdir(path.dirname(outPath), { recursive: true });
         await fs.writeFile(outPath, `<!doctype html>\n${html}`);
         ok++;
+        routesSinceRecycle++;
         lastErr = undefined;
         break;
       } catch (err) {
         lastErr = err as Error;
+        // Force a relaunch/new page before the retry attempt.
+        await ensureLivePage().catch(() => {});
       }
     }
 
@@ -100,7 +133,7 @@ async function main() {
     }
   }
 
-  await browser.close();
+  await browser.close().catch(() => {});
   await new Promise<void>((resolve, reject) => {
     server.httpServer.close((err) => (err ? reject(err) : resolve()));
   });

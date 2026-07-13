@@ -123,8 +123,8 @@ export function TeamPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'كل مشروع في إنسديم يبدأ من فهم الواقع: ما الذي يحدث داخل العمل؟ أين يتردد العميل؟ أين تضيع المتابعة؟ وما الذي تحتاجه الإدارة لتتخذ قرارًا أوضح؟'
-                : 'Every Ensdim project starts by understanding what is really happening inside the business: where customers hesitate, where follow-up gets lost, and what leadership needs to make clearer decisions.'}
+                ? 'كل مشروع في إنسديم يبدأ من فهم الواقع، أي ما الذي يحدث داخل العمل؟ أين يتردد العميل؟ أين تضيع المتابعة؟ وما الذي تحتاجه الإدارة لتتخذ قرارًا أوضح؟'
+                : 'Every Ensdim project starts by understanding what is really happening inside the business, where customers hesitate, where follow-up gets lost, and what leadership needs to make clearer decisions.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar

@@ -28,7 +28,7 @@ export function ClientWorkspacePage() {
         eyebrow={ar ? 'مساحة العميل' : 'Client Workspace'}
         title={ar ? 'نؤمن أن الوضوح أثناء المشروع جزء من جودة الحل نفسه.' : 'We believe project clarity is part of the quality of the solution itself.'}
         subtitle={ar
-          ? 'نوفر لعملائنا مساحة متابعة واضحة تساعدهم على رؤية تقدم المشروع، المراحل، الملفات، الملاحظات، المدفوعات، العقود، ونسبة الإنجاز. هذه ليست ميزة شكلية، بل جزء من فلسفة إنسديم: الوضوح يبني الثقة، ويقلل القلق، ويسرّع القرار.'
+          ? 'نوفر لعملائنا مساحة متابعة واضحة تساعدهم على رؤية تقدم المشروع، المراحل، الملفات، الملاحظات، المدفوعات، العقود، ونسبة الإنجاز. هذه ليست ميزة شكلية، بل جزء من فلسفة إنسديم القائمة على أن الوضوح يبني الثقة، ويقلل القلق، ويسرّع القرار.'
           : 'We provide clients with a clear workspace to track project progress, stages, files, notes, payments, contracts, and completion percentage. This is not a cosmetic feature. It reflects Ensdim’s belief that clarity builds trust, reduces anxiety, and speeds up decisions.'}
         primaryCTA={{ label: ar ? 'دخول مساحة العميل' : 'Client Workspace Login', href: 'https://app.ensdim.com/login' }}
         secondaryCTA={{ label: ar ? 'تواصل معنا' : 'Contact Ensdim', href: '/contact' }}

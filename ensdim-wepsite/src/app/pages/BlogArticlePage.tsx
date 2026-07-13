@@ -91,7 +91,7 @@ export function BlogArticlePage() {
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3B2A78] text-white rounded-xl text-sm font-medium hover:bg-[#4a3690] transition-colors"
         >
           <ArrowLeft size={14} />
-          {ar ? 'العودة إلى المدونة' : 'Back to Blog'}
+          {ar ? 'العودة إلى مركز المعلومات' : 'Back to Knowledge Hub'}
         </Link>
       </div>
     );
@@ -105,7 +105,7 @@ export function BlogArticlePage() {
   return (
     <>
       <SEO
-        title={`${title} | Ensdim Blog`}
+        title={`${title} | Ensdim Knowledge Hub`}
         description={desc}
         keywords={`AI automation blog Egypt, ${cat.toLowerCase()}, ${post.slug.replace(/-/g, ' ')}`}
         canonical={`/blog/${post.slug}`}
@@ -131,7 +131,7 @@ export function BlogArticlePage() {
               className="inline-flex items-center gap-2 text-[#EEEAFE]/75 hover:text-[#EEEAFE] text-sm mb-8 transition-colors"
             >
               <ArrowLeft size={14} />
-              {ar ? 'العودة إلى المدونة' : 'Back to Blog'}
+              {ar ? 'العودة إلى مركز المعلومات' : 'Back to Knowledge Hub'}
             </Link>
 
             <div className="flex items-center gap-3 mb-5">

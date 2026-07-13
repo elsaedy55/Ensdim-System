@@ -97,8 +97,8 @@ export function ResearchPage() {
       <SEO
         title={ar ? 'أبحاث إنسديم | فهم الأعمال، سلوك العميل، والنمو' : 'Ensdim Research | Understanding Business, Customer Behavior & Growth'}
         description={ar
-          ? 'نحلل التحديات التي تؤثر على أداء الشركات: سلوك العميل، المتابعة، التحويل، البيانات، والتشغيل، لنقدم رؤى عملية تساعدك على اتخاذ قرارات أوضح.'
-          : 'We analyze the challenges that affect business performance: customer behavior, follow-up, conversion, data, and operations, to deliver practical insight for clearer decisions.'}
+          ? 'نحلل التحديات التي تؤثر على أداء الشركات، من سلوك العميل والمتابعة إلى التحويل، البيانات، والتشغيل، لنقدم رؤى عملية تساعدك على اتخاذ قرارات أوضح.'
+          : 'We analyze the challenges that affect business performance, from customer behavior and follow-up to conversion, data, and operations, to deliver practical insight for clearer decisions.'}
         canonical="/research"
         lang={ar ? 'ar' : 'en'}
       />
@@ -125,8 +125,8 @@ export function ResearchPage() {
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
-              ? 'نحلل التحديات التي تؤثر على أداء الشركات: كيف يفكر العميل، أين تتعطل المتابعة، لماذا لا تتحول الفرص إلى مبيعات، وكيف تؤثر تجربة المستخدم والبيانات والتشغيل على الربحية والنمو. الهدف ليس إنتاج محتوى نظري، بل تقديم رؤى عملية تساعدك على اتخاذ قرارات أوضح قبل بناء الحل الرقمي.'
-              : 'We analyze the challenges that affect business performance: how customers think, where follow-up breaks down, why opportunities fail to become sales, and how user experience, data, and operations influence profitability and growth. The goal is not theoretical content, but practical insight that helps you make clearer decisions before building a digital solution.'}
+              ? 'نحلل التحديات التي تؤثر على أداء الشركات، من كيف يفكر العميل وأين تتعطل المتابعة إلى لماذا لا تتحول الفرص إلى مبيعات، وكيف تؤثر تجربة المستخدم والبيانات والتشغيل على الربحية والنمو. الهدف ليس إنتاج محتوى نظري، بل تقديم رؤى عملية تساعدك على اتخاذ قرارات أوضح قبل بناء الحل الرقمي.'
+              : 'We analyze the challenges that affect business performance, from how customers think and where follow-up breaks down to why opportunities fail to become sales, and how user experience, data, and operations influence profitability and growth. The goal is not theoretical content, but practical insight that helps you make clearer decisions before building a digital solution.'}
           </p>
           <div className="flex flex-wrap gap-2">
             {(ar ? 'فهم أعمق للأعمال. قراءة أوضح لسلوك العميل. قرارات أقرب للعائد.' : 'Deeper business understanding. Clearer customer insight. Decisions closer to return.')
@@ -155,8 +155,8 @@ export function ResearchPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'كثير من الشركات تبدأ من سؤال: ما الأداة التي نحتاجها؟ موقع؟ تطبيق؟ نظام متابعة؟ أتمتة؟ لوحة بيانات؟ لكن السؤال الأهم هو: ما الذي يمنع العمل من تحقيق نتيجة أفضل؟'
-                : 'Many companies begin with the tool: a website, an app, a follow-up system, automation, or a dashboard. But the better question is: what is preventing the business from achieving a better result?'}
+                ? 'كثير من الشركات تبدأ من سؤال حول الأداة، موقع، تطبيق، نظام متابعة، أتمتة، أو لوحة بيانات. لكن السؤال الأهم هو ما الذي يمنع العمل من تحقيق نتيجة أفضل؟'
+                : 'Many companies begin with the tool, whether a website, an app, a follow-up system, automation, or a dashboard. But the better question is what is preventing the business from achieving a better result.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
@@ -176,8 +176,8 @@ export function ResearchPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-7">
               {ar
-                ? 'البحث داخل إنسديم لا يبدأ من التقنية، بل من أثرها على العمل. نبدأ بتحديد سؤال واقعي مثل: لماذا تضيع الفرص؟ لماذا لا يتحول الزائر إلى طلب؟ لماذا يزداد الضغط مع النمو؟ ثم نقرأ السؤال من زاوية العميل، التشغيل، البيانات، وتجربة الاستخدام.'
-                : 'Research at Ensdim does not begin with technology. It begins with the effect technology should have on the business. We define a real question, such as: why are opportunities being lost? Why do visitors not turn into inquiries? Why does growth create operational pressure? Then we study the question through customer behavior, operations, data, and user experience.'}
+                ? 'البحث داخل إنسديم لا يبدأ من التقنية، بل من أثرها على العمل. نبدأ بتحديد سؤال واقعي، مثل لماذا تضيع الفرص؟ لماذا لا يتحول الزائر إلى طلب؟ لماذا يزداد الضغط مع النمو؟ ثم نقرأ السؤال من زاوية العميل، التشغيل، البيانات، وتجربة الاستخدام.'
+                : 'Research at Ensdim does not begin with technology. It begins with the effect technology should have on the business. We define a real question, such as why opportunities are being lost, why visitors do not turn into inquiries, or why growth creates operational pressure. Then we study the question through customer behavior, operations, data, and user experience.'}
             </p>
             <ul className="space-y-2.5">
               {methodPoints.map((p, i) => (
@@ -301,8 +301,8 @@ export function ResearchPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-6">
               {ar
-                ? 'كل بحث في إنسديم مصمم ليساعدك على فهم تحدٍ محدد داخل العمل، ثم يوجهك إلى خطوة منطقية بعده: استكشاف حل مناسب، قراءة دراسة حالة قريبة، أو التواصل معنا إذا كان التحدي موجودًا داخل شركتك.'
-                : 'Each Ensdim research piece is designed to help readers understand a specific business challenge, then move to a logical next step: explore a related solution, read a relevant case study, or contact us if the challenge exists inside their company.'}
+                ? 'كل بحث في إنسديم مصمم ليساعدك على فهم تحدٍ محدد داخل العمل، ثم يوجهك إلى خطوة منطقية بعده، سواء استكشاف حل مناسب، قراءة دراسة حالة قريبة، أو التواصل معنا إذا كان التحدي موجودًا داخل شركتك.'
+                : 'Each Ensdim research piece is designed to help readers understand a specific business challenge, then move to a logical next step, whether exploring a related solution, reading a relevant case study, or contacting us if the challenge exists inside their company.'}
             </p>
             <ul className="space-y-2.5">
               {nextSteps.map((s, i) => (

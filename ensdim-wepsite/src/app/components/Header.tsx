@@ -51,7 +51,7 @@ const navItems: NavItem[] = [
     label: 'Resources', labelAr: 'الموارد', href: '/resources',
     dropdown: [
       { label: 'Research', labelAr: 'الأبحاث', href: '/research' },
-      { label: 'Blog', labelAr: 'المدونة', href: '/blog' },
+      { label: 'Knowledge Hub', labelAr: 'مركز المعلومات', href: '/blog' },
     ],
   },
   {

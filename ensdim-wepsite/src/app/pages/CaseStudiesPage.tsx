@@ -196,8 +196,8 @@ export function CaseStudiesPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
-                ? 'كل حالة داخل هذه الصفحة توضح ثلاث نقاط: المشكلة التي كانت تعطل النمو أو التشغيل، ما الذي تم بناؤه أو تنظيمه لمعالجة المشكلة، ثم العائد الذي ظهر على العميل، الفريق، القرار، أو المبيعات.'
-                : 'Each case clarifies three points: the problem blocking growth or operations, what was built or organized to solve it, and the return that appeared across customers, teams, decisions, or sales.'}
+                ? 'كل حالة داخل هذه الصفحة توضح ثلاث نقاط، المشكلة التي كانت تعطل النمو أو التشغيل، ما الذي تم بناؤه أو تنظيمه لمعالجة المشكلة، ثم العائد الذي ظهر على العميل، الفريق، القرار، أو المبيعات.'
+                : 'Each case clarifies three points, the problem blocking growth or operations, what was built or organized to solve it, and the return that appeared across customers, teams, decisions, or sales.'}
             </p>
           </ScrollReveal>
         </div>
@@ -301,8 +301,8 @@ export function CaseStudiesPage() {
             </h2>
             <p className="text-sm text-[#4F555E] max-w-2xl mx-auto leading-relaxed">
               {ar
-                ? 'هذه الحالات لا تعرض مشاريع منفذة فقط، بل تكشف طريقة إنسديم في التفكير: نبدأ من فهم المشكلة، نقرأ سلوك العميل أو التشغيل، نحدد أين يضيع العائد، ثم نبني حلًا رقميًا يخدم قرارًا أوضح، متابعة أفضل، وتجربة أكثر قابلية للنمو.'
-                : 'These cases do not only show delivered projects. They reveal Ensdim’s way of thinking: we start by understanding the problem, reading customer behavior or operations, identifying where return is lost, then building a digital solution that supports clearer decisions, better follow-up, and more scalable experiences.'}
+                ? 'هذه الحالات لا تعرض مشاريع منفذة فقط، بل تكشف طريقة إنسديم في التفكير. فنحن نبدأ من فهم المشكلة، نقرأ سلوك العميل أو التشغيل، نحدد أين يضيع العائد، ثم نبني حلًا رقميًا يخدم قرارًا أوضح، متابعة أفضل، وتجربة أكثر قابلية للنمو.'
+                : 'These cases do not only show delivered projects. They reveal Ensdim’s way of thinking. We start by understanding the problem, read customer behavior or operations, identify where return is lost, then build a digital solution that supports clearer decisions, better follow-up, and more scalable experiences.'}
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -323,11 +323,11 @@ export function CaseStudiesPage() {
         faqs={ar ? [
           { question: 'هل دراسات حالة إنسديم حقيقية؟', answer: 'نعم. كل دراسة حالة مبنية على مشروع حقيقي نفذناه. نحافظ على سرية هوية العميل ما لم يمنح إذنًا صريحًا بالإفصاح.' },
           { question: 'ما القطاعات التي تخدمها إنسديم؟', answer: 'تخدم إنسديم العيادات والرعاية الصحية، العقارات، الأعمال الخدمية، التعليم والتدريب، والمقاولات والعمليات — بشكل رئيسي في مصر والسعودية والإمارات.' },
-          { question: 'ما النتائج الشائعة لمشاريع إنسديم؟', answer: 'تشمل النتائج الشائعة: استجابة أسرع للعملاء المحتملين، رؤية تشغيلية أوضح، تقليل العمل اليدوي، متابعة عملاء محسّنة، وتحويل أعلى من نقاط التواصل الرقمية.' },
+          { question: 'ما النتائج الشائعة لمشاريع إنسديم؟', answer: 'تشمل النتائج الشائعة استجابة أسرع للعملاء المحتملين، رؤية تشغيلية أوضح، تقليل العمل اليدوي، متابعة عملاء محسّنة، وتحويل أعلى من نقاط التواصل الرقمية.' },
         ] : [
           { question: 'Are Ensdim case studies based on real projects?', answer: 'Yes. Every case study is built on a real project we delivered. We maintain client confidentiality unless explicit permission is given for disclosure.' },
           { question: 'What sectors does Ensdim serve?', answer: 'Ensdim serves clinics and healthcare, real estate agencies, service businesses, education and training, and construction and operations — primarily in Egypt, Saudi Arabia, and UAE.' },
-          { question: 'What are common outcomes from Ensdim projects?', answer: 'Common outcomes include: faster lead response, clearer operational visibility through dashboards, reduced manual work, improved customer follow-up, and higher conversion from digital touchpoints.' },
+          { question: 'What are common outcomes from Ensdim projects?', answer: 'Common outcomes include faster lead response, clearer operational visibility through dashboards, reduced manual work, improved customer follow-up, and higher conversion from digital touchpoints.' },
           { question: 'How long do Ensdim projects typically take?', answer: 'Project timelines vary by scope. A focused automation or follow-up system takes 2-4 weeks. A full CRM and operational platform typically takes 6-12 weeks, including the Diagnose and Map phases before any build begins.' },
         ]}
       />

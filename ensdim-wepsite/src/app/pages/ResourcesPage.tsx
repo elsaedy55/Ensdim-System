@@ -26,13 +26,13 @@ const tracks = [
     href: '/research',
     en: {
       num: '01', title: 'Research & Business Intelligence',
-      desc: 'Research and analysis focused on business performance from the perspective of return, profitability, growth, customer behavior, management decisions, and the data that reveals improvement opportunities. This track does not treat technology as an isolated topic; it connects it to the core question: how does it affect business profitability and growth?',
+      desc: 'Research and analysis focused on business performance from the perspective of return, profitability, growth, customer behavior, management decisions, and the data that reveals improvement opportunities. This track does not treat technology as an isolated topic; it connects it to the core question of how technology affects business profitability and growth.',
       topics: ['Profitability and ROI analysis for digital transformation.', 'Growth, conversion, and customer value indicators.', 'Business intelligence and decision support for management.', 'Revenue improvement and waste reduction opportunities.', 'Customer behavior and its impact on sales and retention.', 'The effect of digital systems on operational performance.', 'ROI measurement models before and after solution delivery.'],
       cta: 'Read Research',
     },
     ar: {
       num: '01', title: 'Research & Business Intelligence',
-      desc: 'أبحاث وتحليلات تركز على فهم أداء الأعمال من منظور العائد، الأرباح، النمو، سلوك العملاء، القرارات الإدارية، والبيانات التي تكشف فرص التحسين. هذا المسار لا يتعامل مع التقنية كموضوع منفصل، بل يربطها بالسؤال الأهم: كيف تؤثر على ربحية العمل ونموه؟',
+      desc: 'أبحاث وتحليلات تركز على فهم أداء الأعمال من منظور العائد، الأرباح، النمو، سلوك العملاء، القرارات الإدارية، والبيانات التي تكشف فرص التحسين. هذا المسار لا يتعامل مع التقنية كموضوع منفصل، بل يربطها بالسؤال الأهم عن كيفية تأثيرها على ربحية العمل ونموه.',
       topics: ['تحليل الربحية والعائد من التحول الرقمي.', 'مؤشرات النمو، التحويل، وقيمة العميل.', 'ذكاء الأعمال ودعم القرار للإدارة.', 'تحليل فرص تحسين الإيراد وتقليل الهدر.', 'سلوك العملاء وتأثيره على المبيعات والاحتفاظ.', 'دراسات عن أثر الأنظمة الرقمية على الأداء التشغيلي.', 'نماذج قياس العائد قبل وبعد تنفيذ الحلول.'],
       cta: 'اقرأ الأبحاث',
     },
@@ -79,7 +79,7 @@ const knowledgeAreas = [
   { en: { title: 'User Experience & Product Thinking', desc: 'User journeys, interface clarity, and how better experience affects trust and decision speed.' }, ar: { title: 'User Experience & Product Thinking', desc: 'تجربة المستخدم، تصميم الرحلات، وضوح الواجهات، وكيف تؤثر التجربة الجيدة على ثقة العميل وسرعة اتخاذ القرار.' } },
   { en: { title: 'Applied AI & Automation', desc: 'Practical AI and automation use cases in follow-up, classification, summarization, customer service, and operational analysis.' }, ar: { title: 'Applied AI & Automation', desc: 'الاستخدام العملي للذكاء الاصطناعي والأتمتة في المتابعة، التصنيف، التلخيص، خدمة العملاء، والتحليل التشغيلي.' } },
   { en: { title: 'Digital Operations & Internal Systems', desc: 'How internal systems, customer management, permissions, and workflows reduce confusion and improve team efficiency.' }, ar: { title: 'Digital Operations & Internal Systems', desc: 'كيف تساعد الأنظمة الداخلية، إدارة العملاء، الصلاحيات، وسير العمل في تقليل التشتت وتحسين كفاءة الفريق.' } },
-  { en: { title: 'Technology Trends with Business Impact', desc: 'Modern technologies viewed through business impact: do they reduce cost, accelerate decisions, improve customer experience, or create growth opportunities?' }, ar: { title: 'Technology Trends with Business Impact', desc: 'التقنيات الحديثة من زاوية تأثيرها على البزنس: هل تقلل التكلفة؟ هل تسرّع القرار؟ هل تحسن تجربة العميل؟ هل تخلق فرصة نمو؟' } },
+  { en: { title: 'Technology Trends with Business Impact', desc: 'Modern technologies viewed through their business impact, whether they reduce cost, accelerate decisions, improve customer experience, or create growth opportunities.' }, ar: { title: 'Technology Trends with Business Impact', desc: 'التقنيات الحديثة من زاوية تأثيرها على البزنس، سواء كانت تقلل التكلفة، تسرّع القرار، تحسن تجربة العميل، أو تخلق فرصة نمو.' } },
 ];
 
 const audienceList = [
@@ -204,8 +204,8 @@ export function ResourcesPage() {
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'كثير من الشركات تبدأ من سؤال: ما الأداة التي نحتاجها؟ موقع؟ تطبيق؟ نظام متابعة؟ أتمتة؟ لكن السؤال الأهم هو: ما الذي يحدث داخل العمل؟ أين يتوقف النمو؟ لماذا لا يتحول الاهتمام إلى مبيعات؟ ما الذي يضغط التشغيل؟ وما البيانات التي لا تظهر للإدارة؟'
-                : 'Many companies start with the question: what tool do we need? A website? An app? A follow-up system? Automation? But the more important question is: what is really happening inside the business? Where does growth slow down? Why does interest fail to become sales? What creates operational pressure? What data is missing from management view?'}
+                ? 'كثير من الشركات تبدأ من سؤال حول الأداة التي تحتاجها، موقع، تطبيق، نظام متابعة، أو أتمتة. لكن السؤال الأهم هو ما الذي يحدث داخل العمل؟ أين يتوقف النمو؟ لماذا لا يتحول الاهتمام إلى مبيعات؟ ما الذي يضغط التشغيل؟ وما البيانات التي لا تظهر للإدارة؟'
+                : 'Many companies start with the question of what tool they need, a website, an app, a follow-up system, or automation. But the more important question is what is really happening inside the business. Where does growth slow down? Why does interest fail to become sales? What creates operational pressure? What data is missing from management view?'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
@@ -266,8 +266,8 @@ export function ResourcesPage() {
             </h2>
             <p className="text-sm text-[#4F555E] mt-3">
               {ar
-                ? 'نختار موضوعاتنا بناءً على الأسئلة التي تواجه الشركات فعلًا عند النمو أو التحول الرقمي: كيف نزيد العائد؟ كيف نفهم العميل؟ كيف نحسن القرار؟ كيف نقلل الهدر؟ وكيف نستخدم التقنية دون أن تتحول إلى عبء؟'
-                : 'We choose topics based on the questions companies actually face during growth or digital transformation: how do we increase return? How do we understand the customer? How do we improve decision-making? How do we reduce waste? How do we use technology without turning it into a burden?'}
+                ? 'نختار موضوعاتنا بناءً على الأسئلة التي تواجه الشركات فعلًا عند النمو أو التحول الرقمي. كيف نزيد العائد؟ كيف نفهم العميل؟ كيف نحسن القرار؟ كيف نقلل الهدر؟ وكيف نستخدم التقنية دون أن تتحول إلى عبء؟'
+                : 'We choose topics based on the questions companies actually face during growth or digital transformation. How do we increase return? How do we understand the customer? How do we improve decision-making? How do we reduce waste? How do we use technology without turning it into a burden?'}
             </p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -390,16 +390,16 @@ export function ResourcesPage() {
         title={ar ? 'أسئلة شائعة حول موارد إنسديم' : 'Frequently Asked Questions About Ensdim Resources'}
         faqs={ar ? [
           { question: 'ما نوع الموارد التي تقدمها إنسديم؟', answer: 'نقدم أبحاثًا، مقالات تحليلية، ودراسات حالة تركز على ذكاء الأعمال، النمو، تجربة المستخدم، البيانات، الأتمتة، والأنظمة الرقمية المؤثرة في أداء الشركات.' },
-          { question: 'هل موارد إنسديم تقنية فقط؟', answer: 'لا. نحن نكتب عن التقنية من زاوية تأثيرها على البزنس: القرار، التشغيل، تجربة العميل، المبيعات، التكلفة، النمو، والعائد.' },
+          { question: 'هل موارد إنسديم تقنية فقط؟', answer: 'لا. نحن نكتب عن التقنية من زاوية تأثيرها على البزنس، من القرار والتشغيل إلى تجربة العميل، المبيعات، التكلفة، النمو، والعائد.' },
           { question: 'هل المحتوى مناسب لأصحاب الأعمال غير التقنيين؟', answer: 'نعم. نحرص على شرح المفاهيم بلغة عملية تساعد صاحب العمل أو المدير على فهم الأثر قبل الدخول في التفاصيل التقنية.' },
           { question: 'هل المحتوى متاح بالعربية والإنجليزية؟', answer: 'نهدف إلى تقديم الموارد الأساسية باللغتين العربية والإنجليزية، خصوصًا الموضوعات المرتبطة بخدمات إنسديم وحلولها ودراسات الحالة.' },
-          { question: 'كيف تختلف موارد إنسديم عن المحتوى العام عن الذكاء الاصطناعي أو التقنية؟', answer: 'نحن لا نكتب عن التقنية كاتجاه عام فقط. نربط كل فكرة بسؤال عملي: كيف تؤثر على العميل، الفريق، التشغيل، القرار، الربحية، أو العائد؟' },
+          { question: 'كيف تختلف موارد إنسديم عن المحتوى العام عن الذكاء الاصطناعي أو التقنية؟', answer: 'نحن لا نكتب عن التقنية كاتجاه عام فقط. نربط كل فكرة بسؤال عملي، فنوضح كيف تؤثر على العميل، الفريق، التشغيل، القرار، الربحية، أو العائد.' },
         ] : [
           { question: 'What type of resources does Ensdim provide?', answer: 'We provide research, analytical insights, and case studies focused on business intelligence, growth, user experience, data, automation, and digital systems that affect company performance.' },
           { question: 'Are Ensdim Resources only technical?', answer: 'No. We write about technology through its impact on business: decision-making, operations, customer experience, sales, cost, growth, and return.' },
           { question: 'Is the content suitable for non-technical business owners?', answer: 'Yes. We explain concepts in practical language that helps owners and managers understand the impact before going into technical detail.' },
           { question: 'Is the content available in Arabic and English?', answer: 'We aim to provide core resources in both Arabic and English, especially topics related to Ensdim services, solutions, and case studies.' },
-          { question: 'How are Ensdim Resources different from general AI or technology content?', answer: 'We do not write about technology as a trend only. We connect every idea to a practical question: how does it affect the customer, team, operations, decision-making, profitability, or return?' },
+          { question: 'How are Ensdim Resources different from general AI or technology content?', answer: 'We do not write about technology as a trend only. We connect every idea to a practical question, exploring how it affects the customer, team, operations, decision-making, profitability, or return.' },
         ]}
       />
 

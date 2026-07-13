@@ -33,20 +33,20 @@ const lenses = [
   {
     Icon: Users,
     accent: '#6D5DF6',
-    en: { title: 'How We See the Customer', lead: 'Customers do not only need a new tool. They need an experience that leads them to a decision.', body: 'Every customer moves through a journey before they trust, request, book, buy, or continue. That journey can break because of unclear messaging, crowded pages, delayed responses, weak follow-up, or an experience that does not create enough confidence.\n\nThat is why we build digital solutions around customer behavior: what they see first, when they understand the offer, where they hesitate, what makes them submit their information, and how the team can follow up in an organized way afterwards.', outcome: 'The outcome we aim for: turning the digital experience from a company-facing interface into a path that helps the customer take a clear next step.' },
-    ar: { title: 'كيف نرى العميل؟', lead: 'العميل لا يحتاج أداة جديدة فقط… يحتاج تجربة تقوده للقرار.', body: 'كل عميل يمر برحلة قبل أن يثق، يطلب، يحجز، يشتري، أو يستمر. هذه الرحلة قد تتعطل بسبب رسالة غير واضحة، صفحة مزدحمة، رد متأخر، متابعة ضعيفة، أو تجربة لا تطمئنه بما يكفي.\n\nلذلك نبني الحلول الرقمية حول سلوك العميل: ماذا يرى أولًا؟ متى يفهم العرض؟ أين يتردد؟ ما الذي يجعله يترك بياناته؟ وكيف يمكن للفريق متابعته بطريقة منظمة بعد ذلك؟', outcome: 'النتيجة التي نبحث عنها: أن تتحول التجربة الرقمية من واجهة تعرض الشركة إلى مسار يساعد العميل على اتخاذ خطوة واضحة.' },
+    en: { title: 'How We See the Customer', lead: 'Customers do not only need a new tool. They need an experience that leads them to a decision.', body: 'Every customer moves through a journey before they trust, request, book, buy, or continue. That journey can break because of unclear messaging, crowded pages, delayed responses, weak follow-up, or an experience that does not create enough confidence.\n\nThat is why we build digital solutions around customer behavior. We look at what they see first, when they understand the offer, where they hesitate, what makes them submit their information, and how the team can follow up in an organized way afterwards.', outcome: 'We aim to turn the digital experience from a company-facing interface into a path that helps the customer take a clear next step.' },
+    ar: { title: 'كيف نرى العميل؟', lead: 'العميل لا يحتاج أداة جديدة فقط، يحتاج تجربة تقوده للقرار.', body: 'كل عميل يمر برحلة قبل أن يثق، يطلب، يحجز، يشتري، أو يستمر. هذه الرحلة قد تتعطل بسبب رسالة غير واضحة، صفحة مزدحمة، رد متأخر، متابعة ضعيفة، أو تجربة لا تطمئنه بما يكفي.\n\nلذلك نبني الحلول الرقمية حول سلوك العميل، فنراقب ماذا يرى أولًا، متى يفهم العرض، أين يتردد، ما الذي يجعله يترك بياناته، وكيف يمكن للفريق متابعته بطريقة منظمة بعد ذلك.', outcome: 'النتيجة التي نبحث عنها هي أن تتحول التجربة الرقمية من واجهة تعرض الشركة إلى مسار يساعد العميل على اتخاذ خطوة واضحة.' },
   },
   {
     Icon: Workflow,
     accent: '#D63A3A',
-    en: { title: 'How We See Operations', lead: 'Good operations do not depend on memory. They depend on clear systems.', body: 'In many companies, the problem is not lack of effort. It is too much unorganized effort: too many messages, follow-up files, scattered tasks, undocumented requests, and delayed decisions because the full picture is not visible.\n\nWe build technology to reduce that pressure: organizing requests, customer follow-up, task distribution, stage documentation, data visibility, and connecting each team member to what they need to see at the right time.', outcome: 'The outcome we aim for: daily work that is clearer, less dependent on memory, and easier to track and improve.' },
-    ar: { title: 'كيف نرى التشغيل؟', lead: 'التشغيل الجيد لا يعتمد على الذاكرة… بل على نظام واضح.', body: 'في كثير من الشركات، لا تكون المشكلة في نقص المجهود، بل في كثرة المجهود غير المنظم. رسائل كثيرة، ملفات متابعة، مهام متفرقة، طلبات غير موثقة، وقرارات تحتاج وقتًا لأن الصورة غير مكتملة.\n\nنحن نبني التكنولوجيا لتقلل هذا الضغط: تنظيم الطلبات، متابعة العملاء، توزيع المهام، توثيق المراحل، إظهار البيانات، وربط الفريق بما يحتاج أن يراه في الوقت المناسب.', outcome: 'النتيجة التي نبحث عنها: أن يصبح العمل اليومي أوضح، أقل اعتمادًا على التذكر، وأكثر قابلية للمتابعة والتطوير.' },
+    en: { title: 'How We See Operations', lead: 'Good operations do not depend on memory. They depend on clear systems.', body: 'In many companies, the problem is not lack of effort. It is too much unorganized effort, seen in too many messages, follow-up files, scattered tasks, undocumented requests, and delayed decisions because the full picture is not visible.\n\nWe build technology to reduce that pressure by organizing requests, customer follow-up, task distribution, stage documentation, data visibility, and connecting each team member to what they need to see at the right time.', outcome: 'We aim for daily work that is clearer, less dependent on memory, and easier to track and improve.' },
+    ar: { title: 'كيف نرى التشغيل؟', lead: 'التشغيل الجيد لا يعتمد على الذاكرة، بل على نظام واضح.', body: 'في كثير من الشركات، لا تكون المشكلة في نقص المجهود، بل في كثرة المجهود غير المنظم. رسائل كثيرة، ملفات متابعة، مهام متفرقة، طلبات غير موثقة، وقرارات تحتاج وقتًا لأن الصورة غير مكتملة.\n\nنحن نبني التكنولوجيا لتقلل هذا الضغط، فننظم الطلبات، نتابع العملاء، نوزّع المهام، نوثّق المراحل، نُظهر البيانات، ونربط الفريق بما يحتاج أن يراه في الوقت المناسب.', outcome: 'النتيجة التي نبحث عنها هي أن يصبح العمل اليومي أوضح، أقل اعتمادًا على التذكر، وأكثر قابلية للمتابعة والتطوير.' },
   },
   {
     Icon: BarChart3,
     accent: '#3B2A78',
-    en: { title: 'How We See Data', lead: 'Data is not enough unless it becomes a decision.', body: 'Every company has data in one form or another: customers, visits, requests, conversations, sales, campaigns, or daily operations. The real value appears when that data becomes indicators that help management understand what is happening and act at the right time.\n\nWe do not treat data as numbers only. We treat it as signals: where opportunities come from, where they get blocked, which service performs best, which team needs support, and what decision needs to be made now.', outcome: 'The outcome we aim for: clearer visibility that helps management act early instead of waiting until the problem becomes obvious too late.' },
-    ar: { title: 'كيف نرى البيانات؟', lead: 'البيانات لا تكفي إذا لم تتحول إلى قرار.', body: 'كل شركة تمتلك بيانات بشكل أو بآخر: عملاء، زيارات، طلبات، محادثات، مبيعات، حملات، أو تشغيل يومي. لكن القيمة الحقيقية تظهر عندما تتحول هذه البيانات إلى مؤشرات تساعد الإدارة على فهم ما يحدث واتخاذ القرار في الوقت المناسب.\n\nلذلك لا نتعامل مع البيانات كأرقام فقط، بل كإشارات: أين تأتي الفرص؟ أين تتعطل؟ ما الخدمة الأفضل أداءً؟ ما الفريق الذي يحتاج دعمًا؟ وما القرار الذي يجب اتخاذه الآن؟', outcome: 'النتيجة التي نبحث عنها: رؤية أوضح تساعد الإدارة على التحرك مبكرًا بدل الانتظار حتى تظهر المشكلة متأخرة.' },
+    en: { title: 'How We See Data', lead: 'Data is not enough unless it becomes a decision.', body: 'Every company has data in one form or another, from customers, visits, and requests to conversations, sales, campaigns, or daily operations. The real value appears when that data becomes indicators that help management understand what is happening and act at the right time.\n\nWe do not treat data as numbers only. We treat it as signals that show where opportunities come from, where they get blocked, which service performs best, which team needs support, and what decision needs to be made now.', outcome: 'We aim for clearer visibility that helps management act early instead of waiting until the problem becomes obvious too late.' },
+    ar: { title: 'كيف نرى البيانات؟', lead: 'البيانات لا تكفي إذا لم تتحول إلى قرار.', body: 'كل شركة تمتلك بيانات بشكل أو بآخر، من العملاء والزيارات والطلبات إلى المحادثات والمبيعات والحملات أو التشغيل اليومي. لكن القيمة الحقيقية تظهر عندما تتحول هذه البيانات إلى مؤشرات تساعد الإدارة على فهم ما يحدث واتخاذ القرار في الوقت المناسب.\n\nلذلك لا نتعامل مع البيانات كأرقام فقط، بل كإشارات تُظهر أين تأتي الفرص، أين تتعطل، ما الخدمة الأفضل أداءً، ما الفريق الذي يحتاج دعمًا، وما القرار الذي يجب اتخاذه الآن.', outcome: 'النتيجة التي نبحث عنها هي رؤية أوضح تساعد الإدارة على التحرك مبكرًا بدل الانتظار حتى تظهر المشكلة متأخرة.' },
   },
 ];
 
@@ -60,7 +60,7 @@ const buildPrinciples = [
 
 const howWeWork = [
   { en: { title: 'We listen and understand', desc: 'We understand the current workflow, customer journey, friction points, and team pressure.' }, ar: { title: 'نسمع ونفهم', desc: 'نفهم طريقة العمل الحالية، رحلة العميل، نقاط التعطل، وضغط الفريق.' } },
-  { en: { title: 'We define the point of impact', desc: 'We identify the first area worth improving now: conversion, follow-up, operations, data, or growth.' }, ar: { title: 'نحدد نقطة الأثر', desc: 'نختار أول نقطة تستحق التحسين الآن: تحويل، متابعة، تشغيل، بيانات، أو نمو.' } },
+  { en: { title: 'We define the point of impact', desc: 'We identify the first area worth improving now, whether conversion, follow-up, operations, data, or growth.' }, ar: { title: 'نحدد نقطة الأثر', desc: 'نختار أول نقطة تستحق التحسين الآن، سواء كانت تحويلًا، متابعة، تشغيلًا، بيانات، أو نموًا.' } },
   { en: { title: 'We design the path', desc: 'We map the customer experience, workflow, permissions, and required data.' }, ar: { title: 'نصمم المسار', desc: 'نرسم تجربة العميل وتدفق العمل والصلاحيات والبيانات المطلوبة.' } },
   { en: { title: 'We build in stages', desc: 'We deliver what creates clear value first, then expand the solution based on real usage.' }, ar: { title: 'نبني على مراحل', desc: 'ننفذ ما يحقق قيمة واضحة أولًا، ثم نوسع الحل حسب الاستخدام الحقيقي.' } },
   { en: { title: 'We measure and improve', desc: 'We review performance after launch and improve based on results and feedback.' }, ar: { title: 'نقيس ونطوّر', desc: 'نراجع الأداء بعد الإطلاق ونحسن بناءً على النتائج والملاحظات.' } },
@@ -113,8 +113,8 @@ export function AboutPage() {
           </h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-3 text-[#EEEAFE]/75">
             {ar
-              ? 'نحن نؤمن أن أفضل الحلول الرقمية لا تبدأ من الكود، بل من فهم السلوك: كيف يفكر العميل، أين يتردد، كيف يعمل الفريق، وما الذي تحتاجه الإدارة حتى ترى الصورة بوضوح. من هذا الفهم نبني تكنولوجيا تساعد الأعمال على البيع بشكل أوضح، التشغيل بضغط أقل، والنمو بثقة أكبر.'
-              : 'We believe the strongest digital solutions do not begin with code. They begin with understanding behavior: how customers think, where they hesitate, how teams operate, and what management needs to see clearly. From that understanding, we build technology that helps businesses sell with more clarity, operate with less pressure, and grow with more confidence.'}
+              ? 'نحن نؤمن أن أفضل الحلول الرقمية لا تبدأ من الكود، بل من فهم السلوك، أي كيف يفكر العميل، أين يتردد، كيف يعمل الفريق، وما الذي تحتاجه الإدارة حتى ترى الصورة بوضوح. من هذا الفهم نبني تكنولوجيا تساعد الأعمال على البيع بشكل أوضح والتشغيل بضغط أقل والنمو بثقة أكبر.'
+              : 'We believe the strongest digital solutions do not begin with code. They begin with understanding behavior, how customers think, where they hesitate, how teams operate, and what management needs to see clearly. From that understanding, we build technology that helps businesses sell with more clarity, operate with less pressure, and grow with more confidence.'}
           </p>
           <div className="flex flex-wrap gap-2 mb-8">
             {'Listen to data. Understand business. Build solutions.'
@@ -152,14 +152,14 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">{ar ? 'قصة إنسديم' : 'Our Story'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'قصة إنسديم' : 'Our Story'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
-              {ar ? 'بدأت إنسديم من فكرة بسيطة: التكنولوجيا يجب أن تستمع.' : 'Ensdim began with a simple belief: technology should listen.'}
+              {ar ? 'بدأت إنسديم من فكرة بسيطة، وهي أن التكنولوجيا يجب أن تستمع.' : 'Ensdim began with a simple belief that technology should listen.'}
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'لم تُبنَ إنسديم كفكرة شركة برمجة تقليدية، بل كطريقة مختلفة في فهم علاقة البزنس بالتكنولوجيا. رأينا أن كثيرًا من الحلول الرقمية تفشل ليس لأنها ضعيفة تقنيًا فقط، بل لأنها لا تستمع بما يكفي: لا تستمع للعميل، ولا لطريقة عمل الفريق، ولا للبيانات التي تكشف أين يتعطل النمو.'
-                : 'Ensdim was not created as a traditional software company. It was built around a different way of understanding the relationship between business and technology. Many digital solutions fail not only because they are technically weak, but because they do not listen enough: to customers, to how teams actually work, or to the data that shows where growth is blocked.'}
+                ? 'لم تُبنَ إنسديم كفكرة شركة برمجة تقليدية، بل كطريقة مختلفة في فهم علاقة البزنس بالتكنولوجيا. رأينا أن كثيرًا من الحلول الرقمية تفشل ليس لأنها ضعيفة تقنيًا فقط، بل لأنها لا تستمع بما يكفي للعميل، ولا لطريقة عمل الفريق، ولا للبيانات التي تكشف أين يتعطل النمو.'
+                : 'Ensdim was not created as a traditional software company. It was built around a different way of understanding the relationship between business and technology. Many digital solutions fail not only because they are technically weak, but because they do not listen enough to customers, to how teams actually work, or to the data that shows where growth is blocked.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
@@ -179,24 +179,24 @@ export function AboutPage() {
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">{ar ? 'معنى إنسديم' : 'The Meaning Behind Ensdim'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'معنى إنسديم' : 'The Meaning Behind Ensdim'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
-              {ar ? 'اسمنا يبدأ من الاستماع… وطريقتنا تبدأ من الفهم.' : 'Our name starts with listening. Our method starts with understanding.'}
+              {ar ? 'اسمنا يبدأ من الاستماع، وطريقتنا تبدأ من الفهم.' : 'Our name starts with listening. Our method starts with understanding.'}
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'اسم إنسديم مستلهم من الجذر المصري القديم Sdm، المرتبط بمعنى السماع أو الاستماع. ويحمل الاسم روحًا قريبة من واحدة من أقدم الوصايا المصرية المرتبطة بالحكمة، كما تظهر في بردية بولاق 4 المرتبطة بالكاتب آني، وفيها معنى عميق يدعو إلى: أنصت لكلمات الناس.'
-                : 'The name Ensdim is inspired by the ancient Egyptian root Sdm, associated with hearing or listening. The name carries a spirit close to one of the ancient Egyptian wisdom traditions, as reflected in Bulaq Papyrus 4 and linked to the scribe Ani: listen to the words of people.'}
+                ? 'اسم إنسديم مستلهم من الجذر المصري القديم Sdm، المرتبط بمعنى السماع أو الاستماع. ويحمل الاسم روحًا قريبة من واحدة من أقدم الوصايا المصرية المرتبطة بالحكمة، كما تظهر في بردية بولاق 4 المرتبطة بالكاتب آني، وفيها معنى عميق يدعو إلى أن "ننصت لكلمات الناس".'
+                : 'The name Ensdim is inspired by the ancient Egyptian root Sdm, associated with hearing or listening. The name carries a spirit close to one of the ancient Egyptian wisdom traditions, as reflected in Bulaq Papyrus 4 and linked to the scribe Ani, who taught people to "listen to the words of people."'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'بالنسبة لنا، لم يكن الاسم اختيارًا لغويًا فقط، بل فلسفة عمل. نحن نؤمن أن التكنولوجيا الجيدة لا تبدأ بالكود، بل بالاستماع: الاستماع للعميل، لسلوك المستخدم، لضغط الفريق، للبيانات، ولما يحدث داخل العمل قبل اقتراح أي حل.'
-                : 'For us, the name is not only a linguistic reference. It is a working philosophy. Good technology does not begin with code; it begins with listening: to the client, to user behavior, to team pressure, to data, and to what is happening inside the business before any solution is proposed.'}
+                ? 'بالنسبة لنا، لم يكن الاسم اختيارًا لغويًا فقط، بل فلسفة عمل. نحن نؤمن أن التكنولوجيا الجيدة لا تبدأ بالكود، بل بالاستماع للعميل، لسلوك المستخدم، لضغط الفريق، للبيانات، ولما يحدث داخل العمل قبل اقتراح أي حل.'
+                : 'For us, the name is not only a linguistic reference. It is a working philosophy. Good technology does not begin with code; it begins with listening to the client, to user behavior, to team pressure, to data, and to what is happening inside the business before any solution is proposed.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
-                ? 'من هنا جاءت إنسديم: شركة تبني تكنولوجيا تستمع أولًا، ثم تفهم، ثم تحوّل هذا الفهم إلى حلول أوضح وأكثر ارتباطًا بالإنسان والتشغيل والعائد.'
-                : 'This is where Ensdim begins: technology that listens first, understands second, and then turns that understanding into clearer solutions connected to people, operations, and measurable return.'}
+                ? 'من هنا جاءت إنسديم، الشركة التي تبني تكنولوجيا تستمع أولًا، ثم تفهم، ثم تحوّل هذا الفهم إلى حلول أوضح وأكثر ارتباطًا بالإنسان والتشغيل والعائد.'
+                : 'This is where Ensdim begins, with technology that listens first, understands second, and then turns that understanding into clearer solutions connected to people, operations, and measurable return.'}
             </p>
           </ScrollReveal>
         </div>
@@ -206,21 +206,21 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">
+            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">
               {ar ? 'لماذا نؤمن بما نبنيه؟' : 'Why We Believe in What We Build'}
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
-              {ar ? 'لأن أغلب مشاكل البزنس ليست تقنية فقط… بل سلوكية وتشغيلية أيضًا.' : 'Most business problems are not only technical. They are behavioral and operational too.'}
+              {ar ? 'لأن أغلب مشاكل البزنس ليست تقنية فقط، بل سلوكية وتشغيلية أيضًا.' : 'Most business problems are not only technical. They are behavioral and operational too.'}
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
-                ? 'قد تبدو المشكلة في ظاهرها موقعًا ضعيفًا، أو متابعة غير منظمة، أو بيانات متفرقة، أو فريقًا مضغوطًا. لكن خلف ذلك غالبًا توجد مشكلة أعمق: عميل لا يفهم العرض بسرعة، فريق لا يرى الخطوة التالية، إدارة لا تمتلك مؤشرات واضحة، أو نظام لا يتناسب مع طريقة العمل اليومية.'
-                : 'A problem may appear as a weak website, unorganized follow-up, scattered data, or an overwhelmed team. But behind it there is often a deeper issue: customers who do not understand the offer quickly, teams that cannot see the next step, management without clear indicators, or systems that do not fit daily operations.'}
+                ? 'قد تبدو المشكلة في ظاهرها موقعًا ضعيفًا، أو متابعة غير منظمة، أو بيانات متفرقة، أو فريقًا مضغوطًا. لكن خلف ذلك غالبًا توجد مشكلة أعمق، فعميل لا يفهم العرض بسرعة، أو فريق لا يرى الخطوة التالية، أو إدارة لا تمتلك مؤشرات واضحة، أو نظام لا يتناسب مع طريقة العمل اليومية.'
+                : 'A problem may appear as a weak website, unorganized follow-up, scattered data, or an overwhelmed team. But behind it there is often a deeper issue, customers who do not understand the offer quickly, teams that cannot see the next step, management without clear indicators, or systems that do not fit daily operations.'}
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed">
               {ar
-                ? 'هنا يظهر دور إنسديم. نحن لا نفصل بين تجربة العميل وتشغيل الشركة والبيانات. نرى الثلاثة كمنظومة واحدة: إذا تحسنت تجربة العميل، أصبحت المتابعة أوضح. وإذا تحسنت المتابعة، أصبح التشغيل أكثر تنظيمًا. وإذا أصبحت البيانات أوضح، أصبح القرار أسرع.'
-                : 'This is where Ensdim adds value. We do not separate customer experience, operations, and data. We see them as one connected system: when the customer experience improves, follow-up becomes clearer. When follow-up improves, operations become more organized. When data becomes clearer, decisions become faster.'}
+                ? 'هنا يظهر دور إنسديم. نحن لا نفصل بين تجربة العميل وتشغيل الشركة والبيانات، بل نرى الثلاثة كمنظومة واحدة. إذا تحسنت تجربة العميل، أصبحت المتابعة أوضح. وإذا تحسنت المتابعة، أصبح التشغيل أكثر تنظيمًا. وإذا أصبحت البيانات أوضح، أصبح القرار أسرع.'
+                : 'This is where Ensdim adds value. We do not separate customer experience, operations, and data. We see them as one connected system. When the customer experience improves, follow-up becomes clearer. When follow-up improves, operations become more organized. When data becomes clearer, decisions become faster.'}
             </p>
           </ScrollReveal>
         </div>
@@ -230,19 +230,19 @@ export function AboutPage() {
       <section id="vision" className="py-16 bg-logo-black text-white scroll-mt-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold text-[#EEEAFE]/60 uppercase tracking-wider mb-3">{ar ? 'رؤيتنا' : 'Our Vision'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#B8A6FF] uppercase tracking-wider mb-3">{ar ? 'رؤيتنا' : 'Our Vision'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold mb-5 leading-tight">
               {ar ? 'تكنولوجيا حول الإنسان، لا فوقه.' : 'Technology around people, not above them.'}
             </h2>
             <p className="text-sm text-[#EEEAFE]/75 leading-relaxed mb-4">
               {ar
-                ? 'نؤمن في إنسديم أن البزنس في جوهره علاقات: علاقة بين الشركة وعملائها، بين الإدارة والفريق، وبين الإنسان والنظام الذي يستخدمه كل يوم.'
-                : 'At Ensdim, we believe business is built on relationships: between companies and customers, between management and teams, and between people and the systems they use every day.'}
+                ? 'نؤمن في إنسديم أن البزنس في جوهره علاقات، بين الشركة وعملائها، بين الإدارة والفريق، وبين الإنسان والنظام الذي يستخدمه كل يوم.'
+                : 'At Ensdim, we believe business is built on relationships, between companies and customers, between management and teams, and between people and the systems they use every day.'}
             </p>
             <p className="text-sm text-[#EEEAFE]/75 leading-relaxed mb-4">
               {ar
-                ? 'لذلك لا نرى التكنولوجيا كبديل للإنسان، بل كأداة يجب أن تُبنى حوله: تفهم سلوكه، تقلل جهده، تنظّم عمله، وتساعده على أداء أفضل.'
-                : 'That is why we do not see technology as a replacement for people, but as a tool that should be built around them: understanding behavior, reducing effort, organizing work, and helping people perform better.'}
+                ? 'لذلك لا نرى التكنولوجيا كبديل للإنسان، بل كأداة يجب أن تُبنى حوله، فتفهم سلوكه، تقلل جهده، تنظّم عمله، وتساعده على أداء أفضل.'
+                : 'That is why we do not see technology as a replacement for people, but as a tool that should be built around them, understanding behavior, reducing effort, organizing work, and helping people perform better.'}
             </p>
             <p className="text-sm text-[#EEEAFE]/75 leading-relaxed mb-4">
               {ar
@@ -256,8 +256,8 @@ export function AboutPage() {
             </p>
             <p className="text-sm text-[#EEEAFE]/75 leading-relaxed">
               {ar
-                ? 'في إنسديم، نترجم هذا المبدأ داخل البزنس: تكنولوجيا تفهم الناس، تسهّل التشغيل، وتحسّن العائد.'
-                : 'At Ensdim, we translate this principle into business practice: technology that understands people, simplifies operations, and improves return.'}
+                ? 'في إنسديم، نترجم هذا المبدأ داخل البزنس عبر تكنولوجيا تفهم الناس، تسهّل التشغيل، وتحسّن العائد.'
+                : 'At Ensdim, we translate this principle into business practice through technology that understands people, simplifies operations, and improves return.'}
             </p>
           </ScrollReveal>
         </div>
@@ -267,7 +267,7 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">{ar ? 'فلسفتنا في البناء' : 'Our Build Philosophy'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'فلسفتنا في البناء' : 'Our Build Philosophy'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'نبدأ من الفهم، ثم نبني التكنولوجيا المناسبة.' : 'We start with understanding, then build the right technology.'}
             </h2>
@@ -283,8 +283,8 @@ export function AboutPage() {
             </p>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-7">
               {ar
-                ? 'بعد فهم هذه النقطة، نحدد التكنولوجيا المناسبة: موقع، تطبيق، نظام متابعة للعملاء، نظام تشغيل داخلي، لوحة بيانات، أتمتة، أو طبقة ذكاء عملية.'
-                : 'Once we understand the friction point, we define the right technology: a website, application, customer follow-up system, internal operating system, dashboard, automation, or practical AI layer.'}
+                ? 'بعد فهم هذه النقطة، نحدد التكنولوجيا المناسبة، سواء كانت موقعًا، تطبيقًا، نظام متابعة للعملاء، نظام تشغيل داخلي، لوحة بيانات، أتمتة، أو طبقة ذكاء عملية.'
+                : 'Once we understand the friction point, we define the right technology, whether a website, application, customer follow-up system, internal operating system, dashboard, automation, or practical AI layer.'}
             </p>
             <ul className="space-y-2.5">
               {buildPrinciples.map((p, i) => (
@@ -336,7 +336,7 @@ export function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-3">{ar ? 'كيف نعمل؟' : 'How We Work'}</h2>
-            <p className="text-sm text-[#4F555E]">{ar ? 'من الفهم إلى البناء… ثم التحسين.' : 'From understanding to building, then improvement.'}</p>
+            <p className="text-sm text-[#4F555E]">{ar ? 'من الفهم إلى البناء، ثم التحسين.' : 'From understanding to building, then improvement.'}</p>
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {howWeWork.map((step, i) => (
@@ -356,11 +356,11 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider mb-3">
+            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">
               {ar ? 'ما الذي يجعل إنسديم شريكًا مناسبًا؟' : 'Why Ensdim Is the Right Partner'}
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
-              {ar ? 'لأننا لا نبيع تقنية فقط… بل نبني وضوحًا داخل العمل.' : 'We do not only sell technology. We build clarity inside the business.'}
+              {ar ? 'لأننا لا نبيع تقنية فقط، بل نبني وضوحًا داخل العمل.' : 'We do not only sell technology. We build clarity inside the business.'}
             </h2>
             <p className="text-sm text-[#4F555E] leading-relaxed mb-4">
               {ar
@@ -420,7 +420,7 @@ export function AboutPage() {
           </ScrollReveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { href: '/company', en: { title: 'Company Page', desc: 'A broader overview of Ensdim as a company: what we do, why we are different, and where to explore next.', cta: 'Back to Company' }, ar: { title: 'صفحة Company', desc: 'نظرة عامة على إنسديم كشركة: ماذا تفعل، لماذا تختلف، وما الصفحات المرتبطة بها.', cta: 'العودة إلى صفحة Company' } },
+              { href: '/company', en: { title: 'Company Page', desc: 'A broader overview of Ensdim as a company, what we do, why we are different, and where to explore next.', cta: 'Back to Company' }, ar: { title: 'صفحة Company', desc: 'نظرة عامة على إنسديم كشركة، ماذا تفعل، لماذا تختلف، وما الصفحات المرتبطة بها.', cta: 'العودة إلى صفحة Company' } },
               { href: '/team', en: { title: 'Our Team', desc: 'Meet the people and expertise behind strategy, experience design, engineering, data, and delivery.', cta: 'Meet the Team' }, ar: { title: 'الفريق', desc: 'تعرّف على الأشخاص والخبرات التي تقف خلف التفكير، التصميم، الهندسة، البيانات، والتنفيذ.', cta: 'تعرّف على الفريق' } },
               { href: '/case-studies', en: { title: 'Case Studies', desc: 'View selected projects that show how we connect the problem, the solution, and the business return.', cta: 'View Our Work' }, ar: { title: 'المشاريع', desc: 'شاهد نماذج من مشاريع توضّح كيف نربط المشكلة بالحل والعائد.', cta: 'شاهد مشاريعنا' } },
               { href: '/contact', en: { title: 'Contact Ensdim', desc: 'Tell us what is happening inside your business and we will help you identify the right direction.', cta: 'Contact Us' }, ar: { title: 'تواصل معنا', desc: 'شاركنا ما يحدث داخل عملك، وسنساعدك على تحديد المسار الأنسب.', cta: 'تواصل معنا' } },
@@ -449,16 +449,16 @@ export function AboutPage() {
       <FAQSection
         title={ar ? 'أسئلة شائعة عن إنسديم' : 'Frequently Asked Questions About Ensdim'}
         faqs={ar ? [
-          { question: 'ماذا تعني إنسديم؟', answer: 'إنسديم مستلهمة من الجذر المصري القديم Sdm، المرتبط بالسماع أو الاستماع، وهو جزء من فلسفة الشركة: أن تبدأ التكنولوجيا من فهم الإنسان والعمل والبيانات قبل بناء الحل.' },
+          { question: 'ماذا تعني إنسديم؟', answer: 'إنسديم مستلهمة من الجذر المصري القديم Sdm، المرتبط بالسماع أو الاستماع، وهو جزء من فلسفة الشركة التي تبدأ التكنولوجيا فيها من فهم الإنسان والعمل والبيانات قبل بناء الحل.' },
           { question: 'هل إنسديم شركة برمجة؟', answer: 'إنسديم تبني حلولًا تكنولوجية، لكن البرمجة ليست نقطة البداية الوحيدة. نبدأ بفهم المشكلة والتشغيل وسلوك العميل، ثم نحدد التكنولوجيا المناسبة.' },
           { question: 'هل تقدم إنسديم مواقع وتطبيقات فقط؟', answer: 'لا. نبني مواقع، تطبيقات، أنظمة متابعة للعملاء، أنظمة تشغيل داخلية، لوحات بيانات، أتمتة، وطبقات ذكاء عملية حسب احتياج العمل.' },
-          { question: 'ما الذي يجعل إنسديم مختلفة؟', answer: 'إنسديم تربط التكنولوجيا بالعائد: تحويل أعلى، متابعة أوضح، تشغيل أسهل، قرارات أسرع، وتجربة أفضل للعميل.' },
+          { question: 'ما الذي يجعل إنسديم مختلفة؟', answer: 'إنسديم تربط التكنولوجيا بالعائد، فتحقق تحويلًا أعلى، متابعة أوضح، تشغيلًا أسهل، قرارات أسرع، وتجربة أفضل للعميل.' },
           { question: 'كيف أبدأ العمل مع إنسديم؟', answer: 'شاركنا تحدي عملك الحالي، وسنساعدك على تحديد هل تحتاج تحسين تجربة العميل، تنظيم المتابعة، بناء نظام، أتمتة، أو رؤية أوضح للبيانات.' },
         ] : [
           { question: 'What does Ensdim mean?', answer: 'Ensdim is inspired by the ancient Egyptian root Sdm, associated with hearing or listening. It reflects the company’s belief that technology should begin by understanding people, work, and data before building the solution.' },
           { question: 'Is Ensdim a software company?', answer: 'Ensdim builds technology solutions, but software execution is not the only starting point. We start by understanding the problem, operations, and customer behavior, then define the right technology.' },
           { question: 'Does Ensdim only build websites and applications?', answer: 'No. We build websites, applications, customer follow-up systems, internal operating systems, dashboards, automation, and practical AI layers depending on the business need.' },
-          { question: 'What makes Ensdim different?', answer: 'Ensdim connects technology to business return: higher conversion, clearer follow-up, easier operations, faster decisions, and a better customer experience.' },
+          { question: 'What makes Ensdim different?', answer: 'Ensdim connects technology to business return, delivering higher conversion, clearer follow-up, easier operations, faster decisions, and a better customer experience.' },
           { question: 'How do I start working with Ensdim?', answer: 'Share your current business challenge with us, and we will help define whether you need customer experience improvement, follow-up organization, system building, automation, or clearer data visibility.' },
         ]}
       />
@@ -468,7 +468,7 @@ export function AboutPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="bg-[#EEEAFE] border border-[#DDD8FB] rounded-3xl p-8 sm:p-12 text-center">
           <h2 className="text-2xl font-bold text-[#101418] mb-3">
-            {ar ? 'شاركنا ما يحدث داخل عملك… وسنساعدك على بناء التكنولوجيا المناسبة.' : 'Tell us what is happening inside your business, and we will help you build the right technology.'}
+            {ar ? 'شاركنا ما يحدث داخل عملك، وسنساعدك على بناء التكنولوجيا المناسبة.' : 'Tell us what is happening inside your business, and we will help you build the right technology.'}
           </h2>
           <p className="text-sm text-[#4F555E] mb-6 max-w-xl mx-auto">
             {ar
