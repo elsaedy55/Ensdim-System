@@ -82,7 +82,7 @@ export function FinalCTA() {
             <div className="flex flex-col gap-3 mt-6">
               <Link
                 to="/case-studies"
-                className="inline-flex items-center justify-center px-4 py-2.5 bg-[#6D5DF6] text-white rounded-xl text-sm font-semibold hover:bg-[#5b4dd6] active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center justify-center px-4 py-2.5 bg-[#3B2A78] text-white rounded-xl text-sm font-semibold hover:bg-[#4a3690] active:scale-[0.98] transition-all duration-200"
               >
                 {ar ? 'استكشف قصص نجاح عملائنا' : 'See customer success stories'}
               </Link>

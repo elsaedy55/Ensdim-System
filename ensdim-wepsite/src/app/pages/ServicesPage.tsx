@@ -233,7 +233,7 @@ export function ServicesPage() {
                 ? 'احجز استشارة مجانية وسنساعدك على تحديد الخدمة الأنسب لمرحلة عملك.'
                 : 'Book a free consultation and we will help you identify the most relevant service for your business stage.'}
             </p>
-            <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
+            <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold">
               {ar ? 'احجز استشارة مجانية' : 'Book a Free Consultation'} <ArrowRight size={15} />
             </Link>
           </ScrollReveal>
@@ -316,7 +316,7 @@ export function ServicesPage() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="https://app.ensdim.com/login"
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold"
               >
                 {ar ? 'دخول مساحة العميل' : 'Client Workspace Login'} <ArrowRight size={15} />
               </a>

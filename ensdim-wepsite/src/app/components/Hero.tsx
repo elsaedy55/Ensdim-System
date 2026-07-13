@@ -488,7 +488,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/book-consultation"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-sm sm:text-base font-semibold shadow-lg shadow-[#6D5DF6]/35"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] active:scale-[0.98] transition-all duration-200 text-sm sm:text-base font-semibold shadow-lg shadow-[#6D5DF6]/35"
               >
                 {t('hero.primaryCTA')} <ArrowRight size={17} />
               </Link>

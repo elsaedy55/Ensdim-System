@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 function IconJourney() {
@@ -69,6 +70,7 @@ const solutionSlugs = [
 
 export function SolutionsSection() {
   const { t } = useLanguage();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const solutions = [
     { title: t('solutions.solution1Title'), description: t('solutions.solution1Desc'), impact: t('solutions.solution1Impact'), includes: t('solutions.solution1Includes') },
@@ -94,19 +96,31 @@ export function SolutionsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {solutions.map((solution, index) => {
             const Icon = solutionIcons[index];
+            const isOpen = openIndex === index;
             return (
               <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
               <Link
                 to={`/solutions/${solutionSlugs[index]}`}
+                onClick={(e) => {
+                  if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                    e.preventDefault();
+                    setOpenIndex(isOpen ? null : index);
+                  }
+                }}
                 className="group flex flex-col p-5 sm:p-6 rounded-2xl border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_8px_32px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 active:shadow-[0_4px_16px_rgba(109,93,246,0.12)] transition-all duration-200 bg-white h-full"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-9 h-9 bg-[#F4F2FF] rounded-xl flex items-center justify-center group-hover:bg-[#6D5DF6] group-active:bg-[#6D5DF6] transition-colors duration-300 flex-shrink-0">
                     <div className="text-[#6D5DF6] group-hover:text-white group-active:text-white transition-colors duration-300 [&>svg]:w-[18px] [&>svg]:h-[18px]"><Icon /></div>
                   </div>
-                  <h3 className="text-base font-semibold text-[#101418] leading-snug">{solution.title}</h3>
+                  <h3 className="text-base font-semibold text-[#101418] leading-snug flex-1">{solution.title}</h3>
+                  <ChevronDown
+                    size={18}
+                    className={`lg:hidden text-[#6D5DF6] flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  />
                 </div>
                 <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{solution.description}</p>
+                <div className={`${isOpen ? 'block' : 'hidden'} lg:block`}>
                 {Array.isArray(solution.impact) && solution.impact.length > 0 && (
                   <div className="mb-4 flex-1">
                     <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2">{t('solutions.impactLabel')}</p>
@@ -130,9 +144,10 @@ export function SolutionsSection() {
                     </div>
                   </div>
                 )}
-                <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium opacity-0 group-hover:opacity-100 group-active:opacity-100 -translate-x-1 group-hover:translate-x-0 group-active:translate-x-0 transition-all duration-200">
+                <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100 lg:-translate-x-1 lg:group-hover:translate-x-0 lg:group-active:translate-x-0 transition-all duration-200">
                   <span>{t(`solutions.solution${index + 1}CTA`) || 'Explore solution'}</span>
                   <ArrowRight size={11} />
+                </div>
                 </div>
               </Link>
               </ScrollReveal>

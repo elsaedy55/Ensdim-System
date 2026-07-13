@@ -95,7 +95,7 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
         <div className="flex flex-col gap-3 mt-6">
           <Link
             to="/case-studies"
-            className="inline-flex items-center justify-center px-4 py-2.5 bg-[#6D5DF6] text-white rounded-xl text-sm font-semibold hover:bg-[#5b4dd6] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center px-4 py-2.5 bg-[#3B2A78] text-white rounded-xl text-sm font-semibold hover:bg-[#4a3690] active:scale-[0.98] transition-all duration-200"
           >
             {ar ? 'استكشف قصص نجاح عملائنا' : 'See customer success stories'}
           </Link>
@@ -211,7 +211,7 @@ export function ConsultationForm({ title, hiddenFields = {} }: ConsultationFormP
             <button
               type="submit"
               disabled={submitting}
-              className="w-full py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {submitting ? (ar ? 'جارٍ الإرسال...' : 'Sending...') : (ar ? 'إرسال الطلب' : 'Send Request')}
             </button>

@@ -226,7 +226,7 @@ export function MaturitySection() {
           <p className="text-sm text-[#4F555E] mb-5 max-w-xl mx-auto">
             {t('maturity.ctaDesc')}
           </p>
-          <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
+          <Link to="/book-consultation" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
             {t('maturity.ctaButton')} <ArrowRight size={15} />
           </Link>
         </ScrollReveal>

@@ -399,7 +399,7 @@ export function AboutPage() {
             </p>
             <a
               href="/downloads/ensdim-company-profile.pdf"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold"
             >
               {ar ? 'تحميل بروفايل الشركة' : 'Download Company Profile'} <Download size={14} />
             </a>

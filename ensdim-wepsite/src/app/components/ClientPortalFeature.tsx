@@ -162,7 +162,7 @@ export function ClientPortalFeature() {
 
                 <a
                   href="https://app.ensdim.com/login"
-                  className="block w-full py-2.5 bg-gradient-to-r from-[#6D5DF6] to-[#3B2A78] text-white rounded-lg text-xs font-semibold hover:shadow-[0_4px_16px_rgba(109,93,246,0.35)] active:scale-[0.97] transition-all duration-200 text-center"
+                  className="block w-full py-2.5 bg-[#3B2A78] hover:bg-[#4a3690] text-white rounded-lg text-xs font-semibold hover:shadow-[0_4px_16px_rgba(59,42,120,0.35)] active:scale-[0.97] transition-all duration-200 text-center"
                 >
                   {language === 'ar' ? 'ادخل إلى مساحة العميل' : 'Access Your Workspace'}
                 </a>
@@ -174,7 +174,7 @@ export function ClientPortalFeature() {
         <div className="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-center">
           <a
             href="https://app.ensdim.com/login"
-            className="px-8 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.97] transition-all duration-200 font-medium inline-flex items-center justify-center gap-2"
+            className="px-8 py-3 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] active:scale-[0.97] transition-all duration-200 font-medium inline-flex items-center justify-center gap-2"
           >
             {t('clientPortal.primaryCTA')}
           </a>

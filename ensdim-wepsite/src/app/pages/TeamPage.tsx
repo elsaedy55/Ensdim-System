@@ -228,7 +228,7 @@ export function TeamPage() {
                 ? 'نرحب بالمواهب التي تجمع بين الجدية، التعلم، الفضول، والقدرة على بناء حلول مفيدة فعلًا. إذا كنت ترى التكنولوجيا كطريقة لفهم البشر وتحسين العمل، فقد تكون إنسديم المكان المناسب لك.'
                 : 'We welcome talent with seriousness, learning ability, curiosity, and the ability to build useful solutions. If you see technology as a way to understand people and improve work, Ensdim may be the right place for you.'}
             </p>
-            <Link to="/careers" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
+            <Link to="/careers" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold">
               {ar ? 'استكشف فرص العمل' : 'Explore Careers'} <ArrowRight size={15} />
             </Link>
           </ScrollReveal>

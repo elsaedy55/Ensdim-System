@@ -153,7 +153,7 @@ export function CompanyPage() {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <Link to="/solutions" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
+              <Link to="/solutions" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold">
                 {ar ? 'استكشف حلول إنسديم' : 'Explore Ensdim Solutions'} <ArrowRight size={14} />
               </Link>
               <Link to="/case-studies" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#E5E5E5] text-[#101418] rounded-xl hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors text-sm font-semibold">
@@ -403,7 +403,7 @@ export function CompanyPage() {
                 <span key={i} className="text-xs px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-[#EEEAFE]/85">{item}</span>
               ))}
             </div>
-            <Link to="/client-workspace" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
+            <Link to="/client-workspace" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold">
               {ar ? 'تعرّف على مساحة العميل' : 'Learn About Client Workspace'} <ArrowRight size={15} />
             </Link>
           </ScrollReveal>

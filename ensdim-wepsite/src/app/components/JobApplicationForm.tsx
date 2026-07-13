@@ -456,7 +456,7 @@ export function JobApplicationForm({
           <button
             type="submit"
             disabled={submitting}
-            className="w-full px-6 py-3.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.98] transition-all duration-200 font-semibold text-sm sm:text-base shadow-lg shadow-[#6D5DF6]/25 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full px-6 py-3.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] active:scale-[0.98] transition-all duration-200 font-semibold text-sm sm:text-base shadow-lg shadow-[#6D5DF6]/25 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {submitting ? (ar ? 'جارٍ الإرسال...' : 'Submitting...') : (ar ? 'إرسال طلب التقديم' : 'Submit Application')}
           </button>

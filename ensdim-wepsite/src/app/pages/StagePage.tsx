@@ -514,7 +514,7 @@ export function StagePage({ stage }: StagePageProps) {
             <p className="text-[#EEEAFE]/75 text-sm mb-5 max-w-xl mx-auto">{d.ctaBody}</p>
             <Link
               to="/book-consultation"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold"
             >
               {d.ctaButton} <ArrowRight size={15} />
             </Link>

@@ -204,7 +204,7 @@ export function Header() {
             <Link
               to="/book-consultation"
               onClick={closeAll}
-              className="px-4 py-2 text-sm bg-[#6D5DF6] text-white rounded-lg hover:bg-[#5d4de6] active:scale-[0.97] transition-all font-medium whitespace-nowrap"
+              className="px-4 py-2 text-sm bg-[#3B2A78] text-white rounded-lg hover:bg-[#4a3690] active:scale-[0.97] transition-all font-medium whitespace-nowrap"
             >
               {t('header.bookConsultation')}
             </Link>
@@ -312,7 +312,7 @@ export function Header() {
               ))}
 
               <div className="pt-4 mt-2 space-y-3">
-                <Link to="/book-consultation" onClick={closeAll} className="block w-full px-4 py-3 bg-[#6D5DF6] text-white rounded-lg hover:bg-[#5d4de6] active:scale-[0.97] transition-all font-medium text-center text-sm">
+                <Link to="/book-consultation" onClick={closeAll} className="block w-full px-4 py-3 bg-[#3B2A78] text-white rounded-lg hover:bg-[#4a3690] active:scale-[0.97] transition-all font-medium text-center text-sm">
                   {t('header.bookConsultation')}
                 </Link>
                 <a href="https://app.ensdim.com/login" className="block w-full px-4 py-3 border border-[#E5E5E5] text-[#101418] rounded-lg hover:border-[#6D5DF6] hover:text-[#6D5DF6] active:scale-[0.97] transition-all font-medium text-center text-sm">

@@ -361,7 +361,7 @@ export function CaseStudyDetailPage() {
                 href={study.demo_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 bg-[#6D5DF6] text-white text-sm font-semibold rounded-xl hover:bg-[#5b4de0] active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-[#3B2A78] text-white text-sm font-semibold rounded-xl hover:bg-[#4a3690] active:scale-[0.98] transition-all duration-200"
               >
                 {ar ? 'عرض الديمو' : 'View Demo'} <ExternalLink size={15} />
               </a>
@@ -419,7 +419,7 @@ export function CaseStudyDetailPage() {
               </p>
               <a
                 href="https://app.ensdim.com/login"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] active:scale-[0.97] transition-all duration-200 text-sm font-semibold"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] active:scale-[0.97] transition-all duration-200 text-sm font-semibold"
               >
                 {ar ? 'دخول مساحة العميل' : 'Client Workspace Login'} <ArrowRight size={14} />
               </a>

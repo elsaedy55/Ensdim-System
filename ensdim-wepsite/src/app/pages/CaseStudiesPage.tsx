@@ -217,8 +217,8 @@ export function CaseStudiesPage() {
                   onClick={() => setActiveFilter(null)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 active:scale-95 ${
                     activeFilter === null
-                      ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                      : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
+                      ? 'bg-[#3B2A78] text-white border-[#3B2A78]'
+                      : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#3B2A78]'
                   }`}
                 >
                   {ar ? 'الكل' : 'All'}
@@ -230,8 +230,8 @@ export function CaseStudiesPage() {
                     onClick={() => setActiveFilter(label)}
                     className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 active:scale-95 ${
                       activeFilter === label
-                        ? 'bg-[#6D5DF6] text-white border-[#6D5DF6]'
-                        : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#6D5DF6]'
+                        ? 'bg-[#3B2A78] text-white border-[#3B2A78]'
+                        : 'bg-white text-[#101418] border-[#E5E5E5] hover:border-[#3B2A78]'
                     }`}
                   >
                     {label}

@@ -257,7 +257,7 @@ export function CareersPage() {
                 ? 'إذا كنت ترى أن لديك مهارة يمكن أن تضيف لإنسديم في البحث، التصميم، التطوير، البيانات، الذكاء الاصطناعي، المبيعات، العلاقات، أو إدارة المشاريع، يمكنك إرسال بياناتك حتى لو لم تكن هناك وظيفة مناسبة منشورة حاليًا.'
                 : 'If you believe your skill can add value to Ensdim in research, design, development, data, AI, sales, relationships, or project management, you can send your profile even if there is no matching role currently listed.'}
             </p>
-            <Link to="/careers/apply" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold">
+            <Link to="/careers/apply" className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold">
               {ar ? 'أرسل بياناتك' : 'Send Your Profile'} <ArrowRight size={15} />
             </Link>
           </ScrollReveal>

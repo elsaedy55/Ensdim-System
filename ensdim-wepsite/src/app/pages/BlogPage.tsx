@@ -212,8 +212,8 @@ export function BlogPage() {
                   onClick={() => setActiveFilter(f.en)}
                   className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                     active
-                      ? 'bg-[#6D5DF6] border-[#6D5DF6] text-white'
-                      : 'bg-white border-[#E5E5E5] text-[#4F555E] hover:border-[#6D5DF6] hover:text-[#6D5DF6]'
+                      ? 'bg-[#3B2A78] border-[#3B2A78] text-white'
+                      : 'bg-white border-[#E5E5E5] text-[#4F555E] hover:border-[#3B2A78] hover:text-[#3B2A78]'
                   }`}
                 >
                   {ar ? f.ar : f.en}

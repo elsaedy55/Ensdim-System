@@ -88,7 +88,7 @@ export function ResearchArticlePage() {
         </p>
         <Link
           to="/research"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#6D5DF6] text-white rounded-xl text-sm font-medium hover:bg-[#5d4de6] transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3B2A78] text-white rounded-xl text-sm font-medium hover:bg-[#4a3690] transition-colors"
         >
           <ArrowLeft size={14} />
           {ar ? 'العودة إلى الأبحاث' : 'Back to Research'}
@@ -169,7 +169,7 @@ export function ResearchArticlePage() {
           <div className="text-center pt-12">
             <Link
               to="/book-consultation"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors font-medium"
             >
               {ar ? 'احجز استشارة' : 'Book Consultation'}
               <ArrowRight size={16} />

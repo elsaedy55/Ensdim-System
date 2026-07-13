@@ -172,7 +172,7 @@ export function ManagementChatbotPage() {
           </p>
           <Link
             to="/book-consultation"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors font-medium"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors font-medium"
           >
             {ar ? 'احجز استشارة' : 'Book Consultation'}
             <ArrowRight size={16} />

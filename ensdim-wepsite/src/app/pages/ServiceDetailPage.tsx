@@ -1087,7 +1087,7 @@ export function ServiceDetailPage() {
               </p>
               <a
                 href="https://app.ensdim.com/login"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#6D5DF6] text-white rounded-xl hover:bg-[#5d4de6] transition-colors text-sm font-semibold"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold"
               >
                 {ar ? 'دخول مساحة العميل' : 'Client Workspace Login'} <ArrowRight size={14} />
               </a>
