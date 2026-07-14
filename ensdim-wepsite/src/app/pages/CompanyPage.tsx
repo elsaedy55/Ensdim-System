@@ -375,7 +375,7 @@ export function CompanyPage() {
                 ? 'الميزة ليست في مكان الفريق فقط، بل في طريقة إدارة العمل ووضوح التجربة للعميل.'
                 : 'The advantage is not only where the team is located. It is how the work is managed and how clear the experience feels for the client.'}
             </p>
-            <Link to="/team" className="inline-flex items-center gap-2 text-[#6D5DF6] text-sm font-semibold hover:underline">
+            <Link to="/about#team" className="inline-flex items-center gap-2 text-[#6D5DF6] text-sm font-semibold hover:underline">
               {ar ? 'تعرّف على الفريق' : 'Meet the Team'} <ArrowRight size={14} />
             </Link>
           </ScrollReveal>
@@ -421,10 +421,9 @@ export function CompanyPage() {
               {ar ? 'من الرؤية إلى الفريق، اختر الخطوة التالية للتعرّف علينا.' : 'From vision to team, choose the next step to know us better.'}
             </p>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { href: '/about', en: { title: 'About Ensdim', desc: 'Read the Ensdim story, the meaning behind the name, the vision, and the philosophy behind building technology that listens to people and business reality.', cta: 'Go to About Ensdim' }, ar: { title: 'About Ensdim', desc: 'تعرّف على قصة إنسديم، معنى الاسم، الرؤية، والفلسفة التي تقف خلف بناء تكنولوجيا تستمع للإنسان والعمل.', cta: 'انتقل إلى About' } },
-              { href: '/team', en: { title: 'Our Team', desc: 'Meet the team and expertise behind strategy, user experience, engineering, data, and execution.', cta: 'Meet the Team' }, ar: { title: 'Our Team', desc: 'تعرّف على الفريق والخبرات التي تجمع بين التفكير الاستراتيجي، تجربة المستخدم، الهندسة، البيانات، والتنفيذ.', cta: 'تعرّف على الفريق' } },
               { href: '/downloads/ensdim-company-profile.pdf', en: { title: 'Company Profile', desc: 'Download the company profile for a concise view of Ensdim, its vision, services, working model, and selected projects.', cta: 'Download Company Profile' }, ar: { title: 'Company Profile', desc: 'حمّل بروفايل الشركة لعرض مختصر ومنظم عن إنسديم، رؤيتها، خدماتها، طريقة عملها، ومشاريعها المختارة.', cta: 'تحميل بروفايل الشركة' } },
               { href: '/contact', en: { title: 'Contact Ensdim', desc: 'Share the challenge happening inside your business, and we will help identify the closest path forward.', cta: 'Contact Ensdim' }, ar: { title: 'Contact Ensdim', desc: 'شاركنا التحدي الذي يحدث داخل عملك الآن، وسنساعدك على تحديد المسار الأقرب للحل.', cta: 'تواصل معنا' } },
             ].map((card, i) => {
@@ -485,7 +484,7 @@ export function CompanyPage() {
             <Link to="/services" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
               {ar ? 'استكشف خدماتنا' : 'Explore Services'}
             </Link>
-            <Link to="/team" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
+            <Link to="/about#team" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#6D5DF6]/30 text-[#3B2A78] hover:border-[#6D5DF6] hover:bg-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold">
               {ar ? 'تعرّف على الفريق' : 'Meet the Team'}
             </Link>
           </div>

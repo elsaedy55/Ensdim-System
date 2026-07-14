@@ -22,7 +22,6 @@ import { CaseStudiesPage } from './pages/CaseStudiesPage';
 import { CaseStudyDetailPage } from './pages/CaseStudyDetailPage';
 import { CompanyPage } from './pages/CompanyPage';
 import { AboutPage } from './pages/AboutPage';
-import { TeamPage } from './pages/TeamPage';
 import { PartnersPage } from './pages/PartnersPage';
 import { ContactPage } from './pages/ContactPage';
 import { ClientWorkspacePage } from './pages/ClientWorkspacePage';
@@ -91,7 +90,6 @@ export default function App() {
             {/* Company */}
             <Route path="company" element={<CompanyPage />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="team" element={<TeamPage />} />
             <Route path="partners" element={<PartnersPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="client-workspace" element={<ClientWorkspacePage />} />

@@ -30,7 +30,6 @@ export const STATIC_PAGES: StaticPage[] = [
   { path: '/company', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.7' },
   { path: '/contact', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.9' },
   { path: '/book-consultation', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.9' },
-  { path: '/team', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.6' },
   { path: '/partners', lastmod: '2026-06-01', changefreq: 'monthly', priority: '0.5' },
 
   // Solutions

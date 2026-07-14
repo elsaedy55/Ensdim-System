@@ -58,7 +58,6 @@ const navItems: NavItem[] = [
     label: 'Company', labelAr: 'الشركة', href: '/company',
     dropdown: [
       { label: 'About', labelAr: 'عن إنسديم', href: '/about' },
-      { label: 'Team', labelAr: 'الفريق', href: '/team' },
       { label: 'Careers', labelAr: 'الوظائف', href: '/careers' },
       { label: 'Contact', labelAr: 'تواصل معنا', href: '/contact' },
     ],

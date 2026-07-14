@@ -427,7 +427,7 @@ export function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-16 bg-[#FAFAFA]">
+      <section id="team" className="py-16 bg-[#FAFAFA] scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="max-w-3xl mb-10">
             <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'فريق إنسديم' : 'Ensdim Team'}</p>

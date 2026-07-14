@@ -30,6 +30,14 @@ const testimonialsEn = [
     caseStudy: "/case-studies/triboo-travel-mvp",
     avatar: "/testimonials/ahmed.png",
   },
+  {
+    quote: "Ensdim helped us build our digital presence on clear foundations, starting with research and understanding our needs, through strategic planning, all the way to execution. We felt genuine attention to every detail, real commitment to follow-up, and a constant drive to deliver the best result.",
+    name: "Eng. Ibrahim",
+    company: "CEO · Real Estate Development",
+    result: "A clear digital foundation from research to execution",
+    caseStudy: "/case-studies/real-estate-sales-crm-saudi",
+    avatar: "/testimonials/ibrahem.jpeg",
+  },
 ];
 
 const testimonialsAr = [
@@ -56,6 +64,14 @@ const testimonialsAr = [
     result: "من الفكرة إلى أول نسخة تجريبية",
     caseStudy: "/case-studies/triboo-travel-mvp",
     avatar: "/testimonials/ahmed.png",
+  },
+  {
+    quote: "ساعدتنا شركة إنسديم على تأسيس حضورنا الرقمي على أسس واضحة، بدايةً من البحث وفهم احتياجاتنا، مرورًا بالتخطيط الاستراتيجي، وصولًا إلى التنفيذ. لمسنا منهم اهتمامًا حقيقيًا بكل التفاصيل، والتزامًا في المتابعة، وحرصًا مستمرًا على تقديم أفضل نتيجة.",
+    name: "م. إبراهيم",
+    company: "المدير التنفيذي · تطوير عقاري",
+    result: "أساس رقمي واضح من البحث إلى التنفيذ",
+    caseStudy: "/case-studies/real-estate-sales-crm-saudi",
+    avatar: "/testimonials/ibrahem.jpeg",
   },
 ];
 

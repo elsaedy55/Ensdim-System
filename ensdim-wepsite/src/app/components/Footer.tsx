@@ -38,7 +38,6 @@ export function Footer() {
       title: ar ? 'الشركة' : 'Company',
       links: [
         { label: ar ? 'عن إنسديم' : 'About', href: '/about' },
-        { label: ar ? 'الفريق' : 'Team', href: '/team' },
         { label: ar ? 'تواصل معنا' : 'Contact', href: '/contact' },
       ],
     },
