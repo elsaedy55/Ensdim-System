@@ -115,8 +115,13 @@ export const caseStudies: CaseStudy[] = [
     card_impact_ar: 'تنظيم أكثر من 6,000 عقد',
     outcome_en: 'How we helped a Kuwait-based garden and palm maintenance company move from paper records and Excel sheets to an integrated operating system for contracts, supervisors, workers, visits, customers, and payments.',
     outcome_ar: 'كيف ساعدنا شركة كويتية راسخة في صيانة الحدائق والنخيل على الانتقال من التسجيل الورقي والإكسيل إلى نظام تشغيل متكامل لإدارة العقود، المشرفين، العمالة، الزيارات، العملاء، والمدفوعات.',
-    image_url: null,
-    gallery_images: [],
+    image_url: '/case-studies/bustan-amari/bustan-amari-1.jpg',
+    gallery_images: [
+      '/case-studies/bustan-amari/bustan-amari-2.jpg',
+      '/case-studies/bustan-amari/bustan-amari-3.jpg',
+      '/case-studies/bustan-amari/bustan-amari-supervisor-app.png',
+      '/case-studies/bustan-amari/bustan-amari-customer-app.png',
+    ],
     demo_url: null,
 
     snapshot: [

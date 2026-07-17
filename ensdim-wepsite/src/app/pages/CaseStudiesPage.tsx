@@ -31,13 +31,13 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
       className={`group flex flex-col border border-[#E5E5E5] rounded-2xl overflow-hidden bg-white hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 h-full ${featured ? 'lg:flex-row' : ''}`}
     >
       {c.image_url && (
-        <div className={`flex-shrink-0 bg-[#F4F2FF] flex items-center justify-center overflow-hidden ${featured ? 'w-full lg:w-[42%] h-56 lg:h-auto p-4 lg:p-6' : 'w-full h-48 p-3'}`}>
+        <div className={`flex-shrink-0 bg-[#F4F2FF] overflow-hidden ${featured ? 'w-full aspect-square lg:aspect-auto lg:w-[42%] lg:h-auto' : 'w-full aspect-square'}`}>
           <img
             src={c.image_url}
             alt={ar ? c.title_ar : c.title_en}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-contain rounded-lg shadow-[0_4px_20px_rgba(109,93,246,0.12)]"
+            className="w-full h-full object-cover"
           />
         </div>
       )}

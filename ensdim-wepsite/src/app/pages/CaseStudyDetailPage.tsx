@@ -213,7 +213,8 @@ export function CaseStudyDetailPage() {
           <div className="relative group">
             <div
               ref={viewportRef}
-              className="w-full aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] overflow-hidden touch-pan-y select-none"
+              dir="ltr"
+              className="w-full aspect-square sm:aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] overflow-hidden touch-pan-y select-none"
               onTouchStart={mediaItems.length > 1 ? (e) => handleTouchStart(e, mediaItems.length) : undefined}
               onTouchMove={mediaItems.length > 1 ? handleTouchMove : undefined}
               onTouchEnd={mediaItems.length > 1 ? (e) => handleTouchEnd(e, mediaItems.length) : undefined}
@@ -231,25 +232,25 @@ export function CaseStudyDetailPage() {
                     mediaIndex,
                     (mediaIndex + 1) % mediaItems.length,
                   ].map((idx, slot) => (
-                    <div key={slot} className="w-1/3 h-full flex items-center justify-center p-4 sm:p-6">
+                    <div key={slot} className="w-1/3 h-full">
                       <img
                         src={mediaItems[idx]}
                         alt={`${title} - ${idx + 1}`}
                         loading={slot === 1 ? 'eager' : 'lazy'}
                         decoding="async"
-                        className="w-full h-full object-contain rounded-lg pointer-events-none"
+                        className="w-full h-full object-cover pointer-events-none"
                         draggable={false}
                       />
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="w-full h-full flex items-center justify-center p-4 sm:p-6">
+                <div className="w-full h-full">
                   <img
                     src={mediaItems[0]}
                     alt={title}
                     decoding="async"
-                    className="w-full h-full object-contain rounded-lg pointer-events-none"
+                    className="w-full h-full object-cover pointer-events-none"
                     draggable={false}
                   />
                 </div>
