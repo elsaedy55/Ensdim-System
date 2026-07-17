@@ -46,7 +46,7 @@ export function SectorsSection() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#101418] text-white">
+    <section className="py-16 sm:py-24 bg-logo-black text-white">
       <style>{`
         @keyframes sector-icon-float {
           0%, 100% { transform: translateY(0) rotate(0deg); }

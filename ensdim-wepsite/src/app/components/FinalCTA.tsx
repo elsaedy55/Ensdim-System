@@ -51,7 +51,7 @@ export function FinalCTA() {
   };
 
   return (
-    <section className="py-20 sm:py-24 bg-[#101418] relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-logo-black relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-[#6D5DF6] rounded-full blur-[120px] opacity-[0.18]" />

@@ -82,7 +82,7 @@ export function SolutionsSection() {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-[#EEEAFE]" id="solutions">
+    <section className="py-20 sm:py-24 bg-white" id="solutions">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <ScrollReveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4 max-w-3xl mx-auto leading-tight">
@@ -144,9 +144,9 @@ export function SolutionsSection() {
                     </div>
                   </div>
                 )}
-                <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100 lg:-translate-x-1 lg:group-hover:translate-x-0 lg:group-active:translate-x-0 transition-all duration-200">
+                <div className="mt-4 flex items-center gap-2 text-sm text-[#3B2A78] font-bold lg:opacity-0 lg:group-hover:opacity-100 lg:group-active:opacity-100 lg:-translate-x-1 lg:group-hover:translate-x-0 lg:group-active:translate-x-0 transition-all duration-200">
                   <span>{t(`solutions.solution${index + 1}CTA`) || 'Explore solution'}</span>
-                  <ArrowRight size={11} />
+                  <ArrowRight size={15} />
                 </div>
                 </div>
               </Link>

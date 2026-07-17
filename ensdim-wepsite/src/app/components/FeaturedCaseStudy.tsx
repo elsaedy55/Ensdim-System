@@ -18,7 +18,7 @@ export function FeaturedCaseStudy() {
   if (!loading && !study) return null;
 
   return (
-    <section className="py-20 sm:py-24 bg-white">
+    <section className="py-20 sm:py-24 bg-[#FAFAFA]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <ScrollReveal className="mb-8">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">
@@ -87,7 +87,7 @@ export function FeaturedCaseStudy() {
                     <Link
                       to="/case-studies"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-[#6D5DF6] text-sm hover:underline active:scale-95 transition-transform self-center"
+                      className="inline-flex items-center justify-center px-5 py-2.5 text-[#6D5DF6] rounded-xl hover:bg-[#EEEAFE] active:scale-[0.98] transition-all duration-200 text-sm font-medium self-center"
                     >
                       {t('caseStudy.ctaAll')}
                     </Link>

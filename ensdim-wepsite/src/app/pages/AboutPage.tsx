@@ -3,8 +3,10 @@ import { Link } from 'react-router';
 import { ArrowRight, ChevronLeft, ChevronRight, Download } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
+import { StackCard } from '../components/StackCard';
 import { SEO } from '../components/SEO';
 import { FAQSection } from '../components/FAQSection';
+import { IconDiagnose, IconMap, IconDesign, IconBuild, IconImprove } from '../components/EnsdimIcons';
 
 const aboutWebPageSchema = {
   '@context': 'https://schema.org',
@@ -53,11 +55,11 @@ const serviceCards = [
 ];
 
 const howWeBuildSteps = [
-  { en: { title: 'We understand', desc: 'We study how the business works, the customer journey, and everyday challenges.' }, ar: { title: 'نفهم', desc: 'ندرس طريقة العمل، رحلة العميل، والتحديات اليومية.' } },
-  { en: { title: 'We prioritize', desc: 'We identify the point of impact that creates the greatest value.' }, ar: { title: 'نحدد الأولويات', desc: 'نحدد نقطة الأثر التي تحقق أكبر قيمة.' } },
-  { en: { title: 'We design', desc: 'We build the user experience, workflow, and data.' }, ar: { title: 'نصمم', desc: 'نبني تجربة المستخدم، وتدفق العمل، والبيانات.' } },
-  { en: { title: 'We build', desc: 'We develop the solution in stages that deliver immediate value.' }, ar: { title: 'ننفذ', desc: 'نطور الحل على مراحل تحقق قيمة مباشرة.' } },
-  { en: { title: 'We improve', desc: 'We measure results and continue improving.' }, ar: { title: 'نطور', desc: 'نقيس النتائج ونستمر في التحسين.' } },
+  { Icon: IconDiagnose, en: { title: 'We understand', desc: 'We study how the business works, the customer journey, and everyday challenges.' }, ar: { title: 'نفهم', desc: 'ندرس طريقة العمل، رحلة العميل، والتحديات اليومية.' } },
+  { Icon: IconMap, en: { title: 'We prioritize', desc: 'We identify the point of impact that creates the greatest value.' }, ar: { title: 'نحدد الأولويات', desc: 'نحدد نقطة الأثر التي تحقق أكبر قيمة.' } },
+  { Icon: IconDesign, en: { title: 'We design', desc: 'We build the user experience, workflow, and data.' }, ar: { title: 'نصمم', desc: 'نبني تجربة المستخدم، وتدفق العمل، والبيانات.' } },
+  { Icon: IconBuild, en: { title: 'We build', desc: 'We develop the solution in stages that deliver immediate value.' }, ar: { title: 'ننفذ', desc: 'نطور الحل على مراحل تحقق قيمة مباشرة.' } },
+  { Icon: IconImprove, en: { title: 'We improve', desc: 'We measure results and continue improving.' }, ar: { title: 'نطور', desc: 'نقيس النتائج ونستمر في التحسين.' } },
 ];
 
 const team = [
@@ -82,11 +84,20 @@ export function AboutPage() {
   const ar = language === 'ar';
 
   const teamScrollRef = useRef<HTMLDivElement>(null);
+  const servicesScrollRef = useRef<HTMLDivElement>(null);
 
   const scrollTeam = (direction: 1 | -1) => {
     const el = teamScrollRef.current;
     if (!el) return;
-    el.scrollBy({ left: el.clientWidth * 0.8 * direction, behavior: 'smooth' });
+    const rtlFlip = ar ? -1 : 1;
+    el.scrollBy({ left: el.clientWidth * 0.8 * direction * rtlFlip, behavior: 'smooth' });
+  };
+
+  const scrollServices = (direction: 1 | -1) => {
+    const el = servicesScrollRef.current;
+    if (!el) return;
+    const rtlFlip = ar ? -1 : 1;
+    el.scrollBy({ left: el.clientWidth * 0.8 * direction * rtlFlip, behavior: 'smooth' });
   };
 
   return (
@@ -169,7 +180,7 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'من نحن؟' : 'Who We Are'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'من نحن؟' : 'Who We Are'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'نفهم الأعمال قبل أن نبني التكنولوجيا.' : 'We understand the business before we build the technology.'}
             </h2>
@@ -206,7 +217,7 @@ export function AboutPage() {
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="max-w-3xl mb-10">
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'ماذا نبني؟' : 'What We Build'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'ماذا نبني؟' : 'What We Build'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'حلول تخدم الأعمال، لا مجرد أدوات تقنية.' : 'Solutions that serve the business, not technology for its own sake.'}
             </h2>
@@ -220,21 +231,44 @@ export function AboutPage() {
               ))}
             </ul>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {serviceCards.map((s, i) => {
-              const d = ar ? s.ar : s.en;
-              return (
-                <ScrollReveal key={s.slug} delay={Math.min(i * 0.05, 0.3)}>
-                  <Link
-                    to={`/services/${s.slug}`}
-                    className="group flex flex-col h-full p-5 bg-white border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
-                  >
-                    <h3 className="text-sm font-bold text-[#101418] mb-2">{d.title}</h3>
-                    <p className="text-xs text-[#4F555E] leading-relaxed flex-1">{d.desc}</p>
-                  </Link>
-                </ScrollReveal>
-              );
-            })}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollServices(-1)}
+              aria-label={ar ? 'السابق' : 'Previous'}
+              className="hidden sm:flex flex-shrink-0 w-9 h-9 rounded-full bg-white border border-[#E5E5E5] shadow-sm items-center justify-center text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors duration-200"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <div
+              ref={servicesScrollRef}
+              className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {serviceCards.map((s, i) => {
+                const d = ar ? s.ar : s.en;
+                return (
+                  <ScrollReveal key={s.slug} delay={Math.min(i * 0.05, 0.3)} className="snap-start flex-shrink-0 w-64">
+                    <Link
+                      to={`/services/${s.slug}`}
+                      className="group flex flex-col h-full p-5 bg-white border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
+                    >
+                      <h3 className="text-sm font-bold text-[#101418] mb-2">{d.title}</h3>
+                      <p className="text-xs text-[#4F555E] leading-relaxed flex-1">{d.desc}</p>
+                    </Link>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => scrollServices(1)}
+              aria-label={ar ? 'التالي' : 'Next'}
+              className="hidden sm:flex flex-shrink-0 w-9 h-9 rounded-full bg-white border border-[#E5E5E5] shadow-sm items-center justify-center text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors duration-200"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
       </section>
@@ -243,7 +277,7 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'لماذا تختلف إنسديم؟' : 'Why Ensdim Is Different'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'لماذا تختلف إنسديم؟' : 'Why Ensdim Is Different'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'لا نبدأ بالسؤال: ماذا تريد أن نبني؟' : 'We do not begin by asking, "What do you want us to build?"'}
             </h2>
@@ -270,10 +304,11 @@ export function AboutPage() {
       <section id="how-we-work" className="py-16 bg-[#FAFAFA] scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="mb-10 max-w-3xl">
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'كيف نبني الحلول؟' : 'How We Build Solutions'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'كيف نبني الحلول؟' : 'How We Build Solutions'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418]">{ar ? 'من الفهم إلى الأثر.' : 'From understanding to impact.'}</h2>
           </ScrollReveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* Tablet / desktop grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {howWeBuildSteps.map((step, i) => (
               <ScrollReveal key={i} delay={i * 0.06}>
                 <div className="p-5 bg-white border border-[#E5E5E5] rounded-2xl h-full">
@@ -282,6 +317,20 @@ export function AboutPage() {
                   <p className="text-xs text-[#4F555E] leading-relaxed">{ar ? step.ar.desc : step.en.desc}</p>
                 </div>
               </ScrollReveal>
+            ))}
+          </div>
+
+          {/* Mobile: cards stack on top of each other while scrolling */}
+          <div className="sm:hidden">
+            {howWeBuildSteps.map((step, i) => (
+              <StackCard
+                key={i}
+                index={i}
+                total={howWeBuildSteps.length}
+                Icon={step.Icon}
+                title={ar ? step.ar.title : step.en.title}
+                description={ar ? step.ar.desc : step.en.desc}
+              />
             ))}
           </div>
         </div>
@@ -336,7 +385,7 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">
               {ar ? 'لماذا نؤمن بما نبنيه؟' : 'Why We Believe in What We Build'}
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
@@ -360,7 +409,7 @@ export function AboutPage() {
       <section className="py-16 bg-[#FAFAFA]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'معنى إنسديم' : 'The Meaning of Ensdim'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'معنى إنسديم' : 'The Meaning of Ensdim'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'اسمنا يبدأ من الاستماع، وطريقتنا تبدأ من الفهم.' : 'Our name begins with listening. Our approach begins with understanding.'}
             </h2>
@@ -398,7 +447,7 @@ export function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <ScrollReveal>
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'قصة إنسديم' : 'The Ensdim Story'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'قصة إنسديم' : 'The Ensdim Story'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'بدأت إنسديم من فكرة بسيطة: التكنولوجيا يجب أن تستمع.' : 'Ensdim began with a simple idea. Technology should listen.'}
             </h2>
@@ -430,7 +479,7 @@ export function AboutPage() {
       <section id="team" className="py-16 bg-[#FAFAFA] scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <ScrollReveal className="max-w-3xl mb-10">
-            <p className="text-base sm:text-lg font-bold text-[#4A3AC7] uppercase tracking-wider mb-3">{ar ? 'فريق إنسديم' : 'Ensdim Team'}</p>
+            <p className="text-base sm:text-lg font-bold text-[#3B2A78] uppercase tracking-wider mb-3">{ar ? 'فريق إنسديم' : 'Ensdim Team'}</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-5 leading-tight">
               {ar ? 'هيكل منظم وخبرات تعمل ضمن مسار واحد.' : 'A structured team of specialists working through one coordinated process.'}
             </h2>
@@ -455,7 +504,7 @@ export function AboutPage() {
               type="button"
               onClick={() => scrollTeam(-1)}
               aria-label={ar ? 'السابق' : 'Previous'}
-              className="flex-shrink-0 w-9 h-9 rounded-full bg-white border border-[#E5E5E5] shadow-sm flex items-center justify-center text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors duration-200"
+              className="hidden sm:flex flex-shrink-0 w-9 h-9 rounded-full bg-white border border-[#E5E5E5] shadow-sm items-center justify-center text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors duration-200"
             >
               <ChevronLeft size={18} />
             </button>
@@ -486,7 +535,7 @@ export function AboutPage() {
               type="button"
               onClick={() => scrollTeam(1)}
               aria-label={ar ? 'التالي' : 'Next'}
-              className="flex-shrink-0 w-9 h-9 rounded-full bg-white border border-[#E5E5E5] shadow-sm flex items-center justify-center text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors duration-200"
+              className="hidden sm:flex flex-shrink-0 w-9 h-9 rounded-full bg-white border border-[#E5E5E5] shadow-sm items-center justify-center text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors duration-200"
             >
               <ChevronRight size={18} />
             </button>
@@ -513,6 +562,7 @@ export function AboutPage() {
             </p>
             <a
               href="/downloads/ensdim-company-profile.pdf"
+              download
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#3B2A78] text-white rounded-xl hover:bg-[#4a3690] transition-colors text-sm font-semibold"
             >
               {ar ? 'تحميل بروفايل الشركة' : 'Download Company Profile'} <Download size={14} />

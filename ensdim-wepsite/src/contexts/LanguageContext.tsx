@@ -70,6 +70,7 @@ const translations: Record<Language, any> = {
       problem5Desc: 'Customer information and tasks are duplicated across people and tools.',
       problem6Title: 'The data exists, but it is not helping you make decisions',
       problem6Desc: 'Numbers are collected, but management still decides on instinct.',
+      seeSolution: 'See solution',
       cta: 'See how Ensdim solves it',
     },
     solutions: {
@@ -321,6 +322,7 @@ const translations: Record<Language, any> = {
       problem5Desc: 'البيانات والمهام تتضاعف بين أفراد الفريق والأدوات المختلفة.',
       problem6Title: 'البيانات موجودة، لكنها لا تساعدك على القرار',
       problem6Desc: 'الأرقام موجودة، لكن الإدارة ما زالت تقرر بالحدس لا بالدليل.',
+      seeSolution: 'اعرف الحل',
       cta: 'اكتشف كيف تحلها إنسديم',
     },
     solutions: {

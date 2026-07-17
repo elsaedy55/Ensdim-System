@@ -15,7 +15,7 @@ export function FeaturedResearch() {
   if (!loading && !article) return null;
 
   return (
-    <section className="py-20 sm:py-24 bg-[#EEEAFE]">
+    <section className="py-20 sm:py-24 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <ScrollReveal className="mb-8">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">

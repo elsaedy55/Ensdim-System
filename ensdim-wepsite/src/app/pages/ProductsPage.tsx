@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { SEO } from '../components/SEO';
@@ -165,6 +166,16 @@ const chooseCustom = {
 export function ProductsPage() {
   const { language } = useLanguage();
   const ar = language === 'ar';
+  const [openSlugs, setOpenSlugs] = useState<Set<string>>(new Set());
+
+  const toggleProduct = (slug: string) => {
+    setOpenSlugs((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) next.delete(slug);
+      else next.add(slug);
+      return next;
+    });
+  };
 
   return (
     <>
@@ -271,6 +282,7 @@ export function ProductsPage() {
           <div className="space-y-6">
             {products.map((p, i) => {
               const d = ar ? p.ar : p.en;
+              const isOpen = openSlugs.has(p.slug);
               return (
                 <ScrollReveal key={p.slug} delay={i * 0.08}>
                   <div className="bg-white border border-[#E5E5E5] rounded-2xl p-6 sm:p-8">
@@ -280,47 +292,56 @@ export function ProductsPage() {
                         {d.status}
                       </span>
                     </div>
-                    <p className="text-xs text-[#4F555E] mb-3"><span className="font-semibold text-[#101418]">{ar ? 'لمن يناسب؟ ' : 'Best for: '}</span>{d.bestFor}</p>
+                    <p className="text-sm text-[#4F555E] mb-3"><span className="font-semibold text-[#101418]">{ar ? 'لمن يناسب؟ ' : 'Best for: '}</span>{d.bestFor}</p>
                     <p className="text-sm text-[#4F555E] leading-relaxed mb-5">{d.desc}</p>
 
-                    <div className="grid sm:grid-cols-2 gap-8 mb-6">
-                      <div>
-                        <p className="text-xs font-semibold text-[#101418] mb-3 uppercase tracking-wider">{ar ? 'ما الذي يساعدك على تنظيمه؟' : 'What it helps you organize'}</p>
-                        <ul className="space-y-2">
-                          {d.organize.map((o, j) => (
-                            <li key={j} className="flex items-start gap-2 text-sm text-[#4F555E]">
-                              <CheckCircle2 size={14} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
-                              {o}
-                            </li>
-                          ))}
-                        </ul>
+                    <button
+                      type="button"
+                      onClick={() => toggleProduct(p.slug)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-[#E5E5E5] hover:border-[#6D5DF6] transition-colors text-sm font-semibold text-[#101418] mb-3"
+                    >
+                      {ar ? 'اعرض التفاصيل الكاملة' : 'View full details'}
+                      <ChevronDown
+                        size={16}
+                        className={`flex-shrink-0 text-[#6D5DF6] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+
+                    {isOpen && (
+                      <div className="grid sm:grid-cols-2 gap-8 mb-6 pt-2">
+                        <div>
+                          <p className="text-xs font-semibold text-[#101418] mb-3 uppercase tracking-wider">{ar ? 'ما الذي يساعدك على تنظيمه؟' : 'What it helps you organize'}</p>
+                          <ul className="space-y-2">
+                            {d.organize.map((o, j) => (
+                              <li key={j} className="flex items-start gap-2 text-sm text-[#4F555E]">
+                                <CheckCircle2 size={14} className="text-[#6D5DF6] flex-shrink-0 mt-0.5" />
+                                {o}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-[#101418] mb-3 uppercase tracking-wider">{ar ? 'الأثر على البزنس' : 'Business impact'}</p>
+                          <ul className="space-y-3">
+                            {d.impact.map((o, j) => (
+                              <li key={j} className="flex items-start gap-2 text-sm text-[#4F555E] leading-relaxed">
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#D63A3A] mt-1.5 flex-shrink-0" />
+                                {o}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-xs font-semibold text-[#101418] mb-3 uppercase tracking-wider">{ar ? 'الأثر على البزنس' : 'Business impact'}</p>
-                        <ul className="space-y-3">
-                          {d.impact.map((o, j) => (
-                            <li key={j} className="flex items-start gap-2 text-sm text-[#4F555E] leading-relaxed">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#D63A3A] mt-1.5 flex-shrink-0" />
-                              {o}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                    )}
 
                     <div className="flex flex-wrap gap-3">
                       <Link
-                        to={d.buttons[0].href}
+                        to={d.buttons[1].href}
                         className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#101418] text-white rounded-xl hover:bg-[#1a1d24] transition-colors text-sm font-semibold"
                       >
-                        {d.buttons[0].label}
-                        <ArrowRight size={14} />
-                      </Link>
-                      <Link
-                        to={d.buttons[1].href}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#E5E5E5] text-[#101418] hover:border-[#6D5DF6] hover:text-[#6D5DF6] transition-colors text-sm font-semibold"
-                      >
                         {d.buttons[1].label}
+                        <ArrowRight size={14} />
                       </Link>
                     </div>
                   </div>

@@ -132,6 +132,7 @@ export function MaturitySection() {
   const stages = [
     {
       Icon: BuildIcon,
+      image: '/maturity/build.jpg',
       stage: t('maturity.stage1'),
       title: t('maturity.stage1Title'),
       description: t('maturity.stage1Desc'),
@@ -142,6 +143,7 @@ export function MaturitySection() {
     },
     {
       Icon: StartIcon,
+      image: '/maturity/start.jpg',
       stage: t('maturity.stage2'),
       title: t('maturity.stage2Title'),
       description: t('maturity.stage2Desc'),
@@ -152,6 +154,7 @@ export function MaturitySection() {
     },
     {
       Icon: GrowthIcon,
+      image: '/maturity/growth.jpg',
       stage: t('maturity.stage3'),
       title: t('maturity.stage3Title'),
       description: t('maturity.stage3Desc'),
@@ -163,7 +166,7 @@ export function MaturitySection() {
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-[#EEEAFE]">
+    <section className="py-20 sm:py-24 bg-[#FAFAFA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <ScrollReveal className="text-center mb-16">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-4 max-w-3xl mx-auto leading-tight">
@@ -179,38 +182,52 @@ export function MaturitySection() {
             <ScrollReveal key={index} delay={Math.min(index * 0.06, 0.24)}>
             <Link
               to={item.href}
-              className="group bg-white rounded-2xl p-7 border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 transition-all duration-200 flex flex-col h-full"
+              className="group bg-white rounded-2xl overflow-hidden border border-[#EBEBEB] hover:border-[#6D5DF6]/50 hover:shadow-[0_12px_40px_rgba(109,93,246,0.09)] active:scale-[0.98] active:border-[#6D5DF6]/50 transition-all duration-200 flex flex-col h-full"
             >
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-13 h-13 min-w-[52px] min-h-[52px] rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-300"
-                  style={{ backgroundColor: `${item.accent}1A` }}
-                >
-                  <div className="w-7 h-7" style={{ color: item.accent }}>
-                    <item.Icon />
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#101418]">
+                <img
+                  src={item.image}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                <div className="absolute bottom-3 inset-x-4 flex items-center gap-2.5">
+                  <div
+                    className="w-9 h-9 min-w-[36px] rounded-lg flex items-center justify-center flex-shrink-0 backdrop-blur-sm"
+                    style={{ backgroundColor: `${item.accent}CC` }}
+                  >
+                    <div className="w-5 h-5 text-white">
+                      <item.Icon />
+                    </div>
                   </div>
+                  <span className="text-xl sm:text-2xl font-extrabold uppercase tracking-wide leading-none text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+                    {item.stage}
+                  </span>
                 </div>
-                <span className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide leading-none text-[#3B1F8C]">
-                  {item.stage}
+              </div>
+
+              <div className="p-7 flex flex-col flex-1">
+                <h3 className="text-base font-bold text-[#101418] mb-2.5 leading-snug">{item.title}</h3>
+                <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{item.description}</p>
+
+                {Array.isArray(item.bestFor) && item.bestFor.length > 0 && (
+                  <div className="mb-5 flex-1">
+                    <p className="text-xs font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('maturity.bestFor')}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {item.bestFor.map((feature, i) => (
+                        <span key={i} className="px-2.5 py-1 bg-[#EEEAFE] text-xs text-[#6D5DF6] font-medium rounded-full">{feature}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium mt-auto group-hover:gap-2.5 group-active:gap-2.5 transition-all duration-200">
+                  {item.cta} <ArrowRight size={13} />
                 </span>
               </div>
-              <h3 className="text-base font-bold text-[#101418] mb-2.5 leading-snug">{item.title}</h3>
-              <p className="text-[#4F555E] text-sm leading-relaxed mb-4">{item.description}</p>
-
-              {Array.isArray(item.bestFor) && item.bestFor.length > 0 && (
-                <div className="mb-5 flex-1">
-                  <p className="text-[10px] font-semibold text-[#4F555E] uppercase tracking-wider mb-2.5">{t('maturity.bestFor')}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.bestFor.map((feature, i) => (
-                      <span key={i} className="px-2.5 py-1 bg-[#EEEAFE] text-xs text-[#6D5DF6] font-medium rounded-full">{feature}</span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <span className="inline-flex items-center gap-1.5 text-sm text-[#6D5DF6] font-medium mt-auto group-hover:gap-2.5 group-active:gap-2.5 transition-all duration-200">
-                {item.cta} <ArrowRight size={13} />
-              </span>
             </Link>
             </ScrollReveal>
           ))}

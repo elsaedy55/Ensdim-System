@@ -115,8 +115,8 @@ export function ProblemsSection() {
               <p className="text-[#4F555E] text-sm leading-relaxed flex-1">
                 {description}
               </p>
-              <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium opacity-0 group-hover:opacity-100 group-active:opacity-100 -translate-x-1 group-hover:translate-x-0 group-active:translate-x-0 transition-all duration-200">
-                <span>See solution</span>
+              <div className="mt-3 flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium group-hover:gap-2.5 group-active:gap-2.5 transition-all duration-200">
+                <span>{t('problems.seeSolution')}</span>
                 <ArrowRight size={11} />
               </div>
             </Link>

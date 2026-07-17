@@ -109,6 +109,7 @@ export function CompanyPage() {
             </Link>
             <a
               href="/downloads/ensdim-company-profile.pdf"
+              download
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
             >
               {ar ? 'تحميل بروفايل الشركة' : 'Download Company Profile'} <Download size={14} />
@@ -428,18 +429,28 @@ export function CompanyPage() {
               { href: '/contact', en: { title: 'Contact Ensdim', desc: 'Share the challenge happening inside your business, and we will help identify the closest path forward.', cta: 'Contact Ensdim' }, ar: { title: 'Contact Ensdim', desc: 'شاركنا التحدي الذي يحدث داخل عملك الآن، وسنساعدك على تحديد المسار الأقرب للحل.', cta: 'تواصل معنا' } },
             ].map((card, i) => {
               const d = ar ? card.ar : card.en;
+              const isDownload = card.href.startsWith('/downloads/');
+              const cardClassName = "group flex flex-col h-full p-5 border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200";
+              const cardContent = (
+                <>
+                  <h3 className="text-sm font-bold text-[#101418] mb-2">{d.title}</h3>
+                  <p className="text-xs text-[#4F555E] leading-relaxed mb-4 flex-1">{d.desc}</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-semibold group-hover:gap-2.5 group-active:gap-2.5 transition-all">
+                    {d.cta} <ArrowRight size={12} />
+                  </span>
+                </>
+              );
               return (
                 <ScrollReveal key={i} delay={i * 0.06}>
-                  <Link
-                    to={card.href}
-                    className="group flex flex-col h-full p-5 border border-[#E5E5E5] rounded-2xl hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200"
-                  >
-                    <h3 className="text-sm font-bold text-[#101418] mb-2">{d.title}</h3>
-                    <p className="text-xs text-[#4F555E] leading-relaxed mb-4 flex-1">{d.desc}</p>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-semibold group-hover:gap-2.5 group-active:gap-2.5 transition-all">
-                      {d.cta} <ArrowRight size={12} />
-                    </span>
-                  </Link>
+                  {isDownload ? (
+                    <a href={card.href} download className={cardClassName}>
+                      {cardContent}
+                    </a>
+                  ) : (
+                    <Link to={card.href} className={cardClassName}>
+                      {cardContent}
+                    </Link>
+                  )}
                 </ScrollReveal>
               );
             })}

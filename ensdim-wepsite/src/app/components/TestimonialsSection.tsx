@@ -15,14 +15,6 @@ const testimonialsEn = [
     avatar: "/testimonials/haitham.png",
   },
   {
-    quote: "Before Ensdim, bookings and follow-ups were taking a lot of our team's time, and some details could get lost between calls and WhatsApp. What I appreciated most was that they understood how our clinic works and created an easier experience for us and for our visitors from the first contact. After adding website booking, the chatbot, and the AI-supported dashboard, follow-up became clearer, files were more organized, and WhatsApp communication became calmer and easier.",
-    name: "Emirates Cosmetic Clinic",
-    company: "Aesthetic Clinic · UAE",
-    result: "Easier booking & happier visitors",
-    caseStudy: "/case-studies/lemera-clinic-booking-crm",
-    avatar: null,
-  },
-  {
     quote: "They were partners in shaping the idea from the beginning, not just a technical execution team. They helped us study the concept, organize the user journey, and build a dashboard and booking app until we reached our first market-ready trial version. Having them with us from early thinking to the trial launch gave us more clarity and confidence in the project direction.",
     name: "Eng. Ahmed Ali",
     company: "CEO · Triboo, Egypt",
@@ -48,14 +40,6 @@ const testimonialsAr = [
     result: "احترافية وسرعة إنجاز",
     caseStudy: "/case-studies/bustan-amari-operations-system",
     avatar: "/testimonials/haitham.png",
-  },
-  {
-    quote: "قبل إنسديم، كان الحجز والمتابعة ياخذون وقت كبير من الفريق، وبعض التفاصيل كانت تضيع بين المكالمات والواتساب. أكثر شيء عجبني أنهم فهموا طبيعة شغل العيادة، وسوّوا لنا تجربة أسهل لنا وللزائرات من أول تواصل. بعد ما أضفنا الحجز من الموقع والتشات بوت، والداشبورد المدعوم بالذكاء الاصطناعي، صارت المتابعة أوضح، والملفات أكثر ترتيبًا، والتواصل على الواتساب أهدأ وأسهل.",
-    name: "عيادة تجميل الإمارات",
-    company: "عيادة تجميل · الإمارات",
-    result: "حجز أسهل وزوار أكثر رضا",
-    caseStudy: "/case-studies/lemera-clinic-booking-crm",
-    avatar: null,
   },
   {
     quote: "كانوا شركاء في بناء الفكرة من البداية، وليس مجرد فريق تنفيذ تقني. ساعدونا في دراسة الفكرة، ترتيب رحلة المستخدم، وبناء داشبورد وتطبيق حجز حتى وصلنا لأول نسخة تجريبية جاهزة للسوق. وجودهم معنا من مرحلة التفكير حتى الإطلاق التجريبي أعطانا وضوحًا وثقة أكبر في اتجاه المشروع.",
@@ -85,7 +69,7 @@ export function TestimonialsSection() {
   const goTo = (i: number) => setIndex((i + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-20 sm:py-24 bg-[#F4F2FF]">
+    <section className="py-20 sm:py-24 bg-[#FAFAFA]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <ScrollReveal className="text-center mb-10 sm:mb-14">
           <h2 className="text-2xl sm:text-4xl font-bold text-[#101418] mb-2">

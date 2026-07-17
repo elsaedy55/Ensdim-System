@@ -26,7 +26,7 @@ export function TechnologyEcosystem() {
   const quadrupled = [...techPartners, ...techPartners, ...techPartners, ...techPartners];
 
   return (
-    <section className="py-20 sm:py-24 bg-white border-y border-[#EBEBEB] overflow-hidden">
+    <section className="py-20 sm:py-24 bg-[#FAFAFA] overflow-hidden">
       <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 text-center">
         <h2 className="text-2xl sm:text-3xl font-bold text-[#101418] mb-2">
           {t('technology.title')}
