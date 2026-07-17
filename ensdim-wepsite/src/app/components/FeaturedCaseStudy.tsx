@@ -58,7 +58,7 @@ export function FeaturedCaseStudy() {
                     {ar ? study.outcome_ar : study.outcome_en}
                   </p>
 
-                  <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-[#E5E5E5]">
+                  <div className="grid grid-cols-1 gap-3 mb-6 pb-6 border-b border-[#E5E5E5]">
                     <div>
                       <p className="text-[10px] text-[#4F555E] mb-1 uppercase tracking-wide">
                         {t('caseStudy.problemLabel')}
@@ -108,7 +108,7 @@ export function FeaturedCaseStudy() {
                 />
               </div>
             ) : (
-              <div className="relative bg-gradient-to-br from-[#0d0b17] to-[#1a1030] p-6 flex items-center justify-center order-1 md:order-2 min-h-[320px] overflow-hidden">
+              <div className="relative bg-logo-black p-6 flex items-center justify-center order-1 md:order-2 min-h-[320px] overflow-hidden">
                 <div className="absolute inset-0 opacity-15">
                   <div className="absolute top-0 right-0 w-56 h-56 bg-[#6D5DF6] rounded-full blur-[70px]" />
                   <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#D63A3A] rounded-full blur-[50px]" />

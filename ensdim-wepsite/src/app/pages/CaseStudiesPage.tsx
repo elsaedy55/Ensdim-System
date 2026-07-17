@@ -56,7 +56,7 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
         <p className="text-sm text-[#4F555E] leading-relaxed mb-4 line-clamp-2">
           {ar ? c.outcome_ar : c.outcome_en}
         </p>
-        <div className="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-[#F0F0F0] mt-auto">
+        <div className="grid grid-cols-1 gap-3 mb-4 pb-4 border-b border-[#F0F0F0] mt-auto">
           {[
             { label: ar ? 'المشكلة' : 'Problem', value: ar ? c.card_problem_ar : c.card_problem_en },
             { label: ar ? 'الحل' : 'Solution', value: ar ? c.card_solution_ar : c.card_solution_en },
@@ -110,10 +110,6 @@ export function CaseStudiesPage() {
 
       {/* 1. Hero */}
       <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
-        />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
           <div className="mb-6 text-xs text-white/50 flex items-center gap-1">
             <Link to="/" className="hover:text-white/80 transition-colors">{ar ? 'الرئيسية' : 'Home'}</Link>

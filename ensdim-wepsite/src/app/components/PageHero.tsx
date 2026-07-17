@@ -37,14 +37,6 @@ export function PageHero({
         isDark ? 'bg-logo-black text-white' : 'bg-[#FAFAFA] text-[#101418]'
       }`}
     >
-      {isDark && (
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)',
-          }}
-        />
-      )}
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
         {breadcrumbs && breadcrumbs.length > 0 && (
           <div className="mb-6">

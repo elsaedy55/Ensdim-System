@@ -99,7 +99,7 @@ export function CaseStudyDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <div className="bg-gradient-to-br from-[#0f0d1a] via-[#1a1030] to-[#101418] pt-24 pb-14">
+        <div className="bg-logo-black pt-24 pb-14">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <div className="h-8 w-48 bg-white/10 rounded animate-pulse mb-8" />
             <div className="h-10 w-3/4 bg-white/20 rounded animate-pulse mb-4" />
@@ -149,10 +149,6 @@ export function CaseStudyDetailPage() {
       />
 
       <section className="pt-24 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden bg-logo-black text-white">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 50%, rgba(59,42,120,0.22) 0%, transparent 70%)' }}
-        />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6">
           <div className="mb-6 text-xs text-white/50 flex items-center gap-1">
             <Link to="/" className="hover:text-white/80 transition-colors">{ar ? 'الرئيسية' : 'Home'}</Link>

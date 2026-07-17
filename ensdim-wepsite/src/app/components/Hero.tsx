@@ -426,22 +426,6 @@ export function Hero() {
       {/* Base dark layer */}
       <div className="absolute inset-0 bg-logo-black" />
 
-      {/* Subtle ambient glow — bottom center (from CTA button area) */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 40% 35% at 20% 65%, rgba(109,93,246,0.08) 0%, transparent 50%)',
-        }}
-      />
-
-      {/* Very subtle visualization glow — right side only */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 45% 50% at 85% 45%, rgba(109,93,246,0.06) 0%, transparent 60%)',
-        }}
-      />
-
       {/* Very subtle noise texture via SVG */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -453,12 +437,6 @@ export function Hero() {
 
       {/* Horizontal rule at top — subtle brand accent */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#6D5DF6]/25 to-transparent" />
-
-      {/* Bottom vignette */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, rgba(10,12,18,0.95), transparent)' }}
-      />
 
       {/* ── Main content grid ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-14 md:pt-28 md:pb-14 lg:pt-32 lg:pb-16">
@@ -530,13 +508,6 @@ export function Hero() {
             className="hidden lg:block flex-1 relative"
             style={{ height: 'clamp(380px, 52vh, 500px)' }}
           >
-            {/* Outer glow container */}
-            <div
-              className="absolute inset-0 rounded-3xl"
-              style={{
-                background: 'radial-gradient(ellipse 80% 80% at 50% 50%, rgba(109,93,246,0.07) 0%, transparent 70%)',
-              }}
-            />
             {isRTL ? <HeroVizArabic /> : <HeroViz />}
           </div>
 

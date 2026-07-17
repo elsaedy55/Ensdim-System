@@ -69,7 +69,7 @@ export function ClientPortalFeature() {
 
             <div className="bg-white rounded-xl shadow-[0_4px_24px_rgba(109,93,246,0.1)] overflow-hidden border border-[#E8E4FF]">
               {/* Portal top bar */}
-              <div className="bg-gradient-to-r from-[#101418] to-[#1e1630] px-4 py-2.5 flex items-center justify-between">
+              <div className="bg-logo-black px-4 py-2.5 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-bold tracking-tight leading-none">
                     <span style={{ color: '#D63A3A' }}>EN</span>

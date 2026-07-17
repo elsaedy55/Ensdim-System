@@ -15,15 +15,6 @@ export function WhoIsSection() {
 
   return (
     <section className="py-20 sm:py-24 bg-logo-black text-white relative overflow-hidden">
-      {/* Very subtle violet glow behind content */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 30% 50%, rgba(59,42,120,0.18) 0%, transparent 70%)',
-        }}
-      />
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20 gap-10">
 

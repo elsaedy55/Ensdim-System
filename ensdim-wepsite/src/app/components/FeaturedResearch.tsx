@@ -42,7 +42,7 @@ export function FeaturedResearch() {
                 />
               </div>
             ) : (
-              <div className="relative bg-gradient-to-br from-[#0f0d1a] via-[#1a1030] to-[#101418] p-10 flex items-center justify-center min-h-[280px] overflow-hidden">
+              <div className="relative bg-logo-black p-10 flex items-center justify-center min-h-[280px] overflow-hidden">
                 {/* Background glow */}
                 <div className="absolute inset-0 opacity-30">
                   <div className="absolute top-4 left-4 w-48 h-48 bg-[#6D5DF6] rounded-full blur-[60px]" />

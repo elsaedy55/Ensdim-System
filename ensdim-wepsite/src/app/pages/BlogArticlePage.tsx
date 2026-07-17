@@ -60,7 +60,7 @@ export function BlogArticlePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <div className="bg-gradient-to-br from-[#0f0d1a] via-[#1a1030] to-[#101418] pt-24 pb-14">
+        <div className="bg-logo-black pt-24 pb-14">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <div className="h-8 w-48 bg-white/10 rounded animate-pulse mb-8" />
             <div className="h-10 w-3/4 bg-white/20 rounded animate-pulse mb-4" />
@@ -124,7 +124,7 @@ export function BlogArticlePage() {
 
       <div className="min-h-screen bg-white">
         {/* Hero */}
-        <div className="bg-gradient-to-br from-[#0f0d1a] via-[#1a1030] to-[#101418] pt-24 pb-14">
+        <div className="bg-logo-black pt-24 pb-14">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <Link
               to="/blog"
