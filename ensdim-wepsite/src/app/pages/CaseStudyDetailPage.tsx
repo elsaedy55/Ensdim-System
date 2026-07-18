@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
-import { ArrowRight, ArrowLeft, ExternalLink, CheckCircle2, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowLeft, ExternalLink, CheckCircle2, ChevronDown, Download } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
@@ -163,19 +163,40 @@ export function CaseStudyDetailPage() {
           <h1 className="text-2xl sm:text-3xl font-bold mb-4 leading-tight text-white">{title}</h1>
           <p className="text-base sm:text-lg max-w-2xl leading-relaxed mb-8 text-[#EEEAFE]/75">{outcome}</p>
           <div className="flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() => scrollTo('case-study-form')}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
-            >
-              {ar ? 'ابنِ حلًا مشابهًا' : 'Build a similar solution'} <ArrowRight size={15} />
-            </button>
-            <Link
-              to="/case-studies"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
-            >
-              {ar ? 'عرض كل دراسات الحالة' : 'View all case studies'}
-            </Link>
+            {study.report_url ? (
+              <a
+                href={study.report_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+              >
+                {ar ? 'تحميل التقرير التقني الكامل' : 'Download the full technical report'} <Download size={15} />
+              </a>
+            ) : (
+              <button
+                type="button"
+                onClick={() => scrollTo('case-study-form')}
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#D63A3A] text-white rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+              >
+                {ar ? 'ابنِ حلًا مشابهًا' : 'Build a similar solution'} <ArrowRight size={15} />
+              </button>
+            )}
+            {study.report_url ? (
+              <button
+                type="button"
+                onClick={() => scrollTo('case-study-form')}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+              >
+                {ar ? 'تواصل معنا لمراجعة نظامك' : 'Talk to us about reviewing your system'}
+              </button>
+            ) : (
+              <Link
+                to="/case-studies"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/20 text-white/80 hover:border-white/40 hover:text-white active:scale-[0.98] transition-all duration-200 text-sm font-semibold"
+              >
+                {ar ? 'عرض كل دراسات الحالة' : 'View all case studies'}
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -210,7 +231,7 @@ export function CaseStudyDetailPage() {
             <div
               ref={viewportRef}
               dir="ltr"
-              className="w-full aspect-square sm:aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] overflow-hidden touch-pan-y select-none"
+              className="w-full aspect-[16/9] bg-[#F4F2FF] rounded-2xl shadow-xl border border-[#E5E5E5] overflow-hidden touch-pan-y select-none"
               onTouchStart={mediaItems.length > 1 ? (e) => handleTouchStart(e, mediaItems.length) : undefined}
               onTouchMove={mediaItems.length > 1 ? handleTouchMove : undefined}
               onTouchEnd={mediaItems.length > 1 ? (e) => handleTouchEnd(e, mediaItems.length) : undefined}
@@ -378,6 +399,29 @@ export function CaseStudyDetailPage() {
               >
                 {ar ? 'عرض الديمو' : 'View Demo'} <ExternalLink size={15} />
               </a>
+            </ScrollReveal>
+          )}
+
+          {study.report_url && (
+            <ScrollReveal delay={0.16}>
+              <div className="border border-[#E5E5E5] rounded-2xl p-6 sm:p-8 bg-[#FAFAFA]">
+                <h2 className="text-sm font-bold text-[#101418] mb-2">
+                  {ar ? 'التقرير التقني الكامل' : 'Full Technical Report'}
+                </h2>
+                <p className="text-sm text-[#4F555E] leading-relaxed mb-5">
+                  {ar
+                    ? 'هذه الصفحة تعرض الحالة من زاوية البزنس. التقرير الكامل يتضمن التصنيف الفني، تفاصيل الأثر، والتوصيات التقنية المقترحة للمعالجة.'
+                    : 'This page presents the case from a business perspective. The full report includes technical classification, impact details, and remediation recommendations.'}
+                </p>
+                <a
+                  href={study.report_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 bg-[#D63A3A] text-white text-sm font-semibold rounded-xl hover:bg-[#c23030] active:scale-[0.98] transition-all duration-200"
+                >
+                  {ar ? 'تحميل التقرير التقني الكامل' : 'Download the full technical report'} <Download size={15} />
+                </a>
+              </div>
             </ScrollReveal>
           )}
 

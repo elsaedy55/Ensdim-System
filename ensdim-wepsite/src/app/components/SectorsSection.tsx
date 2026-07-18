@@ -11,37 +11,43 @@ export function SectorsSection() {
       icon: Stethoscope,
       title: t('sectors.sector1Title'),
       description: t('sectors.sector1Desc'),
-      caseStudy: '/case-studies/clearer-visibility'
+      caseStudy: '/case-studies/clearer-visibility',
+      image: '/sectors/clinics-medical.png'
     },
     {
       icon: Building2,
       title: t('sectors.sector2Title'),
       description: t('sectors.sector2Desc'),
-      caseStudy: '/case-studies/scattered-follow-up'
+      caseStudy: '/case-studies/scattered-follow-up',
+      image: '/sectors/real-estate.png'
     },
     {
       icon: Briefcase,
       title: t('sectors.sector3Title'),
       description: t('sectors.sector3Desc'),
-      caseStudy: '/case-studies/reduced-manual-work'
+      caseStudy: '/case-studies/reduced-manual-work',
+      image: '/sectors/service-businesses.png'
     },
     {
       icon: GraduationCap,
       title: t('sectors.sector4Title'),
       description: t('sectors.sector4Desc'),
-      caseStudy: '/case-studies/scaling-with-control'
+      caseStudy: '/case-studies/scaling-with-control',
+      image: '/sectors/education-training.png'
     },
     {
       icon: HardHat,
       title: t('sectors.sector5Title'),
       description: t('sectors.sector5Desc'),
-      caseStudy: '/case-studies/faster-response'
+      caseStudy: '/case-studies/faster-response',
+      image: '/sectors/construction-field-ops.png'
     },
     {
       icon: Utensils,
       title: t('sectors.sector6Title'),
       description: t('sectors.sector6Desc'),
-      caseStudy: '/case-studies/reduced-manual-work'
+      caseStudy: '/case-studies/reduced-manual-work',
+      image: '/sectors/restaurants-hospitality.png'
     }
   ];
 
@@ -85,11 +91,22 @@ export function SectorsSection() {
             <ScrollReveal key={index} delay={Math.min(index * 0.05, 0.2)}>
             <Link
               to={sector.caseStudy}
-              className="sector-card group relative p-4 sm:p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 active:scale-[0.97] active:translate-y-0 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
+              className="sector-card group relative rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:border-[#6D5DF6]/70 hover:bg-white/[0.1] hover:-translate-y-2 active:scale-[0.97] active:translate-y-0 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
             >
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#6D5DF6]/10">
+                <img
+                  src={sector.image}
+                  alt={sector.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-logo-black/90 via-logo-black/10 to-transparent" />
+              </div>
+
               <div className="absolute inset-0 bg-gradient-to-br from-[#6D5DF6]/0 via-[#6D5DF6]/0 to-[#6D5DF6]/0 group-hover:from-[#6D5DF6]/10 group-hover:via-[#6D5DF6]/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
 
-              <div className="relative">
+              <div className="relative p-4 sm:p-6 flex-1 flex flex-col">
                 <div className="sector-icon w-9 h-9 sm:w-11 sm:h-11 bg-[#6D5DF6]/15 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#6D5DF6] group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#6D5DF6]/50 transition-all duration-300">
                   <sector.icon className="text-[#6D5DF6] group-hover:text-white transition-colors duration-300 w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
                 </div>

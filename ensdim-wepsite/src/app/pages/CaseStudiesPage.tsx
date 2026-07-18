@@ -28,10 +28,10 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
   return (
     <Link
       to={`/case-studies/${c.slug}`}
-      className={`group flex flex-col border border-[#E5E5E5] rounded-2xl overflow-hidden bg-white hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 h-full ${featured ? 'lg:flex-row' : ''}`}
+      className={`group flex flex-col border border-[#E5E5E5] rounded-2xl overflow-hidden bg-white hover:border-[#6D5DF6] hover:shadow-md active:scale-[0.98] active:border-[#6D5DF6] transition-all duration-200 h-full ${featured ? 'lg:flex-row lg:items-center' : ''}`}
     >
       {c.image_url && (
-        <div className={`flex-shrink-0 bg-[#F4F2FF] overflow-hidden ${featured ? 'w-full aspect-square lg:aspect-auto lg:w-[42%] lg:h-auto' : 'w-full aspect-square'}`}>
+        <div className={`flex-shrink-0 bg-[#F4F2FF] overflow-hidden ${featured ? 'w-full aspect-[16/9] lg:w-[42%]' : 'w-full aspect-[16/9]'}`}>
           <img
             src={c.image_url}
             alt={ar ? c.title_ar : c.title_en}

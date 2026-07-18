@@ -65,6 +65,7 @@ const howWeBuildSteps = [
 const team = [
   { name: 'Shenouda Z Zaki', en: 'CEO', ar: 'الرئيس التنفيذي', image: '/team/shenouda-zaki.jpg' },
   { name: 'Ahmed Elsayed', en: 'Project Manager', ar: 'مدير مشروع', image: '/team/ahmed-elsayed.jpg' },
+  { name: 'Zaina El-Alfy', en: 'Market Manager', ar: 'مديرة تسويق', image: '/team/zaina-el-alfy.png' },
   { name: 'Ahmed Omran', en: 'Business Developer', ar: 'مطور أعمال', image: '/team/ahmed-omran.jpg' },
   { name: 'Radwa Mustafa', en: 'Marketing', ar: 'تسويق', image: '/team/radwa-mustafa.jpg' },
   { name: 'Fouad Mamdouh', en: 'Data Engineer', ar: 'مهندس بيانات', image: '/team/fouad-mamdouh.jpg' },

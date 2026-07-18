@@ -27,7 +27,7 @@ const testimonialsEn = [
     name: "Eng. Ibrahim",
     company: "CEO · Real Estate Development",
     result: "A clear digital foundation from research to execution",
-    caseStudy: "/case-studies/real-estate-sales-crm-saudi",
+    caseStudy: null,
     avatar: "/testimonials/ibrahem.jpeg",
   },
 ];
@@ -54,7 +54,7 @@ const testimonialsAr = [
     name: "م. إبراهيم",
     company: "المدير التنفيذي · تطوير عقاري",
     result: "أساس رقمي واضح من البحث إلى التنفيذ",
-    caseStudy: "/case-studies/real-estate-sales-crm-saudi",
+    caseStudy: null,
     avatar: "/testimonials/ibrahem.jpeg",
   },
 ];
@@ -123,13 +123,15 @@ export function TestimonialsSection() {
                       <p className="text-xs text-[#4F555E]">{current.company}</p>
                     </div>
                   </div>
-                  <Link
-                    to={current.caseStudy}
-                    className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium hover:gap-2 transition-all duration-200"
-                  >
-                    {isAr ? 'عرض قصة النجاح' : 'View Success Story'}
-                    <ArrowRight size={11} className="rtl:rotate-180" />
-                  </Link>
+                  {current.caseStudy && (
+                    <Link
+                      to={current.caseStudy}
+                      className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium hover:gap-2 transition-all duration-200"
+                    >
+                      {isAr ? 'عرض قصة النجاح' : 'View Success Story'}
+                      <ArrowRight size={11} className="rtl:rotate-180" />
+                    </Link>
+                  )}
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -191,13 +193,15 @@ export function TestimonialsSection() {
                     <p className="text-xs text-[#4F555E]">{item.company}</p>
                   </div>
                 </div>
-                <Link
-                  to={item.caseStudy}
-                  className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium"
-                >
-                  {isAr ? 'عرض قصة النجاح' : 'View Success Story'}
-                  <ArrowRight size={11} className="rtl:rotate-180" />
-                </Link>
+                {item.caseStudy && (
+                  <Link
+                    to={item.caseStudy}
+                    className="inline-flex items-center gap-1.5 text-xs text-[#6D5DF6] font-medium"
+                  >
+                    {isAr ? 'عرض قصة النجاح' : 'View Success Story'}
+                    <ArrowRight size={11} className="rtl:rotate-180" />
+                  </Link>
+                )}
               </div>
             </div>
           ))}
