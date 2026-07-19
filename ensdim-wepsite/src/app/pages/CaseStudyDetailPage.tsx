@@ -5,7 +5,6 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SEO } from '../components/SEO';
-import { parseSector } from '../../lib/caseStudySector';
 import { useCaseStudy } from '../../hooks/useContent';
 
 export function CaseStudyDetailPage() {
@@ -135,7 +134,6 @@ export function CaseStudyDetailPage() {
   const impactIntro     = ar ? study.impactIntro_ar : study.impactIntro_en;
   const impactItems     = ar ? study.impactItems_ar : study.impactItems_en;
   const whyMatters      = ar ? study.whyMatters_ar : study.whyMatters_en;
-  const sector          = parseSector(ar ? study.sector_ar : study.sector_en).tags;
   const mediaItems      = [study.image_url, ...(study.gallery_images || [])].filter((src): src is string => Boolean(src));
 
   return (
@@ -200,12 +198,6 @@ export function CaseStudyDetailPage() {
           </div>
         </div>
       </section>
-
-      <div className="bg-[#FAFAFA] border-b border-[#E5E5E5] py-4">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <p className="text-xs font-semibold text-[#6D5DF6] uppercase tracking-wider">{sector}</p>
-        </div>
-      </div>
 
       {study.snapshot.length > 0 && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">

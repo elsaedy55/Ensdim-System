@@ -42,6 +42,9 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
         </div>
       )}
       <div className={`p-6 flex flex-col flex-1 ${featured ? 'justify-center' : ''}`}>
+        <h3 className={`font-bold text-[#101418] mb-2 leading-snug ${featured ? 'text-xl sm:text-2xl' : 'text-base'}`}>
+          {ar ? c.title_ar : c.title_en}
+        </h3>
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="text-[10px] text-[#4F555E] font-medium">{tags}</span>
           {caseType && (
@@ -50,9 +53,6 @@ function CaseStudyCard({ c, ar, featured = false }: { c: CaseStudy; ar: boolean;
             </span>
           )}
         </div>
-        <h3 className={`font-bold text-[#101418] mb-2 leading-snug ${featured ? 'text-xl sm:text-2xl' : 'text-base'}`}>
-          {ar ? c.title_ar : c.title_en}
-        </h3>
         <p className="text-sm text-[#4F555E] leading-relaxed mb-4 line-clamp-2">
           {ar ? c.outcome_ar : c.outcome_en}
         </p>
