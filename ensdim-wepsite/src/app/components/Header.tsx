@@ -146,7 +146,7 @@ export function Header() {
 
           {/* Logo: forced to the left on mobile even in Arabic (RTL flips flex order otherwise) */}
           <Link to="/" onClick={closeAll} className="cursor-pointer hover:opacity-80 active:scale-95 transition-all flex-shrink-0 no-mirror">
-            <img src={ensdimLogo} alt="Ensdim" className="w-auto object-contain h-[22px] sm:h-[28px]" />
+            <img src={ensdimLogo} alt="Ensdim" className="w-auto object-contain h-[18px] sm:h-[23px]" />
           </Link>
 
           {/* Desktop nav */}
