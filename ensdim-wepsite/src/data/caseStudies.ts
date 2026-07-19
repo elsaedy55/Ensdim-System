@@ -117,12 +117,11 @@ export const caseStudies: CaseStudy[] = [
     card_impact_ar: 'تنظيم أكثر من 6,000 عقد',
     outcome_en: 'How we helped a Kuwait-based garden and palm maintenance company move from paper records and Excel sheets to an integrated operating system for contracts, supervisors, workers, visits, customers, and payments.',
     outcome_ar: 'كيف ساعدنا شركة كويتية راسخة في صيانة الحدائق والنخيل على الانتقال من التسجيل الورقي والإكسيل إلى نظام تشغيل متكامل لإدارة العقود، المشرفين، العمالة، الزيارات، العملاء، والمدفوعات.',
-    image_url: '/case-studies/bustan-amari/bustan-amari-1.jpg',
+    image_url: '/case-studies/bustan-amari/bustan-amari-dashboard.jpg',
     gallery_images: [
-      '/case-studies/bustan-amari/bustan-amari-2.jpg',
-      '/case-studies/bustan-amari/bustan-amari-3.jpg',
-      '/case-studies/bustan-amari/bustan-amari-supervisor-app.png',
-      '/case-studies/bustan-amari/bustan-amari-customer-app.png',
+      '/case-studies/bustan-amari/bustan-amari-contracts.jpg',
+      '/case-studies/bustan-amari/bustan-amari-supervisors.jpg',
+      '/case-studies/bustan-amari/bustan-amari-apps.jpg',
     ],
     demo_url: null,
 
@@ -853,8 +852,11 @@ export const caseStudies: CaseStudy[] = [
     card_impact_ar: 'منصة قابلة للبيع من اليوم الأول',
     outcome_en: 'How we helped turn an education platform idea into a web-based operating system that connects students, teachers, training centers, academies, content, wallets, purchases, and management dashboards.',
     outcome_ar: 'كيف ساعدنا في تحويل فكرة منصة تعليمية إلى تجربة تربط الطلاب بالمدرسين والسناتر والأكاديميات، وتدير المحتوى، المحافظ، المشتريات، والمبيعات من خلال لوحة إدارة واضحة.',
-    image_url: null,
-    gallery_images: [],
+    image_url: '/case-studies/digital-education-platform/education-platform-home.jpg',
+    gallery_images: [
+      '/case-studies/digital-education-platform/education-platform-course.jpg',
+      '/case-studies/digital-education-platform/education-platform-dashboard.jpg',
+    ],
     demo_url: null,
 
     snapshot: [
@@ -1698,7 +1700,7 @@ export const caseStudies: CaseStudy[] = [
     card_impact_ar: 'حماية للحسابات وثقة أعلى',
     outcome_en: 'This case study shows how a simple field inside a system can become a risk to accounts and user data when it is not handled securely, and how early security review helps protect user trust and operational stability.',
     outcome_ar: 'تعرض هذه الدراسة كيف يمكن لحقل بسيط داخل النظام أن يصبح نقطة خطر على الحسابات والبيانات إذا لم تتم معالجته أمنيًا بشكل صحيح، وكيف تساعد المراجعة الأمنية المبكرة على حماية ثقة المستخدمين واستقرار التشغيل.',
-    image_url: null,
+    image_url: '/case-studies/security-review/security-review-xss.jpg',
     gallery_images: [],
     demo_url: null,
     badge_en: 'Security Case Study',
