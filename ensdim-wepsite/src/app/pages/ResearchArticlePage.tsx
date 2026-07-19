@@ -113,8 +113,21 @@ export function ResearchArticlePage() {
 
       <div className="min-h-screen bg-white">
         {/* Hero */}
-        <div className="bg-logo-black pt-24 pb-14">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="relative pt-24 pb-14 overflow-hidden bg-logo-black">
+          {article.image_url && (
+            <>
+              <img
+                src={article.image_url}
+                alt=""
+                aria-hidden="true"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/65 to-black/90" />
+            </>
+          )}
+
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6">
             <Link
               to="/research"
               className="inline-flex items-center gap-2 text-[#EEEAFE]/75 hover:text-[#EEEAFE] text-sm mb-8 transition-colors"
@@ -141,18 +154,6 @@ export function ResearchArticlePage() {
             </p>
           </div>
         </div>
-
-        {/* Cover image */}
-        {article.image_url && (
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 -mt-8">
-            <img
-              src={article.image_url}
-              alt={title}
-              decoding="async"
-              className="w-full h-56 sm:h-72 object-cover rounded-2xl shadow-lg"
-            />
-          </div>
-        )}
 
         {/* Content */}
         <div

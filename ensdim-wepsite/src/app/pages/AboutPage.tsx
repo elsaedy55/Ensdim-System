@@ -63,21 +63,21 @@ const howWeBuildSteps = [
 ];
 
 const team = [
-  { name: 'Shenouda Z Zaki', en: 'CEO', ar: 'الرئيس التنفيذي', image: '/team/shenouda-zaki.jpg' },
-  { name: 'Ahmed Elsayed', en: 'Project Manager', ar: 'مدير مشروع', image: '/team/ahmed-elsayed.jpg' },
-  { name: 'Zaina El-Alfy', en: 'Market Manager', ar: 'مديرة تسويق', image: '/team/zaina-el-alfy.png' },
-  { name: 'Ahmed Omran', en: 'Business Developer', ar: 'مطور أعمال', image: '/team/ahmed-omran.jpg' },
-  { name: 'Radwa Mustafa', en: 'Marketing', ar: 'تسويق', image: '/team/radwa-mustafa.jpg' },
-  { name: 'Fouad Mamdouh', en: 'Data Engineer', ar: 'مهندس بيانات', image: '/team/fouad-mamdouh.jpg' },
-  { name: 'Eng. Mina Magdy', en: 'Cyber Security', ar: 'أمن سيبراني', image: '/team/mina-magdy.jpg' },
-  { name: 'Mahmoud Khater', en: 'AI Engineer', ar: 'مهندس ذكاء اصطناعي', image: '/team/mahmoud-khater.jpg' },
-  { name: 'Beshoy Ashref', en: 'AI Automation Specialist', ar: 'متخصص أتمتة بالذكاء الاصطناعي', image: '/team/beshoy-ashref.jpg' },
-  { name: 'Abdullah Badawy', en: 'Backend', ar: 'باك إند', image: '/team/abdullah-badawy.jpg' },
-  { name: 'Aya Nour', en: 'Frontend', ar: 'فرونت إند', image: '/team/aya-nour.png' },
-  { name: 'Maya Al-Hussein', en: 'Flutter', ar: 'Flutter', image: '/team/maya-alhussein.jpg' },
-  { name: 'Ziad Salah', en: 'Flutter', ar: 'Flutter', image: '/team/ziad-salah.jpg' },
-  { name: 'Shaimaa Elsayed', en: 'UI/UX', ar: 'UI/UX', image: '/team/shaimaa-elsayed.jpg' },
-  { name: 'Ahmed Ragab', en: 'UI/UX', ar: 'UI/UX', image: '/team/ahmed-ragab.jpg' },
+  { name: 'Shenouda Z Zaki', role: 'CEO', image: '/team/shenouda-zaki.jpg' },
+  { name: 'Ahmed Elsayed', role: 'Project Manager', image: '/team/ahmed-elsayed.jpg' },
+  { name: 'Zaina El-Alfy', role: 'Market Manager', image: '/team/zaina-el-alfy.png' },
+  { name: 'Ahmed Omran', role: 'Business Developer', image: '/team/ahmed-omran.jpg' },
+  { name: 'Radwa Mustafa', role: 'Marketing', image: '/team/radwa-mustafa.jpg' },
+  { name: 'Fouad Mamdouh', role: 'Data Engineer', image: '/team/fouad-mamdouh.jpg' },
+  { name: 'Eng. Mina Magdy', role: 'Cyber Security', image: '/team/mina-magdy.jpg' },
+  { name: 'Mahmoud Khater', role: 'AI Engineer', image: '/team/mahmoud-khater.jpg' },
+  { name: 'Beshoy Ashref', role: 'AI Automation Specialist', image: '/team/beshoy-ashref.jpg' },
+  { name: 'Abdullah Badawy', role: 'Backend', image: '/team/abdullah-badawy.jpg' },
+  { name: 'Aya Nour', role: 'Frontend', image: '/team/aya-nour.png' },
+  { name: 'Maya Al-Hussein', role: 'Flutter', image: '/team/maya-alhussein.jpg' },
+  { name: 'Ziad Salah', role: 'Flutter', image: '/team/ziad-salah.jpg' },
+  { name: 'Shaimaa Elsayed', role: 'UI/UX', image: '/team/shaimaa-elsayed.jpg' },
+  { name: 'Ahmed Ragab', role: 'UI/UX', image: '/team/ahmed-ragab.jpg' },
 ];
 
 export function AboutPage() {
@@ -521,7 +521,7 @@ export function AboutPage() {
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 to-transparent" />
                     <div className="absolute bottom-0 inset-x-0 p-2.5 text-center">
                       <p className="text-[11px] font-semibold text-white leading-tight truncate">{member.name}</p>
-                      <p className="text-[10px] text-white/80 leading-tight truncate">{ar ? member.ar : member.en}</p>
+                      <p className="text-[10px] text-white/80 leading-tight truncate">{member.role}</p>
                     </div>
                   </div>
                 </ScrollReveal>
